@@ -1,0 +1,171 @@
+div.myOverview
+{
+  height:143px;
+  width:450px;
+  background-image:url(../images/backdrop.png);
+}
+
+div.boxContent
+{
+  padding:5px;
+}
+
+#avatar-plate
+{
+  background:url(../images/info_habbo_plate.png) no-repeat 2px -162px;
+  height:138px;
+  width:96px;
+  position:relative;
+  top:45px;
+  left:15px;
+  cursor:pointer;
+}
+
+div.avatarextrainfo
+{
+  width:430px;
+  background-color:#A0A097;
+  border-radius:0 0 5px 5px;
+  padding:10px;
+}
+
+#avatar-plate:hover
+{
+  background-position:2px 75px;
+}
+
+div.avatarinfo
+{
+  height:60px;
+  width:450px;
+  background-color:#7B7B71;
+}
+
+.MottoContainer
+{
+  width:323px;
+  max-height:24px;
+  float:right;
+  background-color:transparent;
+  background-repeat:no-repeat;
+  background-image:url(../images/motto_field.png);
+  overflow:hidden;
+  margin:5px 3px;
+}
+
+.MottoContainer>.Usersname
+{
+  float:left;
+  font-weight:700;
+  padding:3px 2px 5px 5px;
+}
+
+.MottoContainer>.Usersmotto
+{
+  float:left;
+  color:gray;
+  padding:3px 2px 5px 5px;
+}
+
+div.link-bar
+{
+  background-color:#7B7B71;
+  padding:30px 0 5px 20px;
+}
+
+div.link-bar div
+{
+  line-height:16px;
+  float:left;
+  background-color:transparent;
+  background-repeat:no-repeat;
+  background-image:url(../images/info_icons.png);
+  margin:5pt 25px 0 7px;
+  padding:2px 0 2px 20px;
+}
+
+#enter-hotel
+{
+  position:relative;
+  top:-20px;
+  right:10px;
+  float:right;
+  padding:28px 0;
+}
+
+#enter-hotel div a,div.div.avatarinfo#enter-hotel div span
+{
+  float:left;
+  background:transparent url(../images/enter_button.png) no-repeat -9px 0;
+  height:49px;
+  text-align:center;
+  line-height:47px;
+  font-size:14px;
+  text-decoration:none;
+  color:#fff;
+  position:relative;
+  padding:0 26px 0 19px;
+}
+
+#enter-hotel div span
+{
+  padding-right:10px;
+  background-position:-9px -98px;
+}
+
+#enter-hotel div:hover a
+{
+  background-position:-9px -49px;
+  text-decoration:none;
+}
+
+#enter-hotel div:hover b
+{
+  background-position:0 -49px;
+}
+
+#enter-hotel div a i
+{
+  background:transparent url(../images/flashy_arrow.gif) no-repeat 0 50%;
+  position:absolute;
+  right:0;
+  top:13px;
+  line-height:1px;
+  height:1px;
+  font-size:1px;
+  padding:10px;
+}
+
+#enter-hotel div b
+{
+  float:left;
+  background:transparent url(../images/enter_button.png) no-repeat 0 0;
+  height:49px;
+  width:9px;
+}
+
+div.link-bar>.change-looks
+{
+  background-position:0 -976px;
+}
+
+div.link-bar>.credits
+{
+  background-position:0 -143px;
+}
+
+div.link-bar>.club
+{
+  background-position:0 -95px;
+}
+
+div.link-bar>.vipclub
+{
+  background-position:0 -1120px;
+}
+
+div.link-bar>.activitypoints
+{
+  background-position:0 -1070px;
+  padding-left:18px;
+}

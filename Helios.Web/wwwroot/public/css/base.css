@@ -1,0 +1,165 @@
+body {
+    background: url("../images/background.png");
+    font-family:"Verdana";
+    font-size: 11px;
+    margin: 5px;
+}
+
+.container {
+    width: 900px;
+    background: #FFF;
+    margin: auto;
+    padding: 6px;
+}
+
+h5 {
+    margin: 0;
+}
+
+.alert {
+    font-size: 13px;
+    font-family:"Trebuchet MS";
+}
+
+.logo {
+    width: 110px;
+    height: 40px;
+    background: url('../images/logo.gif');
+    
+    margin-top: 10px;
+    margin-left: 20px;
+}
+.users-online {
+    margin-top: 20px;
+    margin-right: 20px;
+}
+
+.welcome-lounge {
+    background: url('../images/welcome-lounge.png');
+    border-radius: 5px;
+    width: 868px;
+    height: 473px;
+    padding: 10px;
+    margin: 10px auto auto auto;
+}
+
+.box-style {
+    border-left: 1px solid #CCC;
+    border-right: 1px solid #CCC;
+    border-top: 1px solid #CCC;
+    border-bottom: 2px solid #CCC;
+    
+    border-radius: 5px;
+}
+
+.box-style-dark {
+    border-left: 1px solid #333;
+    border-right: 1px solid #333;
+    border-top: 1px solid #333;
+    border-bottom: 2px solid #333;
+    
+    border-radius: 5px;
+}
+
+.float-left {
+    float: left;
+}
+.float-right {
+    float: right;
+}
+
+.clear {
+    clear: both;
+}
+
+.footer {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.footer > .links a {
+    text-decoration: underline;
+    color: #000;
+}
+
+
+.contentHeader {
+    font-weight: bold;
+    color: white;
+    margin-bottom: 5px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+}
+
+.blue {
+    background: #3E8ABA;
+}
+.red {
+    background: red;
+}
+.blue2 {
+    background: #4270A4;
+}
+.green {
+    background: #51942F;
+}
+.orange {
+    background: orange;
+}
+.black {
+    background: black;
+}
+
+.content-box {
+    background: #FFF;
+}
+
+.width25 {
+    width: 26%;
+}
+
+.box-padding {
+    padding: 7px;
+}
+
+#regnow{
+    text-decoration:none;
+    cursor:pointer;
+    float:left;
+    margin:20px;
+    background:url('../images/regbutton.png');
+    width:288px;
+    height:73px;
+    padding-top: 50px;
+    font-size:30px;
+    font-weight:700;
+    text-align:center;
+    font-weight: 700;
+    color:#FFF;
+    text-shadow:1px 1px #000;
+}
+#regnow:hover {
+    text-decoration:none;
+    background:url('../images/regbutton_over.png');
+}
+
+#regnow h2 {
+    margin: 0;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+.navbar .brand {
+    padding-right: 0;
+    padding-left: 0;
+    margin-left: 20px;
+    float: right;
+    font-weight: bold;
+    color: black;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, .1), 0 0 30px rgba(255, 255, 255, .125);
+    -webkit-transition: all .2s linear;
+    -moz-transition: all .2s linear;
+    transition: all .2s linear;
+}
