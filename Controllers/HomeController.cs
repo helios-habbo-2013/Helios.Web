@@ -14,7 +14,6 @@ namespace Helios.Web.Controllers
         }
 
         [Route("/")]
-        [Route("/index")]
         public IActionResult Index()
         {
             ViewBag.Error = null;//= "no_password";

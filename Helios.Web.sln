@@ -5,7 +5,7 @@ VisualStudioVersion = 17.4.33122.133
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Helios.Web", "Helios.Web.csproj", "{4E654AF2-EAF4-45F3-9B84-17513225B9D9}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Helios.Storage", "..\..\Helios\Helios.Storage\Helios.Storage.csproj", "{98CDACD3-B22F-4540-B8BD-1AE75C8F0B14}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Helios.Storage", "..\Helios\Helios.Storage\Helios.Storage.csproj", "{98CDACD3-B22F-4540-B8BD-1AE75C8F0B14}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
