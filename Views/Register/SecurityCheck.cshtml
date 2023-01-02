@@ -63,7 +63,7 @@
 	<![endif]-->
 </head>
 
-<body id="client" class="@(this.Context.Get<string>("registerGender") == "male" ? "background-accountdetails-male" : "background-accountdetails-female")">
+<body id="client" class="background-agegate">
 	<div id="overlay"></div>
 	<img src="@Url.StaticContentPath()web-gallery/v2/images/page_loader.gif" style="position:absolute; margin: -1500px;" />
 
@@ -74,14 +74,15 @@
 		<div class="stephabbo"></div>
 	</div>
 
+
 	<div id="main-container">
-        @if (ViewBag.Error != null)
-        {
+		@if (ViewBag.Error != null)
+		{
 			<div id="error-messages-container" class="cbb">
 
 
 				<div class="rounded" style="background-color: #cb2121;">
-                    <div id="error-title" class="error">
+					<div id="error-title" class="error">
 						@switch (ViewBag.Error)
 						{
 							case "no_exist":
@@ -106,32 +107,23 @@
 									break;
 								}
 						}
-                    </div>
-                </div>
+					</div>
+				</div>
+		
+		</div>
+		}
 
-            </div>
-        }
-         <noscript>
-            <div id="alert-javascript-container">
-                <div id="alert-javascript-title">
-                    Missing JavaScript support
-                </div>
-                <div id="alert-javascript-text">
-                    Javascript is disabled on your browser. Please enable JavaScript or upgrade to a Javascript-capable browser to use World of Habbo :)
-                </div>
-            </div>
-        </noscript>
+		<h2>Step into the Hotel</h2>
 
-        <div id="alert-cookies-container" style="display:none">
-            <div id="alert-cookies-title">
-                Missing cookie support
-            </div>
-            <div id="alert-cookies-text">
-                Cookies are disabled on your browser. Please enable cookies to use World of Habbo.
-            </div>
-        </div>
+		<div id="captcha-container">
+			<h3>Just one quick security thingie before we go:</h3>
+			<div id="captcha-image-container">
+				{$captcha}
+			</div>
+		</div>
 
-        <form id="quickregisterform" method="post" action="@Url.AbsolutePath("~/quickregister/security_check")">
+		<!--
+		<form method="post" action="/quickregister/security_check" id="quickregister-form">
 
 			<h2>Account details</h2>
 
@@ -158,14 +150,13 @@
 						<input type="referrer" name="bean.referrer" id="register-referrer" maxlength="32" value="@(this.Context.Get<string>("registerReferrer"))" />
 					</div>
 					<div class="help">(Optional) Please enter the <b>user who invited you</b> to Habbo Hotel.</div>
-					<!--
+
 					<div id="captcha-field" class="field">
 						<label for="register-captcha">Captcha</label>
 						<img src="/captcha">
 						<input type="text" name="bean.captcha" id="register-captcha" maxlength="32" value="" style="margin-top: 10px" />
 					</div>
 					<div class="help">Please enter all letters you see to prove you are not a robot!</div>
-					-->
 				</div>
 
 				<div class="inner-content top-margin">
@@ -187,6 +178,7 @@
 				</div>
 			</div>
 		</form>
+		-->
 
 
 		<div id="select">
@@ -205,15 +197,10 @@
 			});
 			Event.observe($("proceed-button"), "click", function () {
 				Overlay.show(null, 'Loading...');
-				$("quickregisterform").submit();
+				$("quickregister-form").submit();
 			});
 			$("email-address").focus();
 		});
-	</script>
-
-
-	<script type="text/javascript">
-		HabboView.run();
 	</script>
 </body>
 </html>

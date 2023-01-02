@@ -64,11 +64,50 @@ namespace Helios.Web.Controllers
 			return View("Step2");
 		}
 
-		[HttpPost]
+        [HttpPost]
+        [Route("/quickregister/security_check")]
+        public IActionResult SecurityCheck()
+        {
+            if (Request.Form.TryGetValue("bean.username", out var registerName))
+                HttpContext.Set<string>("registerName", registerName);
+
+            if (Request.Form.TryGetValue("bean.password", out var registerPassword))
+                HttpContext.Set<string>("registerPassword", registerPassword);
+
+            if (Request.Form.TryGetValue("bean.email", out var registerEmail))
+                HttpContext.Set<string>("registerEmail", registerEmail);
+
+            if (Request.Form.TryGetValue("bean.referrer", out var registerReferrer))
+                HttpContext.Set<string>("registerReferrer", registerReferrer);
+
+
+            var checkEmpty = new string[] { "bean.username", "bean.email", "bean.password", /*"bean.captcha", */"bean.termsOfServiceSelection" };
+
+            foreach (var field in checkEmpty)
+            {
+                if (!Request.Form.ContainsKey(field) ||
+                    (Request.Form.TryGetValue(field, out var value) && string.IsNullOrEmpty(value)))
+                {
+                    TempData["Error"] = "fields";
+                    return RedirectToAction("Step2");
+                }
+            }
+
+            /*if (string.IsNullOrEmpty(HttpContext.Get<string>("Captcha")) ||
+                (Request.Form.TryGetValue("bean.captcha", out var captcha) && captcha != HttpContext.Get<string>("Captcha")))
+            {
+                TempData["Error"] = "captcha";
+                return RedirectToAction("Step2");
+            }*/
+
+            return View("SecurityCheck");
+        }
+
+        [HttpPost]
 		[Route("/quickregister/complete")]
-		public IActionResult Restart()
+		public IActionResult Complete()
 		{
-			if (Request.Form.TryGetValue("bean.username", out var registerName))
+			/*if (Request.Form.TryGetValue("bean.username", out var registerName))
 				HttpContext.Set<string>("registerName", registerName);
 
 			if (Request.Form.TryGetValue("bean.password", out var registerPassword))
@@ -99,7 +138,7 @@ namespace Helios.Web.Controllers
 				TempData["Error"] = "captcha";
 				return RedirectToAction("Step2");
 			}
-
+			*/
 			return RedirectToAction("Index", "Home");
 		}
     }

@@ -108,6 +108,7 @@ namespace Helios.Web.Util
 			var boldFont = SystemFonts.CreateFont("Arial", fontSize, FontStyle.Bold);
 
 			imageContext.SetDrawingTransform(Matrix3x2Extensions.CreateRotationDegrees((float)degree));
+
 			//imageContext.SetDrawingTransform(Matrix3x2Extensions.CreateScale((float)scale, new PointF(0, 0)));
 
 			int currentX = xPos + (boxWidth / 2);
