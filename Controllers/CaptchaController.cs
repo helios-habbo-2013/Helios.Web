@@ -13,10 +13,10 @@ namespace Helios.Web.Controllers
             _logger = logger;
         }
 
-        [Route("/captcha")]
+        [Route("/captcha.png")]
         public IActionResult Index()
         {
-            var text = Captcha.RandomTextSequence(7);
+            var text = Captcha.RandomTextSequence(Captcha.random.Next(4, 7)) + " " + Captcha.RandomTextSequence(Captcha.random.Next(4, 7));
             HttpContext.Set("Captcha", text);
 			return File(Captcha.Generate(text), "image/png");
         }

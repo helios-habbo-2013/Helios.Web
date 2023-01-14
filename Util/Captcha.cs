@@ -13,22 +13,26 @@ namespace Helios.Web.Util
 	{
 		public static Random random = new Random();
 
-		private static int width = 200;
+		private static int width = 310;
 		private static int height = 50;
 		private static int gridSize = 11;
 		private static int fontSize = 45;
-		private static int rotationAmplitude = 8;
+		private static int rotationAmplitude = 2;
 		private static int scaleAmplitude = 15;
 
 		public static string RandomTextSequence(int length)
 		{
 
-			char[] data = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k',
+			char[] data = 
+			{
+				'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k',
 				'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w',
 				'x', 'y', 'z', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I',
 				'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U',
-				'V', 'W', 'X', 'Y', 'Z', '0', '1', '2', '3', '4', '5', '6',
-				'7', '8', '9'};
+				'V', 'W', 'X', 'Y', 'Z', '0'
+				
+				/*, '1', '2', '3', '4', '5', '6', '7', '8', '9'*/
+			};
 
 			char[] index = new char[length - 1];
 

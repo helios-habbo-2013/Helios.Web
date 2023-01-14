@@ -48,7 +48,7 @@ namespace Helios.Web.Controllers
                 }
             }
 
-            if (Request.Form.TryGetValue("beanGender", out var beanGender))
+            if (Request.Form.TryGetValue("bean.gender", out var beanGender))
                 HttpContext.Set<string>("registerGender", beanGender);
 
             if (Request.Form.TryGetValue("bean.month", out var beanMonth))
@@ -69,7 +69,6 @@ namespace Helios.Web.Controllers
             if (Request.Query.ContainsKey("p") &&
                 Request.Query["p"] == "register")
             {
-
                 return RedirectToAction("Start");
             }
 
@@ -86,7 +85,6 @@ namespace Helios.Web.Controllers
                 return RedirectToAction("Start");
             }
 
-
             return View("Step2");
         }
 
@@ -94,8 +92,8 @@ namespace Helios.Web.Controllers
         [Route("/quickregister/security_check")]
         public IActionResult SecurityCheck()
         {
-            if (Request.Form.TryGetValue("bean.username", out var registerName))
-                HttpContext.Set<string>("registerName", registerName);
+            // if (Request.Form.TryGetValue("bean.username", out var registerName))
+            //    HttpContext.Set<string>("registerName", registerName);
 
             if (Request.Form.TryGetValue("bean.password", out var registerPassword))
                 HttpContext.Set<string>("registerPassword", registerPassword);
@@ -103,11 +101,11 @@ namespace Helios.Web.Controllers
             if (Request.Form.TryGetValue("bean.email", out var registerEmail))
                 HttpContext.Set<string>("registerEmail", registerEmail);
 
-            if (Request.Form.TryGetValue("bean.referrer", out var registerReferrer))
-                HttpContext.Set<string>("registerReferrer", registerReferrer);
+            // if (Request.Form.TryGetValue("bean.referrer", out var registerReferrer))
+            //    HttpContext.Set<string>("registerReferrer", registerReferrer);
 
 
-            var checkEmpty = new string[] { "bean.username", "bean.email", "bean.password", /*"bean.captcha", */"bean.termsOfServiceSelection" };
+            var checkEmpty = new string[] { /*"bean.username", */"bean.email", "bean.confirmEmail", "bean.password", /*"bean.captcha", */ };
 
             foreach (var field in checkEmpty)
             {
@@ -119,6 +117,18 @@ namespace Helios.Web.Controllers
                 }
             }
 
+            if (!Request.Form.TryGetValue("bean.termsOfServiceSelection", out var termsOfService))
+            {
+                TempData["Error"] = "terms_of_service";
+                return RedirectToAction("Step2");
+            }
+
+            if (Request.Form.TryGetValue("bean.confirmEmail", out var email) && email != HttpContext.Get<string>("registerEmail"))
+            {
+                TempData["Error"] = "email_confirm";
+                return RedirectToAction("Step2");
+            }
+
             /*if (string.IsNullOrEmpty(HttpContext.Get<string>("Captcha")) ||
                 (Request.Form.TryGetValue("bean.captcha", out var captcha) && captcha != HttpContext.Get<string>("Captcha")))
             {
@@ -126,45 +136,26 @@ namespace Helios.Web.Controllers
                 return RedirectToAction("Step2");
             }*/
 
-            return View("SecurityCheck");
+            return RedirectToAction("Captcha");
+        }
+
+        [HttpGet]
+        [Route("/quickregister/captcha")]
+        public IActionResult Captcha()
+        {
+            if (Request.Query.ContainsKey("p") &&
+                Request.Query["p"] == "register")
+            {
+                return RedirectToAction("Step2");
+            }
+
+            return View("Captcha");
         }
 
         [HttpPost]
 		[Route("/quickregister/complete")]
 		public IActionResult Complete()
 		{
-			/*if (Request.Form.TryGetValue("bean.username", out var registerName))
-				HttpContext.Set<string>("registerName", registerName);
-
-			if (Request.Form.TryGetValue("bean.password", out var registerPassword))
-				HttpContext.Set<string>("registerPassword", registerPassword);
-
-			if (Request.Form.TryGetValue("bean.email", out var registerEmail))
-				HttpContext.Set<string>("registerEmail", registerEmail);
-
-			if (Request.Form.TryGetValue("bean.referrer", out var registerReferrer))
-				HttpContext.Set<string>("registerReferrer", registerReferrer);
-
-
-			var checkEmpty = new string[] { "bean.username", "bean.email", "bean.password", "bean.captcha", "bean.termsOfServiceSelection" };
-
-			foreach (var field in checkEmpty)
-			{
-				if (!Request.Form.ContainsKey(field) ||
-					(Request.Form.TryGetValue(field, out var value) && string.IsNullOrEmpty(value)))
-				{
-					TempData["Error"] = "fields";
-					return RedirectToAction("Step2");
-				}
-			}
-
-			if (string.IsNullOrEmpty(HttpContext.Get<string>("Captcha")) ||
-				(Request.Form.TryGetValue("bean.captcha", out var captcha) && captcha != HttpContext.Get<string>("Captcha")))
-			{
-				TempData["Error"] = "captcha";
-				return RedirectToAction("Step2");
-			}
-			*/
 			return RedirectToAction("Index", "Home");
 		}
     }

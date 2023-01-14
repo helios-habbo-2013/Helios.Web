@@ -129,8 +129,8 @@ NOTE! Remember to check your "junk" folder too!</span>
     }
 </script>
 <div id="stepnumbers">
-    <div class="step1focus">Birthdate</div>
-    <div class="step2">Account details</div>
+    <div class="step1">Birthdate</div>
+    <div class="step2focus">Account details</div>
     <div class="step3">Security Check</div>
     <div class="stephabbo"></div>
 </div>
@@ -144,20 +144,19 @@ NOTE! Remember to check your "junk" folder too!</span>
             <div id="error-title" class="error">
                 @switch (ViewBag.Error)
                 {
-                    case "no_exist":
-                    case "password":
-                        {
-                            @("Incorrect password, oops!")
-                            break;
-                        }
                     case "fields":
                         {
                             @("All fields are required.")
                             break;
                         }
-                    case "captcha":
+                    case "email_confirm":
                         {
-                            @("The captcha did not match.")
+                            @("The emails do not match")
+                            break;
+                        }
+                    case "terms_of_service":
+                        {
+                            @("Please accept the terms of service")
                             break;
                         }
                     default:
@@ -215,33 +214,20 @@ NOTE! Remember to check your "junk" folder too!</span>
                     <div class="help">You'll need to use this <b>email address to log in</b> to Habbo Hotel in the future. Please use a valid address.</div>
                     <div class="field">
                         <label for="email-address">Re-enter Email</label>
-                        <input type="text" id="email-address" name="bean.confirmEmail" value="@(this.Context.Get<string>("registerEmail"))" />
+                        <input type="text" id="email-address" name="bean.confirmEmail" />
                     </div>
                     <div class="help">...just be sure</div>
                     <div id="password-field" class="field">
                         <label for="register-password">Password</label>
                         <input type="password" name="bean.password" id="register-password" maxlength="32" value="" />
                     </div>
-                    <div class="help">Password must be at least <b>6 characters </b>long and include <b>letters and numbers</b>.</div>
-                    <div id="referrer-field" class="field">
-                        <label for="register-referrer">Referrer</label>
-                        <input type="referrer" name="bean.referrer" id="register-referrer" maxlength="32" value="@(this.Context.Get<string>("registerReferrer"))" />
-                    </div>
-                    <div class="help">(Optional) Please enter the <b>user who invited you</b> to Habbo Hotel.</div>
-                    <!--
-                       <div id="captcha-field" class="field">
-                        <label for="register-captcha">Captcha</label>
-                        <img src="/captcha">
-                        <input type="text" name="bean.captcha" id="register-captcha" maxlength="32" value="" style="margin-top: 10px" />
-                       </div>
-                       <div class="help">Please enter all letters you see to prove you are not a robot!</div>
-                       -->
+                    <div class="help">Password must be at least <b>6 characters </b>long and include <b>letters and numbers</b></div>
                 </div>
                 <div class="inner-content top-margin">
                     <div class="field-content checkbox ">
                         <label>
                             <input type="checkbox" name="bean.termsOfServiceSelection" id="terms" value="true" class="checkbox-field " />
-                            I accept the Terms Of Service, as applies on <a href="http://help.habbo.com/entries/20106178-privacy-policies-terms-of-use" target="_blank" onclick="window.open('http://help.habbo.com/entries/20106178-privacy-policies-terms-of-use'); return false;">Habbo.com</a>
+                            I accept the <a href="http://help.habbo.com/entries/20106178-privacy-policies-terms-of-use" target="_blank" onclick="window.open('http://help.habbo.com/entries/20106178-privacy-policies-terms-of-use'); return false;">Terms Of Service</a>
                         </label>
                     </div>
                     <div class="field-content checkbox">
@@ -254,11 +240,11 @@ NOTE! Remember to check your "junk" folder too!</span>
             </div>
         </form>
         <div id="select">
+            <a href="?p=register" id="back-link">Go Back</a>
             <div class="button">
-                <a id="proceed-button" href="javascript: submitform()" class="area">Next</a>
+                <a id="proceed-button" href="#" class="area">Next</a>
                 <span class="close"></span>
             </div>
-            <a href="?p=register" id="back-link">Go Back</a>
         </div>
     </div>
     <script type="text/javascript">
