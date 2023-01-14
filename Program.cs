@@ -5,17 +5,33 @@ namespace Helios.Web
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
+
             builder.Services.AddControllersWithViews();
-			builder.Services.AddDistributedMemoryCache();
 
-			builder.Services.AddSession(options =>
-			{
-				options.IdleTimeout = TimeSpan.FromMinutes(30);
-				//options.Cookie.HttpOnly = true;
-				// options.Cookie.IsEssential = true;
-			});
+            #region Http Session
 
-			var app = builder.Build();
+            builder.Services.AddDistributedMemoryCache();
+            builder.Services.AddSession(options =>
+            {
+                options.IdleTimeout = TimeSpan.FromMinutes(30);
+                //options.Cookie.HttpOnly = true;
+                // options.Cookie.IsEssential = true;
+            });
+
+            #endregion
+
+            #region Recompile views on file change (development mode)
+
+            var mvcBuilder = builder.Services.AddRazorPages();
+
+            if (builder.Environment.IsDevelopment())
+            {
+                mvcBuilder.AddRazorRuntimeCompilation();
+            }
+
+            #endregion
+
+            var app = builder.Build();
 
             if (!app.Environment.IsDevelopment())
             {
@@ -27,8 +43,8 @@ namespace Helios.Web
             app.UseStaticFiles();
             app.UseRouting();
             app.UseAuthorization();
-			app.UseSession();
-			app.MapControllers();
+            app.UseSession();
+            app.MapControllers();
 
             app.Run();
         }

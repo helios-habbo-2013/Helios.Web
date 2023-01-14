@@ -135,8 +135,42 @@ NOTE! Remember to check your "junk" folder too!</span>
     <div class="stephabbo"></div>
 </div>
 
-<div id="main-container">
+<div id="main-container">    
+    @if (ViewBag.Error != null)
+    {
+    <div id="error-messages-container" class="cbb">
 
+        <div class="rounded" style="background-color: #cb2121;">
+            <div id="error-title" class="error">
+                @switch (ViewBag.Error)
+                {
+                    case "no_exist":
+                    case "password":
+                        {
+                            @("Incorrect password, oops!")
+                            break;
+                        }
+                    case "fields":
+                        {
+                            @("All fields are required.")
+                            break;
+                        }
+                    case "captcha":
+                        {
+                            @("The captcha did not match.")
+                            break;
+                        }
+                    default:
+                        {
+                            @("An unexpected error occured.")
+                            break;
+                        }
+                }
+            </div>
+        </div>
+   
+    </div>
+    }
 <noscript>
 <div id="alert-javascript-container">
     <div id="alert-javascript-title">
@@ -170,7 +204,7 @@ NOTE! Remember to check your "junk" folder too!</span>
 
        <div id="error-placeholder"></div>
 
-    <form id="quickregisterform" method="post" action="https://www.habbo.com/quickregister/age_gate_submit">
+    <form id="quickregisterform" method="post" action="@Url.AbsolutePath("~/quickregister/age_gate_submit")">
 
         <h2>Birthdate</h2>
 

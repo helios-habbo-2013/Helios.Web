@@ -14,5 +14,10 @@ namespace Helios.Web.Helpers
 			var value = httpCtx.Session.GetString(key);
 			return value == null ? default : JsonSerializer.Deserialize<T>(value);
 		}
-	}
+
+        public static bool Contains(this HttpContext httpCtx, string key)
+        {
+            return httpCtx.Session.TryGetValue(key, out var _);
+        }
+    }
 }

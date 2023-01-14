@@ -22,47 +22,73 @@ namespace Helios.Web.Controllers
             return View("Start");
         }
 
-		[Route("/quickregister/step2")]
-		public IActionResult Step2()
-		{
-			if (TempData.ContainsKey("Error"))
-				ViewBag.Error = TempData["Error"];
+        [HttpPost]
+        [Route("/quickregister/age_gate_submit")]
+        public IActionResult AgeGateSubmit()
+        {
+            if (TempData.ContainsKey("Error"))
+                ViewBag.Error = TempData["Error"];
 
-			if (Request.Query.ContainsKey("p") &&
-				Request.Query["p"] == "register") {
+            if (Request.Query.ContainsKey("p") &&
+                Request.Query["p"] == "register")
+            {
 
-				return RedirectToAction("Start");
-			}
+                return RedirectToAction("Start");
+            }
 
-			if (Request.Method == "POST")
-			{
-				var checkEmpty = new string[] { "bean.gender", "bean.month", "bean.day", "bean.year" };
+            var checkEmpty = new string[] { "bean.gender", "bean.month", "bean.day", "bean.year" };
 
-				foreach (var field in checkEmpty)
-				{
-					if (!Request.Form.ContainsKey(field) ||
-						(Request.Form.TryGetValue(field, out var value) && string.IsNullOrEmpty(value)))
-					{
-						TempData["Error"] = "fields";
-						return RedirectToAction("Start");
-					}
-				}
+            foreach (var field in checkEmpty)
+            {
+                if (!Request.Form.ContainsKey(field) ||
+                    (Request.Form.TryGetValue(field, out var value) && string.IsNullOrEmpty(value)))
+                {
+                    TempData["Error"] = "fields";
+                    return RedirectToAction("Start");
+                }
+            }
 
-				if (Request.Form.TryGetValue("beanGender", out var beanGender))
-					HttpContext.Set<string>("registerGender", beanGender);
+            if (Request.Form.TryGetValue("beanGender", out var beanGender))
+                HttpContext.Set<string>("registerGender", beanGender);
 
-				if (Request.Form.TryGetValue("bean.month", out var beanMonth))
-					HttpContext.Set<string>("registerMonth", beanMonth);
+            if (Request.Form.TryGetValue("bean.month", out var beanMonth))
+                HttpContext.Set<string>("registerMonth", beanMonth);
 
-				if (Request.Form.TryGetValue("bean.day", out var beanDay))
-					HttpContext.Set<string>("registerDay", beanDay);
+            if (Request.Form.TryGetValue("bean.day", out var beanDay))
+                HttpContext.Set<string>("registerDay", beanDay);
 
-				if (Request.Form.TryGetValue("bean.year", out var beanYear))
-					HttpContext.Set<string>("registerYear", beanYear);
-			}
+            if (Request.Form.TryGetValue("bean.year", out var beanYear))
+                HttpContext.Set<string>("registerYear", beanYear);
 
-			return View("Step2");
-		}
+            return RedirectToAction("Step2");
+        }
+
+        [Route("/quickregister/step2")]
+        public IActionResult Step2()
+        {
+            if (Request.Query.ContainsKey("p") &&
+                Request.Query["p"] == "register")
+            {
+
+                return RedirectToAction("Start");
+            }
+
+            if (TempData.ContainsKey("Error"))
+                ViewBag.Error = TempData["Error"];
+
+
+            if (!HttpContext.Contains("registerYear") && 
+                !HttpContext.Contains("registerMonth") && 
+                !HttpContext.Contains("registerDay") && 
+                !HttpContext.Contains("registerGender"))
+            {
+                TempData["Error"] = "fields";
+                return RedirectToAction("Start");
+            }
+
+
+            return View("Step2");
+        }
 
         [HttpPost]
         [Route("/quickregister/security_check")]
