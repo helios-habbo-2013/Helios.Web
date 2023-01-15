@@ -1,3 +1,7 @@
+using Avatara.Figure;
+using Avatara;
+using Helios.Web.Util;
+
 namespace Helios.Web
 {
     public class Program
@@ -46,7 +50,35 @@ namespace Helios.Web
             app.UseSession();
             app.MapControllers();
 
+            LoadCaptcha();
+            LoadFigureAssets();
+
             app.Run();
+        }
+
+        private static void LoadCaptcha()
+        {
+            Console.WriteLine("Loading captcha words...");
+
+            CaptchaUtil.Instance.Load();
+
+            Console.WriteLine($"{CaptchaUtil.Instance.Words.Count} words loaded");
+        }
+
+        private static void LoadFigureAssets()
+        {
+            Console.WriteLine("Loading flash assets...");
+
+            FlashExtractor.Instance.Load();
+
+            Console.WriteLine($"{FlashExtractor.Instance.Parts.Count} flash assets loaded");
+
+            Console.WriteLine("Loading figure data...");
+
+            FiguredataReader.Instance.Load();
+            Console.WriteLine($"{FiguredataReader.Instance.FigureSets.Count} figure sets loaded");
+            Console.WriteLine($"{FiguredataReader.Instance.FigureSetTypes.Count} figure set types loaded");
+            Console.WriteLine($"{FiguredataReader.Instance.FigurePalettes.Count} figure palettes loaded");
         }
     }
 }

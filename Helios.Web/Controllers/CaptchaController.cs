@@ -16,9 +16,9 @@ namespace Helios.Web.Controllers
         [Route("/captcha.png")]
         public IActionResult Index()
         {
-            var text = Captcha.RandomTextSequence(Captcha.random.Next(4, 7)) + " " + Captcha.RandomTextSequence(Captcha.random.Next(4, 7));
-            HttpContext.Set("Captcha", text);
-			return File(Captcha.Generate(text), "image/png");
+            var text = CaptchaUtil.Instance.RandomWord() + " " + CaptchaUtil.Instance.RandomWord();//CaptchaUtil.Instance.RandomTextSequence(CaptchaUtil.Instance.Random.Next(4, 7)) + " " + CaptchaUtil.Instance.RandomTextSequence(CaptchaUtil.Instance.Random.Next(4, 7));
+            HttpContext.Set("CaptchaUtil", text);
+			return File(CaptchaUtil.Instance.Generate(text), "image/png");
         }
     }
 }
