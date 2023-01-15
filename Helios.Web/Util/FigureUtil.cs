@@ -66,8 +66,13 @@ namespace Helios.Web.Util
                             if (!randomTypes.Any(x => x.Set == setType.Set))
                                 randomTypes.Add(setType);
 
-                    if (setType.Set == "hr" || setType.Set == "sh")
-                        if (CaptchaUtil.Instance.Random.Next(0, 2) < 1)
+                    if (setType.Set == "hr")
+                        if (CaptchaUtil.Instance.Random.Next(0, 6) < 5)
+                            if (!randomTypes.Any(x => x.Set == setType.Set))
+                                randomTypes.Add(setType);
+
+                    if (setType.Set == "sh")
+                        if (CaptchaUtil.Instance.Random.Next(0, 6) < 2)
                             if (!randomTypes.Any(x => x.Set == setType.Set))
                                 randomTypes.Add(setType);
                 }
