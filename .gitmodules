@@ -1,0 +1,9 @@
+[submodule "Helios.Storage"]
+	path = Helios.Storage
+	url = https://github.com/Helios-Habbo/Helios.Storage
+[submodule "Avatara"]
+	path = Avatara
+	url = https://github.com/Quackster/Avatara
+[submodule "Badger"]
+	path = Badger
+	url = https://github.com/Quackster/Badger
