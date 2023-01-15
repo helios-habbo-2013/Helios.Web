@@ -1,4 +1,5 @@
 ﻿@using Helios.Web.Helpers;
+@using Helios.Web.Util;
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -201,32 +202,32 @@ NOTE! Remember to check your "junk" folder too!</span>
 				<li>
                     <span class="bgtop"></span>
                     <span class="bgbottom"></span>
-                    <img alt="1" src="https://h4bbo.net/habbo-imaging/avatarimage?figure=hd-180-1.hr-100-61.ch-210-66.lg-270-82.sh-290-80&size=b&direction=4&head_direction=4&crr=0&gesture=sml&frame=1" width="64" height="110"/>
+                    <img alt="1" src="@Url.AbsolutePath("~/habbo-imaging/avatarimage?figure=" + FigureUtil.Instance.GenerateRandomFigure("M") + "&size=b&direction=4&head_direction=4&crr=0&gesture=sml&frame=1")" width="64" height="110"/>
                 </li>
                 <li>
                     <span class="bgtop"></span>
                     <span class="bgbottom"></span>
-                    <img alt="2" src="https://h4bbo.net/habbo-imaging/avatarimage?figure=hd-180-1.hr-100-61.ch-210-66.lg-270-82.sh-290-80&size=b&direction=4&head_direction=4&crr=0&gesture=sml&frame=1" width="64" height="110"/>
+                    <img alt="2" src="@Url.AbsolutePath("~/habbo-imaging/avatarimage?figure=" + FigureUtil.Instance.GenerateRandomFigure("M") + "&size=b&direction=4&head_direction=4&crr=0&gesture=sml&frame=1")" width="64" height="110"/>
                 </li>
                 <li>
                     <span class="bgtop"></span>
                     <span class="bgbottom"></span>
-                    <img alt="3" src="https://h4bbo.net/habbo-imaging/avatarimage?figure=hd-180-1.hr-100-61.ch-210-66.lg-270-82.sh-290-80&size=b&direction=4&head_direction=4&crr=0&gesture=sml&frame=1" width="64" height="110"/>
+                    <img alt="3" src="@Url.AbsolutePath("~/habbo-imaging/avatarimage?figure=" + FigureUtil.Instance.GenerateRandomFigure("M") + "&size=b&direction=4&head_direction=4&crr=0&gesture=sml&frame=1")" width="64" height="110"/>
                 </li>
                 <li>
                     <span class="bgtop"></span>
                     <span class="bgbottom"></span>
-                    <img alt="4" src="https://h4bbo.net/habbo-imaging/avatarimage?figure=hd-180-1.hr-100-61.ch-210-66.lg-270-82.sh-290-80&size=b&direction=4&head_direction=4&crr=0&gesture=sml&frame=1" width="64" height="110"/>
+                    <img alt="4" src="@Url.AbsolutePath("~/habbo-imaging/avatarimage?figure=" + FigureUtil.Instance.GenerateRandomFigure("F") + "&size=b&direction=4&head_direction=4&crr=0&gesture=sml&frame=1")" width="64" height="110"/>
                 </li>
                 <li>
                     <span class="bgtop"></span>
                     <span class="bgbottom"></span>
-                    <img alt="5" src="https://h4bbo.net/habbo-imaging/avatarimage?figure=hd-180-1.hr-100-61.ch-210-66.lg-270-82.sh-290-80&size=b&direction=4&head_direction=4&crr=0&gesture=sml&frame=1" width="64" height="110"/>
+                    <img alt="5" src="@Url.AbsolutePath("~/habbo-imaging/avatarimage?figure=" + FigureUtil.Instance.GenerateRandomFigure("F") + "&size=b&direction=4&head_direction=4&crr=0&gesture=sml&frame=1")" width="64" height="110"/>
                 </li>
                 <li>
                     <span class="bgtop"></span>
                     <span class="bgbottom"></span>
-                    <img alt="6" src="https://h4bbo.net/habbo-imaging/avatarimage?figure=hd-180-1.hr-100-61.ch-210-66.lg-270-82.sh-290-80&size=b&direction=4&head_direction=4&crr=0&gesture=sml&frame=1" width="64" height="110"/>
+                    <img alt="6" src="@Url.AbsolutePath("~/habbo-imaging/avatarimage?figure=" + FigureUtil.Instance.GenerateRandomFigure("F") + "&size=b&direction=4&head_direction=4&crr=0&gesture=sml&frame=1")" width="64" height="110"/>
                 </li>
                 
             </ul>
@@ -271,6 +272,7 @@ NOTE! Remember to check your "junk" folder too!</span>
             <span class="close"></span>
         </div>
    </div>
+      </div>
 
     <script type="text/javascript">
         function recaptchaReload() {
