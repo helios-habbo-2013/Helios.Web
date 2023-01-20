@@ -76,9 +76,9 @@ namespace Helios.Web.Controllers
                 ViewBag.Error = TempData["Error"];
 
 
-            if (!HttpContext.Contains("registerYear") && 
-                !HttpContext.Contains("registerMonth") && 
-                !HttpContext.Contains("registerDay") && 
+            if (!HttpContext.Contains("registerYear") || 
+                !HttpContext.Contains("registerMonth") ||
+                !HttpContext.Contains("registerDay") ||
                 !HttpContext.Contains("registerGender"))
             {
                 TempData["Error"] = "fields";
@@ -149,7 +149,20 @@ namespace Helios.Web.Controllers
                 return RedirectToAction("Step2");
             }
 
+            if (!HttpContext.Contains("registerEmail") ||
+                !HttpContext.Contains("registerPassword"))
+            {
+                TempData["Error"] = "fields";
+                return RedirectToAction("Step2");
+            }
+
             return View("Captcha");
+        }
+
+        [Route("/quickregister/refresh_avatars")]
+        public IActionResult RefreshAvatars()
+        {
+            return PartialView("ajax/RefreshAvatars");
         }
 
         [HttpPost]

@@ -1,0 +1,42 @@
+﻿@using Helios.Web.Helpers;
+@using Helios.Web.Util;
+@{
+    var figure1 = FigureUtil.Instance.GenerateRandomFigure("M");
+    var figure2 = FigureUtil.Instance.GenerateRandomFigure("M");
+    var figure3 = FigureUtil.Instance.GenerateRandomFigure("M");
+    var figure4 = FigureUtil.Instance.GenerateRandomFigure("F");
+    var figure5 = FigureUtil.Instance.GenerateRandomFigure("F");
+    var figure6 = FigureUtil.Instance.GenerateRandomFigure("F");
+}
+<ul id="avatars">
+    <li>
+        <span class="bgtop"></span>
+        <span class="bgbottom"></span>
+        <img alt="@(figure1)-M" src="@Url.AbsolutePath("~/habbo-imaging/avatarimage?figure=" + figure1 + "&size=b&direction=4&head_direction=4&crr=0&gesture=sml&frame=1")" width="64" height="110" />
+    </li>
+    <li>
+        <span class="bgtop"></span>
+        <span class="bgbottom"></span>
+        <img alt="@(figure2)-M" src="@Url.AbsolutePath("~/habbo-imaging/avatarimage?figure=" + figure2 + "&size=b&direction=4&head_direction=4&crr=0&gesture=sml&frame=1")" width="64" height="110" />
+    </li>
+    <li>
+        <span class="bgtop"></span>
+        <span class="bgbottom"></span>
+        <img alt="@(figure3)-M" src="@Url.AbsolutePath("~/habbo-imaging/avatarimage?figure=" + figure3 + "&size=b&direction=4&head_direction=4&crr=0&gesture=sml&frame=1")" width="64" height="110" />
+    </li>
+    <li>
+        <span class="bgtop"></span>
+        <span class="bgbottom"></span>
+        <img alt="@(figure4)-F" src="@Url.AbsolutePath("~/habbo-imaging/avatarimage?figure=" + figure4 + "&size=b&direction=4&head_direction=4&crr=0&gesture=sml&frame=1")" width="64" height="110" />
+    </li>
+    <li>
+        <span class="bgtop"></span>
+        <span class="bgbottom"></span>
+        <img alt="@(figure5)-F" src="@Url.AbsolutePath("~/habbo-imaging/avatarimage?figure=" + figure5 + "&size=b&direction=4&head_direction=4&crr=0&gesture=sml&frame=1")" width="64" height="110" />
+    </li>
+    <li>
+        <span class="bgtop"></span>
+        <span class="bgbottom"></span>
+        <img alt="@(figure6)-F" src="@Url.AbsolutePath("~/habbo-imaging/avatarimage?figure=" + figure6 + "&size=b&direction=4&head_direction=4&crr=0&gesture=sml&frame=1")" width="64" height="110" />
+    </li>
+</ul>

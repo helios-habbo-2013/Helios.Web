@@ -198,39 +198,7 @@ NOTE! Remember to check your "junk" folder too!</span>
 
         <div id="avatar-choices">
             <h3>Choose a look for your first visit:</h3>
-            <ul id="avatars">
-				<li>
-                    <span class="bgtop"></span>
-                    <span class="bgbottom"></span>
-                    <img alt="1" src="@Url.AbsolutePath("~/habbo-imaging/avatarimage?figure=" + FigureUtil.Instance.GenerateRandomFigure("M") + "&size=b&direction=4&head_direction=4&crr=0&gesture=sml&frame=1")" width="64" height="110"/>
-                </li>
-                <li>
-                    <span class="bgtop"></span>
-                    <span class="bgbottom"></span>
-                    <img alt="2" src="@Url.AbsolutePath("~/habbo-imaging/avatarimage?figure=" + FigureUtil.Instance.GenerateRandomFigure("M") + "&size=b&direction=4&head_direction=4&crr=0&gesture=sml&frame=1")" width="64" height="110"/>
-                </li>
-                <li>
-                    <span class="bgtop"></span>
-                    <span class="bgbottom"></span>
-                    <img alt="3" src="@Url.AbsolutePath("~/habbo-imaging/avatarimage?figure=" + FigureUtil.Instance.GenerateRandomFigure("M") + "&size=b&direction=4&head_direction=4&crr=0&gesture=sml&frame=1")" width="64" height="110"/>
-                </li>
-                <li>
-                    <span class="bgtop"></span>
-                    <span class="bgbottom"></span>
-                    <img alt="4" src="@Url.AbsolutePath("~/habbo-imaging/avatarimage?figure=" + FigureUtil.Instance.GenerateRandomFigure("F") + "&size=b&direction=4&head_direction=4&crr=0&gesture=sml&frame=1")" width="64" height="110"/>
-                </li>
-                <li>
-                    <span class="bgtop"></span>
-                    <span class="bgbottom"></span>
-                    <img alt="5" src="@Url.AbsolutePath("~/habbo-imaging/avatarimage?figure=" + FigureUtil.Instance.GenerateRandomFigure("F") + "&size=b&direction=4&head_direction=4&crr=0&gesture=sml&frame=1")" width="64" height="110"/>
-                </li>
-                <li>
-                    <span class="bgtop"></span>
-                    <span class="bgbottom"></span>
-                    <img alt="6" src="@Url.AbsolutePath("~/habbo-imaging/avatarimage?figure=" + FigureUtil.Instance.GenerateRandomFigure("F") + "&size=b&direction=4&head_direction=4&crr=0&gesture=sml&frame=1")" width="64" height="110"/>
-                </li>
-                
-            </ul>
+            @await Html.PartialAsync("ajax/RefreshAvatars")
             <p style="clear: left;">
                 Don't like any of these?
                 <a href="#" id="more-avatars">Check out more styles.</a>
@@ -291,7 +259,7 @@ NOTE! Remember to check your "junk" folder too!</span>
             if ($("more-avatars")) {
                 Event.observe($("more-avatars"), "click", function(e) {
                     Event.stop(e);
-                    new Ajax.Updater("avatars", "{$url}/quickregister/refresh_avatars", {
+                    new Ajax.Updater("avatars", "@Url.AbsolutePath("~/quickregister/refresh_avatars")", {
                         onComplete: function (t) {
                             QuickRegister.initAvatarChooser();
                         }
