@@ -51,8 +51,8 @@ namespace Helios.Web.Util
                     if (!randomTypes.Any(x => x.Set == setType.Set))
                         randomTypes.Add(setType);
                 }
-                else if ((setType.IsMaleMandatoryNonHC != null && setType.IsMaleMandatoryNonHC.Value && genderReq == "F") ||
-                    (setType.IsFemaleMandatoryNonHC != null && setType.IsFemaleMandatoryNonHC.Value && genderReq == "M"))
+                else if ((setType.IsMaleMandatoryNonHC != null && setType.IsMaleMandatoryNonHC.Value && genderReq == "M") ||
+                    (setType.IsFemaleMandatoryNonHC != null && setType.IsFemaleMandatoryNonHC.Value && genderReq == "F"))
                 {
                     if (!randomTypes.Any(x => x.Set == setType.Set))
                         randomTypes.Add(setType);

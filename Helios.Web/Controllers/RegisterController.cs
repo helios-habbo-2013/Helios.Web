@@ -156,6 +156,9 @@ namespace Helios.Web.Controllers
                 return RedirectToAction("Step2");
             }
 
+            if (TempData.ContainsKey("Error"))
+                ViewBag.Error = TempData["Error"];
+
             return View("Captcha");
         }
 
