@@ -1,11 +1,13 @@
 ﻿@using Helios.Web.Helpers
+@using Helios.Web.Storage.Models.Avatar
+@using Helios.Web.Util
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
           "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" xmlns:og="http://opengraphprotocol.org/schema/" xmlns:fb="http://www.facebook.com/2008/fbml">
 <head>
     <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-    <title>{$site->name} Hotel - Character Settings </title>
+    <title>@(this.ViewBag.SiteNamel) Hotel - Character Settings </title>
 
     <script type="text/javascript">
         var andSoItBegins = (new Date()).getTime();
@@ -27,9 +29,9 @@
         var facebookUser = false;
         var habboReqPath = "";
         var habboStaticFilePath = "@(this.ViewBag.StaticContentUrl)web-gallery";
-        var habboImagerUrl = "{$site->url}Public/Themes/{$skin->name}/webbuild/habbo-imaging/";
+        var habboImagerUrl = "@(this.ViewBag.StaticContentUrl)Public/Themes/{$skin->name}/webbuild/habbo-imaging/";
         var habboPartner = "";
-        var habboDefaultClientPopupUrl = "{$site->url}client";
+        var habboDefaultClientPopupUrl = "@(this.ViewBag.StaticContentUrl)client";
         window.name = "habboMain";
         if (typeof HabboClient != "undefined") {
             HabboClient.windowName = "53f4a3906a95d214e8d5e9cce709556196f5fa53";
@@ -41,7 +43,7 @@
     <link rel="stylesheet" href="@(this.ViewBag.StaticContentUrl)web-gallery/static/styles/avatarselection.css" type="text/css" />
 
     <meta name="description" content="Check into the world’s largest virtual hotel for FREE! Meet and make friends, play games, chat with others, create your avatar, design rooms and more…" />
-    <meta name="keywords" content="{$site->name} hotel, virtual, world, social network, free, community, avatar, chat, online, teen, roleplaying, join, social, groups, forums, safe, play, games, online, friends, teens, rares, rare furni, collecting, create, collect, connect, furni, furniture, pets, room design, sharing, expression, badges, hangout, music, celebrity, celebrity visits, celebrities, mmo, mmorpg, massively multiplayer" />
+    <meta name="keywords" content="@(this.ViewBag.SiteNamel) hotel, virtual, world, social network, free, community, avatar, chat, online, teen, roleplaying, join, social, groups, forums, safe, play, games, online, friends, teens, rares, rare furni, collecting, create, collect, connect, furni, furniture, pets, room design, sharing, expression, badges, hangout, music, celebrity, celebrity visits, celebrities, mmo, mmorpg, massively multiplayer" />
 
     <!--[if IE 8]>
     <link rel="stylesheet" href="@(this.ViewBag.StaticContentUrl)web-gallery/static/styles/ie8.css" type="text/css" />
@@ -68,7 +70,9 @@
 <body id="embedpage">
     <div id="overlay"></div>
 
-    {$widget->Login->Forgotten.html}
+    @{
+        await Html.RenderPartialAsync("Login/Forgotten");
+    }
 
     <div id="container">
         <div id="select-avatar">
@@ -79,20 +83,23 @@
                 </div>
                 <div id="content">
                     <div id="user-info">
-                        <img src="https://ssl.facebook.com/pics/q_silhouette.gif" />
+                        <img src="https://web.archive.org/web/20101118231959id_/https://ssl.facebook.com/pics/q_silhouette.gif" />
                         <div>
-                            <div id="name">{$user->email->1}</div>
-                            <a href="{$site->url}me" id="logout">Back to the Hotel</a>
-                            <a href="{$site->url}identity/settings" id="manage-account">Manage account</a>
+                            <div id="name">@ViewBag.User.Email</div>
+                            <a href="@Url.AbsolutePath("~/account/logout")" id="logout">Sign out</a>
+                            <a href="@Url.AbsolutePath("~/identity/settings")" id="manage-account">Manage account</a>
                         </div>
 
                     </div>
                     <div id="first-avatar">
-                        <img src="{$site->url}Public/Themes/{$skin->name}/webbuild/habbo-imaging/figure.php?figure={$user->figure}&position=3" width="64" height="110" />
+                        @{
+                            string firstFigure = ViewBag.Avatar.Figure;
+                        }
+                        <img src="@Url.AbsolutePath("~/habbo-imaging/avatarimage?figure=" + firstFigure + "&position=3")" width="64" height="110" />
                         <div id="first-avatar-info">
-                            <div class="first-avatar-name">{$user->username}</div>
-                            <div class="first-avatar-lastonline">Last logged in: <span>{$user->last_online}</span></div>
-                            <a id="first-avatar-play-link" href="{$site->url}client">
+                            <div class="first-avatar-name">@(ViewBag.Avatar.Name)</div>
+                            <div class="first-avatar-lastonline">Last logged in: <span>@(((DateTime)ViewBag.Avatar.LastOnline).TimeAgo())</span></div>
+                            <a id="first-avatar-play-link" href="@(this.ViewBag.SiteUrl)client">
                                 <div class="play-button-container">
                                     <div class="play-button"><div class="play-text">Play</div></div>
                                     <div class="play-button-end"></div>
@@ -104,11 +111,32 @@
 
                     <div id="link-new-avatar"><a class="new-button " onclick="" href="/identity/addavatar"><b>+ Add</b><i></i></a></div>
 
-                    <p style="margin: 5px 10px">You can add 10 more characters</p>
+                    <h2 style="margin: 5px 10px 20px">Your other characters</h2>
+                    <p style="margin: 5px 10px">You can add @(Constants.MAX_AVATARS - ViewBag.OtherAvatars.Count - 1) more characters</p>
+
                     <div class="other-avatars">
                         <ul>
-                            {$widget->avatars}
+                        @{
+                            if (ViewBag.OtherAvatars.Count == 0)
+                            {
+                                <li class="odd">
+                                    <div class="rounded rounded-lightbrown clearfix">
+                                        You have no other character attached to this account. Please select the add button above to add more characters.
+                                    </div>
+                                </li>
+                            }
+                            else
+                            {
+                                foreach (var avatar in ViewBag.OtherAvatars)
+                                {
+                                    ViewBag.CurrentAvatar = avatar;
+
+                                    await Html.RenderPartialAsync("Avatar");
+                                }
+                            }
+                        }
                         </ul>
+
                     </div>
 
                 </div>
@@ -116,12 +144,9 @@
             <div class="pick-avatar-container-bottom"></div>
         </div>
     </div>
-
     @{
        await Html.RenderPartialAsync("Footer");
     }
-
-    {$widget->Footer.html}
     <script type="text/javascript">
         if (typeof HabboView != "undefined") {
             HabboView.run();

@@ -15,13 +15,19 @@
 
   <ItemGroup>
     <Content Remove="Views\Account\Login.cshtml" />
-    <Content Remove="Views\Character\Test.cshtml" />
+    <Content Remove="Views\Identity\Avatar.cshtml" />
+    <Content Remove="Views\Identity\Select.cshtml" />
     <Content Remove="Views\Me\Me.cshtml" />
+    <Content Remove="Views\Shared\Copyright - Copy.cshtml" />
+    <Content Remove="Views\Shared\Copyright.cshtml" />
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="Views\Identity\Avatar.cshtml" />
+    <None Include="Views\Shared\Login\Forgotten.cshtml" />
+    <None Include="Views\Shared\Copyright.cshtml" />
     <None Include="Views\Shared\Footer.cshtml" />
-    <None Include="Views\Character\Test.cshtml" />
+    <None Include="Views\Identity\Select.cshtml" />
     <None Include="Views\Account\Login.cshtml" />
     <None Include="Views\Me\Me.cshtml" />
     <None Include="Views\Home\Index.cshtml" />

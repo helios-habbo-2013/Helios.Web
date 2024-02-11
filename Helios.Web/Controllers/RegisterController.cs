@@ -222,7 +222,7 @@ namespace Helios.Web.Controllers
 
             var avatarData = new AvatarData
             {
-                Name = "",
+                Name = GenerateUsername(registerEmail),
                 Figure = registerFigure,
                 Sex = registerGender,
                 UserId = userData.Id
@@ -237,5 +237,29 @@ namespace Helios.Web.Controllers
 
             return RedirectToAction("Client", "Client");
 		}
+
+        public string GenerateUsername(string email)
+        {
+            // Extract username part from email
+            string[] emailParts = email.Split('@');
+            string username = emailParts[0];
+
+            // Check if the username already exists, if so, append a number to make it unique
+            int suffix = 1;
+            string uniqueUsername = username;
+            while (IsUsernameTaken(uniqueUsername))
+            {
+                uniqueUsername = $"{username}{suffix}";
+                suffix++;
+            }
+
+            return uniqueUsername;
+        }
+
+        // Method to check if a username is taken
+        public bool IsUsernameTaken(string username)
+        {
+            return _ctx.AvatarData.Any(x => x.Name == username);
+        }
     }
 }

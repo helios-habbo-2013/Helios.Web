@@ -23,7 +23,7 @@ namespace Helios.Web.Controllers
             int headDirection = 2;
             string? figure = null;
             string action = "std";
-            string gesture = "sml";
+            string gesture = "std";
             bool headOnly = false;
             int frame = 1;
             int carryDrink = -1;

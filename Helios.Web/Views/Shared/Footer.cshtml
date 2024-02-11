@@ -1,5 +1,9 @@
 ﻿<div id="footer">
-    <p class="footer-links"><a href="http://{$site->url}#">Customer Support</a> | <a href="{$site->url}#">Terms of Use & Privacy Policy</a> | <a href="{$site->url}#" target="_new">{$site->name} Way</a> | <a href="{$site->url}#">Safety</a> | <a href="mailto:{$site->email}" target="_new">Contact Us</a></p>
-    <p class="copyright">{$site->copyright}</p>
+    <p class="footer-links"><a href="http://@(this.ViewBag.StaticContentUrl)#">Customer Support</a> | <a href="@(this.ViewBag.StaticContentUrl)#">Terms of Use & Privacy Policy</a> | <a href="@(this.ViewBag.StaticContentUrl)#" target="_new">@(this.ViewBag.SiteNamel) Way</a> | <a href="@(this.ViewBag.StaticContentUrl)#">Safety</a> | <a href="mailto:{$site->email}" target="_new">Contact Us</a></p>
+    <p class="copyright">
+        @{
+            await Html.RenderPartialAsync("Copyright");
+        }
+    </p>
 
 </div>

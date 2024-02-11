@@ -26,7 +26,7 @@ namespace Helios.Web.Controllers
             if (this.HttpContext.Contains(Constants.CURRENT_USER_ID) && 
                 !this.HttpContext.Contains(Constants.CURRENT_AVATAR_ID))
             {
-                return RedirectToAction("Choose", "Account");
+                return RedirectToAction("Select", "Identity");
             }
 
             ViewBag.Error = null; //= "no_password";

@@ -1,0 +1,40 @@
+﻿using Helios.Web.Storage.Models.Catalogue;
+using Helios.Web.Helpers;
+using Helios.Web.Storage;
+using Helios.Web.Util;
+using Microsoft.AspNetCore.Mvc;
+using Helios.Web.Storage.Models.User;
+using Helios.Web.Storage.Access;
+using Helios.Web.Storage.Models.Avatar;
+
+namespace Helios.Web.Controllers
+{
+    public class IdentityController : Controller
+    {
+        private readonly ILogger<IdentityController> _logger;
+        private readonly StorageContext _ctx;
+
+        public IdentityController(ILogger<IdentityController> logger, StorageContext ctx)
+        {
+            _logger = logger;
+            _ctx = ctx;
+        }
+
+        [Route("/identity/avatars")]
+        public IActionResult Select()
+        {
+            var avatar = _ctx.AvatarData.Where(x => x.UserId == this.HttpContext.Get<int>(Constants.CURRENT_USER_ID))
+                .OrderByDescending(x => x.LastOnline)
+                .First();
+
+            var otherAvatars = _ctx.AvatarData.Where(x => x.UserId == this.HttpContext.Get<int>(Constants.CURRENT_USER_ID) && x.Id != avatar.Id)
+                .OrderByDescending(x => x.LastOnline)
+                .ToList();
+
+            this.ViewBag.Avatar = avatar;
+            this.ViewBag.OtherAvatars = otherAvatars;
+
+            return View();
+        }
+    }
+}

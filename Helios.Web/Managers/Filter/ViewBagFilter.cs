@@ -1,19 +1,20 @@
-﻿using Helios.Web.Storage;
-using Helios.Web.Storage.Access;
-using Helios.Web.Util.Extensions;
-using Microsoft.AspNetCore.Mvc.Filters;
+﻿using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.AspNetCore.Mvc;
-using System.Security.Policy;
+using Helios.Web.Util;
+using Helios.Web.Helpers;
+using Helios.Web.Storage;
 
 namespace Helios.Game
 {
     public class ViewBagFilter : IActionFilter
     {
         private readonly ValueManager _valueManager;
+        private readonly StorageContext _ctx;
 
-        public ViewBagFilter(ValueManager valueManager)
+        public ViewBagFilter(ValueManager valueManager, StorageContext ctx)
         {
             this._valueManager = valueManager;
+            this._ctx = ctx;
         }
 
         public void OnActionExecuting(ActionExecutingContext context)
@@ -25,6 +26,7 @@ namespace Helios.Game
             {
                 controller.ViewBag.SiteName = this._valueManager.GetString("site.name");
                 controller.ViewBag.StaticContentUrl = this._valueManager.GetString("site.static.content.url");
+                controller.ViewBag.Copyright = "Powered by HavanaWeb by Quackster";
             }
 
             if (controller != null)
@@ -34,6 +36,16 @@ namespace Helios.Game
                 {
                     HttpRequest request = context.HttpContext.Request;
                     controller.ViewBag.StaticContentUrl = new Uri(request.Scheme + "://" + request.Host.Value).ToString();
+                }
+
+                if (context.HttpContext.Contains(Constants.CURRENT_AVATAR_ID))
+                {
+                    controller.ViewBag.Avatar = this._ctx.AvatarData.FirstOrDefault(x => x.Id == context.HttpContext.Get<int>(Constants.CURRENT_AVATAR_ID));
+                }
+
+                if (context.HttpContext.Contains(Constants.CURRENT_USER_ID))
+                {
+                    controller.ViewBag.User = this._ctx.UserData.FirstOrDefault(x => x.Id == context.HttpContext.Get<int>(Constants.CURRENT_USER_ID));
                 }
             }
         }
