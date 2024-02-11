@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Helios.Web.Helpers;
+using Helios.Web.Util;
+using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using static System.Net.Mime.MediaTypeNames;
 
@@ -16,6 +18,11 @@ namespace Helios.Web.Controllers
         [Route("/")]
         public IActionResult Index()
         {
+            if (this.HttpContext.Get<bool>(Constants.LOGGED_IN))
+            {
+                return RedirectToAction("Me", "Me");
+            }
+
             ViewBag.Error = null;//= "no_password";
             return View("Index");
         }

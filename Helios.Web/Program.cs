@@ -3,6 +3,7 @@ using Avatara;
 using Helios.Web.Util;
 using Microsoft.EntityFrameworkCore;
 using Helios.Web.Storage;
+using Helios.Game;
 
 namespace Helios.Web
 {
@@ -23,8 +24,9 @@ namespace Helios.Web
             builder.Services.AddSession(options =>
             {
                 options.IdleTimeout = TimeSpan.FromMinutes(30);
-                //options.Cookie.HttpOnly = true;
-                // options.Cookie.IsEssential = true;
+                options.Cookie.HttpOnly = false;
+                options.Cookie.SecurePolicy = CookieSecurePolicy.None;
+                options.Cookie.IsEssential = true;
             });
 
             #endregion
@@ -39,6 +41,14 @@ namespace Helios.Web
             }
 
             #endregion
+
+            builder.Services.AddScoped<ValueManager>();
+
+            // View bag filter used for global variables
+            builder.Services.AddMvc(options =>
+            {
+                options.Filters.Add(typeof(ViewBagFilter));
+            });
 
             var app = builder.Build();
 

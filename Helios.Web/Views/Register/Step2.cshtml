@@ -10,14 +10,14 @@
 <script type="text/javascript">
 var andSoItBegins = (new Date()).getTime();
 </script>
-<link rel="shortcut icon" href="@Url.StaticContentPath()web-gallery/v2/favicon.ico" type="image/vnd.microsoft.icon" />
+<link rel="shortcut icon" href="@(this.ViewBag.StaticContentUrl)web-gallery/v2/favicon.ico" type="image/vnd.microsoft.icon" />
 <link rel="alternate" type="application/rss+xml" title="Habbo Hotel - RSS" href="http://www.habbo.com/articles/rss.xml" />
 <meta name="csrf-token" content="2a22cdd899"/>
-<link rel="stylesheet" href="@Url.StaticContentPath()web-gallery/static/styles/common.css" type="text/css" />
-<script src="@Url.StaticContentPath()web-gallery/static/js/libs2.js" type="text/javascript"></script>
-<script src="@Url.StaticContentPath()web-gallery/static/js/visual.js" type="text/javascript"></script>
-<script src="@Url.StaticContentPath()web-gallery/static/js/libs.js" type="text/javascript"></script>
-<script src="@Url.StaticContentPath()web-gallery/static/js/common.js" type="text/javascript"></script>
+<link rel="stylesheet" href="@(this.ViewBag.StaticContentUrl)web-gallery/static/styles/common.css" type="text/css" />
+<script src="@(this.ViewBag.StaticContentUrl)web-gallery/static/js/libs2.js" type="text/javascript"></script>
+<script src="@(this.ViewBag.StaticContentUrl)web-gallery/static/js/visual.js" type="text/javascript"></script>
+<script src="@(this.ViewBag.StaticContentUrl)web-gallery/static/js/libs.js" type="text/javascript"></script>
+<script src="@(this.ViewBag.StaticContentUrl)web-gallery/static/js/common.js" type="text/javascript"></script>
 
 
 <script type="text/javascript">
@@ -29,7 +29,7 @@ document.habboLoggedIn = false;
 var habboName = null;
 var habboId = null;
 var habboReqPath = "";
-var habboStaticFilePath = "@Url.StaticContentPath()web-gallery";
+var habboStaticFilePath = "@(this.ViewBag.StaticContentUrl)web-gallery";
 var habboImagerUrl = "http://www.habbo.com/habbo-imaging/";
 var habboPartner = "";
 var habboDefaultClientPopupUrl = "http://www.habbo.com/client";
@@ -52,8 +52,8 @@ if (typeof HabboClient != "undefined") {
 <meta property="og:image" content="http://www.habbo.com/v2/images/facebook/app_habbo_hotel_image.gif" />
 <meta property="og:locale" content="en_US" />
 
-<link rel="stylesheet" href="@Url.StaticContentPath()web-gallery/static/styles/quickregister.css" type="text/css" />
-<script src="@Url.StaticContentPath()web-gallery/static/js/quickregister.js" type="text/javascript"></script>
+<link rel="stylesheet" href="@(this.ViewBag.StaticContentUrl)web-gallery/static/styles/quickregister.css" type="text/css" />
+<script src="@(this.ViewBag.StaticContentUrl)web-gallery/static/js/quickregister.js" type="text/javascript"></script>
 
 <meta name="description" content="Check into the world's largest virtual hotel for FREE! Meet and make friends, play games, chat with others, create your avatar, design rooms and more..." />
 <meta name="keywords" content="habbo hotel, virtual, world, social network, free, community, avatar, chat, online, teen, roleplaying, join, social, groups, forums, safe, play, games, online, friends, teens, rares, rare furni, collecting, create, collect, connect, furni, furniture, pets, room design, sharing, expression, badges, hangout, music, celebrity, celebrity visits, celebrities, mmo, mmorpg, massively multiplayer" />
@@ -61,14 +61,14 @@ if (typeof HabboClient != "undefined") {
 <script src="//cdn.optimizely.com/js/13389159.js"></script>
 
 <!--[if IE 8]>
-<link rel="stylesheet" href="@Url.StaticContentPath()web-gallery/static/styles/ie8.css" type="text/css" />
+<link rel="stylesheet" href="@(this.ViewBag.StaticContentUrl)web-gallery/static/styles/ie8.css" type="text/css" />
 <![endif]-->
 <!--[if lt IE 8]>
-<link rel="stylesheet" href="@Url.StaticContentPath()web-gallery/static/styles/ie.css" type="text/css" />
+<link rel="stylesheet" href="@(this.ViewBag.StaticContentUrl)web-gallery/static/styles/ie.css" type="text/css" />
 <![endif]-->
 <!--[if lt IE 7]>
-<link rel="stylesheet" href="@Url.StaticContentPath()web-gallery/static/styles/ie6.css" type="text/css" />
-<script src="@Url.StaticContentPath()web-gallery/static/js/pngfix.js" type="text/javascript"></script>
+<link rel="stylesheet" href="@(this.ViewBag.StaticContentUrl)web-gallery/static/styles/ie6.css" type="text/css" />
+<script src="@(this.ViewBag.StaticContentUrl)web-gallery/static/js/pngfix.js" type="text/javascript"></script>
 <script type="text/javascript">
 try { document.execCommand('BackgroundImageCache', false, true); } catch(e) {}
 </script>
@@ -82,7 +82,7 @@ body { behavior: url(/js/csshover.htc); }
 
 <body id="client" class="@(this.Context.Get<string>("registerGender") == "male" ? "background-accountdetails-male" : "background-accountdetails-female")">
 <div id="overlay"></div>
-<img src="@Url.StaticContentPath()web-gallery/v2/images/page_loader.gif" style="position:absolute; margin: -1500px;" />
+<img src="@(this.ViewBag.StaticContentUrl)web-gallery/v2/images/page_loader.gif" style="position:absolute; margin: -1500px;" />
 
 <div id="change-password-form" style="display: none;">
     <div id="change-password-form-container" class="clearfix">

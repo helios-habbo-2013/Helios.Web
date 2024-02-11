@@ -4,68 +4,39 @@ using System.Linq;
 
 namespace Helios.Web.Storage.Access
 {
-    public class SettingDao
+    public static class SettingDao
     {
-        public static void GetSettings(out Dictionary<string, string> settings)
+        public static void GetSettings(this StorageContext context, out Dictionary<string, string> settings)
         {
-            using (var context = new StorageContext())
-            {
-                settings = context.SettingsData.ToList().ToDictionary(x => x.Key, x => x.Value);
-            }
-            //using (var session = SessionFactoryBuilder.Instance.SessionFactory.OpenSession())
-            //{
-            //    settings = session.QueryOver<SettingsData>().List().ToDictionary(x => x.Key, x => x.Value);
-            //}
+            settings = context.SettingsData.ToList().ToDictionary(x => x.Key, x => x.Value);
         }
 
-        public static bool HasSetting(string key)
+        public static bool HasSetting(this StorageContext context, string key)
         {
-            using (var context = new StorageContext())
-            {
-                return context.SettingsData.Count(x => x.Key == key) > 0;
-            }
+            return context.SettingsData.Count(x => x.Key == key) > 0;
         }
 
-        public static void SaveSetting(string key, string value)
+        public static void SaveSetting(this StorageContext context, string key, string value)
         {
-            using (var context = new StorageContext())
+            var setting = context.SettingsData.FirstOrDefault(x => x.Key == key);
+
+            if (setting == null)
             {
-                var setting = context.SettingsData.FirstOrDefault(x => x.Key == key);
-
-                if (setting == null)
+                setting = new SettingsData()
                 {
-                    setting = new SettingsData()
-                    {
-                        Key = key,
-                        Value = value
-                    };
+                    Key = key,
+                    Value = value
+                };
 
-                    context.SettingsData.Add(setting);
-                }
-                else
-                {
-                    setting.Value = value;
-                    context.Update(setting);
-                }
-
-                context.SaveChanges();
+                context.SettingsData.Add(setting);
+            }
+            else
+            {
+                setting.Value = value;
+                context.Update(setting);
             }
 
-            //using (var session = SessionFactoryBuilder.Instance.SessionFactory.OpenSession())
-            //{
-            //    using (var transaction = session.BeginTransaction())
-            //    {
-            //        try
-            //        {
-            //            session.Save(new SettingsData { Key = key, Value = value });
-            //            transaction.Commit();
-            //        }
-            //        catch
-            //        {
-            //            transaction.Rollback();
-            //        }
-            //    }
-            //}
+            context.SaveChanges();
         }
     }
 }

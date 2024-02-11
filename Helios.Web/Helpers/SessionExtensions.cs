@@ -9,7 +9,12 @@ namespace Helios.Web.Helpers
 			httpCtx.Session.SetString(key, JsonSerializer.Serialize(value));
 		}
 
-		public static T? Get<T>(this HttpContext httpCtx, string key)
+        public static void Remove(this HttpContext httpCtx, string key)
+        {
+            httpCtx.Session.Remove(key);
+        }
+
+        public static T? Get<T>(this HttpContext httpCtx, string key)
 		{
 			var value = httpCtx.Session.GetString(key);
 			return value == null ? default : JsonSerializer.Deserialize<T>(value);

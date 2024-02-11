@@ -8,20 +8,21 @@
 
   <ItemGroup>
     <Compile Remove="figuredata\**" />
-    <Compile Remove="Views\Shared\**" />
     <Content Remove="figuredata\**" />
-    <Content Remove="Views\Shared\**" />
     <EmbeddedResource Remove="figuredata\**" />
-    <EmbeddedResource Remove="Views\Shared\**" />
     <None Remove="figuredata\**" />
-    <None Remove="Views\Shared\**" />
   </ItemGroup>
 
   <ItemGroup>
+    <Content Remove="Views\Account\Login.cshtml" />
+    <Content Remove="Views\Character\Test.cshtml" />
     <Content Remove="Views\Me\Me.cshtml" />
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="Views\Shared\Footer.cshtml" />
+    <None Include="Views\Character\Test.cshtml" />
+    <None Include="Views\Account\Login.cshtml" />
     <None Include="Views\Me\Me.cshtml" />
     <None Include="Views\Home\Index.cshtml" />
   </ItemGroup>

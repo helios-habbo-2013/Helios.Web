@@ -3,6 +3,9 @@ using Helios.Web.Helpers;
 using Helios.Web.Storage;
 using Helios.Web.Util;
 using Microsoft.AspNetCore.Mvc;
+using Helios.Web.Storage.Models.User;
+using Helios.Web.Storage.Access;
+using Helios.Web.Storage.Models.Avatar;
 
 namespace Helios.Web.Controllers
 {
@@ -19,9 +22,26 @@ namespace Helios.Web.Controllers
 
         [HttpPost]
         [Route("/account/submit")]
-        public IActionResult Login([Bind(Prefix = "credentials.username")] string username, [Bind(Prefix = "credentials.password")] string password)
+        public IActionResult Login([Bind(Prefix = "credentials.username")] string username, [Bind(Prefix = "credentials.password")] string password, string _login_remember_me)
         {
-            return Ok();
+            UserData? user = _ctx.UserData.FirstOrDefault(x => x.Email == username && x.Password == password);
+
+            if (user == null)
+            {
+                this.HttpContext.Set<string>("credentials.username", username);
+                this.HttpContext.Set<string>("_login_remember_me", _login_remember_me);
+
+                return View();
+            }
+            else
+            {
+                HttpContext.Set<int>(Constants.CURRENT_USER_ID, user.Id);
+                HttpContext.Set<bool>(Constants.LOGGED_IN, true);
+
+                HttpContext.Remove(Constants.CURRENT_AVATAR_ID);
+
+                return RedirectToAction("Me", "Me");
+            }
         }
     }
 }
