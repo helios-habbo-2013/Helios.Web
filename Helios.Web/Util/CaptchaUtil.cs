@@ -5,7 +5,6 @@ using SixLabors.ImageSharp.Drawing.Processing;
 using SixLabors.ImageSharp.PixelFormats;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using SixLabors.Fonts;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace Helios.Web.Util
 {

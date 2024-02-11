@@ -1,5 +1,8 @@
-﻿
-using Helios.Web.Helpers;
+﻿using Helios.Web.Helpers;
+using Helios.Web.Storage;
+using Helios.Web.Storage.Models.Avatar;
+using Helios.Web.Storage.Models.User;
+using Helios.Web.Util;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Helios.Web.Controllers
@@ -7,10 +10,12 @@ namespace Helios.Web.Controllers
     public class RegisterController : Controller
     {
         private readonly ILogger<RegisterController> _logger;
+        private readonly StorageContext _ctx;
 
-        public RegisterController(ILogger<RegisterController> logger)
+        public RegisterController(ILogger<RegisterController> logger, StorageContext ctx)
         {
             _logger = logger;
+            _ctx = ctx;
         }
 
         [Route("/quickregister/start")]
@@ -49,16 +54,16 @@ namespace Helios.Web.Controllers
             }
 
             if (Request.Form.TryGetValue("bean.gender", out var beanGender))
-                HttpContext.Set<string>("registerGender", beanGender);
+                HttpContext.Set<string>("registerGender", beanGender == "male" ? "M" : "F");
 
             if (Request.Form.TryGetValue("bean.month", out var beanMonth))
-                HttpContext.Set<string>("registerMonth", beanMonth);
+                HttpContext.Set<string>("registerMonth", beanMonth.ToString());
 
             if (Request.Form.TryGetValue("bean.day", out var beanDay))
-                HttpContext.Set<string>("registerDay", beanDay);
+                HttpContext.Set<string>("registerDay", beanDay.ToString());
 
             if (Request.Form.TryGetValue("bean.year", out var beanYear))
-                HttpContext.Set<string>("registerYear", beanYear);
+                HttpContext.Set<string>("registerYear", beanYear.ToString());
 
             return RedirectToAction("Step2");
         }
@@ -96,10 +101,10 @@ namespace Helios.Web.Controllers
             //    HttpContext.Set<string>("registerName", registerName);
 
             if (Request.Form.TryGetValue("bean.password", out var registerPassword))
-                HttpContext.Set<string>("registerPassword", registerPassword);
+                HttpContext.Set<string>("registerPassword", registerPassword.ToString());
 
-            if (Request.Form.TryGetValue("bean.email", out var registerEmail))
-                HttpContext.Set<string>("registerEmail", registerEmail);
+            if (Request.Form.TryGetValue("bean.email", out var registerEmail)) 
+                HttpContext.Set<string>("registerEmail", registerEmail.ToString());
 
             // if (Request.Form.TryGetValue("bean.referrer", out var registerReferrer))
             //    HttpContext.Set<string>("registerReferrer", registerReferrer);
@@ -129,12 +134,23 @@ namespace Helios.Web.Controllers
                 return RedirectToAction("Step2");
             }
 
-            /*if (string.IsNullOrEmpty(HttpContext.Get<string>("Captcha")) ||
+
+            if (_ctx.UserData.Any(x => x.Email == registerEmail))
+            {
+                TempData["Error"] = "email_exists";
+                return RedirectToAction("Step2");
+            }
+
+            /*
+            if (string.IsNullOrEmpty(HttpContext.Get<string>("Captcha")) ||
                 (Request.Form.TryGetValue("bean.captcha", out var captcha) && captcha != HttpContext.Get<string>("Captcha")))
             {
                 TempData["Error"] = "captcha";
                 return RedirectToAction("Step2");
-            }*/
+            }
+            */
+
+            ViewBag.Gender = HttpContext.Get<string>("registerGender");
 
             return RedirectToAction("Captcha");
         }
@@ -159,20 +175,67 @@ namespace Helios.Web.Controllers
             if (TempData.ContainsKey("Error"))
                 ViewBag.Error = TempData["Error"];
 
+            ViewBag.Gender = HttpContext.Get<string>("registerGender");
+
             return View("Captcha");
         }
 
         [Route("/quickregister/refresh_avatars")]
         public IActionResult RefreshAvatars()
         {
+            ViewBag.Gender = HttpContext.Get<string>("registerGender");
+
             return PartialView("ajax/RefreshAvatars");
         }
 
         [HttpPost]
-		[Route("/quickregister/complete")]
+		[Route("/quickregister/captcha_submit")]
 		public IActionResult Complete()
 		{
-			return RedirectToAction("Index", "Home");
+            if (string.IsNullOrEmpty(HttpContext.Get<string>("Captcha")) ||
+                (Request.Form.TryGetValue("bean.captcha", out var captcha) && captcha != HttpContext.Get<string>("Captcha")))
+            {
+                TempData["Error"] = "captcha";
+                return RedirectToAction("Captcha");
+            }
+
+            if (!Request.Form.TryGetValue("bean.figure", out var figure))
+                HttpContext.Set<string>("registerFigure", figure.ToString());
+
+            var registerEmail = HttpContext.Get<string>("registerEmail");
+            var registerPassword = HttpContext.Get<string>("registerPassword");
+            var registerGender = HttpContext.Get<string>("registerGender");
+            var registerFigure = HttpContext.Get<string>("registerFigure");
+            var registerMonth = Convert.ToInt32(HttpContext.Get<string>("registerMonth"));
+            var registerDay = Convert.ToInt32(HttpContext.Get<string>("registerDay"));
+            var registerYear = Convert.ToInt32(HttpContext.Get<string>("registerYear"));
+
+            var userData = new UserData
+            {
+                Email= registerEmail,
+                Password=registerPassword,
+                Birthday = $"{registerDay}.{registerMonth}.{registerYear}"
+            };
+
+            _ctx.UserData.Add(userData);
+            _ctx.SaveChanges();
+
+            var avatarData = new AvatarData
+            {
+                Name = "",
+                Figure = registerFigure,
+                Sex = registerGender,
+                UserId = userData.Id
+            };
+
+            _ctx.AvatarData.Add(avatarData);
+            _ctx.SaveChanges();
+
+            HttpContext.Set<int>(Constants.CURRENT_USER_ID, userData.Id);
+            HttpContext.Set<int>(Constants.CURRENT_AVATAR_ID, avatarData.Id);
+            HttpContext.Set<bool>(Constants.LOGGED_IN, true);
+
+            return RedirectToAction("Client", "Client");
 		}
     }
 }

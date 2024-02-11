@@ -1,12 +1,13 @@
 ﻿@using Helios.Web.Helpers;
 @using Helios.Web.Util;
 @{
-    var figure1 = FigureUtil.Instance.GenerateRandomFigure("M");
-    var figure2 = FigureUtil.Instance.GenerateRandomFigure("M");
-    var figure3 = FigureUtil.Instance.GenerateRandomFigure("M");
-    var figure4 = FigureUtil.Instance.GenerateRandomFigure("F");
-    var figure5 = FigureUtil.Instance.GenerateRandomFigure("F");
-    var figure6 = FigureUtil.Instance.GenerateRandomFigure("F");
+    var gender = (string) ViewBag.Gender;
+    var figure1 = FigureUtil.Instance.GenerateRandomFigure(gender);
+    var figure2 = FigureUtil.Instance.GenerateRandomFigure(gender);
+    var figure3 = FigureUtil.Instance.GenerateRandomFigure(gender);
+    var figure4 = FigureUtil.Instance.GenerateRandomFigure(gender);
+    var figure5 = FigureUtil.Instance.GenerateRandomFigure(gender);
+    var figure6 = FigureUtil.Instance.GenerateRandomFigure(gender);
 }
 <ul id="avatars">
     <li>

@@ -1,6 +1,8 @@
 using Avatara.Figure;
 using Avatara;
 using Helios.Web.Util;
+using Microsoft.EntityFrameworkCore;
+using Helios.Web.Storage;
 
 namespace Helios.Web
 {
@@ -9,6 +11,9 @@ namespace Helios.Web
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
+
+            builder.Services.AddDbContext<StorageContext>(options =>
+                options.UseMySQL(builder.Configuration.GetConnectionString("DefaultConnection")));
 
             builder.Services.AddControllersWithViews();
 

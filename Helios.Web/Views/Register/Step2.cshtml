@@ -154,6 +154,11 @@ NOTE! Remember to check your "junk" folder too!</span>
                             @("The emails do not match")
                             break;
                         }
+                    case "email_exists":
+                        {
+                            @("An account with this email already exists")
+                            break;
+                        }
                     case "terms_of_service":
                         {
                             @("Please accept the terms of service")
@@ -216,7 +221,7 @@ NOTE! Remember to check your "junk" folder too!</span>
                         <label for="email-address">Re-enter Email</label>
                         <input type="text" id="email-address" name="bean.confirmEmail" />
                     </div>
-                    <div class="help">...just be sure</div>
+                    <div class="help">...just to be sure</div>
                     <div id="password-field" class="field">
                         <label for="register-password">Password</label>
                         <input type="password" name="bean.password" id="register-password" maxlength="32" value="" />

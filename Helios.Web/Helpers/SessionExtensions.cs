@@ -19,5 +19,7 @@ namespace Helios.Web.Helpers
         {
             return httpCtx.Session.TryGetValue(key, out var _);
         }
+
+
     }
 }

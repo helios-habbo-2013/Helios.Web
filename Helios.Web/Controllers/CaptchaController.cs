@@ -17,7 +17,7 @@ namespace Helios.Web.Controllers
         public IActionResult Index()
         {
             var text = CaptchaUtil.Instance.RandomWord() + " " + CaptchaUtil.Instance.RandomWord();//CaptchaUtil.Instance.RandomTextSequence(CaptchaUtil.Instance.Random.Next(4, 7)) + " " + CaptchaUtil.Instance.RandomTextSequence(CaptchaUtil.Instance.Random.Next(4, 7));
-            HttpContext.Set("CaptchaUtil", text);
+            HttpContext.Set("Captcha", text);
 			return File(CaptchaUtil.Instance.Generate(text), "image/png");
         }
     }

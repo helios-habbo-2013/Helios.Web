@@ -145,6 +145,11 @@ NOTE! Remember to check your "junk" folder too!</span>
             <div id="error-title" class="error">
                 @switch (ViewBag.Error)
                 {
+                    case "captcha":
+                        {
+                            @("The captcha does not match.")
+                            break;
+                        }
                     case "fields":
                         {
                             @("All fields are required.")
@@ -227,7 +232,7 @@ NOTE! Remember to check your "junk" folder too!</span>
         <form id="captcha-form" method="post" action="@Url.AbsolutePath("~/quickregister/captcha_submit")" onsubmit="Overlay.show(null,'Loading...');">
             <div id="recaptcha-input-title">Type in the two words (separated with a space):</div>
             <div id="recaptcha-input">
-                <input type="text" tabindex="2" name="captchaResponse" id="recaptcha_response_field">
+                <input type="text" tabindex="2" name="bean.captcha" id="recaptcha_response_field">
             </div>
                 <input type="hidden" id="avatarFigure" name="bean.figure" value=""/>
         </form>
