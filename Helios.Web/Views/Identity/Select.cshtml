@@ -93,13 +93,14 @@
                     </div>
                     <div id="first-avatar">
                         @{
+                            int avatarId = ViewBag.Avatar.Id;
                             string firstFigure = ViewBag.Avatar.Figure;
                         }
                         <img src="@Url.AbsolutePath("~/habbo-imaging/avatarimage?figure=" + firstFigure + "&position=3")" width="64" height="110" />
                         <div id="first-avatar-info">
                             <div class="first-avatar-name">@(ViewBag.Avatar.Name)</div>
                             <div class="first-avatar-lastonline">Last logged in: <span>@(((DateTime)ViewBag.Avatar.LastOnline).TimeAgo())</span></div>
-                            <a id="first-avatar-play-link" href="@(this.ViewBag.SiteUrl)client">
+                            <a id="first-avatar-play-link" href="@Url.AbsolutePath("~/identity/useOrCreateAvatar/" + avatarId)">
                                 <div class="play-button-container">
                                     <div class="play-button"><div class="play-text">Play</div></div>
                                     <div class="play-button-end"></div>
@@ -109,7 +110,7 @@
                     </div>
 
 
-                    <div id="link-new-avatar"><a class="new-button " onclick="" href="/identity/addavatar"><b>+ Add</b><i></i></a></div>
+                    <div id="link-new-avatar"><a class="new-button " onclick="" href="@Url.AbsolutePath("~/identity/add_avatar")"><b>+ Add</b><i></i></a></div>
 
                     <h2 style="margin: 5px 10px 20px">Your other characters</h2>
                     <p style="margin: 5px 10px">You can add @(Constants.MAX_AVATARS - ViewBag.OtherAvatars.Count - 1) more characters</p>
@@ -127,11 +128,15 @@
                             }
                             else
                             {
+                                int i = 0;
                                 foreach (var avatar in ViewBag.OtherAvatars)
                                 {
                                     ViewBag.CurrentAvatar = avatar;
+                                    ViewBag.Counter = i;
 
                                     await Html.RenderPartialAsync("Avatar");
+
+                                    i++;
                                 }
                             }
                         }

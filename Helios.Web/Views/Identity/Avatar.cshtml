@@ -1,16 +1,17 @@
 ﻿@using Helios.Web.Helpers
 @using Helios.Web.Storage.Models.Avatar
 @{
+    int avatarId = ViewBag.CurrentAvatar.Id;
     string figure = ViewBag.CurrentAvatar.Figure;
 }
 
-<li class="{$oddeven}">
+<li class="@(ViewBag.Counter % 2 == 0 ? "even" : "odd")">
     <img src="@Url.AbsolutePath("~/habbo-imaging/avatarimage?figure=" + figure + "&position=3&size=s")" />
     <div class="avatar-info">
         <div class="avatar-info-container">
             <div class="avatar-name">@ViewBag.CurrentAvatar.Name</div>
             <div class="avatar-lastonline">Last logged in: <span>@(((DateTime)ViewBag.CurrentAvatar.LastOnline).TimeAgo())</span></div>
         </div>
-        <div class="avatar-select"><a href="/identity/use&avatar=@ViewBag.CurrentAvatar.Name"><b>Play</b><i></i></a></div>
+        <div class="avatar-select"><a href="@(Url.AbsolutePath("~/identity/useOrCreateAvatar/" + avatarId))"><b>Play</b><i></i></a></div>
     </div>
 </li>

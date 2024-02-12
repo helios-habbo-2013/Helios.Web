@@ -40,8 +40,32 @@ namespace Helios.Web.Controllers
 
                 HttpContext.Remove(Constants.CURRENT_AVATAR_ID);
 
-                return RedirectToAction("Me", "Me");
+                return RedirectToAction("SecurityCheck");
             }
+        }
+        [Route("/security_check")]
+        public IActionResult SecurityCheck()
+        {
+            if (!this.HttpContext.Get<bool>(Constants.LOGGED_IN))
+            {
+                this.ViewBag.RedirectPath = "index";
+
+                return View();
+            }
+
+            if (this.HttpContext.Contains(Constants.CURRENT_USER_ID) &&
+                !this.HttpContext.Contains(Constants.CURRENT_AVATAR_ID))
+            {
+                // return RedirectToAction("Select", "Identity");
+                this.ViewBag.RedirectPath = "identity/avatars";
+
+                return View();
+            }
+
+            this.ViewBag.RedirectPath = "me";
+
+            return View();
+            // return RedirectToAction("Me", "Me");
         }
     }
 }
