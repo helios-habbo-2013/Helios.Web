@@ -1,0 +1,63 @@
+﻿@using Helios.Web.Helpers
+@using Helios.Web.Util
+@{
+    string gender;
+    
+    gender = "M";
+    var figure1 = FigureUtil.Instance.GenerateRandomFigure(gender);
+    var figure2 = FigureUtil.Instance.GenerateRandomFigure(gender);
+    var figure3 = FigureUtil.Instance.GenerateRandomFigure(gender);
+    var figure4 = FigureUtil.Instance.GenerateRandomFigure(gender);
+    var figure5 = FigureUtil.Instance.GenerateRandomFigure(gender);
+
+    gender = "F";
+    var figure6 = FigureUtil.Instance.GenerateRandomFigure(gender);
+    var figure7 = FigureUtil.Instance.GenerateRandomFigure(gender);
+    var figure8 = FigureUtil.Instance.GenerateRandomFigure(gender);
+    var figure9 = FigureUtil.Instance.GenerateRandomFigure(gender);
+    var figure10 = FigureUtil.Instance.GenerateRandomFigure(gender);
+}
+
+<div id="avatar-field-container" class="clearfix">
+<div id="selected-avatar">
+    @{
+        await Html.RenderPartialAsync("../Identity/Habblet/SelectFigure");
+    }
+</div>
+<div id="avatar-choices">
+    <h3>Girls</h3>
+    <a href="@Url.AbsolutePath("~/identity/add_avatar?bean.figure=" + figure6 + "&bean.gender=f&checkFigureOnly=true")" class="female-avatar" rel="@(figure6)">
+        <img src="@Url.AbsolutePath("~/habbo-imaging/avatarimage?figure=" + figure6 + "&size=s&direction=4&head_direction=4")" width="32" height="55" />
+    </a>
+    <a href="@Url.AbsolutePath("~/identity/add_avatar?bean.figure=" + figure7 + "&bean.gender=f&checkFigureOnly=true")" class="female-avatar" rel="@(figure7)">
+        <img src="@Url.AbsolutePath("~/habbo-imaging/avatarimage?figure=" + figure7 + "&size=s&direction=4&head_direction=4")" width="32" height="55" />
+    </a>
+    <a href="@Url.AbsolutePath("~/identity/add_avatar?bean.figure=" + figure8 + "&bean.gender=f&checkFigureOnly=true")" class="female-avatar" rel="@(figure8)">
+        <img src="@Url.AbsolutePath("~/habbo-imaging/avatarimage?figure=" + figure8 + "&size=s&direction=4&head_direction=4")" width="32" height="55" />
+    </a>
+    <a href="@Url.AbsolutePath("~/identity/add_avatar?bean.figure=" + figure9 + "&bean.gender=f&checkFigureOnly=true")" class="female-avatar" rel="@(figure9)">
+        <img src="@Url.AbsolutePath("~/habbo-imaging/avatarimage?figure=" + figure9 + "&size=s&direction=4&head_direction=4")" width="32" height="55" />
+    </a>
+    <a href="@Url.AbsolutePath("~/identity/add_avatar?bean.figure=" + figure10 + "&bean.gender=f&checkFigureOnly=true")" class="female-avatar" rel="@(figure10)">
+        <img src="@Url.AbsolutePath("~/habbo-imaging/avatarimage?figure=" + figure10 + "&size=s&direction=4&head_direction=4")" width="32" height="55" />
+    </a>
+
+    <h3>Male</h3>
+    <a href="@Url.AbsolutePath("~/identity/add_avatar?bean.figure=" + figure1 + "&bean.gender=f&checkFigureOnly=true")" class="male-avatar" rel="@(figure1)">
+        <img src="@Url.AbsolutePath("~/habbo-imaging/avatarimage?figure=" + figure1 + "&size=s&direction=4&head_direction=4")" width="32" height="55" />
+    </a>
+    <a href="@Url.AbsolutePath("~/identity/add_avatar?bean.figure=" + figure2 + "&bean.gender=f&checkFigureOnly=true")" class="male-avatar" rel="@(figure2)">
+        <img src="@Url.AbsolutePath("~/habbo-imaging/avatarimage?figure=" + figure2 + "&size=s&direction=4&head_direction=4")" width="32" height="55" />
+    </a>
+    <a href="@Url.AbsolutePath("~/identity/add_avatar?bean.figure=" + figure3 + "&bean.gender=f&checkFigureOnly=true")" class="male-avatar" rel="@(figure3)">
+        <img src="@Url.AbsolutePath("~/habbo-imaging/avatarimage?figure=" + figure3 + "&size=s&direction=4&head_direction=4")" width="32" height="55" />
+    </a>
+    <a href="@Url.AbsolutePath("~/identity/add_avatar?bean.figure=" + figure4 + "&bean.gender=f&checkFigureOnly=true")" class="male-avatar" rel="@(figure4)">
+        <img src="@Url.AbsolutePath("~/habbo-imaging/avatarimage?figure=" + figure4 + "&size=s&direction=4&head_direction=4")" width="32" height="55" />
+    </a>
+    <a href="@Url.AbsolutePath("~/identity/add_avatar?bean.figure=" + figure5 + "&bean.gender=f&checkFigureOnly=true")" class="male-avatar" rel="@(figure5)">
+        <img src="@Url.AbsolutePath("~/habbo-imaging/avatarimage?figure=" + figure5 + "&size=s&direction=4&head_direction=4")" width="32" height="55" />
+    </a>
+    <p style="clear: left;"><a href="#" id="more-avatars">Give me more!</a> You can change your looks later on.</p>
+</div>
+</div>

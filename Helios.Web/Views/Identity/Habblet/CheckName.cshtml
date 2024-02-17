@@ -1,0 +1,20 @@
+﻿<div class="field field-habbo-name">
+    <label for="habbo-name">Habbo name:</label>
+    <a href="#" class="new-button" id="check-name-btn"><b>Check</b><i></i></a>
+    <input type="text" id="habbo-name" size="26" value="@(ViewBag.Name)" name="avatarName" class="text-field" maxlength="32" />
+    <div id="name-suggestions">
+        <div class="available">
+            <p>Available Name</p>
+        </div>
+        <div class="taken">
+            <p>The name "${takenName}" is already taken. Here are some suggestions:</p>
+            <div id="name-suggestion-list">
+                <a href="#">Suggested Name</a>
+            </div>
+        </div>
+        </div>
+  
+
+    <div class="error-messages-holder"><h3>There was a problem...</h3><ul><li><p class="error-message">The email you entered is taken</p></li></ul></div>
+    <p class="help">Your name can contain lowercase and uppercase letters, numbers and characters -@("=?!@:.")</p>
+</div>

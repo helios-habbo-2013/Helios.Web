@@ -1,0 +1,13 @@
+﻿@using Helios.Web.Helpers
+@using Helios.Web.Util
+@{
+    string figure = ViewBag.Figure; 
+}
+<h3>Preview</h3>
+
+@{
+    if (figure != null)
+    {
+        <img id="preview_look" src="@Url.AbsolutePath("~/habbo-imaging/avatarimage?figure=" + figure) width="64" height="110" />
+    }
+}

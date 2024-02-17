@@ -1,0 +1,191 @@
+﻿@using Helios.Web.Helpers
+@using Helios.Web.Storage.Models.Avatar
+@using Helios.Web.Util
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" xmlns:og="http://opengraphprotocol.org/schema/" xmlns:fb="http://www.facebook.com/2008/fbml">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>@(this.ViewBag.SiteNamel) Hotel - Character Settings </title>
+
+    <script type="text/javascript">
+        var andSoItBegins = (new Date()).getTime();
+    </script>
+    <link rel="shortcut icon" href="@(this.ViewBag.StaticContentUrl)web-gallery/v2/favicon.ico" type="image/vnd.microsoft.icon" />
+    <link rel="alternate" type="application/rss+xml" title="Habbo Hotel - RSS" href="@Url.AbsolutePath("~/articles/rss.xml")" />
+    <meta name="csrf-token" content="117e08e0dc" />
+    <link rel="stylesheet" href="@(this.ViewBag.StaticContentUrl)web-gallery/static/styles/embed.css" type="text/css" />
+    <script src="@(this.ViewBag.StaticContentUrl)web-gallery/static/js/embed.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="http://habbo.com/styles/local/com.css" type="text/css" />
+
+    <script src="http://habbo.com/js/local/com.js" type="text/javascript"></script>
+
+
+    <script type="text/javascript">
+        document.habboLoggedIn = true;
+        var habboName = '';
+        var habboId = 0;
+        var facebookUser = false;
+        var habboReqPath = "";
+        var habboStaticFilePath = "@(this.ViewBag.StaticContentUrl)web-gallery";
+        var habboImagerUrl = "@(this.ViewBag.StaticContentUrl)Public/Themes/{$skin->name}/webbuild/habbo-imaging/";
+        var habboPartner = "";
+        var habboDefaultClientPopupUrl = "@(this.ViewBag.StaticContentUrl)client";
+        window.name = "habboMain";
+        if (typeof HabboClient != "undefined") {
+            HabboClient.windowName = "53f4a3906a95d214e8d5e9cce709556196f5fa53";
+            HabboClient.maximizeWindow = true;
+        }
+    </script>
+
+    <link rel="stylesheet" href="@(this.ViewBag.StaticContentUrl)web-gallery/static/styles/common.css" type="text/css" />
+    <link rel="stylesheet" href="@(this.ViewBag.StaticContentUrl)web-gallery/static/styles/avatarselection.css" type="text/css" />
+
+    <meta name="description" content="Check into the world’s largest virtual hotel for FREE! Meet and make friends, play games, chat with others, create your avatar, design rooms and more…" />
+    <meta name="keywords" content="@(this.ViewBag.SiteNamel) hotel, virtual, world, social network, free, community, avatar, chat, online, teen, roleplaying, join, social, groups, forums, safe, play, games, online, friends, teens, rares, rare furni, collecting, create, collect, connect, furni, furniture, pets, room design, sharing, expression, badges, hangout, music, celebrity, celebrity visits, celebrities, mmo, mmorpg, massively multiplayer" />
+
+    <!--[if IE 8]>
+    <link rel="stylesheet" href="@(this.ViewBag.StaticContentUrl)web-gallery/static/styles/ie8.css" type="text/css" />
+    <![endif]-->
+    <!--[if lt IE 8]>
+    <link rel="stylesheet" href="@(this.ViewBag.StaticContentUrl)web-gallery/static/styles/ie.css" type="text/css" />
+    <![endif]-->
+    <!--[if lt IE 7]>
+    <link rel="stylesheet" href="@(this.ViewBag.StaticContentUrl)web-gallery/static/styles/ie6.css" type="text/css" />
+    <script src="@(this.ViewBag.StaticContentUrl)web-gallery/static/js/pngfix.js" type="text/javascript"></script>
+    <script type="text/javascript">
+    try { document.execCommand('BackgroundImageCache', false, true); } catch(e) {}
+    </script>
+
+    <style type="text/css">
+    body { behavior: url(/js/csshover.htc); }
+    </style>
+    <![endif]-->
+
+    <meta name="build" content="63-BUILD1484 - 11.07.2012 23:09 - com" />
+
+</head>
+
+    <body id="embedpage">
+    <div id="overlay"></div>
+
+        @{
+            await Html.RenderPartialAsync("Login/Forgotten");
+        }
+
+    </script><div id="container">
+
+        <script type="text/javascript">
+        document.observe("dom:loaded", function() {
+            $(document.body).addClassName("js");
+            $("habbo-name").focus();
+
+            new Ajax.Updater("avatar-field-container", "@Url.AbsolutePath("~/identity/habblet/add")", {
+                                parameters: { refreshAvailableFigures: "true" }
+                            });
+
+            var checkHandler = function(e) {
+                Event.stop(e);
+                new Ajax.Updater("name-field-container", "@Url.AbsolutePath("~/identity/habblet/add")", {
+                    parameters: { checkNameOnly: "true", "avatarName": $F("habbo-name")},
+                    onComplete: function() {
+                        if ($("name-field-container").select(".state-error").length != 0) {
+                            $("habbo-name").focus();
+                        }
+                        new Ajax.Updater("error-messages-container", "/identity/habblet/add_avatar_messages");
+                    }
+                });
+            };
+            Event.observe($("name-field-container"), "click", Event.delegate({
+                '#check-name-btn > *' : checkHandler,
+                '#check-name-btn' : checkHandler,
+                '#name-suggestion-list a' : function(e) {
+                    Event.stop(e);
+                    new Ajax.Updater("name-field-container", "@Url.AbsolutePath("~/identity/habblet/add")", {
+                        parameters: { checkNameOnly: "true", "avatarName": Event.element(e).innerHTML },
+                        onComplete: function() {
+                            if ($("name-field-container").select(".state-error").length != 0) {
+                                $("habbo-name").focus();
+                            }
+                            new Ajax.Updater("error-messages-container", "/identity/habblet/add_avatar_messages");
+                        }
+                    });
+                }
+            }));
+
+            if ($("avatar-field-container")) {
+                var avatarClickHandler = function(gender) {
+                    return function(e) {
+                        Event.stop(e);
+                        new Ajax.Updater("selected-avatar", "@Url.AbsolutePath("~/identity/habblet/add")", {
+                            parameters: { checkFigureOnly: "true", "bean.gender": gender, "bean.figure": $(Event.element(e)).up("a").readAttribute("rel") }
+                        });
+                    }
+                };
+                Event.observe($("avatar-field-container"), "click", Event.delegate({
+                    'a.female-avatar img' : avatarClickHandler('f'), 
+                    'a.male-avatar img'   : avatarClickHandler('m'),
+                    '#more-avatars'       : function(e) {
+                            Event.stop(e);
+                            new Ajax.Updater("avatar-field-container", "@Url.AbsolutePath("~/identity/habblet/add")", {
+                                parameters: { refreshAvailableFigures: "true" }
+                            });
+                        }
+                    }
+                ));
+            }
+
+            if ($("popup-link")) {
+                Event.observe($("popup-link"), "click", function(e) {
+                    Event.stop(e);
+                    window.open($("popup-link").href, null, "toolbar=no,location=yes,directories=no,status=no,menubar=no,scrollbars=yes,resizable=yes,width=540,height=500");
+                });
+            }
+
+        });
+      </script>
+
+      <div id="add-avatar">
+        <div class="add-avatar-container clearfix">
+            <div class="title">
+              <span class="habblet-close"></span>
+              <h1>Add a new Habbo</h1>
+            </div>
+            <div id="content">
+                <a id="back-link" href="/identity/avatars">&laquo; Back to avatars</a>
+                <form id="add-avatar-form" method="post" action="">
+                    <a href="{$site->url}identity/link_account" id="account-link">Link an existing character</a>
+
+                        <div id="error-messages-container" style="margin-top: 10px">
+                        </div>
+
+                        <div id="name-field-container">
+                            @{
+                                ViewBag.Name = "";
+                                await Html.RenderPartialAsync("Habblet/CheckName");
+                            }
+                        </div>
+
+                            @{
+                                await Html.RenderPartialAsync("Habblet/RandomAvatars");
+                            }
+
+                        <br clear="all"/>
+                   
+                        <a class="new-button green-button" href="javascript:document.addavatarform.submit();"><b>Create Habbo</b><i></i></a>
+                </form>
+            </div>
+        </div>
+        <div class="add-avatar-container-bottom"></div>
+      </div>
+    {$widget->Global->Footer.html}
+
+    <script type="text/javascript">
+    if (typeof HabboView != "undefined") {
+        HabboView.run();
+    }
+    </script>
+
+    </body>
+</html>

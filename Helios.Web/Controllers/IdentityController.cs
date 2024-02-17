@@ -21,8 +21,11 @@ namespace Helios.Web.Controllers
         }
 
         [Route("/identity/avatars")]
-        public IActionResult Select()
+        public IActionResult Avatars()
         {
+            if (!this.HttpContext.Get<bool>(Constants.LOGGED_IN))
+                return RedirectToAction("Index", "Home");
+
             var avatar = _ctx.AvatarData.Where(x => x.UserId == this.HttpContext.Get<int>(Constants.CURRENT_USER_ID))
                 .OrderByDescending(x => x.LastOnline)
                 .First();
@@ -33,6 +36,15 @@ namespace Helios.Web.Controllers
 
             this.ViewBag.Avatar = avatar;
             this.ViewBag.OtherAvatars = otherAvatars;
+
+            return View();
+        }
+
+        [Route("/identity/add_avatar")]
+        public IActionResult AddAvatar()
+        {
+            if (!this.HttpContext.Get<bool>(Constants.LOGGED_IN))
+                return RedirectToAction("Index", "Home");
 
             return View();
         }

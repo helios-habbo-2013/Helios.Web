@@ -16,8 +16,11 @@
   <ItemGroup>
     <Content Remove="Views\Account\Login.cshtml" />
     <Content Remove="Views\Account\SecurityCheck.cshtml" />
-    <Content Remove="Views\Identity\Avatar.cshtml" />
-    <Content Remove="Views\Identity\Select.cshtml" />
+    <Content Remove="Views\Identity\AddAvatar.cshtml" />
+    <Content Remove="Views\Identity\AvatarList.cshtml" />
+    <Content Remove="Views\Identity\Avatars.cshtml" />
+    <Content Remove="Views\Identity\Habblet\SelectFigure.cshtml" />
+    <Content Remove="Views\Identity\RandomAvatars.cshtml" />
     <Content Remove="Views\Me\Me.cshtml" />
     <Content Remove="Views\Shared\Copyright - Copy.cshtml" />
     <Content Remove="Views\Shared\Copyright.cshtml" />
@@ -25,11 +28,14 @@
 
   <ItemGroup>
     <None Include="Views\Account\SecurityCheck.cshtml" />
-    <None Include="Views\Identity\Avatar.cshtml" />
+    <None Include="Views\Identity\AvatarList.cshtml" />
+    <None Include="Views\Identity\AddAvatar.cshtml" />
+    <None Include="Views\Identity\Habblet\SelectFigure.cshtml" />
+    <None Include="Views\Identity\Habblet\RandomAvatars.cshtml" />
     <None Include="Views\Shared\Login\Forgotten.cshtml" />
     <None Include="Views\Shared\Copyright.cshtml" />
     <None Include="Views\Shared\Footer.cshtml" />
-    <None Include="Views\Identity\Select.cshtml" />
+    <None Include="Views\Identity\Avatars.cshtml" />
     <None Include="Views\Account\Login.cshtml" />
     <None Include="Views\Me\Me.cshtml" />
     <None Include="Views\Home\Index.cshtml" />
