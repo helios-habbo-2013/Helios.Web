@@ -8,6 +8,7 @@ using Helios.Web.Storage.Access;
 using Helios.Web.Storage.Models.Avatar;
 using System.Linq;
 using Suggestor;
+using Org.BouncyCastle.Bcpg.OpenPgp;
 
 namespace Helios.Web.Controllers
 {
@@ -41,7 +42,7 @@ namespace Helios.Web.Controllers
             else
                 ViewBag.CheckFigureOnly = false;
 
-            HttpContext.Set<bool>("CheckNameOnly", (bool) ViewBag.CheckNameOnly);
+            HttpContext.Set<bool>("CheckNameOnly", (bool)ViewBag.CheckNameOnly);
 
             if (ViewBag.CheckNameOnly)
             {
@@ -128,7 +129,7 @@ namespace Helios.Web.Controllers
                         case 3:
                             {
                                 ViewBag.ErrorType = "error";
-                                ViewBag.ErrorType = "Name contains invalid characters";
+                                ViewBag.ErrorMessage = "Name contains invalid characters";
                                 break;
                             }
                     }
@@ -169,7 +170,7 @@ namespace Helios.Web.Controllers
             {
                 nameCheckCode = 2;
             }
-            else if (name.Contains(" ") || !hasAllowedCharacters(name.ToLower(), "1234567890qwertyuiopasdfghjklzxcvbnm-+=?!@:.,$") || name.ToUpper().Contains("MOD-"))
+            else if (name.Contains(" ") || !hasAllowedCharacters(name.ToLower()) || name.ToUpper().Contains("MOD-"))
             {
                 nameCheckCode = 3;
             }
@@ -177,21 +178,16 @@ namespace Helios.Web.Controllers
             return nameCheckCode;
         }
 
-        public static bool hasAllowedCharacters(String str, String allowedChars)
+        public static bool hasAllowedCharacters(string input)
         {
-            if (str == null)
-            {
-                return false;
-            }
+            string validCharacters = "1234567890qwertyuiopasdfghjklzxcvbnm-=?!@:.";
 
-            for (int i = 0; i < str.Length; i++)
+            foreach (char c in input)
             {
-                if (allowedChars.Contains(str.ToCharArray()[i]))
+                if (!validCharacters.Contains(c))
                 {
-                    continue;
+                    return false;
                 }
-
-                return false;
             }
 
             return true;
