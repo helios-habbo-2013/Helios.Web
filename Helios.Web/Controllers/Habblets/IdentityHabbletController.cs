@@ -9,6 +9,7 @@ using Helios.Web.Storage.Models.Avatar;
 using System.Linq;
 using Suggestor;
 using Org.BouncyCastle.Bcpg.OpenPgp;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace Helios.Web.Controllers
 {
@@ -83,114 +84,38 @@ namespace Helios.Web.Controllers
         {
             bool checkNameOnly = HttpContext.Get<bool>("CheckNameOnly");
 
+            string errorType = "";
+            string errorMessage = "";
+            List<string> suggestions = new List<string>();
+
+
             if (checkNameOnly)
             {
                 string checkName = HttpContext.Get<string>("CheckName");
+                RegisterUtil.ValidateNameResponse(ref errorType, ref errorMessage, ref suggestions, checkName, _ctx);
                 ViewBag.Name = checkName;
-
-                if (string.IsNullOrEmpty(checkName))
-                {
-                    ViewBag.ErrorType = "error";
-                    ViewBag.ErrorMessage = "Name is unavaliable";
-                }
-                else
-                {
-                    switch (getNameCheckCode(checkName, _ctx))
-                    {
-                        case 0:
-                            {
-                                ViewBag.ErrorType = "name_available";
-                                break;
-                            }
-                        case 1:
-                            {
-                                ViewBag.ErrorType = "error";
-                                ViewBag.ErrorMessage = "Name is longer than 16 characters";
-                                break;
-                            }
-                        case 2:
-                            {
-                                ViewBag.ErrorType = "error";
-                                ViewBag.ErrorMessage = "Name must not be shorter than 2 characters";
-                                break;
-                            }
-                        case 4:
-                            {
-                                var suggestorSettings = SuggestorService.DefaultSettings;
-                                suggestorSettings.MaximumWordLength = 16;
-
-                                ViewBag.ErrorType = "already_exists";
-                                ViewBag.NameSuggestions = SuggestorService.GetSuggestions(checkName, suggestorSettings, existsCallback: (checkName) =>
-                                {
-                                    return _ctx.AvatarData.Any(x => x.Name.ToLower() == checkName.ToLower());
-                                });
-                                break;
-                            }
-                        case 3:
-                            {
-                                ViewBag.ErrorType = "error";
-                                ViewBag.ErrorMessage = "Name contains invalid characters";
-                                break;
-                            }
-                    }
-                }
             }
 
-            if (ViewBag.ErrorType == "error")
+            ViewBag.ErrorType = errorType;
+            ViewBag.ErrorMessage = errorMessage;  
+            ViewBag.NameSuggestions = suggestions;
+
+            if (errorType == "error")
             {
                 return View("../Identity/Habblet/NameErrors");
             }
 
-            if (ViewBag.ErrorType == "already_exists")
+            if (errorType == "already_exists")
             {
                 return View("../Identity/Habblet/NameSuggestions");
             }
 
-            if (ViewBag.ErrorType == "name_available")
+            if (errorType == "name_available")
             {
                 return View("../Identity/Habblet/NameAvailable");
             }
 
             return Ok();
-        }
-
-        public static int getNameCheckCode(String name, StorageContext _db)
-        {
-            int nameCheckCode = 0;
-
-            if (_db.AvatarData.Any(x => x.Name == name))
-            {
-                nameCheckCode = 4;
-            }
-            else if (name.Length > 16)
-            {
-                nameCheckCode = 1;
-            }
-            else if (name.Length < 2)
-            {
-                nameCheckCode = 2;
-            }
-            else if (name.Contains(" ") || !hasAllowedCharacters(name.ToLower()) || name.ToUpper().Contains("MOD-"))
-            {
-                nameCheckCode = 3;
-            }
-
-            return nameCheckCode;
-        }
-
-        public static bool hasAllowedCharacters(string input)
-        {
-            string validCharacters = "1234567890qwertyuiopasdfghjklzxcvbnm-=?!@:.";
-
-            foreach (char c in input)
-            {
-                if (!validCharacters.Contains(c))
-                {
-                    return false;
-                }
-            }
-
-            return true;
         }
     }
 }

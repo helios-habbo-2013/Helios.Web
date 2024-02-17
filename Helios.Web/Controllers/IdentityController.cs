@@ -46,6 +46,27 @@ namespace Helios.Web.Controllers
             if (!this.HttpContext.Get<bool>(Constants.LOGGED_IN))
                 return RedirectToAction("Index", "Home");
 
+
+
+            string errorType = "";
+            string errorMessage = "";
+            List<string> suggestions = new List<string>();
+
+            if (HttpContext.Contains("CheckName"))
+            {
+                string checkName = HttpContext.Get<string>("CheckName");
+                RegisterUtil.ValidateNameResponse(ref errorType, ref errorMessage, ref suggestions, checkName, _ctx);
+                ViewBag.Name = checkName;
+            }
+            else
+            {
+                ViewBag.Name = "";
+            }
+
+            ViewBag.ErrorType = errorType;
+            ViewBag.ErrorMessage = errorMessage;
+            ViewBag.NameSuggestions = suggestions;
+
             return View();
         }
     }

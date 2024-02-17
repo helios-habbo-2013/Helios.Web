@@ -3,6 +3,32 @@
     <label for="habbo-name">Habbo name:</label>
     <a href="#" class="new-button" id="check-name-btn"><b>Check</b><i></i></a>
     <input type="text" id="habbo-name" size="26" value="@(ViewBag.Name)" name="avatarName" class="text-field" maxlength="32" />
-    <div id="error-messages-container" style="margin-top: 10px"></div>
+    @{
+        string errorType = ViewBag.ErrorType;
+
+        switch (errorType)
+        {
+            case "error":
+                {
+                    await Html.RenderPartialAsync("Habblet/NameErrors");
+                    break;
+                }
+            case "already_exists":
+                {
+                    await Html.RenderPartialAsync("Habblet/NameSuggestions");
+                    break;
+                }
+            case "name_available":
+                {
+                    await Html.RenderPartialAsync("Habblet/NameAvailable");
+                    break;
+                }
+            default:
+                {
+                    <div id="error-messages-container" style="margin-top: 10px"></div>
+                    break;
+                }
+        }
+     }
     <p class="help">Your name can contain lowercase and uppercase letters, numbers and characters -@("=?!@:.")</p>
 </div>

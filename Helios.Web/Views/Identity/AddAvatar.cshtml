@@ -159,7 +159,6 @@
 
                         <div id="name-field-container">
                             @{
-                                ViewBag.Name = "";
                                 await Html.RenderPartialAsync("Habblet/CheckName");
                             }
                         </div>
@@ -170,7 +169,7 @@
 
                         <br clear="all"/>
                    
-                        <a class="new-button green-button" href="javascript:document.addavatarform.submit();"><b>Create Habbo</b><i></i></a>
+                        <a class="new-button green-button" href="javascript:document.getElementById('add-avatar-form').submit();"><b>Create Habbo</b><i></i></a>
                 </form>
             </div>
         </div>
