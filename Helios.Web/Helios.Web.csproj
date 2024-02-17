@@ -19,6 +19,9 @@
     <Content Remove="Views\Identity\AddAvatar.cshtml" />
     <Content Remove="Views\Identity\AvatarList.cshtml" />
     <Content Remove="Views\Identity\Avatars.cshtml" />
+    <Content Remove="Views\Identity\Habblet\NameAvailable.cshtml" />
+    <Content Remove="Views\Identity\Habblet\NameErrors.cshtml" />
+    <Content Remove="Views\Identity\Habblet\NameSuggestions.cshtml" />
     <Content Remove="Views\Identity\Habblet\SelectFigure.cshtml" />
     <Content Remove="Views\Identity\RandomAvatars.cshtml" />
     <Content Remove="Views\Me\Me.cshtml" />
@@ -30,6 +33,9 @@
     <None Include="Views\Account\SecurityCheck.cshtml" />
     <None Include="Views\Identity\AvatarList.cshtml" />
     <None Include="Views\Identity\AddAvatar.cshtml" />
+    <None Include="Views\Identity\Habblet\NameErrors.cshtml" />
+    <None Include="Views\Identity\Habblet\NameAvailable.cshtml" />
+    <None Include="Views\Identity\Habblet\NameSuggestions.cshtml" />
     <None Include="Views\Identity\Habblet\SelectFigure.cshtml" />
     <None Include="Views\Identity\Habblet\RandomAvatars.cshtml" />
     <None Include="Views\Shared\Login\Forgotten.cshtml" />
@@ -48,6 +54,7 @@
     <PackageReference Include="SixLabors.Fonts" Version="1.0.0-beta19" />
     <PackageReference Include="SixLabors.ImageSharp" Version="2.1.3" />
     <PackageReference Include="SixLabors.ImageSharp.Drawing" Version="1.0.0-beta15" />
+    <PackageReference Include="Suggestor" Version="1.0.0" />
   </ItemGroup>
 
   <ItemGroup>

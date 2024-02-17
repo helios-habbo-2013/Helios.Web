@@ -1,0 +1,15 @@
+﻿<div id="name-suggestions">
+    <div class="taken">
+        <p>The name "@ViewBag.Name" is taken. Here's some suggestions:</p>
+        <div id="name-suggestion-list">
+            @{
+                List<string> suggestionList = ViewBag.NameSuggestions;
+
+                foreach (var name in suggestionList) 
+                {
+                    <a href="#">@(name)</a>
+                }
+            }
+        </div>
+    </div>
+</div>
