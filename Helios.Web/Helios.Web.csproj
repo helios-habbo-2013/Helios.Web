@@ -19,11 +19,14 @@
     <Content Remove="Views\Identity\AddAvatar.cshtml" />
     <Content Remove="Views\Identity\AvatarList.cshtml" />
     <Content Remove="Views\Identity\Avatars.cshtml" />
-    <Content Remove="Views\Identity\Habblet\NameAvailable.cshtml" />
-    <Content Remove="Views\Identity\Habblet\NameErrors.cshtml" />
-    <Content Remove="Views\Identity\Habblet\NameSuggestions.cshtml" />
-    <Content Remove="Views\Identity\Habblet\SelectFigure.cshtml" />
+    <Content Remove="Views\Identity\Habblet\AddAvatar_NameAvailable.cshtml" />
+    <Content Remove="Views\Identity\Habblet\AddAvatar_NameErrors.cshtml" />
+    <Content Remove="Views\Identity\Habblet\AddAvatar_NameSuggestions.cshtml" />
+    <Content Remove="Views\Identity\Habblet\AddAvatar_SelectFigure.cshtml" />
     <Content Remove="Views\Identity\RandomAvatars.cshtml" />
+    <Content Remove="Views\Identity\Settings.cshtml" />
+    <Content Remove="Views\Identity\SettingsEmail.cshtml" />
+    <Content Remove="Views\Identity\SettingsPassword.cshtml" />
     <Content Remove="Views\Me\Me.cshtml" />
     <Content Remove="Views\Shared\Copyright - Copy.cshtml" />
     <Content Remove="Views\Shared\Copyright.cshtml" />
@@ -31,12 +34,15 @@
 
   <ItemGroup>
     <None Include="Views\Account\SecurityCheck.cshtml" />
+    <None Include="Views\Identity\Settings.cshtml" />
+    <None Include="Views\Identity\SettingsPassword.cshtml" />
+    <None Include="Views\Identity\SettingsEmail.cshtml" />
     <None Include="Views\Identity\AvatarList.cshtml" />
     <None Include="Views\Identity\AddAvatar.cshtml" />
-    <None Include="Views\Identity\Habblet\NameErrors.cshtml" />
-    <None Include="Views\Identity\Habblet\NameAvailable.cshtml" />
-    <None Include="Views\Identity\Habblet\NameSuggestions.cshtml" />
-    <None Include="Views\Identity\Habblet\SelectFigure.cshtml" />
+    <None Include="Views\Identity\Habblet\AddAvatar_NameErrors.cshtml" />
+    <None Include="Views\Identity\Habblet\AddAvatar_NameAvailable.cshtml" />
+    <None Include="Views\Identity\Habblet\AddAvatar_NameSuggestions.cshtml" />
+    <None Include="Views\Identity\Habblet\AddAvatar_SelectFigure.cshtml" />
     <None Include="Views\Identity\Habblet\RandomAvatars.cshtml" />
     <None Include="Views\Shared\Login\Forgotten.cshtml" />
     <None Include="Views\Shared\Copyright.cshtml" />

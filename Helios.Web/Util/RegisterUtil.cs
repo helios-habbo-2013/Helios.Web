@@ -5,16 +5,20 @@ namespace Helios.Web.Util
 {
     public class RegisterUtil
     {
-        public static void ValidateNameResponse(ref string errorType, ref string errorMessage, ref List<string> suggestions, string checkName, StorageContext _ctx)
+        public static bool ValidateNameResponse(ref string errorType, ref string errorMessage, ref List<string> suggestions, string checkName, StorageContext _ctx)
         {
             if (string.IsNullOrEmpty(checkName))
             {
                 errorType = "error";
-                errorMessage = "Name is unavaliable";
+                errorMessage = "Name cannot be blank";
+
+                return false;
             }
             else
             {
-                switch (ValidateNameCode(checkName, _ctx))
+                int nameCode = ValidateNameCode(checkName, _ctx);
+
+                switch (nameCode)
                 {
                     case 0:
                         {
@@ -39,6 +43,7 @@ namespace Helios.Web.Util
                             suggestorSettings.MaximumWordLength = 16;
 
                             errorType = "already_exists";
+
                             suggestions = SuggestorService.GetSuggestions(checkName, suggestorSettings, existsCallback: (checkName) =>
                             {
                                 return _ctx.AvatarData.Any(x => x.Name.ToLower() == checkName.ToLower());
@@ -53,10 +58,12 @@ namespace Helios.Web.Util
                             break;
                         }
                 }
+
+                return nameCode == 0;
             }
         }
 
-        public static int ValidateNameCode(String name, StorageContext _db)
+        public static int ValidateNameCode(string name, StorageContext _db)
         {
             int nameCheckCode = 0;
 
@@ -64,13 +71,13 @@ namespace Helios.Web.Util
             {
                 nameCheckCode = 4;
             }
+            else if (string.IsNullOrEmpty(name) || name.Length < 2)
+            {
+                nameCheckCode = 2;
+            }
             else if (name.Length > 16)
             {
                 nameCheckCode = 1;
-            }
-            else if (name.Length < 2)
-            {
-                nameCheckCode = 2;
             }
             else if (name.Contains(" ") || !ValidateNameCharacters(name.ToLower()) || name.ToUpper().Contains("MOD-"))
             {

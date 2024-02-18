@@ -10,17 +10,17 @@
         {
             case "error":
                 {
-                    await Html.RenderPartialAsync("Habblet/NameErrors");
+                    await Html.RenderPartialAsync("Habblet/AddAvatar_NameErrors");
                     break;
                 }
             case "already_exists":
                 {
-                    await Html.RenderPartialAsync("Habblet/NameSuggestions");
+                    await Html.RenderPartialAsync("Habblet/AddAvatar_NameSuggestions");
                     break;
                 }
             case "name_available":
                 {
-                    await Html.RenderPartialAsync("Habblet/NameAvailable");
+                    await Html.RenderPartialAsync("Habblet/AddAvatar_NameAvailable");
                     break;
                 }
             default:

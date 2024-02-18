@@ -48,26 +48,27 @@ namespace Helios.Web.Controllers
             if (ViewBag.CheckNameOnly)
             {
                 ViewBag.Name = avatarName;
-                HttpContext.Set<string>("CheckName", avatarName);
+                HttpContext.Set<string>(Constants.IDENTIIY_NAME, avatarName);
 
-                return View("../Identity/Habblet/CheckName");
+                return View("../Identity/Habblet/AddAvatar_CheckName");
             }
             else if (ViewBag.CheckFigureOnly)
             {
                 ViewBag.Figure = figure;
                 ViewBag.Gender = gender;
 
-                HttpContext.Set<string>("IdentitySelectFigure", figure);
-                HttpContext.Set<string>("IdentitySelectGender", gender);
+                HttpContext.Set<string>(Constants.IDENTIIY_SELECTED_FIGURE, figure);
+                HttpContext.Set<string>(Constants.IDENTIIY_SELECTED_GENDER, gender);
 
-                return View("../Identity/Habblet/SelectFigure");
+                return View("../Identity/Habblet/AddAvatar_SelectFigure");
             }
             else
             {
-                if (HttpContext.Contains("IdentitySelectFigure") && HttpContext.Contains("IdentitySelectGender"))
+                if (HttpContext.Contains(Constants.IDENTIIY_SELECTED_FIGURE) && 
+                    HttpContext.Contains(Constants.IDENTIIY_SELECTED_GENDER))
                 {
-                    ViewBag.Figure = HttpContext.Get<string>("IdentitySelectFigure");
-                    ViewBag.Gender = HttpContext.Get<string>("IdentitySelectGender");
+                    ViewBag.Figure = HttpContext.Get<string>(Constants.IDENTIIY_SELECTED_FIGURE);
+                    ViewBag.Gender = HttpContext.Get<string>(Constants.IDENTIIY_SELECTED_GENDER);
                 }
                 else
                 {
@@ -91,7 +92,7 @@ namespace Helios.Web.Controllers
 
             if (checkNameOnly)
             {
-                string checkName = HttpContext.Get<string>("CheckName");
+                string checkName = HttpContext.Get<string>(Constants.IDENTIIY_NAME);
                 RegisterUtil.ValidateNameResponse(ref errorType, ref errorMessage, ref suggestions, checkName, _ctx);
                 ViewBag.Name = checkName;
             }
@@ -101,19 +102,13 @@ namespace Helios.Web.Controllers
             ViewBag.NameSuggestions = suggestions;
 
             if (errorType == "error")
-            {
-                return View("../Identity/Habblet/NameErrors");
-            }
+                return View("../Identity/Habblet/AddAvatar_NameErrors");
 
             if (errorType == "already_exists")
-            {
-                return View("../Identity/Habblet/NameSuggestions");
-            }
+                return View("../Identity/Habblet/AddAvatar_NameSuggestions");
 
             if (errorType == "name_available")
-            {
-                return View("../Identity/Habblet/NameAvailable");
-            }
+                return View("../Identity/Habblet/AddAvatar_NameAvailable");
 
             return Ok();
         }

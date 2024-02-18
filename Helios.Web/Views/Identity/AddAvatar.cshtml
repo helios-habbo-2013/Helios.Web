@@ -153,13 +153,13 @@
               <h1>Add a new Habbo</h1>
             </div>
             <div id="content">
-                <a id="back-link" href="/identity/avatars">&laquo; Back to avatars</a>
-                <form id="add-avatar-form" method="post" action="">
-                    <a href="{$site->url}identity/link_account" id="account-link">Link an existing character</a>
+                <a id="back-link" href="@Url.AbsolutePath("~/identity/avatars")">&laquo; Back to avatars</a>
+                <form action="/identity/add_avatar_add" method="post" name="addavatarform" id="add-avatar-form">
+                    <a href="@Url.AbsolutePath("~/identity/link_account")" id="account-link">Link an existing character</a>
 
                         <div id="name-field-container">
                             @{
-                                await Html.RenderPartialAsync("Habblet/CheckName");
+                                await Html.RenderPartialAsync("Habblet/AddAvatar_CheckName");
                             }
                         </div>
 
@@ -169,19 +169,21 @@
 
                         <br clear="all"/>
                    
-                        <a class="new-button green-button" href="javascript:document.getElementById('add-avatar-form').submit();"><b>Create Habbo</b><i></i></a>
+                        <a href="javascript:document.addavatarform.submit();" class="new-button green-button" id="done-btn"><b>Create Habbo</b><i></i></a>
                 </form>
             </div>
         </div>
         <div class="add-avatar-container-bottom"></div>
       </div>
-    {$widget->Global->Footer.html}
-
-    <script type="text/javascript">
-    if (typeof HabboView != "undefined") {
-        HabboView.run();
+    @{
+       await Html.RenderPartialAsync("Footer");
     }
+    <script type="text/javascript">
+        if (typeof HabboView != "undefined") {
+            HabboView.run();
+        }
     </script>
+
 
     </body>
 </html>
