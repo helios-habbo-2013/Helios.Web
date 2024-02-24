@@ -226,6 +226,7 @@ namespace Helios.Web.Controllers
             _ctx.UserData.Add(userData);
             _ctx.SaveChanges();
 
+            /*
             var avatarData = new AvatarData
             {
                 Name = GenerateUsername(registerEmail ?? ""),
@@ -236,9 +237,10 @@ namespace Helios.Web.Controllers
 
             _ctx.AvatarData.Add(avatarData);
             _ctx.SaveChanges();
+            */
 
             HttpContext.Set<int>(Constants.CURRENT_USER_ID, userData.Id);
-            HttpContext.Set<int>(Constants.CURRENT_AVATAR_ID, avatarData.Id);
+            // HttpContext.Set<int>(Constants.CURRENT_AVATAR_ID, avatarData.Id);
             HttpContext.Set<bool>(Constants.LOGGED_IN, true);
 
             return RedirectToAction("Client", "Client");

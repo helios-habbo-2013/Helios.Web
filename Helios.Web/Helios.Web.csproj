@@ -15,6 +15,7 @@
 
   <ItemGroup>
     <Content Remove="Views\Account\Login.cshtml" />
+    <Content Remove="Views\Account\Logout.cshtml" />
     <Content Remove="Views\Account\SecurityCheck.cshtml" />
     <Content Remove="Views\Identity\AddAvatar.cshtml" />
     <Content Remove="Views\Identity\AvatarList.cshtml" />
@@ -30,9 +31,11 @@
     <Content Remove="Views\Me\Me.cshtml" />
     <Content Remove="Views\Shared\Copyright - Copy.cshtml" />
     <Content Remove="Views\Shared\Copyright.cshtml" />
+    <Content Remove="Views\Shared\Header.cshtml" />
   </ItemGroup>
 
   <ItemGroup>
+    <None Include="Views\Account\Logout.cshtml" />
     <None Include="Views\Account\SecurityCheck.cshtml" />
     <None Include="Views\Identity\Settings.cshtml" />
     <None Include="Views\Identity\SettingsEmail.cshtml" />
@@ -44,6 +47,7 @@
     <None Include="Views\Identity\Habblet\AddAvatar_NameSuggestions.cshtml" />
     <None Include="Views\Identity\Habblet\AddAvatar_SelectFigure.cshtml" />
     <None Include="Views\Identity\Habblet\RandomAvatars.cshtml" />
+    <None Include="Views\Shared\Header.cshtml" />
     <None Include="Views\Shared\Login\Forgotten.cshtml" />
     <None Include="Views\Shared\Copyright.cshtml" />
     <None Include="Views\Shared\Footer.cshtml" />

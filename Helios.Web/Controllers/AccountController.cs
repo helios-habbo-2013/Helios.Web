@@ -41,7 +41,7 @@ namespace Helios.Web.Controllers
             }
         }
 
-        [HttpPost]
+        [HttpGet]
         [Route("/account/logout")]
         public IActionResult Logout()
         {
@@ -50,7 +50,7 @@ namespace Helios.Web.Controllers
                 return RedirectToAction("Index", "Home");
             }
 
-            SessionUtil.Logout(this.HttpContext, ViewBag.User as UserData ?? new UserData());
+            SessionUtil.Logout(this.HttpContext);
 
             return View();
         }

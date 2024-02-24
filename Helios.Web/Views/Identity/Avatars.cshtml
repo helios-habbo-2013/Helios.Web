@@ -1,6 +1,7 @@
 ﻿@using Helios.Web.Helpers
 @using Helios.Web.Storage.Models.Avatar
 @using Helios.Web.Util
+@using System.Web
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
           "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -91,29 +92,37 @@
                         </div>
 
                     </div>
-                    <div id="first-avatar">
-                        @{
-                            int avatarId = ViewBag.Avatar.Id;
-                            string firstFigure = ViewBag.Avatar.Figure;
-                        }
-                        <img src="@Url.AbsolutePath("~/habbo-imaging/avatarimage?figure=" + firstFigure + "&position=3")" width="64" height="110" />
-                        <div id="first-avatar-info">
-                            <div class="first-avatar-name">@(ViewBag.Avatar.Name)</div>
-                            <div class="first-avatar-lastonline">Last logged in: <span>@(((DateTime)ViewBag.Avatar.LastOnline).TimeAgo())</span></div>
-                            <a id="first-avatar-play-link" href="@Url.AbsolutePath("~/identity/useOrCreateAvatar/" + avatarId)">
-                                <div class="play-button-container">
-                                    <div class="play-button"><div class="play-text">Play</div></div>
-                                    <div class="play-button-end"></div>
+                    @{
+                        int marginIfNoAccount = 10;
+
+                        if (ViewBag.Avatar != null)
+                        {
+                            marginIfNoAccount = 5;
+
+                            <div id="first-avatar">
+                                @{
+                                    int avatarId = ViewBag.Avatar.Id;
+                                    string firstFigure = ViewBag.Avatar.Figure;
+                                }
+                                <img src="@Url.AbsolutePath("~/habbo-imaging/avatarimage?figure=" + firstFigure + "&position=3")" width="64" height="110" />
+                                <div id="first-avatar-info">
+                                    <div class="first-avatar-name">@(ViewBag.Avatar.Name)</div>
+                                    <div class="first-avatar-lastonline">Last logged in: <span>@(((DateTime)ViewBag.Avatar.LastOnline).TimeAgo())</span></div>
+                                    <a id="first-avatar-play-link" href="@Url.AbsolutePath("~/identity/useOrCreateAvatar/" + avatarId)">
+                                        <div class="play-button-container">
+                                            <div class="play-button"><div class="play-text">Play</div></div>
+                                            <div class="play-button-end"></div>
+                                        </div>
+                                    </a>
                                 </div>
-                            </a>
-                        </div>
-                    </div>
+                            </div>
+                        }
+                    }
 
+                    <div id="link-new-avatar"@Html.Raw(ViewBag.Avatar == null ? " style=\"margin-top: " + marginIfNoAccount + "px\"": "")><a class="new-button " onclick="" href="@Url.AbsolutePath("~/identity/add_avatar")"><b>+ Add</b><i></i></a></div>
 
-                    <div id="link-new-avatar"><a class="new-button " onclick="" href="@Url.AbsolutePath("~/identity/add_avatar")"><b>+ Add</b><i></i></a></div>
-
-                    <h2 style="margin: 5px 10px 20px">Your other characters</h2>
-                    <p style="margin: 5px 10px">You can add @(Constants.MAX_AVATARS - ViewBag.OtherAvatars.Count - 1) more characters</p>
+                    <h2 style="margin: @(ViewBag.Avatar == null ? marginIfNoAccount : "5")px 10px 20px">Your other characters</h2>
+                    <p style="margin: 5px 10px">You can add @(Constants.MAX_AVATARS - ViewBag.OtherAvatars.Count - (ViewBag.Avatar != null ? 1 : 0)) more characters</p>
 
                     <div class="other-avatars">
                         <ul>

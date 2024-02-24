@@ -33,11 +33,11 @@ namespace Helios.Web.Controllers
 
             var avatar = _ctx.AvatarData.Where(x => x.UserId == this.HttpContext.Get<int>(Constants.CURRENT_USER_ID))
                 .OrderByDescending(x => x.LastOnline)
-                .First();
+                .FirstOrDefault();
 
-            var otherAvatars = _ctx.AvatarData.Where(x => x.UserId == this.HttpContext.Get<int>(Constants.CURRENT_USER_ID) && x.Id != avatar.Id)
+            var otherAvatars = avatar != null ?_ctx.AvatarData.Where(x => x.UserId == this.HttpContext.Get<int>(Constants.CURRENT_USER_ID) && x.Id != avatar.Id)
                 .OrderByDescending(x => x.LastOnline)
-                .ToList();
+                .ToList() : new List<AvatarData>(); 
 
             this.ViewBag.Avatar = avatar;
             this.ViewBag.OtherAvatars = otherAvatars;
@@ -254,7 +254,7 @@ namespace Helios.Web.Controllers
                 _ctx.UserData.Update(user);
                 _ctx.SaveChanges();
 
-                SessionUtil.Logout(this.HttpContext, user);
+                SessionUtil.Logout(this.HttpContext);
             }
 
             return View("SettingsPassword");

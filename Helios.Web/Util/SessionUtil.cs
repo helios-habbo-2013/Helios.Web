@@ -14,7 +14,7 @@ namespace Helios.Web.Util
             httpContext.Remove(Constants.CURRENT_AVATAR_ID);
         }
 
-        public static void Logout(HttpContext httpContext, UserData user)
+        public static void Logout(HttpContext httpContext)
         {
             httpContext.Remove(Constants.CURRENT_USER_ID);
             httpContext.Remove(Constants.CURRENT_AVATAR_ID);
