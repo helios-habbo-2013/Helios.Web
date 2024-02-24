@@ -31,6 +31,8 @@ namespace Helios.Web.Controllers
                 this.HttpContext.Set<string>("credentials.username", username);
                 this.HttpContext.Set<string>("_login_remember_me", _login_remember_me);
 
+                TempData["Error"] = "Incorrect email or password";
+
                 return View();
             }
             else

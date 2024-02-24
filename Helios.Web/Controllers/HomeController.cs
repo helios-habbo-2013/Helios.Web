@@ -23,7 +23,9 @@ namespace Helios.Web.Controllers
                 return RedirectToAction("Me", "Me");
             }
 
-            ViewBag.Error = null;//= "no_password";
+            if (TempData.ContainsKey("Error"))
+                ViewBag.Error = TempData["Error"];
+            
             return View("Index");
         }
 

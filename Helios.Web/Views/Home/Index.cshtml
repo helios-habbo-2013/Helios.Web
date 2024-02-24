@@ -5,13 +5,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" xmlns:og="http://opengraphprotocol.org/schema/" xmlns:fb="http://www.facebook.com/2008/fbml">
 <head>
 	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
-	<title>Habbo Hotel - Make friends, join the fun, get noticed! </title>
+    <title>@(this.ViewBag.SiteName) Hotel - Make friends, join the fun, get noticed! </title>
 
 <script type="text/javascript">
 var andSoItBegins = (new Date()).getTime();
 </script>
 <link rel="shortcut icon" href="@(this.ViewBag.StaticContentUrl)web-gallery/v2/favicon.ico" type="image/vnd.microsoft.icon" />
-<link rel="alternate" type="application/rss+xml" title="Habbo Hotel - RSS" href="http://www.habbo.com/articles/rss.xml" />
+<link rel="alternate" type="application/rss+xml" title="@(this.ViewBag.SiteName) Hotel - RSS" href="http://www.habbo.com/articles/rss.xml" />
 <meta name="csrf-token" content="4e0a3db955"/>
 
 <link rel="stylesheet" href="@(this.ViewBag.StaticContentUrl)web-gallery/static/styles/frontpage.css" type="text/css" />
@@ -49,8 +49,8 @@ if (typeof HabboClient != "undefined") {
 
 <meta property="fb:app_id" content="183096284873" />
 
-<meta property="og:site_name" content="Habbo Hotel" />
-<meta property="og:title" content="Habbo Hotel - Make friends, join the fun, get noticed!" />
+    <meta property="og:site_name" content="@(this.ViewBag.SiteName) Hotel" />
+    <meta property="og:title" content="@(this.ViewBag.SiteName) Hotel - Make friends, join the fun, get noticed!" />
 <meta property="og:url" content="http://www.habbo.com" />
 <meta property="og:image" content="http://www.habbo.com/v2/images/facebook/app_habbo_hotel_image.gif" />
 <meta property="og:locale" content="en_US" />
@@ -67,7 +67,7 @@ if (typeof HabboClient != "undefined") {
         </style>
 
 <meta name="description" content="Check into the world's largest virtual hotel for FREE! Meet and make friends, play games, chat with others, create your avatar, design rooms and more..." />
-<meta name="keywords" content="habbo hotel, virtual, world, social network, free, community, avatar, chat, online, teen, roleplaying, join, social, groups, forums, safe, play, games, online, friends, teens, rares, rare furni, collecting, create, collect, connect, furni, furniture, pets, room design, sharing, expression, badges, hangout, music, celebrity, celebrity visits, celebrities, mmo, mmorpg, massively multiplayer" />
+    <meta name="keywords" content="@(this.ViewBag.SiteName) hotel, virtual, world, social network, free, community, avatar, chat, online, teen, roleplaying, join, social, groups, forums, safe, play, games, online, friends, teens, rares, rare furni, collecting, create, collect, connect, furni, furniture, pets, room design, sharing, expression, badges, hangout, music, celebrity, celebrity visits, celebrities, mmo, mmorpg, massively multiplayer" />
 
 <script src="//cdn.optimizely.com/js/13389159.js"></script>
 
@@ -147,12 +147,17 @@ HabboView.add( function() {
         <form id="loginformitem" name="loginformitem" action="@Url.AbsolutePath("~/account/submit")"
           method="post">
 
+            @{
+                if (ViewBag.Error != null)
+                {
+                    <div id="loginerrorfieldwrapper">
+                        <div id="loginerrorfield">
+                            <div>@(ViewBag.Error)</div>
+                        </div>
+                    </div>                    
+                }
+            }
 
-            <div id="loginerrorfieldwrapper">
-                <div id="loginerrorfield">
-                    <div>faggot</div>
-                </div>
-            </div>
 
 
         <div style="clear: both;"></div>

@@ -32,6 +32,7 @@
     <Content Remove="Views\Shared\Copyright - Copy.cshtml" />
     <Content Remove="Views\Shared\Copyright.cshtml" />
     <Content Remove="Views\Shared\Header.cshtml" />
+    <Content Remove="Views\Shared\Navigation.cshtml" />
   </ItemGroup>
 
   <ItemGroup>
@@ -47,6 +48,7 @@
     <None Include="Views\Identity\Habblet\AddAvatar_NameSuggestions.cshtml" />
     <None Include="Views\Identity\Habblet\AddAvatar_SelectFigure.cshtml" />
     <None Include="Views\Identity\Habblet\RandomAvatars.cshtml" />
+    <None Include="Views\Shared\Navigation.cshtml" />
     <None Include="Views\Shared\Header.cshtml" />
     <None Include="Views\Shared\Login\Forgotten.cshtml" />
     <None Include="Views\Shared\Copyright.cshtml" />

@@ -29,8 +29,7 @@ namespace Helios.Web.Controllers
                 return RedirectToAction("Select", "Identity");
             }
 
-            ViewBag.Error = null; //= "no_password";
-            return View("Index");
+            return View();
         }
     }
 }

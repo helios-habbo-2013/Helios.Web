@@ -7,6 +7,8 @@ using Helios.Web.Storage.Models.User;
 using Helios.Web.Storage.Access;
 using Helios.Web.Storage.Models.Avatar;
 using EmailValidation;
+using Avatara;
+using Microsoft.AspNetCore.Http;
 
 namespace Helios.Web.Controllers
 {
@@ -88,6 +90,23 @@ namespace Helios.Web.Controllers
             ViewBag.NameSuggestions = suggestions;
 
             return View();
+        }
+
+        [HttpGet]
+        [Route("/identity/useOrCreateAvatar/{avatarId}")]
+        public IActionResult UseOrCreateAvatar(int avatarId)
+        {
+            if (!this.HttpContext.Get<bool>(Constants.LOGGED_IN))
+                return RedirectToAction("Index", "Home");
+
+            var avatarList = _ctx.AvatarData.Where(x => x.UserId == this.HttpContext.Get<int>(Constants.CURRENT_USER_ID))
+                .OrderByDescending(x => x.LastOnline)
+                .ToList();
+
+            if (avatarList.Any(x => x.UserId == this.HttpContext.Get<int>(Constants.CURRENT_USER_ID) && x.Id == avatarId))
+                this.HttpContext.Set<int>(Constants.CURRENT_AVATAR_ID, avatarId);
+
+            return RedirectToAction("Me", "Me");
         }
 
         [HttpPost]

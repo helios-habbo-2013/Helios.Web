@@ -1,1 +1,246 @@
-﻿<p>Hello</p>
+﻿@using Helios.Web.Helpers
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<meta http-equiv="content-type" content="text/html" />
+	<title>@(ViewBag.SiteName): Home </title>
+
+<link rel="shortcut icon" href="@(this.ViewBag.StaticContentUrl)web-gallery/static/images/favicon.ico" type="image/vnd.microsoft.icon" />
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+				
+				
+<link rel="stylesheet" href="@(this.ViewBag.StaticContentUrl)web-gallery/static/styles/personal.css" />
+<link rel="stylesheet" href="@(this.ViewBag.StaticContentUrl)web-gallery/static/styles/settings.css" />
+				
+<link rel="stylesheet" href="@(this.ViewBag.StaticContentUrl)web-gallery/static/styles/lightweightmepage.css" />
+<script type="text/javascript" src="@(this.ViewBag.StaticContentUrl)web-gallery/static/js/lightweightmepage.js"></script>
+				
+<link rel="stylesheet" href="@(this.ViewBag.StaticContentUrl)web-gallery/static/styles/common.css" />
+					
+<script type="text/javascript" src="@(this.ViewBag.StaticContentUrl)web-gallery/static/js/fullcontent.js"></script>
+<script type="text/javascript" src="@(this.ViewBag.StaticContentUrl)web-gallery/static/js/visual.js"></script>
+<script type="text/javascript" src="@(this.ViewBag.StaticContentUrl)web-gallery/static/js/libs.js"></script>
+<script type="text/javascript" src="@(this.ViewBag.StaticContentUrl)web-gallery/static/js/libs2.js"></script>
+<script type="text/javascript" src="@(this.ViewBag.StaticContentUrl)web-gallery/static/js/common.js"></script>
+<script type="text/javascript" src="@(this.ViewBag.StaticContentUrl)web-gallery/static/js/homeview.js"></script>
+<script type="text/javascript" src="@(this.ViewBag.StaticContentUrl)web-gallery/static/js/homeauth.js"></script>
+				
+				
+<script type="text/javascript">
+document.habboLoggedIn = true;
+var habboName = null;
+var habboId = null;
+var habboReqPath = "";
+var habboStaticFilePath = "@Url.AbsolutePath("~/habbo")";
+var habboImagerUrl = "http://www.habbo.nl/habbo-imaging/";
+var habboPartner = "";
+var habboDefaultClientPopupUrl = "@Url.AbsolutePath("~/client")";
+window.name = "me";
+if (typeof HabboClient != "undefined") {
+	HabboClient.windowName = "client";
+	HabboClient.maximizeWindow = true;
+}
+</script>
+				
+<meta name="description" content="@(ViewBag.SiteName) is a @(ViewBag.SiteName) Hotel retro. Its a free version of @(ViewBag.SiteName) where you can build your rooms for free!" />
+<meta name="keywords" content="@(ViewBag.SiteName) hotel, free games, habbo hotel, virtual, world, social network, free, community, avatar, chat, online, teen, roleplaying, join, social, groups, forums, safe, play, games, online, friends, teens, rares, rare furni, collecting, create, collect, connect, furni, furniture, pets, room design, sharing, expression, badges, hangout, music, celebrity, celebrity visits, celebrities, mmo, mmorpg, massively multiplayer" />
+<meta name="build" content="SierraCMS 1.0.0a" />
+				
+<!--[if IE 8]>
+<link rel="stylesheet" href="@(this.ViewBag.StaticContentUrl)web-gallery/static/styles/ie8.css" />
+<![endif]-->
+<!--[if lt IE 8]>
+<link rel="stylesheet" href="@(this.ViewBag.StaticContentUrl)web-gallery/static/styles/ie.css" />
+<![endif]-->
+<!--[if lt IE 7]>
+<link rel="stylesheet" href="@(this.ViewBag.StaticContentUrl)web-gallery/static/styles/ie6.css" />
+<script src="@(this.ViewBag.StaticContentUrl)web-gallery/static/js/pngfix.js" type="text/javascript"></script>
+<style type="text/css">
+	body { behavior: url(/js/csshover.htc); }
+</style>				
+<![endif]-->
+</head>
+<body id="me" class="">
+@{
+    await Html.RenderPartialAsync("Navigation");
+}
+	
+<div id="container">
+	<div id="content" style="position: relative; width: 770px;" class="clearfix">
+
+						<div id="wide-personal-info">
+							<div id="habbo-plate">
+								<a href="?p=account">
+									<img alt="me" src="@Url.AbsolutePath("~/habbo-imaging/avatarimage?figure=" + (ViewBag.Avatar.Figure as string) + "&size=b&direction=2&head_direction=3&gesture=sml")">
+								</a>
+							</div>
+
+							<div id="name-box" class="info-box">
+								<div class="label">Name:</div>
+								<div class="content">@ViewBag.Avatar.Name</div>
+							</div>
+							
+							<div id="motto-box" class="info-box">
+								<div class="label">Motto:</div>
+								<div class="content">@ViewBag.Avatar.Motto</div>
+							</div>
+							
+							<div id="last-logged-in-box" class="info-box">
+								<div class="label">Last signed in:</div>
+								<div class="content">@ViewBag.Avatar.LastOnline</div>
+							</div>
+
+							<div class="enter-hotel-btn">
+								<div class="open enter-btn">
+									<a href="@Url.AbsolutePath("~/client")" onclick="HabboClient.openOrFocus(this); return false;">Enter @(ViewBag.SiteName) Hotel<i></i></a>
+									<b></b>
+								</div>
+							</div>
+						</div>
+
+						
+						<div id="column1" style="float: left;" class="column"><div class="habblet-container ">		
+<div class="cbb clearfix blue "> 
+
+<h2 class="title">Hot Campaigns</h2> 
+
+<div id="hotcampaigns-habblet-list-container"> 
+
+<ul id="hotcampaigns-habblet-list"> 
+
+							
+<li class='odd'>
+										<div class="hotcampaign-container">
+										
+											<a href="<?php echo $c->link; ?>"><img src="<?php echo $c->image_url; ?>" align="left" alt="<?php echo $c->name; ?>" /></a>
+											<h3><?php echo $c->name; ?></h3>
+											<p><?php echo $c->description;?></p>
+											<p class="link"><a href="<?php echo $c->link; ?>">Go there &raquo;</a></p>
+											
+										</div>
+									</li>
+
+
+</ul>
+
+</div>
+</div>
+</div>
+</div>
+						<div id="column2" style="float: right;" class="column"><div class="habblet-container news-promo">		
+	<div class="cbb clearfix notitle "> 				
+		<div id="newspromo"> 
+		
+				<div id="topstories"> 
+			<div class="topstory" style="background-image: url(<?php echo $n->article_topstory; ?>); display: block; <?php echo $n->extra_style; ?>"> 
+				<h4>Latest news</h4> 
+				<h3><a href="@Url.AbsolutePath("~/articles?id=id")><?php echo $n->article_name; ?></a></h3> 
+				<p class="summary"> 
+				<?php echo $n->article_description; ?>
+				</p> 
+				<p> 
+					<a href="@Url.AbsolutePath("~/articles?id=id")">Read more &raquo;</a> 
+				</p>
+			</div>
+			</div>
+				
+		
+		 <ul class="widelist"> 	
+<li class='even'>
+		
+		<a href="@Url.AbsolutePath("~/articles?id=id")"><?php echo $n->article_name; ?></a><div class="newsitem-date"><?php echo $n->article_date; ?></div>
+	</li>
+	 
+            <li class="last"><a href="/articles">More news &raquo;</a></li>            
+        </ul>
+</div></div></div>
+						
+						<script type="text/javascript">
+							document.observe("dom:loaded", function() { PromoSlideShow.init(); });
+						</script>
+
+
+						<div id="column1" class="column">
+							<div class="habblet-container ">		
+								<div id="twitterfeed-habblet-container">
+									
+								</div>
+							</div>
+							
+							<script type="text/javascript">if (!$(document.body).hasClassName('process-template')) { Rounder.init(); }</script>
+						</div>
+						
+						<div id="column2" class="column">
+							<div class="habblet-container ">		
+								<div class="ad-container">
+								
+								</div>
+							</div>
+							
+							<script type="text/javascript">if (!$(document.body).hasClassName('process-template')) { Rounder.init(); }</script>
+						</div>
+						
+						<script type="text/javascript">
+							HabboView.run();
+						</script>
+					
+						<div id="column3" class="column">
+							<div class="habblet-container ">		
+								<div class="ad-container">
+								
+								</div>
+							</div>
+										
+							<div class="habblet-container ">		
+						
+							</div>
+						</div>
+						
+						<!--[if lt IE 7]>
+							<script type="text/javascript">
+								Pngfix.doPngImageFix();
+							</script>
+						<![endif]-->
+					</div>
+
+<script type="text/javascript">
+	HabboView.add(LoginFormUI.init);
+</script>
+<script type="text/javascript">
+HabboView.run();
+
+</script>
+
+
+<div id="column3" class="column">
+
+				<div class="habblet-container ">
+						<div class="ad-container">
+						
+						
+						</div>
+				</div>
+				<script type="text/javascript">if (!$(document.body).hasClassName('process-template')) { Rounder.init(); }</script>
+</div>
+
+<!--[if lt IE 7]>
+<script type="text/javascript">
+Pngfix.doPngImageFix();
+</script>
+<![endif]-->
+    </div>
+    </div>
+
+@{
+    await Html.RenderPartialAsync("Footer");
+}
+
+<script type="text/javascript">
+HabboView.run();
+</script>
+
+
+</body>
+</html>
