@@ -35,14 +35,26 @@ namespace Helios.Web.Controllers
             }
             else
             {
-                HttpContext.Set<int>(Constants.CURRENT_USER_ID, user.Id);
-                HttpContext.Set<bool>(Constants.LOGGED_IN, true);
-
-                HttpContext.Remove(Constants.CURRENT_AVATAR_ID);
+                SessionUtil.Login(this.HttpContext, user);
 
                 return RedirectToAction("SecurityCheck");
             }
         }
+
+        [HttpPost]
+        [Route("/account/logout")]
+        public IActionResult Logout()
+        {
+            if (!this.HttpContext.Get<bool>(Constants.LOGGED_IN))
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
+            SessionUtil.Logout(this.HttpContext, ViewBag.User as UserData ?? new UserData());
+
+            return View();
+        }
+
         [Route("/security_check")]
         public IActionResult SecurityCheck()
         {

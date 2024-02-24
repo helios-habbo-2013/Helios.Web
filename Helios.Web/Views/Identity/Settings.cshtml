@@ -44,7 +44,6 @@
     </script>
 
     <link rel="stylesheet" href="@(this.ViewBag.StaticContentUrl)web-gallery/static/styles/common.css" type="text/css" />
-    <link rel="stylesheet" href="@(this.ViewBag.StaticContentUrl)web-gallery/static/styles/embeddedregistration.css" type="text/css" />
     <link rel="stylesheet" href="@(this.ViewBag.StaticContentUrl)web-gallery/static/styles/identitysettings.css" type="text/css" />
 
     <meta name="description" content="Check into the world’s largest virtual hotel for FREE! Meet and make friends, play games, chat with others, create your avatar, design rooms and more…" />
@@ -91,7 +90,7 @@
 
                 <h3>Email:</h3>
                 <div class="opt-email">
-                    <span>@(userData.Email)</span>
+                    <span>@(userData?.Email)</span>
                     <span><a id="manage-email" class="new-button " onclick="" href="@Url.AbsolutePath("~/identity/email")"><b>Manage email addresses</b><i></i></a></span>
                 </div>
                 <br clear="all" />
@@ -100,8 +99,8 @@
                 <p>Here's a list of web services you are using to log in</p>
                 <div class="opt-auth-providers clearfix settings-auth" style="float: none; width: auto">
                     <p>
-                        <img src="@(this.ViewBag.StaticContentUrl)/web-gallery/v2/images/rpx/icon_habbo_big.png" style="vertical-align: middle" title="habbo" />
-                        @(userData.Email)
+                        <img src="@(this.ViewBag.StaticContentUrl)web-gallery/v2/images/rpx/icon_habbo_big.png" style="vertical-align: middle" title="habbo" />
+                        @(userData?.Email)
                     </p>
                     <p>
                     </p>
@@ -117,35 +116,6 @@
         </div>
         <div class="settings-container-bottom">
         </div>
-        </div>
-
-    <div id="container">
-        <div id="select-avatar">
-            <div class="pick-avatar-container clearfix">
-                <div class="title">
-                    <span class="habblet-close"></span>
-                    <h1>Character Settings</h1>
-                </div>
-                <div id="content">
-                    <div id="user-info">
-                        <img src="https://web.archive.org/web/20101118231959id_/https://ssl.facebook.com/pics/q_silhouette.gif" />
-                        <div>
-                            <div id="name">@ViewBag.User.Email</div>
-                            <a href="@Url.AbsolutePath("~/account/logout")" id="logout">Sign out</a>
-                            <a href="@Url.AbsolutePath("~/identity/settings")" id="manage-account">Manage account</a>
-                        </div>
-
-                    </div>
-
-
-                    <div id="link-new-avatar"><a class="new-button " onclick="" href="@Url.AbsolutePath("~/identity/add_avatar")"><b>+ Add</b><i></i></a></div>
-
-                    <h2 style="margin: 5px 10px 20px">Your other characters</h2>
-
-
-                </div>
-            </div>
-            <div class="pick-avatar-container-bottom"></div>
         </div>
     </div>
 

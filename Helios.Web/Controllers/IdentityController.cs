@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Helios.Web.Storage.Models.User;
 using Helios.Web.Storage.Access;
 using Helios.Web.Storage.Models.Avatar;
+using EmailValidation;
 
 namespace Helios.Web.Controllers
 {
@@ -126,6 +127,7 @@ namespace Helios.Web.Controllers
             return View();
         }
 
+        [HttpGet]
         [Route("/identity/email")]
         public IActionResult SettingsEmail()
         {
@@ -135,6 +137,63 @@ namespace Helios.Web.Controllers
             return View();
         }
 
+        [HttpPost]
+        [Route("/identity/email")]
+        public IActionResult UpdateSettingsEmail(string password, string email, string captcha, string directMail)
+        {
+            if (!this.HttpContext.Get<bool>(Constants.LOGGED_IN))
+                return RedirectToAction("Index", "Home");
+
+            UserData? user = ViewBag.User as UserData;
+
+            if (user == null)
+                return RedirectToAction("Index", "Home");
+
+            if (string.IsNullOrEmpty(password) ||
+                string.IsNullOrEmpty(email) ||
+                string.IsNullOrEmpty(captcha))
+            {
+
+                ViewBag.AlertMessage = "Please enter all fields";
+                ViewBag.AlertColour = "red";
+            }
+            else if (user.Password != password)
+            {
+                ViewBag.AlertMessage = "Your current password is invalid";
+                ViewBag.AlertColour = "red";
+            }
+            else if (!EmailValidator.Validate(email))
+            {
+                ViewBag.AlertMessage = "The email you entered is invalid";
+                ViewBag.AlertColour = "red";
+            }
+            else if (_ctx.UserData.Any(x => x.Email.ToLower() == email.ToLower()))
+            {
+                ViewBag.AlertMessage = "This email is already being used by a different account";
+                ViewBag.AlertColour = "red";
+            }
+            else if (string.IsNullOrEmpty(HttpContext.Get<string>("Captcha")) || captcha != HttpContext.Get<string>("Captcha"))
+            {
+                ViewBag.AlertMessage = "The security code was invalid, please try again.";
+                ViewBag.AlertColour = "red";
+            }
+            else
+            {
+                ViewBag.AlertMessage = "Your email has been changed successfully.";
+                ViewBag.AlertColour = "green";
+
+                user.Email = email;
+                user.DirectEmail = directMail == "on" || directMail == "true"; 
+
+                _ctx.UserData.Update(user);
+                _ctx.SaveChanges();
+            }
+
+
+            return View("SettingsEmail");
+        }
+
+        [HttpGet]
         [Route("/identity/password")]
         public IActionResult SettingsPassword()
         {
@@ -142,6 +201,63 @@ namespace Helios.Web.Controllers
                 return RedirectToAction("Index", "Home");
 
             return View();
+        }
+
+        [HttpPost]
+        [Route("/identity/password")]
+        public IActionResult UpdateSettingsPassword(string currentpassword, string newpassword, string newpasswordconfirm, string captcha, string directMail)
+        {
+            if (!this.HttpContext.Get<bool>(Constants.LOGGED_IN))
+                return RedirectToAction("Index", "Home");
+
+            UserData? user = ViewBag.User as UserData;
+
+            if (user == null)
+                return RedirectToAction("Index", "Home");
+
+            if (string.IsNullOrEmpty(currentpassword) ||
+                string.IsNullOrEmpty(newpassword) ||
+                string.IsNullOrEmpty(newpasswordconfirm) ||
+                string.IsNullOrEmpty(captcha))
+            {
+
+                ViewBag.AlertMessage = "Please enter all fields";
+                ViewBag.AlertColour = "red";
+            }
+            else if (user.Password != currentpassword)
+            {
+                ViewBag.AlertMessage = "Your current password is invalid";
+                ViewBag.AlertColour = "red";
+            }
+            else if (newpassword.Length < 6)
+            {
+                ViewBag.AlertMessage = "Password is too short, 6 characters minimum";
+                ViewBag.AlertColour = "red";
+            }
+            else if (newpassword != newpasswordconfirm)
+            {
+                ViewBag.AlertMessage = "The passwords don't match";
+                ViewBag.AlertColour = "red";
+            }
+            else if (string.IsNullOrEmpty(HttpContext.Get<string>("Captcha")) || captcha != HttpContext.Get<string>("Captcha"))
+            {
+                ViewBag.AlertMessage = "The security code was invalid, please try again.";
+                ViewBag.AlertColour = "red";
+            }
+            else
+            {
+                ViewBag.AlertMessage = "Your password has been changed successfully. You will need to login again.";
+                ViewBag.AlertColour = "green";
+
+                user.Password = newpassword;
+
+                _ctx.UserData.Update(user);
+                _ctx.SaveChanges();
+
+                SessionUtil.Logout(this.HttpContext, user);
+            }
+
+            return View("SettingsPassword");
         }
     }
 }

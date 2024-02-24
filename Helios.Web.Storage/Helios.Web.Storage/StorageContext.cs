@@ -76,6 +76,7 @@ namespace Helios.Web.Storage
                 entity.Property(x => x.Email).HasColumnName("email");
                 entity.Property(x => x.Password).HasColumnName("password").HasDefaultValue();
                 entity.Property(x => x.Birthday).HasColumnName("birthday").HasDefaultValue();
+                entity.Property(x => x.DirectEmail).HasColumnName("direct_mail").HasDefaultValue();
                 entity.Property(x => x.JoinDate).HasColumnName("join_date").HasDefaultValue();
                 entity.Property(x => x.LastOnline).HasColumnName("last_online").HasDefaultValue();
 

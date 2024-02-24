@@ -9,7 +9,7 @@ namespace Helios.Game
         #region Fields
 
         private readonly StorageContext _ctx;
-        private Dictionary<string, string>? _clientValues;
+        private Dictionary<string, string> _clientValues;
 
         #endregion
 
@@ -27,6 +27,7 @@ namespace Helios.Game
         public ValueManager(StorageContext ctx)
         {
             this._ctx = ctx;
+            this._clientValues = new Dictionary<string, string>(); 
 
             this.Load();
         }
@@ -77,7 +78,7 @@ namespace Helios.Game
         /// </summary>
         public int GetInt(string key)
         {
-            if (ClientValues.TryGetValue(key, out string value))
+            if (ClientValues.TryGetValue(key, out string? value))
                 return value.IsNumeric() ? int.Parse(value) : 0;
 
             return 0;
@@ -88,7 +89,7 @@ namespace Helios.Game
         /// </summary>
         public string GetString(string key)
         {
-            return ClientValues.TryGetValue(key, out string value) ? value : null;
+            return ClientValues.TryGetValue(key, out string? value) ? value : string.Empty;
         }
 
         #endregion

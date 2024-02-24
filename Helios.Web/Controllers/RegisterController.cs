@@ -106,6 +106,11 @@ namespace Helios.Web.Controllers
             if (Request.Form.TryGetValue("bean.email", out var registerEmail)) 
                 HttpContext.Set<string>("registerEmail", registerEmail.ToString());
 
+            if (Request.Form.TryGetValue("bean.marketing", out var directMail))
+                HttpContext.Set<bool>("registerDirectMail", directMail == "true" ? true : false);
+            else
+                HttpContext.Set<bool>("registerDirectMail", false);
+
             // if (Request.Form.TryGetValue("bean.referrer", out var registerReferrer))
             //    HttpContext.Set<string>("registerReferrer", registerReferrer);
 
@@ -212,9 +217,10 @@ namespace Helios.Web.Controllers
 
             var userData = new UserData
             {
-                Email= registerEmail,
-                Password=registerPassword,
-                Birthday = $"{registerDay}.{registerMonth}.{registerYear}"
+                Email = registerEmail,
+                Password = registerPassword,
+                Birthday = $"{registerDay}.{registerMonth}.{registerYear}",
+                DirectEmail = HttpContext.Get<bool>("registerDirectMail")
             };
 
             _ctx.UserData.Add(userData);
@@ -222,7 +228,7 @@ namespace Helios.Web.Controllers
 
             var avatarData = new AvatarData
             {
-                Name = GenerateUsername(registerEmail),
+                Name = GenerateUsername(registerEmail ?? ""),
                 Figure = registerFigure,
                 Sex = registerGender,
                 UserId = userData.Id

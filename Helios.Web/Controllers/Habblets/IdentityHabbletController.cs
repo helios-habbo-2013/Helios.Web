@@ -48,7 +48,7 @@ namespace Helios.Web.Controllers
             if (ViewBag.CheckNameOnly)
             {
                 ViewBag.Name = avatarName;
-                HttpContext.Set<string>(Constants.IDENTIIY_NAME, avatarName);
+                HttpContext.Set<string>(Constants.IDENTIIY_NAME, avatarName ?? string.Empty);
 
                 return View("../Identity/Habblet/AddAvatar_CheckName");
             }
@@ -92,7 +92,7 @@ namespace Helios.Web.Controllers
 
             if (checkNameOnly)
             {
-                string checkName = HttpContext.Get<string>(Constants.IDENTIIY_NAME);
+                string checkName = HttpContext.Get<string>(Constants.IDENTIIY_NAME) ?? string.Empty;
                 RegisterUtil.ValidateNameResponse(ref errorType, ref errorMessage, ref suggestions, checkName, _ctx);
                 ViewBag.Name = checkName;
             }

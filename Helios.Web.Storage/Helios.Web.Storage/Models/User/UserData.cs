@@ -13,6 +13,7 @@ namespace Helios.Web.Storage.Models.User
         public virtual string Birthday { get; set; }
         public virtual DateTime JoinDate { get; set; }
         public virtual DateTime LastOnline { get; set; }
+        public virtual bool DirectEmail { get; set; }
 
         #region Contraints
 
