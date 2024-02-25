@@ -1,4 +1,6 @@
 ﻿using Helios.Web.Helpers;
+using Helios.Web.Storage;
+using Helios.Web.Storage.Models.Avatar;
 using Helios.Web.Util;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
@@ -9,10 +11,12 @@ namespace Helios.Web.Controllers
     public class MeController : Controller
     {
         private readonly ILogger<MeController> _logger;
+        private readonly StorageContext _ctx;
 
-        public MeController(ILogger<MeController> logger)
+        public MeController(ILogger<MeController> logger, StorageContext ctx)
         {
             _logger = logger;
+            _ctx = ctx;
         }
 
         [Route("/me")]
@@ -29,7 +33,17 @@ namespace Helios.Web.Controllers
                 return RedirectToAction("Select", "Identity");
             }
 
-            return View();
+            var avatar = _ctx.AvatarData.Where(x => x.UserId == this.HttpContext.Get<int>(Constants.CURRENT_USER_ID))
+                .OrderByDescending(x => x.LastOnline)
+                .FirstOrDefault();
+
+            var otherAvatars = avatar != null ? _ctx.AvatarData.Where(x => x.UserId == this.HttpContext.Get<int>(Constants.CURRENT_USER_ID) && x.Id != avatar.Id)
+                .OrderByDescending(x => x.LastOnline)
+                .ToList() : new List<AvatarData>();
+
+            this.ViewBag.OtherAvatars = otherAvatars;
+
+            return View("Me_old");
         }
     }
 }

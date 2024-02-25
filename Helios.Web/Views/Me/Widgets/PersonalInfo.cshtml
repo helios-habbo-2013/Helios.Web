@@ -1,0 +1,47 @@
+﻿@using Helios.Web.Helpers
+<div class="habblet-container ">
+    <div id="new-personal-info" style="background-image:url(@(this.ViewBag.StaticContentUrl)web-gallery/v2/images/personal_info/hotel_views/htlview_au.png)" />
+
+    <div class="enter-hotel-btn">
+        <div class="open enter-btn">
+            <a href="@(this.ViewBag.StaticContentUrl)shockwave_client" target="shockwave_client" onclick="openOrFocusHabbo(this); return false;">Enter @(ViewBag.SiteName) Hotel<i></i></a>
+            <b></b>
+        </div>
+    </div>
+    <div id="habbo-plate">
+        <a href="@Url.AbsolutePath("~/profile")">
+            <img alt="Quackster" src="@Url.AbsolutePath("~/habbo-imaging/avatarimage?figure=hd-180-1.ch-260-62.lg-270-64.sh-300-64.ha-1008-62.ea-1402-62.ca-1806-73&size=b&direction=3&head_direction=3&crr=0&gesture=sml&frame=1")" width="64" height="110">
+        </a>
+    </div>
+    <div id="habbo-info">
+        <div id="motto-container" class="clearfix">
+            <strong>Quackster:</strong>
+            <div style="width: 230px;">
+                <span title="Click to enter your motto/ status">Hotel Administrator & Owner</span>
+                <p style="display: none"><input type="text" length="30" name="motto" value="" style="width: 227px;"></p>
+            </div>
+        </div>
+        <div id="motto-links" style="display: none"><a href="#" id="motto-cancel">Cancel</a></div>
+    </div>
+    <ul id="link-bar" class="clearfix">
+    </ul>
+    <div id="habbo-feed">
+        <ul id="feed-items">
+            <li class="small" id="feed-trading-enabled">Trading is on. <a href="@Url.AbsolutePath("~/profile?tab=6")" title="">Click here to turn it off</a></li>
+            <!-- <li class="small" id="feed-flashbeta-invites">This server is currently in beta, some features may not be operating correctly. You may also expect spontaneous maintenance periods.</li> -->
+            <li class="small" id="feed-lastlogin">
+                Last signed in:
+                Feb 23, 2024 01:34:00 AM
+            </li>
+        </ul>
+    </div>
+    <p class="last"></p>
+</div>
+<script type="text/javascript">
+    HabboView.add(function () {
+        L10N.put("personal_info.motto_editor.spamming", "Don\'t spam me, bro!");
+        PersonalInfo.init("");
+    });
+</script>
+               </div>
+<script type="text/javascript">if (!$(document.body).hasClassName('process-template')) { Rounder.init(); }</script>
