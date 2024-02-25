@@ -82,17 +82,19 @@
             </div>
           </div>
         </div>
+        @{
+        /*
         <div id="promo-box">
           <div id="promo-bullets">
           </div>
-          <div class="promo-container" style="background-image: url('@(this.ViewBag.StaticContentUrl)/c_images/web_promo/kickwars_TopStory.gif');">
+          <div class="promo-container" style="background-image: url('#getWebPromos.promo_image#');<cfif getWebPromos.currentrow neq 1>display: none;</cfif>">
             <div class="promo-content-container">
               <div class="promo-content">
                 <div class="title">
-                 title
+                  #getWebPromos.title#
                 </div>
                 <div class="body">
-                  description
+                  #getWebPromos.description#
                 </div>
               </div>
             </div>
@@ -101,16 +103,11 @@
               <a href="http://www.facebook.com/habbo" target="_blank" class="facebook-link" onclick="recordOutboundLink('Promo','Lost Monkey Facebook Button');"></a>
               <a href="http://itunes.apple.com/app/lost-monkey/id467353705" target="_blank" class="appstore-link" onclick="recordOutboundLink('Promo','Lost Monkey AppStore Button');"></a>
               <a href="https://market.android.com/details?id=com.sulake.lostmonkey" target="_blank" class="androidmarket-link" onclick="recordOutboundLink('Promo','Lost Monkey Android Market Button');"></a>
-              </div>
-              <div class="promo-link-container">
-                    <div class="enter-hotel-btn">
-                        <div class="open enter-btn">
-                            <a href="{$site->url}community/news&id={$news->id}">Read more<i></i></a><b></b>
-                        </div>
-                    </div>
             </div>
           </div>
-        </div>}
+        </div>
+        */
+        }
         <script type="text/javascript">
           document.observe("dom:loaded", function() { PromoSlideShow.init(); });
         </script>
@@ -122,10 +119,57 @@
           <script type="text/javascript">if (!$(document.body).hasClassName('process-template')) { Rounder.init(); }</script>
         </div>
         <div id="column2" class="column">
-          <div class="habblet-container ">
-            <div class="ad-container">
-            </div>
-            <script type="text/javascript">if (!$(document.body).hasClassName('process-template')) { Rounder.init(); }</script>
+				<div class="habblet-container news-promo">
+						<div class="cbb clearfix notitle ">
+
+						<div id="newspromo">
+        <div id="topstories">
+	        <div class="topstory" style="background-image: url(https://sandbox.classichabbo.com/c_images/Top_Story_Images/TS_SUMMER_Surf.gif)">
+	            <h4>Latest news </a></h4>
+	            <h3><a href="https://sandbox.classichabbo.com/articles/430-rotw-end-of-summer">[ROTW] End Of Summer</a></h3>
+	            <p class="summary">
+	            What will you remember of this summer?	            </p>
+	            <p>
+	                <a href="https://sandbox.classichabbo.com/articles/430-rotw-end-of-summer">Read more &raquo;</a>
+	            </p>
+	        </div>
+	        <div class="topstory" style="background-image: url(https://sandbox.classichabbo.com/c_images/Top_Story_Images/topStory_speeding.gif); display: none">
+	            <h4>Latest news</a></h4>
+	            <h3><a href="https://sandbox.classichabbo.com/articles/429-results-rotw-racetrack">[RESULTS] ROTW: RaceTrack</a></h3>
+	            <p class="summary">
+	            Check out who finished first in the ClassicHabbo Grand Prix!	            </p>
+	            <p>
+	                <a href="https://sandbox.classichabbo.com/articles/429-results-rotw-racetrack">Read more &raquo;</a>
+	            </p>
+	        </div>
+	        <div class="topstory" style="background-image: url(https://sandbox.classichabbo.com/c_images/Top_Story_Images/ts_urban_chase.gif); display: none">
+	            <h4>Latest news</a></h4>
+	            <h3><a href="https://sandbox.classichabbo.com/articles/428-rotw-racetrack">[ROTW] RaceTrack</a></h3>
+	            <p class="summary">
+	            Can you hit the apex?	            </p>
+	            <p>
+	                <a href="https://sandbox.classichabbo.com/articles/428-rotw-racetrack">Read more &raquo;</a>
+	            </p>
+	        </div>
+            <div id="topstories-nav" style="display: none"><a href="#" class="prev">&laquo; Previous</a><span>1</span> / 3<a href="#" class="next">Next &raquo</a></div>
+        </div>
+        <ul class="widelist">
+            <li class="even">
+                <a href="https://sandbox.classichabbo.com/articles/427-results-rotw-atlantis">[RESULTS] ROTW: Atlantis</a><div class="newsitem-date">Fri 22 Jul, 2022</div>
+            </li>
+            <li class="odd">
+                <a href="https://sandbox.classichabbo.com/articles/426-rotw-atlantis">[ROTW] Atlantis</a><div class="newsitem-date">Tue 12 Jul, 2022</div>
+            </li>
+            <li class="last"><a href="https://sandbox.classichabbo.com/articles">More news &raquo;</a></li>
+        </ul>
+</div>
+<script type="text/javascript">
+	document.observe("dom:loaded", function() { NewsPromo.init(); });
+</script>
+					</div>
+
+				</div>
+					<script type="text/javascript">if (!$(document.body).hasClassName('process-template')) { Rounder.init(); }</script>
           </div>
           <script type="text/javascript">
             HabboView.run();
