@@ -31,6 +31,7 @@
     <Content Remove="Views\Me\Community.cshtml" />
     <Content Remove="Views\Me\Me.cshtml" />
     <Content Remove="Views\Me\Me_old.cshtml" />
+    <Content Remove="Views\Me\NotFound.cshtml" />
     <Content Remove="Views\Shared\Copyright - Copy.cshtml" />
     <Content Remove="Views\Shared\Copyright.cshtml" />
     <Content Remove="Views\Shared\Header.cshtml" />
@@ -50,6 +51,7 @@
     <None Include="Views\Identity\Habblet\AddAvatar_NameSuggestions.cshtml" />
     <None Include="Views\Identity\Habblet\AddAvatar_SelectFigure.cshtml" />
     <None Include="Views\Identity\Habblet\RandomAvatars.cshtml" />
+    <None Include="Views\Shared\NotFound.cshtml" />
     <None Include="Views\Me\Community.cshtml" />
     <None Include="Views\Me\Me_old.cshtml" />
     <None Include="Views\Shared\Navigation.cshtml" />
@@ -76,6 +78,10 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Helios.Web.Storage\Helios.Web.Storage\Helios.Web.Storage.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Views\Shared\Widgets\" />
   </ItemGroup>
 
 </Project>

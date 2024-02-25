@@ -55,6 +55,9 @@ namespace Helios.Game
 
         public void OnActionExecuted(ActionExecutedContext context)
         {
+            var controller = context.Controller as Controller;
+
+
             // do something after the action executes
         }
     }

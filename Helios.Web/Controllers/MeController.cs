@@ -54,6 +54,10 @@ namespace Helios.Web.Controllers
 
 
             this.ViewBag.Widgets = widgets;
+            this.ViewBag.Entities = _ctx;
+
+            this.ViewBag.Page = "me";
+            this.ViewBag.Header = "me";
 
             return View("Me_old");
         }
@@ -64,6 +68,10 @@ namespace Helios.Web.Controllers
             var widgets = new List<Tuple<string, string>>();
 
             this.ViewBag.Widgets = widgets;
+            this.ViewBag.Entities = _ctx;
+
+            this.ViewBag.Header = "community";
+            this.ViewBag.Page = "community";
 
             return View();
         }

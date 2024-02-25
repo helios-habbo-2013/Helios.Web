@@ -1,6 +1,16 @@
 ﻿@using Helios.Web.Helpers
+@using Helios.Web.Storage;
+@using Helios.Web.Storage.Models.User
 @{
     bool isLoggedIn = ViewBag.LoggedIn;
+    bool isErrorPage = ViewBag.ErrorStatus != null ? true : false;
+
+    string currentHeader = ViewBag.Header;
+    string currentPage = ViewBag.Page;
+
+    string username = (ViewBag.Avatar != null ? ViewBag.Avatar.Name : "");
+
+    StorageContext ctx = ViewBag.Entities;
 }
 <div id="overlay"></div>
 <div id="header-container">
@@ -96,62 +106,112 @@
                 </script>
             }
         }
-        @{
-            if (isLoggedIn)
-            {
-                <ul id="navi">
-                    <li class="selected">
-                        <strong>@ViewBag.Avatar.Name </strong>			<span></span>
+        <ul id="navi">
+            @{
+
+                var headersData = ctx.PagesData.Where(x => x.ParentId == -1 && ((isLoggedIn && x.RequiresLogin) || (!isLoggedIn && x.RequiresLogout) || (!x.RequiresLogout && !x.RequiresLogin)))
+                    .OrderBy(x => x.OrderId)
+                    .ToList();
+
+                var currentHeaderData = ctx.PagesData
+                    .Where(x => x.ParentId == -1 && x.Page == currentHeader)
+                    .FirstOrDefault();
+
+                foreach (var headerData in headersData)
+                {
+                    string link = "";
+
+                    if (headerData.Colour == PageColor.GREEN)
+                        link = " id=\"tab-register-now\"";
+                        
+                    if (headerData.Page == currentHeader)
+                        link = " class=\" selected\"";
+
+
+                    <li @Html.Raw(link)>
+                    @{
+                        if (headerData.Page == currentHeader)
+                        {
+                            if (headerData.Page == "me")
+                            {
+                                    <strong>@username </strong>			<span></span>
+                            }
+                            else
+                            {
+                                    <strong>@headerData.Label.Replace("{name}", username) </strong>			<span></span>
+                            }
+                        }
+                        else
+                        {
+                            if (headerData.Page == "me")
+                            {
+                                    <a href="@Url.AbsolutePath("~" + headerData.Link)">@username</a>			<span></span>
+                            }
+                            else
+                            {
+                                    <a href="@Url.AbsolutePath("~" + headerData.Link.Replace("{name}", username))">@(headerData.Label.Replace("{name}", username))</a>			<span></span>
+                            }
+                        }
+                    }
                     </li>
-                    <li>
-                        <a href="@Url.AbsolutePath("~/community")">Community</a>			<span></span>
-                    </li>
-                    <li>
-                        <a href="@Url.AbsolutePath("~/credits")">Coins</a>			<span></span>
-                    </li>
-                    <li>
-                        <a href="@Url.AbsolutePath("~/games")">Games</a>			<span></span>
-                    </li>
-                    <li id="tab-register-now"><a href="@Url.AbsolutePath("~/allseeingeye/hk/")">Housekeeping</a><span></span></li>
-                </ul>
-            }
-            else
-            {
-                <ul id="navi">
-                <li id="tab-register-now"><a href="@Url.AbsolutePath("~/register")">Register now!</a><span></span></li>
-                    <li class="selected">
-                        <strong>Community</strong>			<span></span>
-                    </li>
-                    <li>
-                    <a href="@Url.AbsolutePath("~/credits")">Coins</a>			<span></span>
-                    </li>
-                    <li>
-                    <a href="@Url.AbsolutePath("~/games")">Games</a>			<span></span>
-                    </li>
-                </ul>
-            }
+                }
+
+                
         }
+        </ul>
         <div id="habbos-online">
             <div class="rounded"><span>0 Habbos online</span></div>
         </div>
     </div>
 </div>
 <div id="content-container">
-    <div id="navi2-container" class="pngbg">
-        <div id="navi2" class="pngbg clearfix">
-            <ul>
-                <li class="selected">
-                    Home
-                </li>
-                <li class="">
-                    <a href="@Url.AbsolutePath("~/home/Quackster")">My Page</a>
-                </li>
-                <li class="">
-                    <a href="@Url.AbsolutePath("~/profile")">Account Settings</a>
-                </li>
-                <li class="last">
-                    <a href="@Url.AbsolutePath("~/club")">Habbo Club</a>
-                </li>
-            </ul>
-        </div>
-    </div>
+    @{
+        if (!isErrorPage) 
+        {
+            <div id="navi2-container" class="pngbg">
+                <div id="navi2" class="pngbg clearfix">
+                    <ul>
+                        @{
+                            if (currentHeaderData != null)
+                            {
+                                var pagesData = ctx.PagesData.Where(x => x.ParentId == currentHeaderData.Id)
+                                                        .OrderBy(x => x.OrderId)
+                                                        .ToList();
+
+                                var lastPage = pagesData.LastOrDefault();
+
+
+                                foreach (var pageData in pagesData)
+                                {
+                                    string link = "";
+                                    string classes = "";
+
+                                    if (pageData.Page == currentPage)
+                                        classes += " selected";
+
+                                    if (lastPage?.Id == pageData.Id)
+                                        classes += " last";
+
+                                    if (!string.IsNullOrEmpty(classes))
+                                        link = " class=\"" + classes + "\"";
+
+                                    <li @Html.Raw(link)>
+                                        @{
+                                            if (pageData.Page == currentPage)
+                                            {
+                                                <strong>@pageData.Label </strong>			<span></span>
+                                            }
+                                            else
+                                            {
+                                                <a href="@Url.AbsolutePath("~" + pageData.Link.Replace("{name}", username))">@(pageData.Label.Replace("{name}", username))</a>			<span></span>
+                                            }
+                                        }
+                                    </li>
+                                }
+                            }
+                        }
+                    </ul>
+                </div>
+            </div>
+        }
+    }

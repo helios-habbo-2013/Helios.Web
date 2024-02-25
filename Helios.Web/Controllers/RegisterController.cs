@@ -18,6 +18,13 @@ namespace Helios.Web.Controllers
             _ctx = ctx;
         }
 
+        [Route("/register")]
+        public IActionResult Register()
+        {
+            return RedirectToAction("Start");
+        }
+
+
         [Route("/quickregister/start")]
         public IActionResult Start()
         {

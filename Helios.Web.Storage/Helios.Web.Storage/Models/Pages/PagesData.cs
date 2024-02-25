@@ -12,16 +12,11 @@ namespace Helios.Web.Storage.Models.User
         public virtual int OrderId { get; set; }
         public virtual string Label { get; set; }
         public virtual string Link { get; set; }
+        public virtual string Page { get; set; }
         public virtual PageColor Colour { get; set; }
         public virtual int MinimumRank { get; set; }
         public virtual bool RequiresLogin { get; set; }
         public virtual bool RequiresLogout { get; set; }
-
-        #region Contraints
-
-        public virtual PagesData ParentPage { get; set; }
-
-        #endregion
     }
 
     public enum PageColor

@@ -67,7 +67,7 @@ if (typeof HabboClient != "undefined") { HabboClient.windowName = "client"; }
         await Html.RenderPartialAsync("Navigation");
     }
     <div id="container">
-        <div id="content">
+        <div id="content"  style="position: relative" class="clearfix">
             <div id="column1" class="column">
                 <!-- <div class="rounded" style="background-color: red; color: white">
                 <strong>Attention!</strong><br />
@@ -79,7 +79,7 @@ if (typeof HabboClient != "undefined") { HabboClient.windowName = "client"; }
 
                     foreach (var widget in column1Widgets) 
                     {
-                        await Html.RenderPartialAsync("Widgets/" + widget);
+                        await Html.RenderPartialAsync("../Me/Widgets/" + widget);
                     }
                 }			
          </div>
@@ -89,7 +89,7 @@ if (typeof HabboClient != "undefined") { HabboClient.windowName = "client"; }
 
                     foreach (var widget in column2Widgets) 
                     {
-                       await Html.RenderPartialAsync("Widgets/" + widget);
+                       await Html.RenderPartialAsync("../Me/Widgets/" + widget);
                     }
                 }	
          </div>
@@ -110,7 +110,7 @@ if (typeof HabboClient != "undefined") { HabboClient.windowName = "client"; }
          </script>
          <![endif]-->
       </div>
-       </div>
+      </div>
       @{
       await Html.RenderPartialAsync("Footer");
       }

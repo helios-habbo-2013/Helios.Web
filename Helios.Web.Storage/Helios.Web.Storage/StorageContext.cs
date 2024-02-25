@@ -487,7 +487,12 @@ namespace Helios.Web.Storage
                 entity.Property(x => x.OrderId).HasColumnName("order_id").HasDefaultValue();
                 entity.Property(x => x.Label).HasColumnName("label").HasDefaultValue();
                 entity.Property(x => x.Link).HasColumnName("link").HasDefaultValue();
-                entity.Property(x => x.Colour).HasColumnName("colour").HasDefaultValue();
+                entity.Property(x => x.Page).HasColumnName("page").HasDefaultValue();
+                entity.Property(x => x.Colour).HasColumnName("colour")
+                .HasConversion(
+                    v => v.ToString(),
+                    v => (PageColor)Enum.Parse(typeof(PageColor), v));
+
                 entity.Property(x => x.MinimumRank).HasColumnName("minimum_rank").HasDefaultValue();
                 entity.Property(x => x.RequiresLogin).HasColumnName("requires_login").HasDefaultValue();
                 entity.Property(x => x.RequiresLogout).HasColumnName("requires_logout").HasDefaultValue();
