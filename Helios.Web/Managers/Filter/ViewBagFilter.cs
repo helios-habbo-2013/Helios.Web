@@ -30,7 +30,9 @@ namespace Helios.Game
             }
 
             if (controller != null)
-            {
+            {          
+                controller.ViewBag.LoggedIn = false;
+                
                 // If the static content url is empty, default to our own
                 if (string.IsNullOrWhiteSpace(controller.ViewBag.StaticContentUrl))
                 {
@@ -41,6 +43,7 @@ namespace Helios.Game
                 if (context.HttpContext.Contains(Constants.CURRENT_AVATAR_ID))
                 {
                     controller.ViewBag.Avatar = this._ctx.AvatarData.FirstOrDefault(x => x.Id == context.HttpContext.Get<int>(Constants.CURRENT_AVATAR_ID));
+                    controller.ViewBag.LoggedIn = true;
                 }
 
                 if (context.HttpContext.Contains(Constants.CURRENT_USER_ID))

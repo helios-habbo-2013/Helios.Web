@@ -1,0 +1,117 @@
+﻿@using Helios.Web.Helpers
+@{
+    var widgets = ViewBag.Widgets as List<Tuple<string, string>>;
+}
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="content-type" content="text/html" />
+    <title>@(ViewBag.SiteName): Home </title>
+
+<script type="text/javascript">
+var andSoItBegins = (new Date()).getTime();
+</script>
+    <link rel="shortcut icon" href="@(this.ViewBag.StaticContentUrl)web-gallery/v2/favicon.ico" type="image/vnd.microsoft.icon" />
+    <link rel="alternate" type="application/rss+xml" title="Habbo: RSS" href="@(this.ViewBag.StaticContentUrl)articles/rss.xml" />
+<script src="@(this.ViewBag.StaticContentUrl)web-gallery/static/js/libs2.js" type="text/javascript"></script>
+<script src="@(this.ViewBag.StaticContentUrl)web-gallery/static/js/visual.js" type="text/javascript"></script>
+<script src="@(this.ViewBag.StaticContentUrl)web-gallery/static/js/libs.js" type="text/javascript"></script>
+<script src="@(this.ViewBag.StaticContentUrl)web-gallery/static/js/common.js" type="text/javascript"></script>
+<script src="@(this.ViewBag.StaticContentUrl)web-gallery/static/js/fullcontent.js" type="text/javascript"></script>
+<link rel="stylesheet" href="@(this.ViewBag.StaticContentUrl)web-gallery/v2/styles/style.css" type="text/css" />
+<link rel="stylesheet" href="@(this.ViewBag.StaticContentUrl)web-gallery/v2/styles/buttons.css" type="text/css" />
+<link rel="stylesheet" href="@(this.ViewBag.StaticContentUrl)web-gallery/v2/styles/boxes.css" type="text/css" />
+<link rel="stylesheet" href="@(this.ViewBag.StaticContentUrl)web-gallery/v2/styles/tooltips.css" type="text/css" />
+<link rel="stylesheet" href="@(this.ViewBag.StaticContentUrl)web-gallery/styles/local/com.css" type="text/css" />
+
+<script src="@(this.ViewBag.StaticContentUrl)web-gallery/js/local/com.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+document.habboLoggedIn = false;
+var habboName = "";
+var ad_keywords = "";
+var habboReqPath = "https://sandbox.classichabbo.com";
+var habboStaticFilePath = "@(this.ViewBag.StaticContentUrl)web-gallery";
+var habboImagerUrl = "@(this.ViewBag.StaticContentUrl)habbo-imaging/";
+var habboPartner = "";
+window.name = "habboMain";
+if (typeof HabboClient != "undefined") { HabboClient.windowName = "client"; }
+
+</script>
+
+<link rel="stylesheet" href="@(this.ViewBag.StaticContentUrl)web-gallery/v2/styles/rooms.css" type="text/css" /> 
+<script src="@(this.ViewBag.StaticContentUrl)web-gallery/static/js/rooms.js" type="text/javascript"></script> 
+<script src="@(this.ViewBag.StaticContentUrl)web-gallery/static/js/moredata.js" type="text/javascript"></script> 
+
+
+<meta name="description" content="Join the world's largest virtual hangout where you can meet and make friends. Design your own rooms, collect cool furniture, throw parties and so much more! Create your FREE Habbo today!" />
+<meta name="keywords" content="Habbo, virtual, world, join, groups, forums, play, games, online, friends, teens, collecting, social network, create, collect, connect, furniture, virtual, goods, sharing, badges, social, networking, hangout, safe, music, celebrity, celebrity visits, cele" />
+
+<!--[if IE 8]>
+<link rel="stylesheet" href="@(this.ViewBag.StaticContentUrl)web-gallery/static/styles/ie8.css" />
+<![endif]-->
+<!--[if lt IE 8]>
+<link rel="stylesheet" href="@(this.ViewBag.StaticContentUrl)web-gallery/static/styles/ie.css" />
+<![endif]-->
+<!--[if lt IE 7]>
+<link rel="stylesheet" href="@(this.ViewBag.StaticContentUrl)web-gallery/static/styles/ie6.css" />
+<script src="@(this.ViewBag.StaticContentUrl)web-gallery/static/js/pngfix.js" type="text/javascript"></script>
+<style type="text/css">
+    body { behavior: url(/js/csshover.htc); }
+</style>
+<![endif]-->
+   </head>
+   <body id="me" class="@(ViewBag.LoggedIn ? "" : " anonymous")">
+    @{
+        await Html.RenderPartialAsync("Navigation");
+    }
+    <div id="container">
+        <div id="content">
+            <div id="column1" class="column">
+                <!-- <div class="rounded" style="background-color: red; color: white">
+                <strong>Attention!</strong><br />
+                This server is currently in beta. That means there may be some incomplete features, bugs and other forms of exploitation.<br />
+                </div>
+                <br /> -->
+                @{
+                    var column1Widgets = widgets.Where(x => x.Item2 == "column1").Select(x => x.Item1).ToList();
+
+                    foreach (var widget in column1Widgets) 
+                    {
+                        await Html.RenderPartialAsync("Widgets/" + widget);
+                    }
+                }			
+         </div>
+         <div id="column2" class="column">
+                @{
+                    var column2Widgets = widgets.Where(x => x.Item2 == "column2").Select(x => x.Item1).ToList();
+
+                    foreach (var widget in column2Widgets) 
+                    {
+                       await Html.RenderPartialAsync("Widgets/" + widget);
+                    }
+                }	
+         </div>
+         <script type="text/javascript">
+            HabboView.run();
+         </script>
+         <div id="column3" class="column">
+            <div class="habblet-container ">
+               <div class="ad-container">
+                  <br>
+               </div>
+            </div>
+            <script type="text/javascript">if (!$(document.body).hasClassName('process-template')) { Rounder.init(); }</script>
+         </div>
+         <!--[if lt IE 7]>
+         <script type="text/javascript">
+            Pngfix.doPngImageFix();
+         </script>
+         <![endif]-->
+      </div>
+      @{
+      await Html.RenderPartialAsync("Footer");
+      }
+   </body>
+</html>

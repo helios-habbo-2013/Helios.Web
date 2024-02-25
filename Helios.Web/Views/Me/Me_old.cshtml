@@ -1,6 +1,6 @@
 ﻿@using Helios.Web.Helpers
 @{
-    Dictionary<string, string> widgets = ViewBag.Widgets;
+    var widgets = ViewBag.Widgets as List<Tuple<string, string>>;
 }
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -72,7 +72,7 @@
                 </div>
                 <br /> -->
                 @{
-                    var column1Widgets = widgets.Where(x => x.Value == "column1").Select(x => x.Key).ToList();
+                    var column1Widgets = widgets.Where(x => x.Item2 == "column1").Select(x => x.Item1).ToList();
 
                     foreach (var widget in column1Widgets) 
                     {
@@ -82,7 +82,7 @@
          </div>
          <div id="column2" class="column">
                 @{
-                    var column2Widgets = widgets.Where(x => x.Value == "column2").Select(x => x.Key).ToList();
+                    var column2Widgets = widgets.Where(x => x.Item2 == "column2").Select(x => x.Item1).ToList();
 
                     foreach (var widget in column2Widgets) 
                     {

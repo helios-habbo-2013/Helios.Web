@@ -17,7 +17,7 @@
         <div id="motto-container" class="clearfix">
             <strong>Quackster:</strong>
             <div style="width: 230px;">
-                <span title="Click to enter your motto/ status">Hotel Administrator & Owner</span>
+                <span title="Click to enter your motto/ status">@(string.IsNullOrEmpty(ViewBag.Avatar.Motto) ? "Click to enter your motto/ status" : ViewBag.Avatar.Motto)</span>
                 <p style="display: none"><input type="text" length="30" name="motto" value="" style="width: 227px;"></p>
             </div>
         </div>

@@ -43,6 +43,7 @@ namespace Helios.Web.Storage
         public DbSet<CurrencyData> CurrencyData { get; set; }
         public DbSet<SubscriptionData> SubscriptionData { get; set; }
         public DbSet<SubscriptionGiftData> SubscriptionGiftData { get; set; }
+        public DbSet<PagesData> PagesData { get; set; }
 
         #endregion
 
@@ -477,17 +478,20 @@ namespace Helios.Web.Storage
                 entity.Property(x => x.SaleCode).HasColumnName("sale_code");
                 entity.Property(x => x.DurationRequirement).HasColumnName("duration_requirement");
             });
-        }
 
-
-
-        public void Init()
-        {
-            using (var context = new StorageContext())
+            modelBuilder.Entity<PagesData>(entity =>
             {
-                context.Database.EnsureCreated();
-            }
-
+                entity.ToTable("cms_pages");
+                entity.HasKey(x => x.Id);
+                entity.Property(x => x.ParentId).HasColumnName("parent_id").HasDefaultValue();
+                entity.Property(x => x.OrderId).HasColumnName("order_id").HasDefaultValue();
+                entity.Property(x => x.Label).HasColumnName("label").HasDefaultValue();
+                entity.Property(x => x.Link).HasColumnName("link").HasDefaultValue();
+                entity.Property(x => x.Colour).HasColumnName("colour").HasDefaultValue();
+                entity.Property(x => x.MinimumRank).HasColumnName("minimum_rank").HasDefaultValue();
+                entity.Property(x => x.RequiresLogin).HasColumnName("requires_login").HasDefaultValue();
+                entity.Property(x => x.RequiresLogout).HasColumnName("requires_logout").HasDefaultValue();
+            });
         }
     }
 

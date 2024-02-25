@@ -1,4 +1,5 @@
-﻿using Helios.Web.Helpers;
+﻿using Castle.Core;
+using Helios.Web.Helpers;
 using Helios.Web.Storage;
 using Helios.Web.Storage.Models.Avatar;
 using Helios.Web.Util;
@@ -42,16 +43,29 @@ namespace Helios.Web.Controllers
                 this.ViewBag.OtherAvatars = otherAvatars;
             }
 
-            var widgets = new Dictionary<string, string>
+            var widgets = new List<Tuple<string, string>>
             {
-                { "PersonalInfo", "column1" },
-                { "MyCharacters", "column1" },
-                { "TopStories", "column2" }
+                { Tuple.Create("PersonalInfo", "column1") } ,
+                { Tuple.Create("MyCharacters", "column1") } ,
+                { Tuple.Create("TopStories", "column2") } ,
             };
+
+            var column1Widgets = widgets.Where(x => x.Item2 == "column1").Select(x => x.Item1).ToList();
+
 
             this.ViewBag.Widgets = widgets;
 
             return View("Me_old");
+        }
+
+        [Route("/community")]
+        public IActionResult Community()
+        {
+            var widgets = new List<Tuple<string, string>>();
+
+            this.ViewBag.Widgets = widgets;
+
+            return View();
         }
     }
 }

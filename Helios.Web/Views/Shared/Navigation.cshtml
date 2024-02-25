@@ -1,77 +1,157 @@
 ﻿@using Helios.Web.Helpers
-
+@{
+    bool isLoggedIn = ViewBag.LoggedIn;
+}
 <div id="overlay"></div>
 <div id="header-container">
-	<div id="header" class="clearfix">
-		<h1><a href="?p=index"></a></h1>
+    <div id="header" class="clearfix">
+        <h1><a href="?p=index"></a></h1>
+        @{
+            if (!isLoggedIn)
+            {
+                <div id="subnavi">
+                    <div id="subnavi-user">
+                        <div class="clearfix">&nbsp;</div>
+                        <p>
+                            <a href="@Url.AbsolutePath("~/client")" id="enter-hotel-open-medium-link" target="client" onclick="HabboClient.openOrFocus(this); return false;">Enter Habbo Hotel</a>
+                        </p>
+                    </div>
+                    <div id="subnavi-login">
+                        <form action="@Url.AbsolutePath("~/account/submit")" method="post" id="login-form">
+                            <input type="hidden" name="page" value="/community" />
+                            <ul>
+                                <li>
+                                    <label for="login-username" class="login-text"><b>Username</b></label>
+                                    <input tabindex="1" type="text" class="login-field" name="username" id="login-username" />
+                                    <a href="#" id="login-submit-new-button" class="new-button" style="float: left; display:none"><b>Log in</b><i></i></a>
+                                    <input type="submit" id="login-submit-button" value="Log in" class="submit" />
+                                </li>
+                                <li>
+                                    <label for="login-password" class="login-text"><b>Password</b></label>
+                                    <input tabindex="2" type="password" class="login-field" name="password" id="login-password" />
+                                    <input tabindex="3" type="checkbox" name="_login_remember_me" value="true" id="login-remember-me" />
+                                    <label for="login-remember-me" class="left">Remember me</label>
+                                </li>
+                            </ul>
+                        </form>
+                        <div id="subnavi-login-help" class="clearfix">
+                            <ul>
+                                <li class="register"><a href="@Url.AbsolutePath("~/account/password/forgot")" id="forgot-password"><span>I forgot my password/username</span></a></li>
+                                <li><a href="@Url.AbsolutePath("~/register")"><span>Register</span></a></li>
+                            </ul>
+                        </div>
+                        <div id="remember-me-notification" class="bottom-bubble" style="display:none;">
+                            <div class="bottom-bubble-t">
+                                <div></div>
+                            </div>
+                            <div class="bottom-bubble-c">
+                                By selecting 'remember me' you will stay signed in on this computer until you click 'Sign Out'. If this is a public computer please do not use this feature.
+                            </div>
+                            <div class="bottom-bubble-b">
+                                <div></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <script type="text/javascript">
+                    LoginFormUI.init();
+                    RememberMeUI.init("right");
+                </script>
+            }
+            else
+            {
+                <div id="subnavi">
+                    <div id="subnavi-user">
+                        <ul>
+                            <li id="myfriends"><a href="#"><span>My Friends</span></a><span class="r"></span></li>
+                            <li id="mygroups"><a href="#"><span>My Groups</span></a><span class="r"></span></li>
+                            <li id="myrooms"><a href="#"><span>My Rooms</span></a><span class="r"></span></li>
+                        </ul>
+                    </div>
+                    <div id="subnavi-search">
+                        <div id="subnavi-search-upper">
 
-		<div id="subnavi">
-			<div id="subnavi-user">
-				<ul>
-					<li id="myfriends" class=""><a href="#"><span>My Friends</span></a><span class="r"></span></li>
-					<li id="mygroups" class=""><a href="#"><span>My Groups</span></a><span class="r"></span></li>
-					<li id="myrooms" class=""><a href="#"><span>My Rooms</span></a><span class="r"></span></li>
-				</ul>
-			</div>
-			<div id="subnavi-search">
-				<div id="subnavi-search-upper">
-					<ul id="subnavi-search-links">
-						<li><a href="@Url.AbsolutePath("~/account/logout")" style="color:#000">Sign Out</a></li>
-					</ul>
-				</div>
-			</div>
-			<div id="to-hotel">
-				<a href="@Url.AbsolutePath("~/client")" class="new-button green-button" target="eac955c8dbc88172421193892a3e98fc7402021a" onclick="HabboClient.openOrFocus(this); return false;"><b>Enter @(ViewBag.SiteName) Hotel</b><i></i></a>
-
-			</div>
-		</div>
-
-		<script type="text/javascript">
-			L10N.put("purchase.group.title", "Create a group");
-			document.observe("dom:loaded", function () {
-			});
-		</script>
-
-		<ul id="navi">
-			<li class="selected">
-				<strong>@ViewBag.Avatar.Name </strong>			<span></span>
-			</li>
-
-			<li>
-				<a href="@Url.AbsolutePath("~/community")">Community</a>			<span></span>
-			</li>
-
-			<li>
-				<a href="@Url.AbsolutePath("~/credits")">Coins</a>			<span></span>
-			</li>
-
-			<li>
-				<a href="@Url.AbsolutePath("~/games")">Games</a>			<span></span>
-			</li>
-			<li id="tab-register-now"><a href="@Url.AbsolutePath("~/allseeingeye/hk/")">Housekeeping</a><span></span></li>
-
-		</ul>
-
-		<div id="habbos-online"><div class="rounded"><span>0 Habbos online</span></div></div>
-	</div>
+                            <ul id="subnavi-search-links">
+                                <li><a href="@Url.AbsolutePath("~/help")" target="habbohelp" onclick="openOrFocusHelp(this); return false">Help</a></li>
+                                <li><a href="@Url.AbsolutePath("~/account/logout")" class="userlink" id="signout">Sign Out</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div id="to-hotel">
+                        <a href="@Url.AbsolutePath("~/client")" class="new-button green-button" target="client" onclick="HabboClient.openOrFocus(this); return false;">
+                            <b>
+                                Enter Habbo
+                                Hotel
+                            </b><i></i>
+                        </a>
+                    </div>
+                </div>
+                <script type="text/javascript">
+                    L10N.put("purchase.group.title", "Create a Group");
+                    document.observe("dom:loaded", function () {
+                        $("signout").observe("click", function () {
+                            HabboClient.close();
+                        });
+                    });
+                </script>
+            }
+        }
+        @{
+            if (isLoggedIn)
+            {
+                <ul id="navi">
+                    <li class="selected">
+                        <strong>@ViewBag.Avatar.Name </strong>			<span></span>
+                    </li>
+                    <li>
+                        <a href="@Url.AbsolutePath("~/community")">Community</a>			<span></span>
+                    </li>
+                    <li>
+                        <a href="@Url.AbsolutePath("~/credits")">Coins</a>			<span></span>
+                    </li>
+                    <li>
+                        <a href="@Url.AbsolutePath("~/games")">Games</a>			<span></span>
+                    </li>
+                    <li id="tab-register-now"><a href="@Url.AbsolutePath("~/allseeingeye/hk/")">Housekeeping</a><span></span></li>
+                </ul>
+            }
+            else
+            {
+                <ul id="navi">
+                <li id="tab-register-now"><a href="@Url.AbsolutePath("~/register")">Register now!</a><span></span></li>
+                    <li class="selected">
+                        <strong>Community</strong>			<span></span>
+                    </li>
+                    <li>
+                    <a href="@Url.AbsolutePath("~/credits")">Coins</a>			<span></span>
+                    </li>
+                    <li>
+                    <a href="@Url.AbsolutePath("~/games")">Games</a>			<span></span>
+                    </li>
+                </ul>
+            }
+        }
+        <div id="habbos-online">
+            <div class="rounded"><span>0 Habbos online</span></div>
+        </div>
+    </div>
 </div>
-
 <div id="content-container">
-	<div id="navi2-container" class="pngbg">
-		<div id="navi2" class="pngbg clearfix">
-			<ul>
-				<li class="selected">
-					Home
-				</li>
-				<li class="">
-					<a href="@Url.AbsolutePath("~/home/Quackster")">My Page</a>
-				</li>
-				<li class="">
-					<a href="@Url.AbsolutePath("~/profile")">Account Settings</a>
-				</li>
-				<li class="last">
-					<a href="@Url.AbsolutePath("~/club")">Habbo Club</a>
-				</li>
-			</ul>
-		</div>
-	</div>
+    <div id="navi2-container" class="pngbg">
+        <div id="navi2" class="pngbg clearfix">
+            <ul>
+                <li class="selected">
+                    Home
+                </li>
+                <li class="">
+                    <a href="@Url.AbsolutePath("~/home/Quackster")">My Page</a>
+                </li>
+                <li class="">
+                    <a href="@Url.AbsolutePath("~/profile")">Account Settings</a>
+                </li>
+                <li class="last">
+                    <a href="@Url.AbsolutePath("~/club")">Habbo Club</a>
+                </li>
+            </ul>
+        </div>
+    </div>

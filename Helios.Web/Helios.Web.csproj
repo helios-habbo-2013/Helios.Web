@@ -28,6 +28,7 @@
     <Content Remove="Views\Identity\Settings.cshtml" />
     <Content Remove="Views\Identity\SettingsEmail.cshtml" />
     <Content Remove="Views\Identity\SettingsPassword.cshtml" />
+    <Content Remove="Views\Me\Community.cshtml" />
     <Content Remove="Views\Me\Me.cshtml" />
     <Content Remove="Views\Me\Me_old.cshtml" />
     <Content Remove="Views\Shared\Copyright - Copy.cshtml" />
@@ -49,6 +50,7 @@
     <None Include="Views\Identity\Habblet\AddAvatar_NameSuggestions.cshtml" />
     <None Include="Views\Identity\Habblet\AddAvatar_SelectFigure.cshtml" />
     <None Include="Views\Identity\Habblet\RandomAvatars.cshtml" />
+    <None Include="Views\Me\Community.cshtml" />
     <None Include="Views\Me\Me_old.cshtml" />
     <None Include="Views\Shared\Navigation.cshtml" />
     <None Include="Views\Shared\Header.cshtml" />
