@@ -42,6 +42,15 @@ namespace Helios.Web.Controllers
                 this.ViewBag.OtherAvatars = otherAvatars;
             }
 
+            var widgets = new Dictionary<string, string>
+            {
+                { "PersonalInfo", "column1" },
+                { "MyCharacters", "column1" },
+                { "TopStories", "column2" }
+            };
+
+            this.ViewBag.Widgets = widgets;
+
             return View("Me_old");
         }
     }

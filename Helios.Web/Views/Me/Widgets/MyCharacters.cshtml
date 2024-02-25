@@ -55,39 +55,51 @@
                         </div>
                     </div>
                     <div id="avatar-selector-habblet">
-                        <ul>
-                            @{
-                                int i = 0;
+                        @{
+                            if (ViewBag.OtherAvatars.Count > 0)
+                            {
+                                <ul>
+                                    @{
+                                        int i = 0;
 
-                                foreach (var otherAvatar in ViewBag.OtherAvatars)
-                                {
-                                    int avatarId = otherAvatar.Id;
-                                    string figure = otherAvatar.Figure;
+                                        foreach (var otherAvatar in ViewBag.OtherAvatars)
+                                        {
+                                            int avatarId = otherAvatar.Id;
+                                            string figure = otherAvatar.Figure;
 
-                                    <li class="@(i % 2 == 0 ? "even" : "")">
-                                        <img class="avatar-image" src="@Url.AbsolutePath("~/habbo-imaging/avatarimage?figure=" + figure + "&position=3&size=s")" width="32" height="55">
-                                        <div class="avatar-info">
-                                            <div class="avatar-info-container">
-                                                <div class="avatar-name"> @(otherAvatar.Name)</div>
-                                                <div class="avatar-lastonline">
-                                                    Last logged in:
-                                                    <span title="@(((DateTime)otherAvatar.LastOnline).ToHabboDate())">@(((DateTime)otherAvatar.LastOnline).TimeAgo())</span>
+                                            <li class="@(i % 2 == 0 ? "even" : "")">
+                                                <img class="avatar-image" src="@Url.AbsolutePath("~/habbo-imaging/avatarimage?figure=" + figure + "&position=3&size=s")" width="32" height="55">
+                                                <div class="avatar-info">
+                                                    <div class="avatar-info-container">
+                                                        <div class="avatar-name"> @(otherAvatar.Name)</div>
+                                                        <div class="avatar-lastonline">
+                                                            Last logged in:
+                                                            <span title="@(((DateTime)otherAvatar.LastOnline).ToHabboDate())">@(((DateTime)otherAvatar.LastOnline).TimeAgo())</span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="avatar-select">
+                                                        <a href="/identity/useOrCreateAvatar/@(avatarId)?disableFriendLinking=true"><b>Play</b><i></i></a>
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="avatar-select">
-                                                <a href="/identity/useOrCreateAvatar/@(avatarId)?disableFriendLinking=true"><b>Play</b><i></i></a>
-                                            </div>
-                                        </div>
+                                            </li>
+
+                                            i++;
+
+                                        }
+                                    }
+                                    <li>
+                                        <div class="more"><a href="/identity/add_avatar">Add or associate more characters to your account</a></div>
                                     </li>
-
-                                    i++;
-
-                                }
+                                </ul>
+                            } 
+                            else 
+                            {
+                                <div style="font-size: 13px; margin: 10px 30px 0px 30px">
+                                    <p>Want to add a new character to your Habbo account? Switch between the characters by clicking "play" next to the character.</p>
+                                    <p><strong><a href="/identity/add_avatar" style="color: #2767A7">Add another character</a></strong> to my account.</p>
+                                </div>
                             }
-                            <li>
-                                <div class="more"><a href="/identity/add_avatar">Add or associate more characters to your account</a></div>
-                            </li>
-                        </ul>
+                        }
                     </div>
                 </div>
             </div>

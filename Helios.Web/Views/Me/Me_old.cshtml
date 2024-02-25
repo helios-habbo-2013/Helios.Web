@@ -1,4 +1,7 @@
 ﻿@using Helios.Web.Helpers
+@{
+    Dictionary<string, string> widgets = ViewBag.Widgets;
+}
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
@@ -57,28 +60,35 @@
       <![endif]-->
    </head>
    <body id="me" class="">
-      @{
-      await Html.RenderPartialAsync("Navigation");
-      }
-      <div id="container">
-      <div id="content">
-         <div id="column1" class="column">
-            <!-- <div class="rounded" style="background-color: red; color: white">
-               <strong>Attention!</strong><br />
-               This server is currently in beta. That means there may be some incomplete features, bugs and other forms of exploitation.<br />
-               </div>
-               <br /> -->
-            @{
-            await Html.RenderPartialAsync("Widgets/PersonalInfo");
-            }				
-            @{
-            await Html.RenderPartialAsync("Widgets/MyCharacters");
-            }
+    @{
+        await Html.RenderPartialAsync("Navigation");
+    }
+    <div id="container">
+        <div id="content">
+            <div id="column1" class="column">
+                <!-- <div class="rounded" style="background-color: red; color: white">
+                <strong>Attention!</strong><br />
+                This server is currently in beta. That means there may be some incomplete features, bugs and other forms of exploitation.<br />
+                </div>
+                <br /> -->
+                @{
+                    var column1Widgets = widgets.Where(x => x.Value == "column1").Select(x => x.Key).ToList();
+
+                    foreach (var widget in column1Widgets) 
+                    {
+                        await Html.RenderPartialAsync("Widgets/" + widget);
+                    }
+                }			
          </div>
          <div id="column2" class="column">
-            @{
-            await Html.RenderPartialAsync("Widgets/TopStories");
-            }
+                @{
+                    var column2Widgets = widgets.Where(x => x.Value == "column2").Select(x => x.Key).ToList();
+
+                    foreach (var widget in column2Widgets) 
+                    {
+                       await Html.RenderPartialAsync("Widgets/" + widget);
+                    }
+                }	
          </div>
          <script type="text/javascript">
             HabboView.run();
