@@ -1,4 +1,7 @@
-﻿<div class="habblet-container ">
+﻿@using Helios.Web.Helpers
+@using Helios.Web.Storage.Models.Avatar
+
+<div class="habblet-container ">
     <div class="cb clearfix blue ">
         <div class="bt">
             <div></div>
@@ -53,21 +56,34 @@
                     </div>
                     <div id="avatar-selector-habblet">
                         <ul>
-                            <li class="even">
-                                <img class="avatar-image" src="https://www.habbo.com.br/habbo-imaging/avatar/hd-209-1.lg-285-64.ch-225-85.hr-893-37.ea-1404-62.sh-300-62,s-1.g-1.d-4.h-4.a-0,796aea3c4a20b4cb2ce09d8827f0b006.gif" width="33" height="56">
-                                <div class="avatar-info">
-                                    <div class="avatar-info-container">
-                                        <div class="avatar-name">Bruno.M.F.S.</div>
-                                        <div class="avatar-lastonline">
-                                            Última visita:
-                                            <span title="18/01/11 19:30">2 dias atrás</span>
+                            @{
+                                int i = 0;
+
+                                foreach (var otherAvatar in ViewBag.OtherAvatars)
+                                {
+                                    int avatarId = otherAvatar.Id;
+                                    string figure = otherAvatar.Figure;
+
+                                    <li class="@(i % 2 == 0 ? "even" : "")">
+                                        <img class="avatar-image" src="@Url.AbsolutePath("~/habbo-imaging/avatarimage?figure=" + figure + "&position=3&size=s")" width="32" height="55">
+                                        <div class="avatar-info">
+                                            <div class="avatar-info-container">
+                                                <div class="avatar-name"> @(otherAvatar.Name)</div>
+                                                <div class="avatar-lastonline">
+                                                    Last logged in:
+                                                    <span title="@(((DateTime)otherAvatar.LastOnline).ToHabboDate())">@(((DateTime)otherAvatar.LastOnline).TimeAgo())</span>
+                                                </div>
+                                            </div>
+                                            <div class="avatar-select">
+                                                <a href="/identity/useOrCreateAvatar/@(avatarId)?disableFriendLinking=true"><b>Play</b><i></i></a>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="avatar-select">
-                                        <a href="/identity/useOrCreateAvatar/18014818?disableFriendLinking=true"><b>Jogar</b><i></i></a>
-                                    </div>
-                                </div>
-                            </li>
+                                    </li>
+
+                                    i++;
+
+                                }
+                            }
                             <li>
                                 <div class="more"><a href="/identity/add_avatar">Add or associate more characters to your account</a></div>
                             </li>

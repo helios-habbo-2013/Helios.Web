@@ -76,8 +76,4 @@
     <ProjectReference Include="..\Helios.Web.Storage\Helios.Web.Storage\Helios.Web.Storage.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Util\NewFolder\" />
-  </ItemGroup>
-
 </Project>

@@ -27,21 +27,20 @@ namespace Helios.Web.Controllers
                 return RedirectToAction("Index", "Home");
             }
 
-            if (this.HttpContext.Contains(Constants.CURRENT_USER_ID) && 
+            if (this.HttpContext.Contains(Constants.CURRENT_USER_ID) &&
                 !this.HttpContext.Contains(Constants.CURRENT_AVATAR_ID))
             {
                 return RedirectToAction("Select", "Identity");
             }
 
-            var avatar = _ctx.AvatarData.Where(x => x.UserId == this.HttpContext.Get<int>(Constants.CURRENT_USER_ID))
-                .OrderByDescending(x => x.LastOnline)
-                .FirstOrDefault();
+            if (ViewBag.Avatar is AvatarData avatar)
+            {
+                var otherAvatars = avatar != null ? _ctx.AvatarData.Where(x => x.UserId == this.HttpContext.Get<int>(Constants.CURRENT_USER_ID) && x.Id != avatar.Id)
+                    .OrderByDescending(x => x.LastOnline)
+                    .ToList() : new List<AvatarData>();
 
-            var otherAvatars = avatar != null ? _ctx.AvatarData.Where(x => x.UserId == this.HttpContext.Get<int>(Constants.CURRENT_USER_ID) && x.Id != avatar.Id)
-                .OrderByDescending(x => x.LastOnline)
-                .ToList() : new List<AvatarData>();
-
-            this.ViewBag.OtherAvatars = otherAvatars;
+                this.ViewBag.OtherAvatars = otherAvatars;
+            }
 
             return View("Me_old");
         }

@@ -26,16 +26,16 @@ namespace Helios.Web.Helpers
                 }
                 return "less than a minute ago";
             }
-            if (totalMinutes < 2) return "a minute ago";
             if (totalMinutes < 45) return $"{(int)totalMinutes} minutes ago";
-            if (totalMinutes < 90) return "about an hour ago";
-            if (totalMinutes < 1440) return $"about {(int)(totalMinutes / 60)} hours ago";
-            if (totalMinutes < 2880) return "a day ago";
+            if (totalMinutes < 1440) return $"{(int)(totalMinutes / 60)} hours ago";
             if (totalMinutes < 43200) return $"{(int)(totalMinutes / 1440)} days ago";
-            if (totalMinutes < 86400) return "about a month ago";
             if (totalMinutes < 525600) return $"{(int)(totalMinutes / 43200)} months ago";
-            if (totalMinutes < 1051200) return "about a year ago";
-            return $"over {(int)(totalMinutes / 525600)} years ago";
+            return $"{(int)(totalMinutes / 525600)} years ago";
+        }
+
+        public static string ToHabboDate(this DateTime time)
+        {
+            return time.ToString("MMM dd, yyyy hh:mm:ss tt").Replace("am", "AM").Replace("pm", "PM").Replace(".", "");
         }
 
     }

@@ -8,8 +8,8 @@ using SixLabors.Fonts;
 using static System.Net.Mime.MediaTypeNames;
 using System.Text;
 using System.Text.RegularExpressions;
-using Helios.Web.Util.Extensions;
 using Avatara.Figure;
+using Helios.Web.Helpers;
 
 namespace Helios.Web.Util
 {
