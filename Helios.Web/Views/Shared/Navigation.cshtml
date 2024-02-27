@@ -90,8 +90,7 @@
                     <div id="to-hotel">
                         <a href="@Url.AbsolutePath("~/client")" class="new-button green-button" target="client" onclick="HabboClient.openOrFocus(this); return false;">
                             <b>
-                                Enter Habbo
-                                Hotel
+                                Enter Habbo Hotel
                             </b><i></i>
                         </a>
                     </div>
@@ -123,36 +122,36 @@
 
                     if (headerData.Colour == PageColor.GREEN)
                         link = " id=\"tab-register-now\"";
-                        
+
                     if (headerData.Page == currentHeader)
                         link = " class=\" selected\"";
 
 
                     <li @Html.Raw(link)>
-                    @{
-                        if (headerData.Page == currentHeader)
-                        {
-                            if (headerData.Page == "me")
+                        @{
+                            if (headerData.Page == currentHeader)
                             {
+                                if (headerData.Page == "me")
+                                {
                                     <strong>@username </strong>			<span></span>
-                            }
-                            else
-                            {
+                                }
+                                else
+                                {
                                     <strong>@headerData.Label.Replace("{name}", username) </strong>			<span></span>
-                            }
-                        }
-                        else
-                        {
-                            if (headerData.Page == "me")
-                            {
-                                    <a href="@Url.AbsolutePath("~" + headerData.Link)">@username</a>			<span></span>
+                                }
                             }
                             else
                             {
+                                if (headerData.Page == "me")
+                                {
+                                    <a href="@Url.AbsolutePath("~" + headerData.Link)">@username</a>			<span></span>
+                                }
+                                else
+                                {
                                     <a href="@Url.AbsolutePath("~" + headerData.Link.Replace("{name}", username))">@(headerData.Label.Replace("{name}", username))</a>			<span></span>
+                                }
                             }
                         }
-                    }
                     </li>
                 }
 

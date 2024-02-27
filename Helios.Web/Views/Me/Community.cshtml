@@ -1,6 +1,6 @@
 ﻿@using Helios.Web.Helpers
 @{
-    var widgets = ViewBag.Widgets as List<Tuple<string, string>>;
+    var hablets = ViewBag.Hablets as List<Tuple<string, string>>;
 }
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -28,12 +28,12 @@ var andSoItBegins = (new Date()).getTime();
 <script src="@(this.ViewBag.StaticContentUrl)web-gallery/js/local/com.js" type="text/javascript"></script>
 
 <script type="text/javascript">
-document.habboLoggedIn = false;
-var habboName = "";
+document.habboLoggedIn = true;
+var habboName = "Quackster";
 var ad_keywords = "";
 var habboReqPath = "https://sandbox.classichabbo.com";
-var habboStaticFilePath = "@(this.ViewBag.StaticContentUrl)web-gallery";
-var habboImagerUrl = "@(this.ViewBag.StaticContentUrl)habbo-imaging/";
+var habboStaticFilePath = "https://sandbox.classichabbo.com/web-gallery";
+var habboImagerUrl = "https://sandbox.classichabbo.com/habbo-imaging/";
 var habboPartner = "";
 window.name = "habboMain";
 if (typeof HabboClient != "undefined") { HabboClient.windowName = "client"; }
@@ -62,7 +62,7 @@ if (typeof HabboClient != "undefined") { HabboClient.windowName = "client"; }
 </style>
 <![endif]-->
    </head>
-   <body id="me" class="@(ViewBag.LoggedIn ? "" : " anonymous")">
+   <body id="home" class="@(ViewBag.LoggedIn ? "" : " anonymous")">
     @{
         await Html.RenderPartialAsync("Navigation");
     }
@@ -75,23 +75,23 @@ if (typeof HabboClient != "undefined") { HabboClient.windowName = "client"; }
                 </div>
                 <br /> -->
                 @{
-                    var column1Widgets = widgets.Where(x => x.Item2 == "column1").Select(x => x.Item1).ToList();
+                    var column1Hablets = hablets.Where(x => x.Item2 == "column1").Select(x => x.Item1).ToList();
 
-                    foreach (var widget in column1Widgets) 
+                    foreach (var hablet in column1Hablets) 
                     {
-                        await Html.RenderPartialAsync("Widgets/" + widget);
+                        await Html.RenderPartialAsync("Hablets/" + hablet);
                     }
-                }			
+                }
          </div>
          <div id="column2" class="column">
-                @{
-                    var column2Widgets = widgets.Where(x => x.Item2 == "column2").Select(x => x.Item1).ToList();
+                 @{
+                    var column2Hablets = hablets.Where(x => x.Item2 == "column2").Select(x => x.Item1).ToList();
 
-                    foreach (var widget in column2Widgets) 
+                    foreach (var hablet in column2Hablets) 
                     {
-                       await Html.RenderPartialAsync("Widgets/" + widget);
+                        await Html.RenderPartialAsync("Hablets/" + hablet);
                     }
-                }	
+                }
          </div>
          <script type="text/javascript">
             HabboView.run();

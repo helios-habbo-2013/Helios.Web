@@ -4,6 +4,7 @@ using Helios.Web.Storage;
 using Helios.Web.Storage.Models.Avatar;
 using Helios.Web.Util;
 using Microsoft.AspNetCore.Mvc;
+using Org.BouncyCastle.Tls.Crypto;
 using System.Diagnostics;
 using static System.Net.Mime.MediaTypeNames;
 
@@ -43,21 +44,19 @@ namespace Helios.Web.Controllers
                 this.ViewBag.OtherAvatars = otherAvatars;
             }
 
-            var widgets = new List<Tuple<string, string>>
-            {
-                { Tuple.Create("PersonalInfo", "column1") } ,
-                { Tuple.Create("MyCharacters", "column1") } ,
-                { Tuple.Create("TopStories", "column2") } ,
-            };
+            string page = "me";
 
-            var column1Widgets = widgets.Where(x => x.Item2 == "column1").Select(x => x.Item1).ToList();
+            this.ViewBag.Page = page;
+            this.ViewBag.Header = page;
 
+            var pagesHablets = _ctx.PagesHabletData
+                .Where(x => x.Page == page)
+                .OrderBy(x => x.OrderId)
+                .Select(x => Tuple.Create(x.Widget, x.Column))
+                .ToList();
 
-            this.ViewBag.Widgets = widgets;
+            this.ViewBag.Hablets = pagesHablets;
             this.ViewBag.Entities = _ctx;
-
-            this.ViewBag.Page = "me";
-            this.ViewBag.Header = "me";
 
             return View("Me_old");
         }
@@ -65,13 +64,19 @@ namespace Helios.Web.Controllers
         [Route("/community")]
         public IActionResult Community()
         {
-            var widgets = new List<Tuple<string, string>>();
+            string page = "community";
 
-            this.ViewBag.Widgets = widgets;
+            this.ViewBag.Page = page;
+            this.ViewBag.Header = page;
+
+            var pagesHablets = _ctx.PagesHabletData
+                .Where(x => x.Page == page)
+                .OrderBy(x => x.OrderId)
+                .Select(x => Tuple.Create(x.Widget, x.Column))
+                .ToList();
+
+            this.ViewBag.Hablets = pagesHablets;
             this.ViewBag.Entities = _ctx;
-
-            this.ViewBag.Header = "community";
-            this.ViewBag.Page = "community";
 
             return View();
         }

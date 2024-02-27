@@ -17,23 +17,21 @@ namespace Helios.Web.Controllers
         [Route("/error/{statusCode}")]
         public IActionResult HttpStatusCodeHandler(int? statusCode)
         {
-            /*
-            var widgets = new List<Tuple<string, string>>();
-            */
-
-            var widgets = new List<Tuple<string, string>>
-            {
-                { Tuple.Create("PageNotFound", "column1") } ,
-                { Tuple.Create("WhatWereYouLookingFor", "column2") } ,
-            };
-
-
-            this.ViewBag.Widgets = widgets;
             this.ViewBag.ErrorStatus = statusCode;
-            this.ViewBag.Entities = _ctx;
 
-            this.ViewBag.Header = "error";
-            this.ViewBag.Page = "error";
+            string page = "error";
+
+            this.ViewBag.Page = page;
+            this.ViewBag.Header = page;
+
+            var pagesHablets = _ctx.PagesHabletData
+                .Where(x => x.Page == page)
+                .OrderBy(x => x.OrderId)
+                .Select(x => Tuple.Create(x.Widget, x.Column))
+                .ToList();
+
+            this.ViewBag.Hablets = pagesHablets;
+            this.ViewBag.Entities = _ctx;
 
             return View("NotFound");
         }

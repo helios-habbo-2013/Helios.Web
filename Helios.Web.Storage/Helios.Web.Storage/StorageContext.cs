@@ -44,6 +44,7 @@ namespace Helios.Web.Storage
         public DbSet<SubscriptionData> SubscriptionData { get; set; }
         public DbSet<SubscriptionGiftData> SubscriptionGiftData { get; set; }
         public DbSet<PagesData> PagesData { get; set; }
+        public DbSet<PagesHabletData> PagesHabletData { get; set; }
 
         #endregion
 
@@ -496,6 +497,16 @@ namespace Helios.Web.Storage
                 entity.Property(x => x.MinimumRank).HasColumnName("minimum_rank").HasDefaultValue();
                 entity.Property(x => x.RequiresLogin).HasColumnName("requires_login").HasDefaultValue();
                 entity.Property(x => x.RequiresLogout).HasColumnName("requires_logout").HasDefaultValue();
+            });
+
+            modelBuilder.Entity<PagesHabletData>(entity =>
+            {
+                entity.ToTable("cms_pages_hablets");
+                entity.HasKey(x => new { x.Page, x.OrderId, x.Widget, x.Column });
+                entity.Property(x => x.Page).HasColumnName("Page");
+                entity.Property(x => x.OrderId).HasColumnName("order_id").HasDefaultValue();
+                entity.Property(x => x.Widget).HasColumnName("widget");
+                entity.Property(x => x.Column).HasColumnName("column");
             });
         }
     }

@@ -80,8 +80,4 @@
     <ProjectReference Include="..\Helios.Web.Storage\Helios.Web.Storage\Helios.Web.Storage.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Views\Shared\Widgets\" />
-  </ItemGroup>
-
 </Project>
