@@ -1,60 +1,34 @@
-﻿<div class="habblet-container ">
+﻿@using Helios.Web.Helpers
+@using Helios.Web.Storage
+@{
+    StorageContext ctx = ViewBag.Entities;
+    var randomHabbos = ctx.AvatarData.OrderBy(x => Guid.NewGuid()).Take(18);
+}
+<div class="habblet-container ">
     <div class="cbb clearfix activehomes ">
 
         <h2 class="title">Random Habbos - Click Us!							</h2>
         <div id="homes-habblet-list-container" class="habblet-list-container">
-            <img class="active-habbo-imagemap" src="https://sandbox.classichabbo.com/web-gallery/v2/images/activehomes/transparent_area.gif" width="435px" height="230px" usemap="#habbomap" />
+            <img class="active-habbo-imagemap" src="@(this.ViewBag.StaticContentUrl)web-gallery/v2/images/activehomes/transparent_area.gif" width="435px" height="230px" usemap="#habbomap" />
+            @{
+                int i = 0;
 
-            <div id="active-habbo-data-0" class="active-habbo-data">
-                <div class="active-habbo-data-container">
-                    <div class="active-name offline">Quackster</div>
+                foreach (var randomHabbo in randomHabbos)
+                {
+                    <div id="active-habbo-data-@(i)" class="active-habbo-data">
+                        <div class="active-habbo-data-container">
+                            <div class="active-name offline">@randomHabbo.Name</div>
 
-                    Habbo created on: 2019-12-11                            <p class="motto">Hotel Administrator & Owner</p>
-                </div>
-            </div>
-            <input type="hidden" id="active-habbo-url-0" value="https://sandbox.classichabbo.com/home/Quackster" />
-            <input type="hidden" id="active-habbo-image-0" class="active-habbo-image" value="https://sandbox.classichabbo.com/habbo-imaging/avatarimage?figure=hd-180-1.ch-260-62.lg-270-64.sh-300-64.ha-1008-62.ea-1402-62.ca-1806-73&size=b&direction=4&head_direction=4&crr=0&gesture=sml&frame=1
-" />
-            <div id="active-habbo-data-1" class="active-habbo-data">
-                <div class="active-habbo-data-container">
-                    <div class="active-name offline">ElPepesote</div>
+                            @(ViewBag.SiteName) created on: @randomHabbo.CreatedDate.ToShortDateString()                            <p class="motto">@randomHabbo.Motto</p>
+                        </div>
+                    </div>
+                    <input type="hidden" id="active-habbo-url-@(i)" value="@Url.AbsolutePath("~/home/" + randomHabbo.Name)" />
+                    <input type="hidden" id="active-habbo-image-@(i)" class="active-habbo-image" value="@Url.AbsolutePath("~/habbo-imaging/avatarimage?figure=" + randomHabbo.Figure + "&size=b&direction=4&head_direction=4&crr=0&gesture=sml&frame=1")" />
 
-                    Habbo created on: 2024-02-23                            <p class="motto"></p>
-                </div>
-            </div>
-            <input type="hidden" id="active-habbo-url-1" value="https://sandbox.classichabbo.com/home/ElPepesote" />
-            <input type="hidden" id="active-habbo-image-1" class="active-habbo-image" value="https://sandbox.classichabbo.com/habbo-imaging/avatarimage?figure=hr-135-1316.hd-209-6.ch-260-90.lg-285-77.sh-295-84.ea-1401-65&size=b&direction=4&head_direction=4&crr=0&gesture=sml&frame=1
-" />
-            <div id="active-habbo-data-2" class="active-habbo-data">
-                <div class="active-habbo-data-container">
-                    <div class="active-name offline">Joren</div>
+                    i++;
+                }
+            }
 
-                    Habbo created on: 2022-01-13                            <p class="motto"></p>
-                </div>
-            </div>
-            <input type="hidden" id="active-habbo-url-2" value="https://sandbox.classichabbo.com/home/Joren" />
-            <input type="hidden" id="active-habbo-image-2" class="active-habbo-image" value="https://sandbox.classichabbo.com/habbo-imaging/avatarimage?figure=ca-1813-62.ea-1406-62.lg-281-95.fa-1204-62.hd-195-2.ch-804-93.he-1601-62.hr-828-31&size=b&direction=4&head_direction=4&crr=0&gesture=sml&frame=1
-" />
-            <div id="active-habbo-data-3" class="active-habbo-data">
-                <div class="active-habbo-data-container">
-                    <div class="active-name offline">Alex</div>
-
-                    Habbo created on: 2022-04-25                            <p class="motto"></p>
-                </div>
-            </div>
-            <input type="hidden" id="active-habbo-url-3" value="https://sandbox.classichabbo.com/home/Alex" />
-            <input type="hidden" id="active-habbo-image-3" class="active-habbo-image" value="https://sandbox.classichabbo.com/habbo-imaging/avatarimage?figure=hr-892-33.hd-600-26.ch-650-80.lg-695-79.sh-907-87&size=b&direction=4&head_direction=4&crr=0&gesture=sml&frame=1
-" />
-            <div id="active-habbo-data-4" class="active-habbo-data">
-                <div class="active-habbo-data-container">
-                    <div class="active-name online">Paswrd</div>
-
-                    Habbo created on: 2020-06-05                            <p class="motto">Hiya. </p>
-                </div>
-            </div>
-            <input type="hidden" id="active-habbo-url-4" value="https://sandbox.classichabbo.com/home/Paswrd" />
-            <input type="hidden" id="active-habbo-image-4" class="active-habbo-image" value="https://sandbox.classichabbo.com/habbo-imaging/avatarimage?figure=hd-180-9.sh-300-110.lg-281-64.hr-115-61.ha-1002-72.ch-215-92.ca-1813-62&size=b&direction=4&head_direction=4&crr=0&gesture=sml&frame=1
-" />
             <div id="placeholder-container">
                 <div id="active-habbo-image-placeholder-0" class="active-habbo-image-placeholder"></div>
                 <div id="active-habbo-image-placeholder-1" class="active-habbo-image-placeholder"></div>
