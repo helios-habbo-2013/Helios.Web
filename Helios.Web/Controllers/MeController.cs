@@ -49,7 +49,7 @@ namespace Helios.Web.Controllers
             this.ViewBag.Page = page;
             this.ViewBag.Header = page;
 
-            var pagesHablets = _ctx.PagesHabletData
+            var pagesHablets = _ctx.PagesHabbletData
                 .Where(x => x.Page == page)
                 .OrderBy(x => x.OrderId)
                 .Select(x => Tuple.Create(x.Widget, x.Column))
@@ -69,7 +69,7 @@ namespace Helios.Web.Controllers
             this.ViewBag.Page = page;
             this.ViewBag.Header = page;
 
-            var pagesHablets = _ctx.PagesHabletData
+            var pagesHablets = _ctx.PagesHabbletData
                 .Where(x => x.Page == page)
                 .OrderBy(x => x.OrderId)
                 .Select(x => Tuple.Create(x.Widget, x.Column))

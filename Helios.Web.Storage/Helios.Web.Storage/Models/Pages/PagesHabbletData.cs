@@ -5,7 +5,7 @@ using Helios.Web.Storage.Models.Avatar;
 
 namespace Helios.Web.Storage.Models.User
 {
-    public class PagesHabletData
+    public class PagesHabbletData
     {
         public virtual string Page { get; set; }
         public virtual int OrderId { get; set; }

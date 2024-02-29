@@ -133,7 +133,7 @@
                             {
                                 if (headerData.Page == "me")
                                 {
-                                    <strong>@username </strong>			<span></span>
+                                    <strong>@username ( <img src="@(this.ViewBag.StaticContentUrl)web-gallery/v2/images/rpx/icon_habbo_small.png" style="vertical-align: text-bottom" title="habbo" /> )</strong>			<span></span>
                                 }
                                 else
                                 {
@@ -144,7 +144,7 @@
                             {
                                 if (headerData.Page == "me")
                                 {
-                                    <a href="@Url.AbsolutePath("~" + headerData.Link)">@username</a>			<span></span>
+                                    <a href="@Url.AbsolutePath("~" + headerData.Link)">@username ( <img src="@(this.ViewBag.StaticContentUrl)web-gallery/v2/images/rpx/icon_habbo_small.png" style="vertical-align: text-bottom" title="habbo" /> )</a>			<span></span>
                                 }
                                 else
                                 {
