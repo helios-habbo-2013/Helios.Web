@@ -4,6 +4,7 @@ using Helios.Web.Util;
 using Microsoft.EntityFrameworkCore;
 using Helios.Web.Storage;
 using Helios.Game;
+using Microsoft.Extensions.FileProviders;
 
 namespace Helios.Web
 {
@@ -39,10 +40,15 @@ namespace Helios.Web
             {
                 mvcBuilder.AddRazorRuntimeCompilation();
             }
+            else
+            {
+                builder.Services.AddControllersWithViews()
+                    .AddRazorRuntimeCompilation();
+            }
 
-            #endregion
+			#endregion
 
-            builder.Services.AddScoped<ValueManager>();
+			builder.Services.AddScoped<ValueManager>();
 
             // View bag filter used for global variables
             builder.Services.AddMvc(options =>
