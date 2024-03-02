@@ -9,17 +9,15 @@ using Helios.Web.Storage.Models.Navigator;
 using Helios.Web.Storage.Models.Room;
 using Helios.Web.Storage.Models.Subscription;
 using Helios.Web.Storage.Models.User;
+using Microsoft.Extensions.Configuration;
 
 namespace Helios.Web.Storage
 {
     public class StorageContext : DbContext
     {
+		#region Properties
 
-        #region Fields
-
-        private static readonly StorageContext m_SessionFactoryBuilder = new StorageContext();
-
-        public DbSet<UserData> UserData { get; set; }
+		public DbSet<UserData> UserData { get; set; }
         public DbSet<AvatarData> AvatarData { get; set; }
         public DbSet<AuthenicationTicketData> AuthenicationTicketData { get; set; }
         public DbSet<SettingsData> SettingsData { get; set; }
@@ -46,24 +44,22 @@ namespace Helios.Web.Storage
         public DbSet<PagesData> PagesData { get; set; }
         public DbSet<PagesHabbletData> PagesHabbletData { get; set; }
 
-        #endregion
+		#endregion
 
-        #region Properties
+		#region Constructors
 
-        public static StorageContext Instance
+		public StorageContext(DbContextOptions<StorageContext> options) : base(options)
         {
-            get { return m_SessionFactoryBuilder; }
-        }
 
-        #endregion
+		}
 
-        #region Public methods
+		#endregion
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+		#region Public methods
+
+		protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder
-                //.UseLazyLoadingProxies()
-                .UseMySQL("server=localhost;database=helios;user=root;password=123");
+
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

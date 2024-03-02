@@ -4,101 +4,58 @@ using System.Linq;
 
 namespace Helios.Web.Storage.Access
 {
-    public class CatalogueDao
+    public static class CatalogueDao
     {
         /// <summary>
         /// Get page data by page id
         /// </summary>
-        public static CataloguePageData GetPageData(int id)
+        public static CataloguePageData GetPageData(this StorageContext context, int id)
         {
-            /*using (var session = SessionFactoryBuilder.Instance.SessionFactory.OpenSession())
-            {
-                return session.QueryOver<CataloguePageData>().Where(x => x.Id == id).Take(1).SingleOrDefault();
-            }*/
-
-            using (var context = new StorageContext())
-            {
-                return context.CataloguePageData.SingleOrDefault(x => x.Id == id);
-            }
+            return context.CataloguePageData.SingleOrDefault(x => x.Id == id);
         }
 
         /// <summary>
         /// Get all page data
         /// </summary>
         /// <returns></returns>
-        public static List<CataloguePageData> GetPages()
+        public static List<CataloguePageData> GetPages(this StorageContext context)
         {
-            /*using (var session = SessionFactoryBuilder.Instance.SessionFactory.OpenSession())
-            {
-                return session.QueryOver<CataloguePageData>().List() as List<CataloguePageData>;
-            }*/
-
-            using (var context = new StorageContext())
-            {
-                return context.CataloguePageData.ToList();
-            }
+            return context.CataloguePageData.ToList();
         }
 
         /// <summary>
         /// Get all catalogue item data
         /// </summary>
         /// <returns></returns>
-        public static List<CatalogueItemData> GetItems()
+        public static List<CatalogueItemData> GetItems(this StorageContext context)
         {
-            /*using (var session = SessionFactoryBuilder.Instance.SessionFactory.OpenSession())
-            {
-                return session.QueryOver<CatalogueItemData>().List() as List<CatalogueItemData>;
-            }*/
-
-            using (var context = new StorageContext())
-            {
-                return context.CatalogueItemData.ToList();
-            }
+            return context.CatalogueItemData.ToList();
         }
 
         /// <summary>
         /// Get all item packages
         /// </summary>
         /// <returns></returns>
-        public static List<CataloguePackageData> GetPackages()
+        public static List<CataloguePackageData> GetPackages(this StorageContext context)
         {
-            /*using (var session = SessionFactoryBuilder.Instance.SessionFactory.OpenSession())
-            {
-                return session.QueryOver<CataloguePackageData>().List() as List<CataloguePackageData>;
-            }*/
-
-            using (var context = new StorageContext())
-            {
-                return context.CataloguePackageData.ToList();
-            }
+            return context.CataloguePackageData.ToList();
         }
 
         /// <summary>
         /// Get all discount data
         /// </summary>
         /// <returns></returns>
-        public static List<CatalogueDiscountData> GetDiscounts()
+        public static List<CatalogueDiscountData> GetDiscounts(this StorageContext context)
         {
-            using (var context = new StorageContext())
-            {
-                return context.CatalogueDiscountData.ToList();
-            }
+            return context.CatalogueDiscountData.ToList();
         }
 
         /// <summary>
         /// Get subscription data by page id
         /// </summary>
-        public static List<CatalogueSubscriptionData> GetSubscriptionData()
+        public static List<CatalogueSubscriptionData> GetSubscriptionData(this StorageContext context)
         {
-            /*using (var session = SessionFactoryBuilder.Instance.SessionFactory.OpenSession())
-            {
-                return session.QueryOver<CatalogueSubscriptionData>().List() as List<CatalogueSubscriptionData>;
-            }*/
-
-            using (var context = new StorageContext())
-            {
-                return context.CatalogueSubscriptionData.ToList();
-            }
+            return context.CatalogueSubscriptionData.ToList();
         }
     }
 }

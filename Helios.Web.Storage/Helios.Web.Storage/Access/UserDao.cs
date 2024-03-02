@@ -4,75 +4,60 @@ using System.Linq;
 
 namespace Helios.Web.Storage.Access
 {
-    public class UserDao
+    public static class UserDao
     {
         /// <summary>
         /// Save avatar data
         /// </summary>
         /// <param name="userData">the avatar data to save</param>
-        public static void Update(UserData userData)
+        public static void Update(this StorageContext context, UserData userData)
         {
-            using (var context = new StorageContext())
-            {
                 context.Update(userData);
 
                 context.SaveChanges();
-            }
         }
 
         /// <summary>
         /// Get avatar by username
         /// </summary>
-        public static UserData GetByName(string email)
+        public static UserData GetByName(this StorageContext context, string email)
         {
-            using (var context = new StorageContext())
-            {
                 return context.UserData
                     .Include(x => x.Avatars)
                     .FirstOrDefault(x => x.Email == email);
-            }
         }
 
         /// <summary>
         /// Get avatar by id
         /// </summary>
-        public static UserData GetById(int id)
+        public static UserData GetById(this StorageContext context, int id)
         {
-            using (var context = new StorageContext())
-            {
                 return context.UserData
                     .Include(x => x.Avatars)
                     .FirstOrDefault(x => x.Id == id);
-            }
         }
 
         /// <summary>
         /// Get avatar name by id
         /// </summary>
-        public static string GetEmailById(int id)
+        public static string GetEmailById(this StorageContext context, int id)
         {
-            using (var context = new StorageContext())
-            {
                 return context.UserData
                     .Include(x => x.Avatars)
                     .Where(x => x.Id == id)
                     .Select(x => x.Email)
                     .SingleOrDefault();
-            }
         }
 
         /// <summary>
         /// Get avatar id by name
         /// </summary>
-        public static int GetIdByEmail(string email)
+        public static int GetIdByEmail(this StorageContext context, string email)
         {
-            using (var context = new StorageContext())
-            {
                 return context.UserData
                     .Include(x => x.Avatars)
                     .Where(x => x.Email == email)
                     .Select(x => x.Id).SingleOrDefault();
-            }
         }
     }
 }

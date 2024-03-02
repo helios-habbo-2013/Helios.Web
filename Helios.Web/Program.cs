@@ -53,7 +53,7 @@ namespace Helios.Web
             // View bag filter used for global variables
             builder.Services.AddMvc(options =>
             {
-                options.Filters.Add(typeof(ViewBagFilter));
+                options.Filters.Add(typeof(GlobalControllerFilter));
             });
 
             var app = builder.Build();

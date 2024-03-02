@@ -6,12 +6,12 @@ using Helios.Web.Storage;
 
 namespace Helios.Game
 {
-    public class ViewBagFilter : IActionFilter
+    public class GlobalControllerFilter : IActionFilter
     {
         private readonly ValueManager _valueManager;
         private readonly StorageContext _ctx;
 
-        public ViewBagFilter(ValueManager valueManager, StorageContext ctx)
+        public GlobalControllerFilter(ValueManager valueManager, StorageContext ctx)
         {
             this._valueManager = valueManager;
             this._ctx = ctx;
@@ -45,11 +45,19 @@ namespace Helios.Game
                     controller.ViewBag.Avatar = this._ctx.AvatarData.FirstOrDefault(x => x.Id == context.HttpContext.Get<int>(Constants.CURRENT_AVATAR_ID));
                     controller.ViewBag.LoggedIn = true;
                 }
+                else
+                {
+                    controller.ViewBag.Avatar = null;
+                }
 
                 if (context.HttpContext.Contains(Constants.CURRENT_USER_ID))
                 {
                     controller.ViewBag.User = this._ctx.UserData.FirstOrDefault(x => x.Id == context.HttpContext.Get<int>(Constants.CURRENT_USER_ID));
                 }
+                else
+                {
+                    controller.ViewBag.User = null;
+				}
             }
         }
 

@@ -4,17 +4,15 @@ using System.Linq;
 
 namespace Helios.Web.Storage.Access
 {
-    public class TagDao
+    public static class TagDao
     {
         /// <summary>
         /// Delete tags for room
         /// </summary>
-        public static void DeleteRoomTags(int roomId)
+        public static void DeleteRoomTags(this StorageContext context, int roomId)
         {
-            using (var context = new StorageContext())
-            {
                 context.RemoveRange(context.TagData.Where(x => x.RoomId == roomId).ToList());
-            }
+
             //using (var session = SessionFactoryBuilder.Instance.SessionFactory.OpenSession())
             //{
             //    session.Query<TagData>().Where(x => x.RoomId == roomId).Delete();
@@ -24,7 +22,7 @@ namespace Helios.Web.Storage.Access
         /// <summary>
         /// Get popular tags assigned to a room.
         /// </summary>
-        public static List<PopularTag> GetPopularTags(int tagLimit = 50)
+        public static List<PopularTag> GetPopularTags(this StorageContext context, int tagLimit = 50)
         {
             //using (var session = SessionFactoryBuilder.Instance.SessionFactory.OpenSession())
             //{
@@ -43,15 +41,11 @@ namespace Helios.Web.Storage.Access
             //        .List<PopularTag>() as List<PopularTag>;
             //}
 
-            using (var context = new StorageContext())
-            {
                 return context.TagData.Where(x => x.RoomId > 0)
                     .GroupBy(x => x.Text)
                     .OrderByDescending(x => x.Count())
                     .Select(x => new PopularTag { Tag = x.Key, Quantity = x.Count() })
                     .ToList();
-
-            }
 
         }
 
@@ -59,13 +53,10 @@ namespace Helios.Web.Storage.Access
         /// Save the room tags
         /// </summary>
         /// <returns></returns>
-        public static void SaveTag(TagData tagData)
+        public static void SaveTag(this StorageContext context, TagData tagData)
         {
-            using (var context = new StorageContext())
-            {
                 context.TagData.Add(tagData);
                 context.SaveChanges();
-            }
 
             //using (var session = SessionFactoryBuilder.Instance.SessionFactory.OpenSession())
             //{

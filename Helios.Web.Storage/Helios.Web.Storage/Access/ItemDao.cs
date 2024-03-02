@@ -5,128 +5,100 @@ using System.Linq;
 
 namespace Helios.Web.Storage.Access
 {
-    public class ItemDao
+    public static class ItemDao
     {
         /// <summary>
         /// Get list of all definition data
         /// </summary>
-        public static List<ItemDefinitionData> GetDefinitions()
+        public static List<ItemDefinitionData> GetDefinitions(this StorageContext context)
         {
-            using (var context = new StorageContext())
-            {
                 return context.ItemDefinitionData.ToList();
-            }
-
         }
 
         /// <summary>
         /// Get list of all item data for user inventory
         /// </summary>
-        public static List<ItemData> GetInventoryItems(int avatarId)
+        public static List<ItemData> GetInventoryItems(this StorageContext context, int avatarId)
         {
-            using (var context = new StorageContext())
-            {
                 return context.ItemData
                     .Include(x => x.OwnerData)
                     .Where(x => x.OwnerId == avatarId && x.RoomId == null).ToList();
-            }
         }
 
         /// <summary>
         /// Get room items
         /// </summary>
-        public static List<ItemData> GetRoomItems(int roomId)
+        public static List<ItemData> GetRoomItems(this StorageContext context, int roomId)
         {
-            using (var context = new StorageContext())
-            {
-                return context.ItemData
-                    .Include(x => x.OwnerData)
-                    .Where(x => x.RoomId == roomId)
-                    .ToList();
-            }
+            return context.ItemData
+                .Include(x => x.OwnerData)
+                .Where(x => x.RoomId == roomId)
+                .ToList();
         }
 
         /// <summary>
         /// Get single item
         /// </summary>
         /// <returns>the item</returns>
-        public static ItemData GetItem(string itemId)
+        public static ItemData GetItem(this StorageContext context, string itemId)
         {
-            using (var context = new StorageContext())
-            {
                 return context.ItemData
                     .Include(x => x.OwnerData)
                     .SingleOrDefault(x => x.Id == itemId);
-            }
         }
 
         /// <summary>
         /// Save item definition
         /// </summary>
         /// <param name="itemDefinition"></param>
-        public static void SaveDefinition(ItemDefinitionData itemDefinition)
+        public static void SaveDefinition(this StorageContext context, ItemDefinitionData itemDefinition)
         {
-            using (var context = new StorageContext())
-            {
                 context.Update(itemDefinition);
                 context.SaveChanges();
-            }
         }
 
         /// <summary>
         /// Save item data
         /// </summary>
-        public static void SaveItem(ItemData item)
+        public static void SaveItem(this StorageContext context, ItemData item)
         {
-            using (var context = new StorageContext())
-            {
                 context.Update(item);
                 context.SaveChanges();
                 context.Entry(item).Reference(x => x.OwnerData).Load();
-            }
         }
 
 
         /// <summary>
         /// Create items and refresh it with their filled in database ID's
         /// </summary>
-        public static void CreateItems(List<ItemData> items)
+        public static void CreateItems(this StorageContext context, List<ItemData> items)
         {
-            using (var context = new StorageContext())
-            {
-                context.AddRange(items);
-                context.SaveChanges();
 
-                foreach (var item in items)
-                    context.Entry(item).Reference(x => x.OwnerData).Load();
+            context.AddRange(items);
+            context.SaveChanges();
 
-            }
+            foreach (var item in items)
+                context.Entry(item).Reference(x => x.OwnerData).Load();
         }
 
         /// <summary>
         /// Create item and refresh it with their filled in database ID's
         /// </summary>
-        public static void CreateItem(ItemData item)
+        public static void CreateItem(this StorageContext context, ItemData item)
         {
-            using (var context = new StorageContext())
-            {
                 context.Add(item);
                 context.SaveChanges();
                 context.Entry(item).Reference(x => x.OwnerData).Load();
-            }
         }
 
         /// <summary>
         /// Delete item
         /// </summary>
         /// <param name="item"></param>
-        public static void DeleteItem(ItemData item)
+        public static void DeleteItem(this StorageContext context, ItemData item)
         {
-            using (var context = new StorageContext())
-            {
-                context.ItemData.Remove(item);
-                context.SaveChanges();
-            }
+            context.ItemData.Remove(item);
+            context.SaveChanges();
         }
     }
 }

@@ -3,29 +3,26 @@ using Helios.Web.Storage.Models.Avatar;
 
 namespace Helios.Web.Storage.Access
 {
-    public class UserSettingsDao
+    public static class UserSettingsDao
     {
         /// <summary>
         /// Create avatar statistics
         /// </summary>
-        public static void CreateOrUpdate(out AvatarSettingsData settingsData, int avatarId)
+        public static void CreateOrUpdate(this StorageContext context, out AvatarSettingsData settingsData, int avatarId)
         {
             settingsData = new AvatarSettingsData
             {
                 AvatarId = avatarId
             };
 
-            using (var context = new StorageContext())
+            if (!context.AvatarSettingsData.Any(x => x.AvatarId == avatarId))
             {
-                if (!context.AvatarSettingsData.Any(x => x.AvatarId == avatarId))
-                {
-                    context.AvatarSettingsData.Add(settingsData);
-                    context.SaveChanges();
-                }
-                else
-                {
-                    settingsData = context.AvatarSettingsData.SingleOrDefault(x => x.AvatarId == avatarId);
-                }
+                context.AvatarSettingsData.Add(settingsData);
+                context.SaveChanges();
+            }
+            else
+            {
+                settingsData = context.AvatarSettingsData.SingleOrDefault(x => x.AvatarId == avatarId);
             }
 
             //using (var session = SessionFactoryBuilder.Instance.SessionFactory.OpenSession())
@@ -57,13 +54,10 @@ namespace Helios.Web.Storage.Access
         /// <summary>
         /// Save avatar statistics
         /// </summary>
-        public static void Update(AvatarSettingsData settingsData)
+        public static void Update(this StorageContext context, AvatarSettingsData settingsData)
         {
-            using (var context = new StorageContext())
-            {
                 context.AvatarSettingsData.Update(settingsData);
                 context.SaveChanges();
-            }
         }
     }
 }

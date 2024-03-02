@@ -398,3 +398,4 @@ FodyWeavers.xsd
 *.sln.iml
 Helios.Web/tools/words.txt
 Helios.Web/.config/dotnet-tools.json
+Helios.Web/appsettings.Development.json

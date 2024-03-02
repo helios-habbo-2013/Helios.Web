@@ -5,29 +5,26 @@ using System.Linq;
 
 namespace Helios.Web.Storage.Access
 {
-    public class AvatarDao
+    public static class AvatarDao
     {
         /// <summary>
         /// Login user with SSO ticket
         /// </summary>
-        public static bool Login(out AvatarData loginData, string ssoTicket)
+        public static bool Login(this StorageContext context, out AvatarData loginData, string ssoTicket)
         {
             AvatarData avatarData = null;
 
-            using (var context = new StorageContext())
-            {
-                var row = context.AuthenicationTicketData
-                    .Include(x => x.AvatarData)
-                        .ThenInclude(x => x.User)
-                    .Where(x =>
-                       x.AvatarData != null && x.Ticket == ssoTicket &&
-                       (x.ExpireDate == null || x.ExpireDate > DateTime.Now))
-                   .Take(1)
-                   .SingleOrDefault();
+            var row = context.AuthenicationTicketData
+                .Include(x => x.AvatarData)
+                    .ThenInclude(x => x.User)
+                .Where(x =>
+                   x.AvatarData != null && x.Ticket == ssoTicket &&
+                   (x.ExpireDate == null || x.ExpireDate > DateTime.Now))
+               .Take(1)
+               .SingleOrDefault();
 
-                if (row != null)
-                    avatarData = row.AvatarData;
-            }
+            if (row != null)
+                avatarData = row.AvatarData;
 
             loginData = avatarData;
             return false;
@@ -57,71 +54,56 @@ namespace Helios.Web.Storage.Access
         /// Save avatar data
         /// </summary>
         /// <param name="avatarData">the avatar data to save</param>
-        public static void Update(AvatarData avatarData)
+        public static void Update(this StorageContext context, AvatarData avatarData)
         {
-            using (var context = new StorageContext())
-            {
-                context.Attach(avatarData)
-                    .Property(x => x.Credits)
-                    .IsModified = false; // don't override credits amount
+            context.Attach(avatarData)
+                .Property(x => x.Credits)
+                .IsModified = false; // don't override credits amount
 
-                // context.Attach(avatarData).Property(x => x.User).IsModified = false;
+            // context.Attach(avatarData).Property(x => x.User).IsModified = false;
 
-                context.Update(avatarData);
-                context.SaveChanges();
-            }
+            context.Update(avatarData);
+            context.SaveChanges();
         }
 
         /// <summary>
         /// Get avatar by username
         /// </summary>
-        public static AvatarData GetByName(string name)
+        public static AvatarData GetByName(this StorageContext context, string name)
         {
-            using (var context = new StorageContext())
-            {
-                return context.AvatarData
-                    .Include(x => x.User)
-                    .FirstOrDefault(x => x.Name == name);
-            }
+            return context.AvatarData
+                .Include(x => x.User)
+                .FirstOrDefault(x => x.Name == name);
         }
 
         /// <summary>
         /// Get avatar by id
         /// </summary>
-        public static AvatarData GetById(int id)
+        public static AvatarData GetById(this StorageContext context, int id)
         {
-            using (var context = new StorageContext())
-            {
-                return context.AvatarData
-                    .Include(x => x.User)
-                    .FirstOrDefault(x => x.Id == id);
-            }
+            return context.AvatarData
+                .Include(x => x.User)
+                .FirstOrDefault(x => x.Id == id);
         }
 
         /// <summary>
         /// Get avatar name by id
         /// </summary>
-        public static string GetNameById(int id)
+        public static string GetNameById(this StorageContext context, int id)
         {
-            using (var context = new StorageContext())
-            {
-                return context.AvatarData
-                    .Include(x => x.User)
-                    .Where(x => x.Id == id).Select(x => x.Name).SingleOrDefault();
-            }
+            return context.AvatarData
+                .Include(x => x.User)
+                .Where(x => x.Id == id).Select(x => x.Name).SingleOrDefault();
         }
 
         /// <summary>
         /// Get avatar id by name
         /// </summary>
-        public static int GetIdByName(string name)
+        public static int GetIdByName(this StorageContext context, string name)
         {
-            using (var context = new StorageContext())
-            {
-                return context.AvatarData
-                    .Include(x => x.User)
-                    .Where(x => x.Name == name).Select(x => x.Id).SingleOrDefault();
-            }
+            return context.AvatarData
+                .Include(x => x.User)
+                .Where(x => x.Name == name).Select(x => x.Id).SingleOrDefault();
         }
     }
 }
