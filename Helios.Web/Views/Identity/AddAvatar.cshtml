@@ -22,22 +22,9 @@
     <script src="http://habbo.com/js/local/com.js" type="text/javascript"></script>
 
 
-    <script type="text/javascript">
-        document.habboLoggedIn = true;
-        var habboName = '';
-        var habboId = 0;
-        var facebookUser = false;
-        var habboReqPath = "";
-        var habboStaticFilePath = "@(this.ViewBag.StaticContentUrl)web-gallery";
-        var habboImagerUrl = "@(this.ViewBag.StaticContentUrl)Public/Themes/{$skin->name}/webbuild/habbo-imaging/";
-        var habboPartner = "";
-        var habboDefaultClientPopupUrl = "@(this.ViewBag.StaticContentUrl)client";
-        window.name = "habboMain";
-        if (typeof HabboClient != "undefined") {
-            HabboClient.windowName = "53f4a3906a95d214e8d5e9cce709556196f5fa53";
-            HabboClient.maximizeWindow = true;
-        }
-    </script>
+    @{
+        await Html.RenderPartialAsync("Javascript");
+    }
 
     <link rel="stylesheet" href="@(this.ViewBag.StaticContentUrl)web-gallery/static/styles/common.css" type="text/css" />
     <link rel="stylesheet" href="@(this.ViewBag.StaticContentUrl)web-gallery/static/styles/avatarselection.css" type="text/css" />

@@ -27,23 +27,10 @@ var andSoItBegins = (new Date()).getTime();
 var ad_keywords = "";
 var ad_key_value = "";
 </script>
-<script type="text/javascript">
-document.habboLoggedIn = false;
-var habboName = null;
-var habboId = null;
-var habboReqPath = "";
-var habboStaticFilePath = "@(this.ViewBag.StaticContentUrl)web-gallery";
-var habboImagerUrl = "http://www.habbo.com/habbo-imaging/";
-var habboPartner = "WT";
-var habboDefaultClientPopupUrl = "http://www.habbo.com/client";
-window.name = "habboMain";
-if (typeof HabboClient != "undefined") {
-    HabboClient.windowName = "19668a080327bba3112d3e127b60e88b755b0f78";
-    HabboClient.maximizeWindow = true;
+
+@{
+    await Html.RenderPartialAsync("Javascript");
 }
-
-
-</script>
 
 <meta name="SKYPE_TOOLBAR" content="SKYPE_TOOLBAR_PARSER_COMPATIBLE" />
 

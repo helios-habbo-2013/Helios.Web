@@ -10,6 +10,8 @@ using Helios.Web.Storage.Models.Room;
 using Helios.Web.Storage.Models.Subscription;
 using Helios.Web.Storage.Models.User;
 using Microsoft.Extensions.Configuration;
+using System.Text.RegularExpressions;
+using Helios.Web.Storage.Models.Group;
 
 namespace Helios.Web.Storage
 {
@@ -43,12 +45,14 @@ namespace Helios.Web.Storage
         public DbSet<SubscriptionGiftData> SubscriptionGiftData { get; set; }
         public DbSet<PagesData> PagesData { get; set; }
         public DbSet<PagesHabbletData> PagesHabbletData { get; set; }
+        public DbSet<GroupData> Groups { get; set; }
+        public DbSet<GroupMembershipData> GroupMemberships { get; set; }
 
-		#endregion
+        #endregion
 
-		#region Constructors
+        #region Constructors
 
-		public StorageContext(DbContextOptions<StorageContext> options) : base(options)
+        public StorageContext(DbContextOptions<StorageContext> options) : base(options)
         {
 
 		}
@@ -503,6 +507,42 @@ namespace Helios.Web.Storage
                 entity.Property(x => x.OrderId).HasColumnName("order_id").HasDefaultValue();
                 entity.Property(x => x.Widget).HasColumnName("widget");
                 entity.Property(x => x.Column).HasColumnName("column");
+            });
+
+            modelBuilder.Entity<GroupData>(entity =>
+            {
+                entity.ToTable("group");
+                entity.HasKey(e => e.Id);
+                entity.Property(e => e.Id).HasColumnName("id").IsRequired();
+                entity.Property(e => e.Name).HasColumnName("name").IsRequired().HasMaxLength(45);
+                entity.Property(e => e.Description).HasColumnName("description").IsRequired().HasColumnType("mediumtext");
+                entity.Property(e => e.OwnerId).HasColumnName("owner_id").IsRequired();
+                entity.Property(e => e.RoomId).HasColumnName("room_id").IsRequired().HasDefaultValue(0);
+                entity.Property(e => e.Badge).HasColumnName("badge").IsRequired().HasColumnType("mediumtext").HasDefaultValue("b0503Xs09114s05013s05015");
+                entity.Property(e => e.Recommended).HasColumnName("recommended").IsRequired().HasDefaultValue(0);
+                entity.Property(e => e.Background).HasColumnName("background").IsRequired().HasMaxLength(255).HasDefaultValue("bg_colour_08");
+                entity.Property(e => e.Views).HasColumnName("views").IsRequired().HasDefaultValue(0);
+                entity.Property(e => e.Topics).HasColumnName("topics").IsRequired().HasDefaultValue(0);
+                entity.Property(e => e.GroupType).HasColumnName("group_type").IsRequired().HasColumnType("tinyint").HasDefaultValue(0);
+                entity.Property(e => e.ForumType).HasColumnName("forum_type").IsRequired().HasColumnType("tinyint").HasDefaultValue(0);
+                entity.Property(e => e.ForumPermissionType).HasColumnName("forum_permission_type").IsRequired().HasColumnType("tinyint").HasDefaultValue(0);
+                entity.Property(e => e.Alias).HasColumnName("alias").HasColumnType("varchar(45)");
+                entity.Property(e => e.CreatedAt).HasColumnName("created_at").IsRequired().HasDefaultValueSql("current_timestamp()");
+
+                entity.HasMany(g => g.GroupMemberships)
+                    .WithOne(m => m.Group)
+                    .HasForeignKey(m => m.GroupId);
+            });
+
+            modelBuilder.Entity<GroupMembershipData>(entity =>
+            {
+                entity.ToTable("group_memberships");
+                entity.HasKey(e => new { e.UserId, e.GroupId });
+                entity.Property(e => e.UserId).HasColumnName("user_id").IsRequired();
+                entity.Property(e => e.GroupId).HasColumnName("group_id").IsRequired();
+                entity.Property(e => e.MemberRank).HasColumnName("member_rank").IsRequired().HasColumnType("enum('3','2','1')").HasDefaultValue("1");
+                entity.Property(e => e.IsPending).HasColumnName("is_pending").IsRequired().HasDefaultValue(0);
+                entity.Property(e => e.CreatedAt).HasColumnName("created_at").IsRequired().HasDefaultValueSql("current_timestamp()");
             });
         }
     }

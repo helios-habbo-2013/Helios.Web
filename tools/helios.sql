@@ -14,7 +14,7 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
--- Dumping structure for table helios.article_categories
+-- Dumping structure for table kurkku.article_categories
 CREATE TABLE IF NOT EXISTS `article_categories` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `label` varchar(50) NOT NULL,
@@ -22,8 +22,8 @@ CREATE TABLE IF NOT EXISTS `article_categories` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table helios.article_categories: ~11 rows (approximately)
-REPLACE INTO `article_categories` (`id`, `label`, `category_index`) VALUES
+-- Dumping data for table kurkku.article_categories: ~11 rows (approximately)
+INSERT INTO `article_categories` (`id`, `label`, `category_index`) VALUES
 	(1, 'Fansites', 'fansites'),
 	(2, 'Events', 'events'),
 	(3, 'Competitions & Polls', 'competitions'),
@@ -36,19 +36,19 @@ REPLACE INTO `article_categories` (`id`, `label`, `category_index`) VALUES
 	(10, 'Sponsored', 'sponsored'),
 	(11, 'Other', 'other');
 
--- Dumping structure for table helios.authentication_ticket
+-- Dumping structure for table kurkku.authentication_ticket
 CREATE TABLE IF NOT EXISTS `authentication_ticket` (
   `avatar_id` int(11) NOT NULL,
   `sso_ticket` varchar(250) NOT NULL DEFAULT '',
   `expires_at` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table helios.authentication_ticket: ~2 rows (approximately)
-REPLACE INTO `authentication_ticket` (`avatar_id`, `sso_ticket`, `expires_at`) VALUES
+-- Dumping data for table kurkku.authentication_ticket: ~2 rows (approximately)
+INSERT INTO `authentication_ticket` (`avatar_id`, `sso_ticket`, `expires_at`) VALUES
 	(1, '123', NULL),
 	(3, 'kek', NULL);
 
--- Dumping structure for table helios.avatar
+-- Dumping structure for table kurkku.avatar
 CREATE TABLE IF NOT EXISTS `avatar` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL,
@@ -62,14 +62,11 @@ CREATE TABLE IF NOT EXISTS `avatar` (
   `last_online` datetime NOT NULL DEFAULT current_timestamp(),
   UNIQUE KEY `id` (`id`),
   KEY `user_id` (`user_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table helios.avatar: ~1 rows (approximately)
-REPLACE INTO `avatar` (`id`, `user_id`, `username`, `figure`, `sex`, `rank`, `credits`, `motto`, `created_date`, `last_online`) VALUES
-	(11, 8, 'br0', 'hr-889-1168.hd-207-1013.ch-255-1296.lg-3116-85.sh-305-1219', 'M', 1, 0, '', '2024-02-24 19:44:06', '2024-02-24 19:44:06'),
-	(12, 8, 'Alex', 'hr-545-1033.hd-629-7.ch-630-1290.lg-710-1215.cp-3122-73', 'F', 1, 0, '', '2024-02-25 12:21:17', '2024-02-25 12:21:17');
+-- Dumping data for table kurkku.avatar: ~0 rows (approximately)
 
--- Dumping structure for table helios.avatar_effects
+-- Dumping structure for table kurkku.avatar_effects
 CREATE TABLE IF NOT EXISTS `avatar_effects` (
   `avatar_id` int(11) NOT NULL,
   `effect_id` int(11) NOT NULL,
@@ -78,17 +75,17 @@ CREATE TABLE IF NOT EXISTS `avatar_effects` (
   `is_activated` tinyint(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table helios.avatar_effects: ~0 rows (approximately)
+-- Dumping data for table kurkku.avatar_effects: ~0 rows (approximately)
 
--- Dumping structure for table helios.avatar_seasonal_currencies
+-- Dumping structure for table kurkku.avatar_seasonal_currencies
 CREATE TABLE IF NOT EXISTS `avatar_seasonal_currencies` (
   `avatar_id` int(11) NOT NULL,
   `seasonal_type` enum('PUMPKINS','PEANUTS','STARS','CLOUDS','DIAMONDS','LOYALTY_POINTS','DUCKETS') NOT NULL,
   `balance` int(11) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table helios.avatar_seasonal_currencies: ~14 rows (approximately)
-REPLACE INTO `avatar_seasonal_currencies` (`avatar_id`, `seasonal_type`, `balance`) VALUES
+-- Dumping data for table kurkku.avatar_seasonal_currencies: ~14 rows (approximately)
+INSERT INTO `avatar_seasonal_currencies` (`avatar_id`, `seasonal_type`, `balance`) VALUES
 	(1, 'DUCKETS', 0),
 	(1, 'LOYALTY_POINTS', 0),
 	(1, 'PUMPKINS', 0),
@@ -104,7 +101,7 @@ REPLACE INTO `avatar_seasonal_currencies` (`avatar_id`, `seasonal_type`, `balanc
 	(3, 'CLOUDS', 0),
 	(3, 'DIAMONDS', 0);
 
--- Dumping structure for table helios.avatar_settings
+-- Dumping structure for table kurkku.avatar_settings
 CREATE TABLE IF NOT EXISTS `avatar_settings` (
   `avatar_id` int(11) NOT NULL,
   `daily_respect_points` int(11) NOT NULL DEFAULT 0,
@@ -117,12 +114,12 @@ CREATE TABLE IF NOT EXISTS `avatar_settings` (
   PRIMARY KEY (`avatar_id`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table helios.avatar_settings: ~2 rows (approximately)
-REPLACE INTO `avatar_settings` (`avatar_id`, `daily_respect_points`, `daily_respect_pet_points`, `respect_points`, `friend_requests_enabled`, `following_enabled`, `online_time`, `name_change_enabled`) VALUES
+-- Dumping data for table kurkku.avatar_settings: ~2 rows (approximately)
+INSERT INTO `avatar_settings` (`avatar_id`, `daily_respect_points`, `daily_respect_pet_points`, `respect_points`, `friend_requests_enabled`, `following_enabled`, `online_time`, `name_change_enabled`) VALUES
 	(1, 0, 0, 0, 1, 1, 4499, 0),
 	(3, 0, 0, 0, 1, 1, 13, 0);
 
--- Dumping structure for table helios.avatar_subscriptions
+-- Dumping structure for table kurkku.avatar_subscriptions
 CREATE TABLE IF NOT EXISTS `avatar_subscriptions` (
   `avatar_id` int(11) NOT NULL,
   `subscribed_at` datetime NOT NULL,
@@ -134,11 +131,9 @@ CREATE TABLE IF NOT EXISTS `avatar_subscriptions` (
   PRIMARY KEY (`avatar_id`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table helios.avatar_subscriptions: ~1 rows (approximately)
-REPLACE INTO `avatar_subscriptions` (`avatar_id`, `subscribed_at`, `expire_at`, `gift_at`, `gifts_redeemable`, `subscription_age`, `subscription_age_last_updated`) VALUES
-	(1, '2023-04-21 07:36:17', '2023-05-21 07:36:17', '2023-05-21 07:36:17', 0, 63818472319, '2023-04-30 17:25:20');
+-- Dumping data for table kurkku.avatar_subscriptions: ~0 rows (approximately)
 
--- Dumping structure for table helios.catalogue_discounts
+-- Dumping structure for table kurkku.catalogue_discounts
 CREATE TABLE IF NOT EXISTS `catalogue_discounts` (
   `page_id` int(11) NOT NULL,
   `purchase_limit` int(11) NOT NULL DEFAULT 100,
@@ -149,12 +144,12 @@ CREATE TABLE IF NOT EXISTS `catalogue_discounts` (
   KEY `page_id` (`page_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table helios.catalogue_discounts: ~2 rows (approximately)
-REPLACE INTO `catalogue_discounts` (`page_id`, `purchase_limit`, `item_count_required`, `item_count_free`, `minimum_required`, `expire_at`) VALUES
+-- Dumping data for table kurkku.catalogue_discounts: ~2 rows (approximately)
+INSERT INTO `catalogue_discounts` (`page_id`, `purchase_limit`, `item_count_required`, `item_count_free`, `minimum_required`, `expire_at`) VALUES
 	(16, 100, 5, 2, 1, '2020-07-20 19:54:58'),
 	(16, 100, 5, 2, 1, '2020-07-20 19:54:58');
 
--- Dumping structure for table helios.catalogue_items
+-- Dumping structure for table kurkku.catalogue_items
 CREATE TABLE IF NOT EXISTS `catalogue_items` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `sale_code` varchar(255) DEFAULT NULL,
@@ -173,8 +168,8 @@ CREATE TABLE IF NOT EXISTS `catalogue_items` (
   KEY `id` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2560 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=COMPACT;
 
--- Dumping data for table helios.catalogue_items: ~2,538 rows (approximately)
-REPLACE INTO `catalogue_items` (`id`, `sale_code`, `page_id`, `order_id`, `price_coins`, `price_seasonal`, `seasonal_type`, `hidden`, `amount`, `definition_id`, `item_specialspriteid`, `is_package`, `allow_bulk_purchase`) VALUES
+-- Dumping data for table kurkku.catalogue_items: ~2,538 rows (approximately)
+INSERT INTO `catalogue_items` (`id`, `sale_code`, `page_id`, `order_id`, `price_coins`, `price_seasonal`, `seasonal_type`, `hidden`, `amount`, `definition_id`, `item_specialspriteid`, `is_package`, `allow_bulk_purchase`) VALUES
 	(1, 'floor', '3', 1, 2, 0, 'DUCKETS', 0, 1, 249, '101', 0, 1),
 	(2, 'CF_50_goldbar', '4', 5, 50, 0, 'DUCKETS', 0, 1, 212, '', 0, 1),
 	(3, 'CF_20_moneybag', '4', 4, 20, 0, 'DUCKETS', 0, 1, 211, '', 0, 1),
@@ -2714,7 +2709,7 @@ REPLACE INTO `catalogue_items` (`id`, `sale_code`, `page_id`, `order_id`, `price
 	(2558, 'boutique_mannequin1', '19', 1, 2, 0, 'DUCKETS', 0, 1, 2383, '', 0, 1),
 	(2559, 'note_tag', '19', 1, 2, 0, 'DUCKETS', 0, 1, 2382, '0', 0, 1);
 
--- Dumping structure for table helios.catalogue_packages
+-- Dumping structure for table kurkku.catalogue_packages
 CREATE TABLE IF NOT EXISTS `catalogue_packages` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `salecode` varchar(255) DEFAULT NULL,
@@ -2725,8 +2720,8 @@ CREATE TABLE IF NOT EXISTS `catalogue_packages` (
   KEY `id` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=40 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table helios.catalogue_packages: ~31 rows (approximately)
-REPLACE INTO `catalogue_packages` (`id`, `salecode`, `definition_id`, `special_sprite_id`, `amount`) VALUES
+-- Dumping data for table kurkku.catalogue_packages: ~31 rows (approximately)
+INSERT INTO `catalogue_packages` (`id`, `salecode`, `definition_id`, `special_sprite_id`, `amount`) VALUES
 	(1, 'a0 deal102', 184, '', 5),
 	(2, 'a0 deal104', 184, '', 3),
 	(3, 'a0 deal105', 180, '', 5),
@@ -2759,7 +2754,7 @@ REPLACE INTO `catalogue_packages` (`id`, `salecode`, `definition_id`, `special_s
 	(34, 'country_ditch_deal5', 826, '', 5),
 	(35, 'garden_wall_deal5', 2248, '', 5);
 
--- Dumping structure for table helios.catalogue_pages
+-- Dumping structure for table kurkku.catalogue_pages
 CREATE TABLE IF NOT EXISTS `catalogue_pages` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `parent_id` int(11) NOT NULL DEFAULT -1,
@@ -2779,8 +2774,8 @@ CREATE TABLE IF NOT EXISTS `catalogue_pages` (
   KEY `id` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=140 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=COMPACT;
 
--- Dumping data for table helios.catalogue_pages: ~130 rows (approximately)
-REPLACE INTO `catalogue_pages` (`id`, `parent_id`, `order_id`, `min_rank`, `is_navigatable`, `is_enabled`, `is_club_only`, `caption`, `page_link`, `icon_image`, `icon_colour`, `layout`, `images`, `texts`) VALUES
+-- Dumping data for table kurkku.catalogue_pages: ~130 rows (approximately)
+INSERT INTO `catalogue_pages` (`id`, `parent_id`, `order_id`, `min_rank`, `is_navigatable`, `is_enabled`, `is_club_only`, `caption`, `page_link`, `icon_image`, `icon_colour`, `layout`, `images`, `texts`) VALUES
 	(1, -1, 0, 1, 1, 1, 0, 'Frontpage', 'frontpage', 1, 0, 'frontpage3', '["catalog_frontpage_headline2_en","topstory_ecotron_03"]', '["Helios Development","Enjoy the catalogue for the Helios server","","How do I get Credits easily?","1. Always ask permission from the bill payer first.\\r\\n2. Send HABBO in a UK SMS to 78881. You\'\'ll get an SMS back with a voucher code and will be charged ÃƒÆ’Ã¢â‚¬Å¡Ãƒâ€šÃ‚Â£3 plus your standard UK SMS rate, normally 10p.\\r\\n3. Enter the code below to redeem 35 Credits. For Habbo Credit options or to redeem a Wallie Voucher Card, simply click \\"Get Credits >>\\" below.","Redeem a Habbo Voucher code here:","","#FAF8CC","#FAF8CC","Click here for more information..."]'),
 	(2, -1, 1000, 1, 0, 1, 0, 'Classic Furni', 'classic_furni', 2, 2, '', '[]', '[]'),
 	(3, 2, 1001, 1, 1, 1, 0, 'Spaces', 'spaces', 55, 1, 'spaces_new', '["catalog_spaces_headline1"]', '["Floors, wallpapers, landscapes - get a groovy combination to your room. Use our virtual room preview below to test out the combinations before you buy. Select the design and color you like and click Buy."]'),
@@ -2912,7 +2907,7 @@ REPLACE INTO `catalogue_pages` (`id`, `parent_id`, `order_id`, `min_rank`, `is_n
 	(137, -1, 2000, 1, 0, 1, 0, 'Furni By Line', 'furni_by_line', 121, 2, '', '[]', '[]'),
 	(138, -1, 3000, 1, 0, 1, 0, 'Furni By Theme', 'furni_by_theme', 64, 2, '', '[]', '[]');
 
--- Dumping structure for table helios.catalogue_subscriptions
+-- Dumping structure for table kurkku.catalogue_subscriptions
 CREATE TABLE IF NOT EXISTS `catalogue_subscriptions` (
   `id` int(11) NOT NULL,
   `page_id` int(11) NOT NULL DEFAULT 5,
@@ -2923,13 +2918,13 @@ CREATE TABLE IF NOT EXISTS `catalogue_subscriptions` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table helios.catalogue_subscriptions: ~3 rows (approximately)
-REPLACE INTO `catalogue_subscriptions` (`id`, `page_id`, `price_coins`, `price_seasonal`, `seasonal_type`, `months`) VALUES
+-- Dumping data for table kurkku.catalogue_subscriptions: ~3 rows (approximately)
+INSERT INTO `catalogue_subscriptions` (`id`, `page_id`, `price_coins`, `price_seasonal`, `seasonal_type`, `months`) VALUES
 	(1, 63, 15, 0, 'DUCKETS', 1),
 	(2, 63, 30, 0, 'DUCKETS', 3),
 	(3, 63, 60, 0, 'DUCKETS', 6);
 
--- Dumping structure for table helios.cms_pages
+-- Dumping structure for table kurkku.cms_pages
 CREATE TABLE IF NOT EXISTS `cms_pages` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `parent_id` int(11) NOT NULL,
@@ -2944,8 +2939,8 @@ CREATE TABLE IF NOT EXISTS `cms_pages` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
--- Dumping data for table helios.cms_pages: ~7 rows (approximately)
-REPLACE INTO `cms_pages` (`id`, `parent_id`, `order_id`, `label`, `page`, `link`, `colour`, `minimum_rank`, `requires_login`, `requires_logout`) VALUES
+-- Dumping data for table kurkku.cms_pages: ~7 rows (approximately)
+INSERT INTO `cms_pages` (`id`, `parent_id`, `order_id`, `label`, `page`, `link`, `colour`, `minimum_rank`, `requires_login`, `requires_logout`) VALUES
 	(1, -1, 1, NULL, 'me', '/me', 'BLUE', 1, 1, 0),
 	(2, -1, 1, 'Register now!', '', '/register', 'GREEN', 1, 0, 1),
 	(3, -1, 1, 'Community', 'community', '/community', 'BLUE', 1, 0, 0),
@@ -2954,7 +2949,7 @@ REPLACE INTO `cms_pages` (`id`, `parent_id`, `order_id`, `label`, `page`, `link`
 	(7, 1, 3, 'Account Settings', 'account_settings', '/profile', 'BLUE', 1, 1, 0),
 	(8, 3, 1, 'Community', 'community', '/community', 'BLUE', 1, 0, 0);
 
--- Dumping structure for table helios.cms_pages_habblets
+-- Dumping structure for table kurkku.cms_pages_habblets
 CREATE TABLE IF NOT EXISTS `cms_pages_habblets` (
   `page` varchar(250) NOT NULL,
   `order_id` int(11) NOT NULL DEFAULT 0,
@@ -2963,8 +2958,8 @@ CREATE TABLE IF NOT EXISTS `cms_pages_habblets` (
   UNIQUE KEY `page_order_id_widget_column` (`page`,`order_id`,`widget`,`column`) USING HASH
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
--- Dumping data for table helios.cms_pages_habblets: ~11 rows (approximately)
-REPLACE INTO `cms_pages_habblets` (`page`, `order_id`, `widget`, `column`) VALUES
+-- Dumping data for table kurkku.cms_pages_habblets: ~11 rows (approximately)
+INSERT INTO `cms_pages_habblets` (`page`, `order_id`, `widget`, `column`) VALUES
 	('me', 1, 'PersonalInfo', 'column1'),
 	('me', 2, 'MyCharacters', 'column1'),
 	('me', 1, 'TopStories', 'column2'),
@@ -2977,7 +2972,7 @@ REPLACE INTO `cms_pages_habblets` (`page`, `order_id`, `widget`, `column`) VALUE
 	('community', 2, 'CommunityTags', 'column2'),
 	('me', 2, 'HotelPicks', 'column2');
 
--- Dumping structure for table helios.effects
+-- Dumping structure for table kurkku.effects
 CREATE TABLE IF NOT EXISTS `effects` (
   `effect_id` int(11) NOT NULL,
   `duration` int(11) NOT NULL,
@@ -2985,8 +2980,8 @@ CREATE TABLE IF NOT EXISTS `effects` (
   PRIMARY KEY (`effect_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table helios.effects: ~102 rows (approximately)
-REPLACE INTO `effects` (`effect_id`, `duration`, `is_costume`) VALUES
+-- Dumping data for table kurkku.effects: ~102 rows (approximately)
+INSERT INTO `effects` (`effect_id`, `duration`, `is_costume`) VALUES
 	(1, 3600, 0),
 	(2, 3600, 0),
 	(3, 3600, 0),
@@ -3090,9 +3085,9 @@ REPLACE INTO `effects` (`effect_id`, `duration`, `is_costume`) VALUES
 	(139, 3600, 0),
 	(140, 3600, 0);
 
--- Dumping structure for event helios.event_club_gifts
+-- Dumping structure for event kurkku.event_club_gifts
 DELIMITER //
-CREATE EVENT `event_club_gifts` ON SCHEDULE EVERY 1 SECOND STARTS '2020-05-03 19:17:59' ON COMPLETION NOT PRESERVE ENABLE DO BEGIN
+CREATE EVENT `event_club_gifts` ON SCHEDULE EVERY 1 MINUTE STARTS '2020-05-03 19:17:59' ON COMPLETION NOT PRESERVE ENABLE DO BEGIN
 	SET @gift_interval = (SELECT `value` FROM `server_settings` WHERE `setting` = 'club.gift.interval');
 	SET @gift_interval_type = (SELECT `value` FROM `server_settings` WHERE `setting` = 'club.gift.interval.type');
 	
@@ -3114,21 +3109,61 @@ CREATE EVENT `event_club_gifts` ON SCHEDULE EVERY 1 SECOND STARTS '2020-05-03 19
 END//
 DELIMITER ;
 
--- Dumping structure for event helios.event_respect_points
+-- Dumping structure for event kurkku.event_respect_points
 DELIMITER //
-CREATE EVENT `event_respect_points` ON SCHEDULE EVERY 1 DAY STARTS '2020-05-03 14:29:37' ON COMPLETION PRESERVE ENABLE DO BEGIN
+CREATE EVENT `event_respect_points` ON SCHEDULE EVERY 1 MINUTE STARTS '2020-05-03 14:29:37' ON COMPLETION PRESERVE ENABLE DO BEGIN
 	UPDATE user_settings SET daily_respect_points = 3, daily_respect_pet_points = 3;
 END//
 DELIMITER ;
 
--- Dumping structure for event helios.event_ticket_expire
+-- Dumping structure for event kurkku.event_ticket_expire
 DELIMITER //
-CREATE EVENT `event_ticket_expire` ON SCHEDULE EVERY 1 DAY STARTS '2020-05-03 14:26:20' ON COMPLETION PRESERVE ENABLE DO BEGIN
+CREATE EVENT `event_ticket_expire` ON SCHEDULE EVERY 1 MINUTE STARTS '2020-05-03 14:26:20' ON COMPLETION PRESERVE ENABLE DO BEGIN
 	DELETE FROM authentication_ticket WHERE expires_at IS NOT NULL AND CURRENT_TIMESTAMP() > expires_at;
 END//
 DELIMITER ;
 
--- Dumping structure for table helios.item
+-- Dumping structure for table kurkku.group
+CREATE TABLE IF NOT EXISTS `group` (
+  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `name` varchar(45) NOT NULL,
+  `description` mediumtext NOT NULL,
+  `owner_id` int(10) NOT NULL,
+  `room_id` int(10) NOT NULL DEFAULT 0,
+  `badge` mediumtext NOT NULL DEFAULT 'b0503Xs09114s05013s05015',
+  `recommended` tinyint(4) NOT NULL DEFAULT 0,
+  `background` varchar(255) NOT NULL DEFAULT 'bg_colour_08',
+  `views` int(11) NOT NULL DEFAULT 0,
+  `topics` int(11) NOT NULL DEFAULT 0,
+  `group_type` tinyint(4) NOT NULL DEFAULT 0,
+  `forum_type` tinyint(4) NOT NULL DEFAULT 0,
+  `forum_permission_type` tinyint(4) NOT NULL DEFAULT 0,
+  `alias` varchar(45) DEFAULT NULL,
+  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `alias` (`alias`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- Dumping data for table kurkku.group: ~1 rows (approximately)
+INSERT INTO `group` (`id`, `name`, `description`, `owner_id`, `room_id`, `badge`, `recommended`, `background`, `views`, `topics`, `group_type`, `forum_type`, `forum_permission_type`, `alias`, `created_at`) VALUES
+	(1, 'test', 'group testing!', 1, 1, 'b0503Xs09114s05013s05015', 0, 'bg_colour_08', 0, 0, 0, 0, 0, NULL, '2024-05-03 18:23:43');
+
+-- Dumping structure for table kurkku.group_memberships
+CREATE TABLE IF NOT EXISTS `group_memberships` (
+  `user_id` int(10) NOT NULL,
+  `group_id` int(10) NOT NULL,
+  `member_rank` enum('3','2','1') NOT NULL DEFAULT '1',
+  `is_pending` bit(1) NOT NULL DEFAULT b'0',
+  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
+  KEY `userid` (`user_id`),
+  KEY `groupid` (`group_id`),
+  KEY `group_id` (`group_id`),
+  KEY `user_id` (`user_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- Dumping data for table kurkku.group_memberships: ~0 rows (approximately)
+
+-- Dumping structure for table kurkku.item
 CREATE TABLE IF NOT EXISTS `item` (
   `id` char(36) NOT NULL DEFAULT '0',
   `order_id` int(11) NOT NULL DEFAULT -1,
@@ -3149,8 +3184,8 @@ CREATE TABLE IF NOT EXISTS `item` (
   KEY `user_id` (`avatar_id`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table helios.item: ~21 rows (approximately)
-REPLACE INTO `item` (`id`, `order_id`, `avatar_id`, `room_id`, `definition_id`, `x`, `y`, `z`, `wall_position`, `rotation`, `custom_data`, `expire_time`, `created_at`, `updated_at`) VALUES
+-- Dumping data for table kurkku.item: ~21 rows (approximately)
+INSERT INTO `item` (`id`, `order_id`, `avatar_id`, `room_id`, `definition_id`, `x`, `y`, `z`, `wall_position`, `rotation`, `custom_data`, `expire_time`, `created_at`, `updated_at`) VALUES
 	('0aa808f5-4d62-4757-86ec-6e1689b1c71c', 0, 1, 67, 102, '7', '7', '0.451', '', 2, '{"LinkedItem":"6560b974-efe7-493a-8fe4-2160562aa1f3","State":"0"}', -1, '2023-04-20 22:04:10', '2023-04-30 17:28:00'),
 	('2d81ba96-a301-446b-adfa-c71efe078e59', 0, 1, 67, 976, '11', '4', '0', '', 0, '', -1, '2023-04-20 22:05:58', '2023-04-30 14:19:32'),
 	('39d076be-a07b-4838-8762-e71de0e3faaa', 0, 1, 67, 2383, '7', '11', '0', '', 2, '{"Gender":"","Figure":"","OutfitName":""}', -1, '2023-04-21 07:34:59', '2023-04-21 07:35:09'),
@@ -3173,7 +3208,7 @@ REPLACE INTO `item` (`id`, `order_id`, `avatar_id`, `room_id`, `definition_id`, 
 	('fa07728e-5231-444d-8337-b70f300c6558', 0, 1, 67, 83, '8', '4', '0', '', 2, '', -1, '2023-04-21 07:35:43', '2023-04-30 14:19:03'),
 	('facfa612-0364-460b-85dc-751a8296ad03', 0, 1, 67, 1789, '10', '2', '0', '', 2, '', -1, '2023-04-27 23:22:11', '2023-04-30 14:20:13');
 
--- Dumping structure for table helios.item_definitions
+-- Dumping structure for table kurkku.item_definitions
 CREATE TABLE IF NOT EXISTS `item_definitions` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `sprite` varchar(50) DEFAULT NULL,
@@ -3197,8 +3232,8 @@ CREATE TABLE IF NOT EXISTS `item_definitions` (
   KEY `id` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2384 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=COMPACT;
 
--- Dumping data for table helios.item_definitions: ~2,162 rows (approximately)
-REPLACE INTO `item_definitions` (`id`, `sprite`, `name`, `description`, `sprite_id`, `length`, `width`, `top_height`, `max_status`, `behaviour`, `interactor`, `is_tradable`, `is_recyclable`, `is_stackable`, `is_sellable`, `drink_ids`, `rental_time`, `allowed_rotations`) VALUES
+-- Dumping data for table kurkku.item_definitions: ~2,148 rows (approximately)
+INSERT INTO `item_definitions` (`id`, `sprite`, `name`, `description`, `sprite_id`, `length`, `width`, `top_height`, `max_status`, `behaviour`, `interactor`, `is_tradable`, `is_recyclable`, `is_stackable`, `is_sellable`, `drink_ids`, `rental_time`, `allowed_rotations`) VALUES
 	(1, 'shelves_norja', 'Beige Bookcase', 'For nic naks and books.', 13, 1, 1, 0, '2', 'requires_rights_for_interaction,solid', 'default', 1, 1, 1, 1, '', -1, '0,2,4,6'),
 	(2, 'shelves_polyfon', 'Bookcase', 'Make your books look sleek.', 14, 2, 1, 0, '2', 'requires_rights_for_interaction,solid', 'default', 1, 1, 1, 1, '', -1, '0,2,4,6'),
 	(3, 'shelves_silo', 'Bookcase', 'For nic naks and books.', 15, 2, 1, 0, '2', 'requires_rights_for_interaction,solid', 'default', 1, 1, 1, 1, '', -1, '0,2,4,6'),
@@ -5348,7 +5383,7 @@ REPLACE INTO `item_definitions` (`id`, `sprite`, `name`, `description`, `sprite_
 	(2382, 'note_tag', NULL, NULL, 3983, 1, 1, 0, '0', 'solid,sticky_pole', 'default', 1, 1, 1, 1, NULL, -1, ''),
 	(2383, 'boutique_mannequin1', NULL, NULL, 4170, 1, 1, 0, '0', 'solid', 'mannequin', 1, 1, 1, 1, NULL, -1, '');
 
--- Dumping structure for table helios.messenger_category
+-- Dumping structure for table kurkku.messenger_category
 CREATE TABLE IF NOT EXISTS `messenger_category` (
   `avatar_id` int(11) NOT NULL,
   `label` varchar(100) NOT NULL DEFAULT '',
@@ -5356,9 +5391,9 @@ CREATE TABLE IF NOT EXISTS `messenger_category` (
   KEY `index_userid_label` (`avatar_id`,`label`) USING BTREE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table helios.messenger_category: ~0 rows (approximately)
+-- Dumping data for table kurkku.messenger_category: ~0 rows (approximately)
 
--- Dumping structure for table helios.messenger_chat_history
+-- Dumping structure for table kurkku.messenger_chat_history
 CREATE TABLE IF NOT EXISTS `messenger_chat_history` (
   `avatar_id` int(11) NOT NULL,
   `friend_id` int(11) NOT NULL,
@@ -5367,30 +5402,30 @@ CREATE TABLE IF NOT EXISTS `messenger_chat_history` (
   `messaged_at` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table helios.messenger_chat_history: ~0 rows (approximately)
-REPLACE INTO `messenger_chat_history` (`avatar_id`, `friend_id`, `message`, `has_read`, `messaged_at`) VALUES
+-- Dumping data for table kurkku.messenger_chat_history: ~1 rows (approximately)
+INSERT INTO `messenger_chat_history` (`avatar_id`, `friend_id`, `message`, `has_read`, `messaged_at`) VALUES
 	(1, 3, 'hello!', 1, '2023-04-20 22:55:01');
 
--- Dumping structure for table helios.messenger_friend
+-- Dumping structure for table kurkku.messenger_friend
 CREATE TABLE IF NOT EXISTS `messenger_friend` (
   `avatar_id` int(11) NOT NULL,
   `friend_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table helios.messenger_friend: ~2 rows (approximately)
-REPLACE INTO `messenger_friend` (`avatar_id`, `friend_id`) VALUES
+-- Dumping data for table kurkku.messenger_friend: ~2 rows (approximately)
+INSERT INTO `messenger_friend` (`avatar_id`, `friend_id`) VALUES
 	(1, 3),
 	(3, 1);
 
--- Dumping structure for table helios.messenger_request
+-- Dumping structure for table kurkku.messenger_request
 CREATE TABLE IF NOT EXISTS `messenger_request` (
   `avatar_id` int(11) NOT NULL,
   `friend_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table helios.messenger_request: ~0 rows (approximately)
+-- Dumping data for table kurkku.messenger_request: ~0 rows (approximately)
 
--- Dumping structure for table helios.navigator_official_rooms
+-- Dumping structure for table kurkku.navigator_official_rooms
 CREATE TABLE IF NOT EXISTS `navigator_official_rooms` (
   `banner_id` int(11) NOT NULL AUTO_INCREMENT,
   `parent_id` int(11) NOT NULL DEFAULT 1,
@@ -5405,8 +5440,8 @@ CREATE TABLE IF NOT EXISTS `navigator_official_rooms` (
   PRIMARY KEY (`banner_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=63 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table helios.navigator_official_rooms: ~40 rows (approximately)
-REPLACE INTO `navigator_official_rooms` (`banner_id`, `parent_id`, `banner_type`, `room_id`, `image_type`, `label`, `description`, `description_entry`, `image_url`, `thumbnail_layout`) VALUES
+-- Dumping data for table kurkku.navigator_official_rooms: ~40 rows (approximately)
+INSERT INTO `navigator_official_rooms` (`banner_id`, `parent_id`, `banner_type`, `room_id`, `image_type`, `label`, `description`, `description_entry`, `image_url`, `thumbnail_layout`) VALUES
 	(1, 0, 'CATEGORY', 0, 'EXTERNAL', 'Classic Rooms', '', 0, 'officialrooms_hq/alhambra_official_rooms.gif', ''),
 	(5, 1, 'PUBLIC_FLAT', 1, 'EXTERNAL', '', 'welcome_lounge', 0, 'officialrooms_defaults/hh_room_nlobby.png', '4'),
 	(6, 1, 'PUBLIC_FLAT', 2, 'EXTERNAL', '', 'theatredrome', 0, 'officialrooms_defaults/hh_room_theater.png', '4'),
@@ -5448,7 +5483,7 @@ REPLACE INTO `navigator_official_rooms` (`banner_id`, `parent_id`, `banner_type`
 	(43, 1, 'PUBLIC_FLAT', 60, 'EXTERNAL', '', 'orient', 0, 'officialrooms_defaults/hh_room_orient.png', '1'),
 	(61, 1, 'PUBLIC_FLAT', 61, 'EXTERNAL', '', 'emperors', 0, 'officialrooms_defaults/hh_room_emperors.png', '1');
 
--- Dumping structure for table helios.room
+-- Dumping structure for table kurkku.room
 CREATE TABLE IF NOT EXISTS `room` (
   `id` int(100) NOT NULL AUTO_INCREMENT,
   `owner_id` int(11) NOT NULL,
@@ -5481,8 +5516,8 @@ CREATE TABLE IF NOT EXISTS `room` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=68 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table helios.room: ~66 rows (approximately)
-REPLACE INTO `room` (`id`, `owner_id`, `name`, `description`, `category_id`, `visitors_now`, `visitors_max`, `status`, `password`, `model`, `model_id`, `ccts`, `wallpaper`, `floor`, `landscape`, `rating`, `allow_pets`, `allow_pets_eat`, `allow_walkthrough`, `hidewall`, `wall_thickness`, `floor_thickness`, `is_owner_hidden`, `trade_setting`, `is_muted`, `who_can_mute`, `who_can_kick`, `who_can_ban`) VALUES
+-- Dumping data for table kurkku.room: ~66 rows (approximately)
+INSERT INTO `room` (`id`, `owner_id`, `name`, `description`, `category_id`, `visitors_now`, `visitors_max`, `status`, `password`, `model`, `model_id`, `ccts`, `wallpaper`, `floor`, `landscape`, `rating`, `allow_pets`, `allow_pets_eat`, `allow_walkthrough`, `hidewall`, `wall_thickness`, `floor_thickness`, `is_owner_hidden`, `trade_setting`, `is_muted`, `who_can_mute`, `who_can_kick`, `who_can_ban`) VALUES
 	(1, 0, 'Welcome Lounge', 'welcome_lounge', 3, 0, 40, 'OPEN', '', 'newbie_lobby', 19, 'hh_room_nlobby', '0', '0', '0.0', 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 'USERS_WITH_RIGHTS', 'USERS_WITH_RIGHTS', 'USERS_WITH_RIGHTS'),
 	(2, 0, 'Theatredome', 'theatredrome', 5, 0, 100, 'OPEN', '', 'theater', 20, 'hh_room_theater', '0', '0', '0.0', 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 'USERS_WITH_RIGHTS', 'USERS_WITH_RIGHTS', 'USERS_WITH_RIGHTS'),
 	(3, 0, 'Library', 'library', 5, 0, 30, 'OPEN', '', 'library', 21, 'hh_room_library', '0', '0', '0.0', 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 'USERS_WITH_RIGHTS', 'USERS_WITH_RIGHTS', 'USERS_WITH_RIGHTS'),
@@ -5550,7 +5585,7 @@ REPLACE INTO `room` (`id`, `owner_id`, `name`, `description`, `category_id`, `vi
 	(66, 1, '34234', ' ', 14, 0, 25, 'OPEN', '', 'model_g', 7, '', '0', '0', '0', 34, 1, 1, 0, 0, 0, 0, 0, 0, 0, 'USERS_WITH_RIGHTS', 'USERS_WITH_RIGHTS', 'USERS_WITH_RIGHTS'),
 	(67, 1, '67677', ' ', 14, 0, 25, 'OPEN', '', 'model_g', 7, '', '1701', '504', '0', 54, 1, 1, 0, 0, 0, 0, 0, 0, 0, 'USERS_WITH_RIGHTS', 'USERS_WITH_RIGHTS', 'USERS_WITH_RIGHTS');
 
--- Dumping structure for table helios.room_category
+-- Dumping structure for table kurkku.room_category
 CREATE TABLE IF NOT EXISTS `room_category` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `caption` varchar(100) NOT NULL,
@@ -5559,8 +5594,8 @@ CREATE TABLE IF NOT EXISTS `room_category` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table helios.room_category: ~15 rows (approximately)
-REPLACE INTO `room_category` (`id`, `caption`, `enabled`, `min_rank`) VALUES
+-- Dumping data for table kurkku.room_category: ~15 rows (approximately)
+INSERT INTO `room_category` (`id`, `caption`, `enabled`, `min_rank`) VALUES
 	(1, 'Staff Rooms', 1, 4),
 	(2, 'Competition Category', 1, 1),
 	(3, 'unused competition category', 1, 1),
@@ -5577,7 +5612,7 @@ REPLACE INTO `room_category` (`id`, `caption`, `enabled`, `min_rank`) VALUES
 	(14, 'All Other Rooms', 1, 1),
 	(15, 'No Category', 1, 1);
 
--- Dumping structure for table helios.room_model
+-- Dumping structure for table kurkku.room_model
 CREATE TABLE IF NOT EXISTS `room_model` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `model` varchar(255) NOT NULL,
@@ -5592,8 +5627,8 @@ CREATE TABLE IF NOT EXISTS `room_model` (
   KEY `id` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=92 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table helios.room_model: ~91 rows (approximately)
-REPLACE INTO `room_model` (`id`, `model`, `door_x`, `door_y`, `door_z`, `door_dir`, `heightmap`, `trigger_class`, `is_club_only`) VALUES
+-- Dumping data for table kurkku.room_model: ~91 rows (approximately)
+INSERT INTO `room_model` (`id`, `model`, `door_x`, `door_y`, `door_z`, `door_dir`, `heightmap`, `trigger_class`, `is_club_only`) VALUES
 	(1, 'model_a', 3, 5, 0, 2, 'xxxxxxxxxxxx|xxxx00000000|xxxx00000000|xxxx00000000|xxxx00000000|xxxx00000000|xxxx00000000|xxxx00000000|xxxx00000000|xxxx00000000|xxxx00000000|xxxx00000000|xxxx00000000|xxxx00000000|xxxxxxxxxxxx|xxxxxxxxxxxx', 'flat_trigger', 0),
 	(2, 'model_b', 0, 5, 0, 2, 'xxxxxxxxxxxx|xxxxx0000000|xxxxx0000000|xxxxx0000000|xxxxx0000000|x00000000000|x00000000000|x00000000000|x00000000000|x00000000000|x00000000000|xxxxxxxxxxxx|xxxxxxxxxxxx|xxxxxxxxxxxx|xxxxxxxxxxxx|xxxxxxxxxxxx', 'flat_trigger', 0),
 	(3, 'model_c', 4, 7, 0, 2, 'xxxxxxxxxxxx|xxxxxxxxxxxx|xxxxxxxxxxxx|xxxxxxxxxxxx|xxxxxxxxxxxx|xxxxx000000x|xxxxx000000x|xxxxx000000x|xxxxx000000x|xxxxx000000x|xxxxx000000x|xxxxxxxxxxxx|xxxxxxxxxxxx|xxxxxxxxxxxx|xxxxxxxxxxxx|xxxxxxxxxxxx', 'flat_trigger', 0),
@@ -5686,7 +5721,7 @@ REPLACE INTO `room_model` (`id`, `model`, `door_x`, `door_y`, `door_z`, `door_di
 	(90, 'emperors', 11, 31, 0, 0, 'xxxxxxxxxxxxxxxxxxxxxxxx|xxxxxxxxxxxxxxxxxxxxxxxx|xxxxxxxxxxxxxxxxxxxxxxxx|xxxxxxxxxxxxxxxxxxxxxxxx|xxxxxxxxxxxxxxxxxxxxxxxx|xxxxxxx444xxxx4444xxxxxx|xxxx2x4444xxxx44444x2xxx|xxxx2x44444x4x44444x2xxx|xxxx2x4444444444444x2xxx|xxxx2x33xx33333xx33x2xxx|xxxx2222xx22222xx2222xxx|xxxx22222222222222222xxx|xxxx22222222222222222xxx|xxxx22222222222222222xxx|xxxx22222222222222222xxx|xxxx22222222222222222xxx|xxxx22222222222222222xxx|xxxx22222222222222222xxx|xxxx22222222222222222xxx|xxxx22xx222222222xx22xxx|xxxx22222222222222222xxx|xxxx22222222222222222xxx|xxxx22222222222222222xxx|xxxx22222222222222222xxx|xxxx22222222222222222xxx|xxxx22222222222222222xxx|xxxx22222222222222222xxx|xxxx22222xx22x2222222xxx|xxxxx2xx2xx22xxx2xx2xxxx|xxxxxxxxxxx11xxxxxxxxxxx|xxxxxxxxxxx00xxxxxxxxxxx|xxxxxxxxxxx00xxxxxxxxxxx|xxxxxxxxxxxxxxxxxxxxxxxx', 'none', 0),
 	(91, 'beauty_salon1', 14, 3, 0, 1, 'xxxxxxxxxxxxxxxxxxxxxxxx|xxxxxxxxxxxxxxxxxxxxxxxx|xxxxxxxxxxxxxxxxxxxxxxxx|xxxxxxxxxxxxxx0xxxxxxxxx|xxxxxxx000000000000000xx|xxxxxx0000000000000000xx|xxxxx000000000000xxxxxxx|xxxx000000000000000000xx|xxx0000000000000000000xx|xxx0000000000000000000xx|xxx0000000000000000000xx|xxxxxxxxxxxxxxxx000000xx|xx0000000000000x000000xx|000000000000000x000000xx|000000000000000x000000xx|000000000000000x000000xx|00x000000000000x000000xx|00xxxxxxxxxxxxxx000000xx|00xxxxxxxxxxxxxx000000xx|00x0000000000000000000xx|00x0000000000000000000xx|00x0000000000000000000xx|0000000000000000000000xx|x000000000000000000000xx|xxx0000000000000000000xx', 'none', 0);
 
--- Dumping structure for table helios.room_models
+-- Dumping structure for table kurkku.room_models
 CREATE TABLE IF NOT EXISTS `room_models` (
   `model` varchar(100) NOT NULL,
   `door_x` int(11) NOT NULL,
@@ -5698,8 +5733,8 @@ CREATE TABLE IF NOT EXISTS `room_models` (
   PRIMARY KEY (`model`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table helios.room_models: ~96 rows (approximately)
-REPLACE INTO `room_models` (`model`, `door_x`, `door_y`, `door_z`, `door_dir`, `heightmap`, `club_only`) VALUES
+-- Dumping data for table kurkku.room_models: ~96 rows (approximately)
+INSERT INTO `room_models` (`model`, `door_x`, `door_y`, `door_z`, `door_dir`, `heightmap`, `club_only`) VALUES
 	('ballroom', 13, 6, 0, 4, 'xxxx4444444444444444444|xxxx4444444444444444444|xxxx4444444444444444444|xxxx33x2222444442222x33|xxxx2222222x00xx2222222|xxxx22222220000x2222222|xxxx11x0000x000x0000x11|xxxx0000000000000000000|11100000000000000000000|11100000000000000000000|11100000000000000000000|xxxx0000000000000000000|22210000000000000000000|22210000000000000000000|22210000000000000000000|xxxx0000000000000000000|11100000000000000000000|11100000000000000000000|11100000000000000000000|xxxxx000x11111111x0000x|xxxxxx00x1111x111x000xx|xxxxxxx0x11111111x00xxx|xxxxxxxxx11111111x0xxxx|xxxxxxxxx11111111xxxxxx', 0),
 	('bar_a', 5, 1, 7, 4, 'xxxx8888xxxxxxxxxxx|xxxx7777xxxxxxxxxxx|xxxx6666xxxxxxxxxxx|xxx6666666555555555|xxx6666666555555555|xxx6666666555555555|xxx6666666555555555|xxx6666666555555555|xxx6666666555555555|xxx6666666555555555|xxx6666666555xxxxxx|xxx6666666555555555|xxx5555555555555555|xxx5555555555555555|xxx5555555555555555|xxx5555555555555555|xxx5555555555xxxxxx|xxx5555555555555555|xxx5555555555555555|xxx5555555555555555|xxx5555555555555555|xxx5555555555555555|xxx5555555555xxxxxx|xxxx555555555555555|55xx555555555555555|55xx555555555555555|5555555555555555555|5555555555555555555|xxxxxxxx55555xxxxxx|xxxxxxxxx5555xxxxxx|xxxxxxxxx5555xxxxxx|xxxxxxxxx5555xxxxxx|xxxxxxxxx4444xxxxxx|xxxxxxxxx3333xxxxxx', 0),
 	('bar_b', 2, 12, 4, 2, 'xxxxx4xxxxxxxxxxxx|xxxx4444444xxxxxxx|xxxx4444444xxxxxxx|xxx444444444444444|xxx444444444444444|xxx444444444444444|xxx444444444444444|xxx444444444444444|xxx444444444444444|xxx444444444444444|654444444444444444|654444444444444444|654444444444444444|654444444444444444|xxx444444444444444|xxx444444444444444|xxx444444444444444|xxx444444444444444|xxx444444444444444|xxxx44444444444444|xxxx33444444444444|xxxx22444444444444|xxxx2222222222xx44|xxxx2222222222xx44|xxxxx222222222xxxx|xxxxxx22222222xxxx|xxxxxx22222222xxxx|xxxxxx22222222xxxx|xxxxxx22222222xxxx|xxxxxx22222222xxxx|xxxxxx22222222xxxx', 0),
@@ -5797,14 +5832,14 @@ REPLACE INTO `room_models` (`model`, `door_x`, `door_y`, `door_z`, `door_dir`, `
 	('theater', 20, 27, 0, 0, 'XXXXXXXXXXXXXXXXXXXXXXX|XXXXXXXXXXXXXXXXXXXXXXX|XXXXXXXXXXXXXXXXXXXXXXX|XXXXXXXXXXXXXXXXXXXXXXX|XXXXXXXXXXXXXXXXXXXXXXX|XXXXXXXXXXXXXXXXXXXXXXX|XXXXXXX111111111XXXXXXX|XXXXXXX11111111100000XX|XXXX00X11111111100000XX|XXXX00x11111111100000XX|4XXX00X11111111100000XX|4440000XXXXXXXXX00000XX|444000000000000000000XX|4XX000000000000000000XX|4XX0000000000000000000X|44400000000000000000000|44400000000000000000000|44X0000000000000000O000|44X11111111111111111000|44X11111111111111111000|33X11111111111111111000|22X11111111111111111000|22X11111111111111111000|22X11111111111111111000|22X11111111111111111000|22X11111111111111111000|22211111111111111111000|22211111111111111111000|XXXXXXXXXXXXXXXXXXXX00X|XXXXXXXXXXXXXXXXXXXX00X', 0),
 	('tv_studio', 16, 27, 4, 6, 'xxxxxxxxxxxxxxxxxxxx|xxxxx0x00000xxxxxxxx|xxxxx0x000000xxxxxxx|xxxxx0x000000xxxxxxx|xxxxx0x0xxx00000xx0x|xx0000x000000000xx00|xx00xxx000000000xx00|xxxxx00000000000xx00|x000000000000x000000|x0000000000000000000|x0000000000000000x00|00000000000000000x00|x000x000000000000x00|x0000000000000000x00|x0000000000000000x00|000x0000000000000000|000x0000000000000000|00000000000000xxx000|x0000000000000000000|xx00000000000000000x|xxx000000000000000xx|xxxxxxxxx1111xxxx0xx|xxxxxxxxx2222xxxxxxx|xxxxxxxxx3333xxxxxxx|xxxxxx44x4444x444xxx|xxxxx444444444444xxx|xxxxxx44444444444444|xxxxx4444x4444444444|xxxxx4444x4444444444|xxxxx4444x4444444xxx|xxxxx444444444444xxx|xxxxx444444444444xxx|xxxxxx44444444444xxx', 0);
 
--- Dumping structure for table helios.server_settings
+-- Dumping structure for table kurkku.server_settings
 CREATE TABLE IF NOT EXISTS `server_settings` (
   `setting` text NOT NULL,
   `value` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table helios.server_settings: ~10 rows (approximately)
-REPLACE INTO `server_settings` (`setting`, `value`) VALUES
+-- Dumping data for table kurkku.server_settings: ~12 rows (approximately)
+INSERT INTO `server_settings` (`setting`, `value`) VALUES
 	('catalogue.subscription.page', '63'),
 	('club.gift.interval', '1'),
 	('club.gift.interval.type', 'MONTH'),
@@ -5818,7 +5853,7 @@ REPLACE INTO `server_settings` (`setting`, `value`) VALUES
 	('site.name', 'Habbo'),
 	('site.static.content.url', '');
 
--- Dumping structure for table helios.site_articles
+-- Dumping structure for table kurkku.site_articles
 CREATE TABLE IF NOT EXISTS `site_articles` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(64) DEFAULT 'Undefined Title',
@@ -5836,25 +5871,25 @@ CREATE TABLE IF NOT EXISTS `site_articles` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table helios.site_articles: ~0 rows (approximately)
+-- Dumping data for table kurkku.site_articles: ~0 rows (approximately)
 
--- Dumping structure for table helios.site_articles_categories
+-- Dumping structure for table kurkku.site_articles_categories
 CREATE TABLE IF NOT EXISTS `site_articles_categories` (
   `article_id` int(11) NOT NULL,
   `category_id` int(11) NOT NULL,
   KEY `article_id` (`article_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table helios.site_articles_categories: ~0 rows (approximately)
+-- Dumping data for table kurkku.site_articles_categories: ~0 rows (approximately)
 
--- Dumping structure for table helios.subscription_gifts
+-- Dumping structure for table kurkku.subscription_gifts
 CREATE TABLE IF NOT EXISTS `subscription_gifts` (
   `sale_code` varchar(255) NOT NULL,
   `duration_requirement` int(11) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table helios.subscription_gifts: ~22 rows (approximately)
-REPLACE INTO `subscription_gifts` (`sale_code`, `duration_requirement`) VALUES
+-- Dumping data for table kurkku.subscription_gifts: ~22 rows (approximately)
+INSERT INTO `subscription_gifts` (`sale_code`, `duration_requirement`) VALUES
 	('hcamme', 2),
 	('hc_tv', 1),
 	('hc_crtn', 3),
@@ -5878,21 +5913,21 @@ REPLACE INTO `subscription_gifts` (`sale_code`, `duration_requirement`) VALUES
 	('mocchamaster', 4),
 	('hc_crpt', 5);
 
--- Dumping structure for table helios.tags
+-- Dumping structure for table kurkku.tags
 CREATE TABLE IF NOT EXISTS `tags` (
   `avatar_id` int(11) DEFAULT NULL,
   `room_id` int(11) DEFAULT NULL,
   `text` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table helios.tags: ~4 rows (approximately)
-REPLACE INTO `tags` (`avatar_id`, `room_id`, `text`) VALUES
+-- Dumping data for table kurkku.tags: ~4 rows (approximately)
+INSERT INTO `tags` (`avatar_id`, `room_id`, `text`) VALUES
 	(1, 1, 'cum'),
 	(1, 2, 'horseshit'),
 	(2, 3, 'piss'),
 	(2, 1, 'cum');
 
--- Dumping structure for table helios.user
+-- Dumping structure for table kurkku.user
 CREATE TABLE IF NOT EXISTS `user` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `email` varchar(2500) NOT NULL,
@@ -5902,15 +5937,59 @@ CREATE TABLE IF NOT EXISTS `user` (
   `join_date` datetime NOT NULL DEFAULT current_timestamp(),
   `last_online` datetime NOT NULL DEFAULT current_timestamp(),
   UNIQUE KEY `id` (`id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci ROW_FORMAT=DYNAMIC;
 
--- Dumping data for table helios.user: ~2 rows (approximately)
-REPLACE INTO `user` (`id`, `email`, `password`, `birthday`, `direct_mail`, `join_date`, `last_online`) VALUES
-	(5, 'alexaccount@gmail.com', '123456', '1991.6.1991', 1, '2023-05-01 16:03:10', '2023-05-01 16:03:10'),
-	(7, 'faggot@cunt.com', 'qwerty123456', '5.4.1998', 1, '2024-02-24 12:57:38', '2024-02-24 12:57:38'),
-	(8, 'cunt@faggot.com', '000000', '6.5.1992', 0, '2024-02-24 12:59:40', '2024-02-24 12:59:40');
+-- Dumping data for table kurkku.user: ~0 rows (approximately)
 
--- Dumping structure for table helios.wordfilter
+-- Dumping structure for table kurkku.user_effects
+CREATE TABLE IF NOT EXISTS `user_effects` (
+  `user_id` int(11) NOT NULL,
+  `effect_id` int(11) NOT NULL,
+  `expires_at` datetime DEFAULT NULL,
+  `quantity` int(11) NOT NULL DEFAULT 1,
+  `is_activated` tinyint(1) NOT NULL DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- Dumping data for table kurkku.user_effects: ~0 rows (approximately)
+
+-- Dumping structure for table kurkku.user_seasonal_currencies
+CREATE TABLE IF NOT EXISTS `user_seasonal_currencies` (
+  `user_id` int(11) NOT NULL,
+  `seasonal_type` enum('PUMPKINS','PEANUTS','STARS','CLOUDS','DIAMONDS','LOYALTY_POINTS','DUCKETS') NOT NULL,
+  `balance` int(11) NOT NULL DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- Dumping data for table kurkku.user_seasonal_currencies: ~0 rows (approximately)
+
+-- Dumping structure for table kurkku.user_settings
+CREATE TABLE IF NOT EXISTS `user_settings` (
+  `user_id` int(11) NOT NULL,
+  `daily_respect_points` int(11) NOT NULL DEFAULT 0,
+  `daily_respect_pet_points` int(11) NOT NULL DEFAULT 0,
+  `respect_points` int(11) NOT NULL DEFAULT 0,
+  `friend_requests_enabled` tinyint(1) NOT NULL DEFAULT 1,
+  `following_enabled` tinyint(1) NOT NULL DEFAULT 1,
+  `online_time` bigint(11) NOT NULL DEFAULT 0,
+  PRIMARY KEY (`user_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- Dumping data for table kurkku.user_settings: ~0 rows (approximately)
+
+-- Dumping structure for table kurkku.user_subscriptions
+CREATE TABLE IF NOT EXISTS `user_subscriptions` (
+  `user_id` int(11) NOT NULL,
+  `subscribed_at` datetime NOT NULL,
+  `expire_at` datetime NOT NULL,
+  `gift_at` datetime NOT NULL,
+  `gifts_redeemable` int(11) NOT NULL DEFAULT 0,
+  `subscription_age` bigint(11) NOT NULL DEFAULT 0,
+  `subscription_age_last_updated` datetime NOT NULL DEFAULT current_timestamp(),
+  PRIMARY KEY (`user_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- Dumping data for table kurkku.user_subscriptions: ~0 rows (approximately)
+
+-- Dumping structure for table kurkku.wordfilter
 CREATE TABLE IF NOT EXISTS `wordfilter` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `word` varchar(100) NOT NULL,
@@ -5920,8 +5999,8 @@ CREATE TABLE IF NOT EXISTS `wordfilter` (
   UNIQUE KEY `word` (`word`)
 ) ENGINE=InnoDB AUTO_INCREMENT=131 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
--- Dumping data for table helios.wordfilter: ~127 rows (approximately)
-REPLACE INTO `wordfilter` (`id`, `word`, `is_bannable`, `is_filterable`) VALUES
+-- Dumping data for table kurkku.wordfilter: ~127 rows (approximately)
+INSERT INTO `wordfilter` (`id`, `word`, `is_bannable`, `is_filterable`) VALUES
 	(1, 'aaron', 0, 1),
 	(2, 'anal', 0, 1),
 	(3, 'anus', 0, 1),

@@ -24,13 +24,13 @@ namespace Helios.Web.Controllers
             this.ViewBag.Page = page;
             this.ViewBag.Header = page;
 
-            var pagesHablets = _ctx.PagesHabbletData
+            var pagesHabblets = _ctx.PagesHabbletData
                 .Where(x => x.Page == page)
                 .OrderBy(x => x.OrderId)
                 .Select(x => Tuple.Create(x.Widget, x.Column))
                 .ToList();
 
-            this.ViewBag.Hablets = pagesHablets;
+            this.ViewBag.Habblets = pagesHabblets;
             this.ViewBag.Entities = _ctx;
 
             return View("NotFound");

@@ -1,0 +1,18 @@
+﻿@using Helios.Web.Helpers
+@{
+    bool isLoggedIn = ViewBag.LoggedIn;
+    string? username = (ViewBag.Avatar != null ? ViewBag.Avatar.Name : null);
+}
+<script type="text/javascript">
+    document.habboLoggedIn = @(isLoggedIn ? "true" : "false");
+    var habboName = @(username != null ? "\"" + username + "\"" : "null");
+    var ad_keywords = "";
+    var habboReqPath = "@Url.BasePath()";
+    var habboStaticFilePath = "@(this.ViewBag.StaticContentUrl)web-gallery";
+    var habboImagerUrl = "@(this.ViewBag.StaticContentUrl)habbo-imaging/";
+    var habboPartner = "";
+    var habboDefaultClientPopupUrl = "@(this.ViewBag.StaticContentUrl)client";
+    window.name = "habboMain";
+    if (typeof HabboClient != "undefined") { HabboClient.windowName = "client"; }
+
+</script>

@@ -1,36 +1,47 @@
-﻿<div class="habblet-container ">
-	<div class="cbb clearfix red ">
-		<h2 class="title">Hotel Picks                            </h2>
+﻿@using Helios.Web.Storage
+@using Helios.Web.Helpers
+@{
+    string position = "right";
+    int i = 0;
+    int lefts = 0;
+    int rights = 0;
 
+    StorageContext ctx = ViewBag.Entities;
+    var recommendedGroups = ctx.Groups.ToList();
+}
 
-		<div id="staffpicks-rooms-habblet-list-container" class="habblet-list-container groups-list">
-			<ul class="habblet-list">
+<div class="habblet-container">
+    <div class="cbb clearfix blue">
+        <h2 class="title">Recommended</h2>
+        <div id="promogroups-habblet-list-container" class="habblet-list-container groups-list">
+            <ul class="habblet-list two-cols clearfix">
+                @{
+                    foreach (var group in recommendedGroups)
+                    {
+                        i++;
+                        if (i % 2 == 0)
+                        {
+                            position = "right";
+                            rights++;
+                        }
+                        else
+                        {
+                            position = "left";
+                            lefts++;
+                        }
 
-				<li class="odd" style="background-image: url(https://sandbox.classichabbo.com/habbo-imaging/badge/b1205Xs43104s38114.gif)">
-					<a href="https://sandbox.classichabbo.com/groups/officialhabboguides">Habbo Guides (Official)</a>
-				</li>
+                        string status = (lefts % 2 == 0) ? "even" : "odd";
 
-				<li class="even room-occupancy-2" roomid="1">
-					<div>
-						<span class="room-name"><a href="http://localhost/client?forwardId=2&amp;roomId=1" onclick="HabboClient.roomForward(this, '1', 'private'); return false;" target="client">Room name</a></span>
-						<span class="room-owner"><a href="http://localhost/home/Alex">Alex</a></span>
-						<p>test</p>
-					</div>
-				</li>
-
-
-
-				<li class="even room-occupancy-2" roomid="1">
-					<div>
-						<span class="room-name"><a href="http://localhost/client?forwardId=2&amp;roomId=1" onclick="HabboClient.roomForward(this, '1', 'private'); return false;" target="client">Room name</a></span>
-						<span class="room-owner"><a href="http://localhost/home/Alex">Alex</a></span>
-						<p>test</p>
-					</div>
-				</li>
-			</ul>
-		</div>
-
-
-	</div>
+                        <li class="@status @position" style="background-image: url(@Url.AbsolutePath("~/habbo-imaging/badge/" + @group.Badge + ".gif")">
+                            @if (group.RoomId > 0)
+                            {
+                                <a href="@Url.AbsolutePath("~/client?forwardId=2&amp;roomId=" + group.RoomId)" onclick="HabboClient.roomForward(this, '1', 'private'); return false;" target="client" class="group-room"></a>
+                            }
+                            <a class="item" href="">@group.Name</a>
+                        </li>
+                    }
+                }
+            </ul>
+        </div>
+    </div>
 </div>
-<script type="text/javascript">if (!$(document.body).hasClassName('process-template')) { Rounder.init(); }</script>

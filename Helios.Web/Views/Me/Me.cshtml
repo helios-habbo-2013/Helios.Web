@@ -17,23 +17,11 @@
     <script type="text/javascript" src="@(this.ViewBag.StaticContentUrl)web-gallery/static/js/libs.js"></script>
     <script type="text/javascript" src="@(this.ViewBag.StaticContentUrl)web-gallery/static/js/libs2.js"></script>
     <script type="text/javascript" src="@(this.ViewBag.StaticContentUrl)web-gallery/static/js/common.js"></script>
-    <script type="text/javascript" src="@(this.ViewBag.StaticContentUrl)web-gallery/static/js/homeview.js"></script>
-    <script type="text/javascript" src="@(this.ViewBag.StaticContentUrl)web-gallery/static/js/homeauth.js"></script>
-    <script type="text/javascript">
-      document.habboLoggedIn = true;
-      var habboName = null;
-      var habboId = null;
-      var habboReqPath = "";
-      var habboStaticFilePath = "@Url.AbsolutePath("~/habbo")";
-      var habboImagerUrl = "http://www.habbo.nl/habbo-imaging/";
-      var habboPartner = "";
-      var habboDefaultClientPopupUrl = "@Url.AbsolutePath("~/client")";
-      window.name = "me";
-      if (typeof HabboClient != "undefined") {
-      	HabboClient.windowName = "client";
-      	HabboClient.maximizeWindow = true;
-      }
-    </script>
+
+    @{
+        await Html.RenderPartialAsync("Javascript");
+    }
+
     <meta name="description" content="@(ViewBag.SiteName) is a @(ViewBag.SiteName) Hotel retro. Its a free version of @(ViewBag.SiteName) where you can build your rooms for free!" />
     <meta name="keywords" content="@(ViewBag.SiteName) hotel, free games, habbo hotel, virtual, world, social network, free, community, avatar, chat, online, teen, roleplaying, join, social, groups, forums, safe, play, games, online, friends, teens, rares, rare furni, collecting, create, collect, connect, furni, furniture, pets, room design, sharing, expression, badges, hangout, music, celebrity, celebrity visits, celebrities, mmo, mmorpg, massively multiplayer" />
     <meta name="build" content="SierraCMS 1.0.0a" />
@@ -56,7 +44,7 @@
     await Html.RenderPartialAsync("Navigation");
     }
     <div id="container">
-      <div id="content" style="position: relative; width: 770px;" class="clearfix">
+      <div id="content" class="clearfix">
         <div id="wide-personal-info">
           <div id="habbo-plate">
             <a href="?p=account">
