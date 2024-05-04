@@ -12,6 +12,12 @@
     <EmbeddedResource Remove="figuredata\**" />
     <None Remove="figuredata\**" />
   </ItemGroup>
+  
+  <ItemGroup>
+      <Content Include="badges\**">
+          <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </Content>
+  </ItemGroup>
 
   <ItemGroup>
     <Content Remove="Views\Account\Login.cshtml" />
@@ -67,12 +73,12 @@
 
   <ItemGroup>
     <PackageReference Include="Avatara-Imager" Version="1.0.0" />
-    <PackageReference Include="Badger-Imager" Version="1.0.0" />
+    <PackageReference Include="Badger-Imager" Version="1.2.0.5040330" />
     <PackageReference Include="EmailValidation" Version="1.0.10" />
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="8.0.2" />
-    <PackageReference Include="SixLabors.Fonts" Version="1.0.0-beta19" />
-    <PackageReference Include="SixLabors.ImageSharp" Version="2.1.3" />
-    <PackageReference Include="SixLabors.ImageSharp.Drawing" Version="1.0.0-beta15" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="8.0.4" />
+    <PackageReference Include="SixLabors.Fonts" Version="2.0.3" />
+    <PackageReference Include="SixLabors.ImageSharp" Version="3.1.4" />
+    <PackageReference Include="SixLabors.ImageSharp.Drawing" Version="2.1.3" />
     <PackageReference Include="Suggestor" Version="1.0.0" />
   </ItemGroup>
 

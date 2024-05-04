@@ -32,7 +32,7 @@
 
                         string status = (lefts % 2 == 0) ? "even" : "odd";
 
-                        <li class="@status @position" style="background-image: url(@Url.AbsolutePath("~/habbo-imaging/badge/" + @group.Badge + ".gif")">
+                        <li class="@status @position" style="background-image: url(@Url.AbsolutePath("~/habbo-imaging/badge/" + @group.Badge + ".gif"))">
                             @if (group.RoomId > 0)
                             {
                                 <a href="@Url.AbsolutePath("~/client?forwardId=2&amp;roomId=" + group.RoomId)" onclick="HabboClient.roomForward(this, '1', 'private'); return false;" target="client" class="group-room"></a>

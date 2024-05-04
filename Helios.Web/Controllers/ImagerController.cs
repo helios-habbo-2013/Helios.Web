@@ -1,5 +1,6 @@
 ﻿using Avatara;
 using Avatara.Figure;
+using Badger;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 using static System.Net.Mime.MediaTypeNames;
@@ -16,7 +17,7 @@ namespace Helios.Web.Controllers
         }
 
         [HttpGet("habbo-imaging/avatarimage")]
-        public IActionResult Index()
+        public IActionResult FigureImage()
         {
             string size = "b";
             int bodyDirection = 2;
@@ -112,6 +113,56 @@ namespace Helios.Web.Controllers
                 var figureData = avatar.Run();
 
                 return File(figureData, "image/png");
+            }
+
+            return StatusCode(403);
+        }
+
+        [HttpGet("habbo-imaging/badge/{badgeCode}")]
+        public IActionResult BadgeImage(string badgeCode)
+        {
+            if (badgeCode != null && badgeCode.Length > 0)
+            {
+                var badge = Badge.ParseBadgeData(new BadgeSettings
+                {
+                    IsShockwaveBadge = false,
+                    BasePath = Environment.CurrentDirectory
+                }, badgeCode);
+
+                if (badgeCode.EndsWith(".gif"))
+                {
+                    var badgeData = badge.Render(gifEncoder: true);
+
+                    if (badgeData != null)
+                        return File(badgeData, "image/gif");
+                }
+                else
+                {
+                    var badgeData = badge.Render(gifEncoder: false);
+
+                    if (badgeData != null)
+                        return File(badgeData, "image/png");
+                }
+            }
+
+            return StatusCode(403);
+        }
+
+        [HttpGet("habbo-imaging/badge-fill/{badgeCode}")]
+        public IActionResult BadgeFillImage(string badgeCode)
+        {
+            if (badgeCode != null && badgeCode.Length > 0)
+            {
+                var badge = Badge.ParseBadgeData(new BadgeSettings
+                {
+                    IsShockwaveBadge = false,
+                    BasePath = Environment.CurrentDirectory
+                }, badgeCode);
+
+                var badgeData = badge.Render(gifEncoder: true, forceWhiteBackground: true);
+
+                if (badgeData != null)
+                    return File(badgeData, "image/gif");
             }
 
             return StatusCode(403);

@@ -97,7 +97,7 @@ namespace Helios.Web.Util
 						int oldX = Random.Next(0, width);
 						int oldY = Random.Next(0, height);
 
-						int newX = Random.Next(0, height);
+						int newX = Random.Next(0, width);
 						int newY = Random.Next(0, height);
 
 						lines.Add(new int[] { oldX, oldY });
@@ -107,11 +107,12 @@ namespace Helios.Web.Util
 							.Select(r => new PointF(r[0], r[1]))
 							.ToArray();
 
-						var linePen = new Pen(Color.Black, 1);
-						imageContext.DrawLines(linePen, imageSharpLines);
+						var linePen = new SolidPen(new SolidBrush(Color.Black), 1);
+						imageContext.DrawLine(linePen, imageSharpLines);
 					}
 
 				});
+
 				int xPos = 20;
 
 				foreach (char ch in text.ToCharArray())
@@ -169,7 +170,7 @@ namespace Helios.Web.Util
 					break;
 			}
 
-			var measure = TextMeasurer.Measure(ch.ToString(), new TextOptions(font));
+			var measure = TextMeasurer.MeasureAdvance(ch.ToString(), new TextOptions(font));
 			int charWidth = (int)measure.Width;
 			int charHeight = (int)measure.Height;
 
