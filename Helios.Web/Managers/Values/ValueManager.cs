@@ -53,16 +53,6 @@ namespace Helios.Game
         {
             var defaultValues = new Dictionary<string, string>();
             
-            defaultValues["max.friends.normal"] = "300";
-            defaultValues["max.friends.hc"] = "600";
-            defaultValues["max.friends.vip"] = "1100";
-            defaultValues["max.rooms.allowed"] = "100";
-            defaultValues["max.rooms.allowed.subscribed"] = "200";
-            defaultValues["timer.speech.bubble"] = "15";
-            defaultValues["inventory.items.per.page"] = "500";
-            defaultValues["catalogue.subscription.page"] = "63";
-            defaultValues["club.gift.interval"] = "1";
-            defaultValues["club.gift.interval.type"] = "MONTH";
             defaultValues["site.name"] = "Habbo";
             defaultValues["site.static.content.url"] = "";
 
