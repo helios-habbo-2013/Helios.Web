@@ -121,28 +121,34 @@ namespace Helios.Web.Controllers
         [HttpGet("habbo-imaging/badge/{badgeCode}")]
         public IActionResult BadgeImage(string badgeCode)
         {
-            if (badgeCode != null && badgeCode.Length > 0)
+            try
             {
-                var badge = Badge.ParseBadgeData(new BadgeSettings
+                if (badgeCode != null && badgeCode.Length > 0)
                 {
-                    IsShockwaveBadge = false,
-                    BasePath = Environment.CurrentDirectory
-                }, badgeCode);
+                    var badge = Badge.ParseBadgeData(new BadgeSettings
+                    {
+                        IsShockwaveBadge = true,
+                        BasePath = Environment.CurrentDirectory
+                    }, badgeCode);
 
-                if (badgeCode.EndsWith(".gif"))
-                {
-                    var badgeData = badge.Render(gifEncoder: true);
+                    if (badgeCode.EndsWith(".gif"))
+                    {
+                        var badgeData = badge.Render(gifEncoder: true);
 
-                    if (badgeData != null)
-                        return File(badgeData, "image/gif");
+                        if (badgeData != null)
+                            return File(badgeData, "image/gif");
+                    }
+                    else
+                    {
+                        var badgeData = badge.Render(gifEncoder: false);
+
+                        if (badgeData != null)
+                            return File(badgeData, "image/png");
+                    }
                 }
-                else
-                {
-                    var badgeData = badge.Render(gifEncoder: false);
-
-                    if (badgeData != null)
-                        return File(badgeData, "image/png");
-                }
+            } catch (Exception ex)
+            {
+                return StatusCode(500);
             }
 
             return StatusCode(403);

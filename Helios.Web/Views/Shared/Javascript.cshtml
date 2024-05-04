@@ -5,7 +5,7 @@
 }
 <script type="text/javascript">
     document.habboLoggedIn = @(isLoggedIn ? "true" : "false");
-    var habboName = @(username != null ? "\"" + username + "\"" : "null");
+    var habboName = @(Html.Raw(username != null ? "\"" + username + "\"" : "null"));
     var ad_keywords = "";
     var habboReqPath = "@Url.BasePath()";
     var habboStaticFilePath = "@(this.ViewBag.StaticContentUrl)web-gallery";

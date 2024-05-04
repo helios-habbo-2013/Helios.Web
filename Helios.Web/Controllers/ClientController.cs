@@ -2,6 +2,7 @@
 using Avatara.Figure;
 using Helios.Web.Helpers;
 using Helios.Web.Storage;
+using Helios.Web.Storage.Models.Avatar;
 using Helios.Web.Util;
 using Microsoft.AspNetCore.Mvc;
 
@@ -26,8 +27,18 @@ namespace Helios.Web.Controllers
                 return RedirectToAction("Index", "Home");
             }
 
-            ViewBag.Error = null;//= "no_password";
-            return Ok("test");
+            var ssoTicket = Guid.NewGuid().ToString().ToLower();
+
+            if (ViewBag.Avatar is AvatarData avatar)
+            {
+
+                _ctx.Add(new AuthenicationTicketData { AvatarId = avatar.Id, ExpireDate = null, Ticket = ssoTicket });
+                _ctx.SaveChanges();
+            }
+
+            ViewBag.SsoTicket = ssoTicket;
+
+            return View();
         }
     }
 }

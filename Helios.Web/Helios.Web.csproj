@@ -23,6 +23,7 @@
     <Content Remove="Views\Account\Login.cshtml" />
     <Content Remove="Views\Account\Logout.cshtml" />
     <Content Remove="Views\Account\SecurityCheck.cshtml" />
+    <Content Remove="Views\Client\Client.cshtml" />
     <Content Remove="Views\Identity\AddAvatar.cshtml" />
     <Content Remove="Views\Identity\AvatarList.cshtml" />
     <Content Remove="Views\Identity\Avatars.cshtml" />
@@ -47,6 +48,7 @@
   <ItemGroup>
     <None Include="Views\Account\Logout.cshtml" />
     <None Include="Views\Account\SecurityCheck.cshtml" />
+    <None Include="Views\Client\Client.cshtml" />
     <None Include="Views\Identity\Settings.cshtml" />
     <None Include="Views\Identity\SettingsEmail.cshtml" />
     <None Include="Views\Identity\SettingsPassword.cshtml" />
@@ -73,7 +75,7 @@
 
   <ItemGroup>
     <PackageReference Include="Avatara-Imager" Version="1.0.0" />
-    <PackageReference Include="Badger-Imager" Version="1.2.0.5040330" />
+    <PackageReference Include="Badger-Imager" Version="1.3.0.5040351" />
     <PackageReference Include="EmailValidation" Version="1.0.10" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="8.0.4" />
     <PackageReference Include="SixLabors.Fonts" Version="2.0.3" />
