@@ -14,14 +14,14 @@ namespace Helios.Web.Storage.Models.Group
         public int OwnerId { get; set; }
         public int RoomId { get; set; }
         public string Badge { get; set; }
+        public string Colour1 { get; set; }
+        public string Colour2 { get; set; }
         public bool Recommended { get; set; }
         public string Background { get; set; }
-        public int Views { get; set; }
-        public int Topics { get; set; }
         public byte GroupType { get; set; }
         public byte ForumType { get; set; }
         public byte ForumPermissionType { get; set; }
-        public string? Alias { get; set; }
+        public string Alias { get; set; }
         public DateTime CreatedAt { get; set; }
 
         public virtual ICollection<GroupMembershipData> GroupMemberships { get; set; }

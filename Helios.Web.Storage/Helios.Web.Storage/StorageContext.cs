@@ -518,11 +518,11 @@ namespace Helios.Web.Storage
                 entity.Property(e => e.Description).HasColumnName("description").IsRequired().HasColumnType("mediumtext");
                 entity.Property(e => e.OwnerId).HasColumnName("owner_id").IsRequired();
                 entity.Property(e => e.RoomId).HasColumnName("room_id").IsRequired().HasDefaultValue(0);
-                entity.Property(e => e.Badge).HasColumnName("badge").IsRequired().HasColumnType("mediumtext").HasDefaultValue("b0503Xs09114s05013s05015");
+                entity.Property(e => e.Badge).HasColumnName("badge").IsRequired().HasColumnType("mediumtext");
+                entity.Property(e => e.Colour1).HasColumnName("colour1").IsRequired();
+                entity.Property(e => e.Colour2).HasColumnName("colour2").IsRequired();
                 entity.Property(e => e.Recommended).HasColumnName("recommended").IsRequired().HasDefaultValue(0);
                 entity.Property(e => e.Background).HasColumnName("background").IsRequired().HasMaxLength(255).HasDefaultValue("bg_colour_08");
-                entity.Property(e => e.Views).HasColumnName("views").IsRequired().HasDefaultValue(0);
-                entity.Property(e => e.Topics).HasColumnName("topics").IsRequired().HasDefaultValue(0);
                 entity.Property(e => e.GroupType).HasColumnName("group_type").IsRequired().HasColumnType("tinyint").HasDefaultValue(0);
                 entity.Property(e => e.ForumType).HasColumnName("forum_type").IsRequired().HasColumnType("tinyint").HasDefaultValue(0);
                 entity.Property(e => e.ForumPermissionType).HasColumnName("forum_permission_type").IsRequired().HasColumnType("tinyint").HasDefaultValue(0);

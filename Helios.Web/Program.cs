@@ -24,7 +24,7 @@ namespace Helios.Web
             builder.Services.AddDistributedMemoryCache();
             builder.Services.AddSession(options =>
             {
-                options.IdleTimeout = TimeSpan.FromMinutes(30);
+                options.IdleTimeout = TimeSpan.FromDays(1); // TimeSpan.FromMinutes(30);
                 options.Cookie.HttpOnly = false;
                 options.Cookie.SecurePolicy = CookieSecurePolicy.None;
                 options.Cookie.IsEssential = true;

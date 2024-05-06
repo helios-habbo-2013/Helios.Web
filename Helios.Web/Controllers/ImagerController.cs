@@ -127,7 +127,7 @@ namespace Helios.Web.Controllers
                 {
                     var badge = Badge.ParseBadgeData(new BadgeSettings
                     {
-                        IsShockwaveBadge = true,
+                        IsShockwaveBadge = false,
                         BasePath = Environment.CurrentDirectory
                     }, badgeCode);
 
