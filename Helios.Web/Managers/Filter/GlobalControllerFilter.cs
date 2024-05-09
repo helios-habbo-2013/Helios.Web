@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Helios.Web.Util;
 using Helios.Web.Helpers;
-using Helios.Web.Storage;
+using Helios.Storage;
 
 namespace Helios.Game
 {

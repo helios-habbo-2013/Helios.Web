@@ -2,7 +2,7 @@ using Avatara.Figure;
 using Avatara;
 using Helios.Web.Util;
 using Microsoft.EntityFrameworkCore;
-using Helios.Web.Storage;
+using Helios.Storage;
 using Helios.Game;
 using Microsoft.Extensions.FileProviders;
 

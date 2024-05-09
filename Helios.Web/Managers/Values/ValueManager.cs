@@ -1,5 +1,5 @@
-﻿using Helios.Web.Storage;
-using Helios.Web.Storage.Access;
+﻿using Helios.Storage;
+using Helios.Storage.Access;
 using Helios.Web.Util.Extensions;
 
 namespace Helios.Game

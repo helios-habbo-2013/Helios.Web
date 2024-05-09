@@ -1,4 +1,4 @@
-﻿using Helios.Web.Storage;
+﻿using Helios.Storage;
 using Suggestor;
 
 namespace Helios.Web.Util

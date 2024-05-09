@@ -85,10 +85,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Helios.Web.Storage\Helios.Web.Storage\Helios.Web.Storage.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
     <None Update="tools\words.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
@@ -96,6 +92,10 @@
 
   <ItemGroup>
     <Folder Include="Services\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Helios.Storage\Helios.Storage\Helios.Storage.csproj" />
   </ItemGroup>
 
 </Project>

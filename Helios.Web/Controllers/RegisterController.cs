@@ -1,7 +1,7 @@
 ﻿using Helios.Web.Helpers;
-using Helios.Web.Storage;
-using Helios.Web.Storage.Models.Avatar;
-using Helios.Web.Storage.Models.User;
+using Helios.Storage;
+using Helios.Storage.Models.Avatar;
+using Helios.Storage.Models.User;
 using Helios.Web.Util;
 using Microsoft.AspNetCore.Mvc;
 

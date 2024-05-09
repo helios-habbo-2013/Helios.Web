@@ -1,6 +1,6 @@
 ﻿using Helios.Web.Helpers;
-using Helios.Web.Storage;
-using Helios.Web.Storage.Models.User;
+using Helios.Storage;
+using Helios.Storage.Models.User;
 using Suggestor;
 
 namespace Helios.Web.Util

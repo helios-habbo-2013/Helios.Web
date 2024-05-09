@@ -1,8 +1,8 @@
 ﻿using Avatara;
 using Avatara.Figure;
 using Helios.Web.Helpers;
-using Helios.Web.Storage;
-using Helios.Web.Storage.Models.Avatar;
+using Helios.Storage;
+using Helios.Storage.Models.Avatar;
 using Helios.Web.Util;
 using Microsoft.AspNetCore.Mvc;
 
