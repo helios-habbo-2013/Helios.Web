@@ -10,12 +10,12 @@
     </div>
     <div id="habbo-plate">
         <a href="@Url.AbsolutePath("~/profile")">
-            <img alt="Quackster" src="@Url.AbsolutePath("~/habbo-imaging/avatarimage?figure=" + (ViewBag.Avatar.Figure as string) + "&size=b&direction=3&head_direction=3&crr=0&gesture=sml&frame=1")" width="64" height="110">
+            <img alt="@ViewBag.Avatar.Name" src="@Url.AbsolutePath("~/habbo-imaging/avatarimage?figure=" + (ViewBag.Avatar.Figure as string) + "&size=b&direction=3&head_direction=3&crr=0&gesture=sml&frame=1")" width="64" height="110">
         </a>
     </div>
     <div id="habbo-info">
         <div id="motto-container" class="clearfix">
-            <strong>Quackster:</strong>
+            <strong>@ViewBag.Avatar.Name:</strong>
             <div style="width: 230px;">
                 <span title="Click to enter your motto/ status">@(string.IsNullOrEmpty(ViewBag.Avatar.Motto) ? "Click to enter your motto/ status" : ViewBag.Avatar.Motto)</span>
                 <p style="display: none"><input type="text" length="30" name="motto" value="" style="width: 227px;"></p>

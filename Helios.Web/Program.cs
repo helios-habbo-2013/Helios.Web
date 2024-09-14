@@ -67,7 +67,8 @@ namespace Helios.Web
             // https://stackoverflow.com/questions/59304132/net-core-how-to-handle-route-with-extra-leading-slash
             app.Use((context, next) =>
             {
-                if (context.Request.Path.Value.StartsWith("//"))
+                if (context.Request.Path.HasValue && 
+                    context.Request.Path.Value.StartsWith("//"))
                 {
                     context.Request.Path = new PathString(context.Request.Path.Value.Replace("//", "/"));
                 }
