@@ -24,7 +24,7 @@ namespace Helios.Web.Controllers
         [Route("/me")]
         public IActionResult Me()
         {
-            if (!this.HttpContext.Get<bool>(Constants.LOGGED_IN))
+            if (!SessionUtil.IsLoggedIn(this._ctx, this.HttpContext, this.Request.Cookies))
             {
                 return RedirectToAction("Index", "Home");
             }
@@ -32,7 +32,7 @@ namespace Helios.Web.Controllers
             if (this.HttpContext.Contains(Constants.CURRENT_USER_ID) &&
                 !this.HttpContext.Contains(Constants.CURRENT_AVATAR_ID))
             {
-                return RedirectToAction("Select", "Identity");
+                return RedirectToAction("Avatars", "Identity");
             }
 
             if (ViewBag.Avatar is AvatarData avatar)

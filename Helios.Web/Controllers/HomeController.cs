@@ -1,4 +1,5 @@
-﻿using Helios.Web.Helpers;
+﻿using Helios.Storage;
+using Helios.Web.Helpers;
 using Helios.Web.Util;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
@@ -9,16 +10,18 @@ namespace Helios.Web.Controllers
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly StorageContext _ctx;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, StorageContext ctx)
         {
             _logger = logger;
+            _ctx = ctx;
         }
 
         [Route("/")]
         public IActionResult Index()
         {
-            if (this.HttpContext.Get<bool>(Constants.LOGGED_IN))
+            if (SessionUtil.IsLoggedIn(this._ctx, this.HttpContext, this.Request.Cookies))
             {
                 return RedirectToAction("Me", "Me");
             }

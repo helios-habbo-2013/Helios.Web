@@ -146,7 +146,8 @@ namespace Helios.Web.Controllers
                             return File(badgeData, "image/png");
                     }
                 }
-            } catch (Exception ex)
+            }
+            catch
             {
                 return StatusCode(500);
             }

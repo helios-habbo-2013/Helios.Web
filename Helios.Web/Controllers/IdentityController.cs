@@ -26,7 +26,7 @@ namespace Helios.Web.Controllers
         [Route("/identity/avatars")]
         public IActionResult Avatars()
         {
-            if (!this.HttpContext.Get<bool>(Constants.LOGGED_IN))
+            if (!SessionUtil.IsLoggedIn(this._ctx, this.HttpContext, this.Request.Cookies))
                 return RedirectToAction("Index", "Home");
 
             HttpContext.Remove(Constants.IDENTIIY_NAME);
@@ -50,7 +50,7 @@ namespace Helios.Web.Controllers
         [Route("/identity/add_avatar")]
         public IActionResult AddAvatar()
         {
-            if (!this.HttpContext.Get<bool>(Constants.LOGGED_IN))
+            if (!SessionUtil.IsLoggedIn(this._ctx, this.HttpContext, this.Request.Cookies))
                 return RedirectToAction("Index", "Home");
 
             string errorType = "";
@@ -96,7 +96,7 @@ namespace Helios.Web.Controllers
         [Route("/identity/useOrCreateAvatar/{avatarId}")]
         public IActionResult UseOrCreateAvatar(int avatarId)
         {
-            if (!this.HttpContext.Get<bool>(Constants.LOGGED_IN))
+            if (!SessionUtil.IsLoggedIn(this._ctx, this.HttpContext, this.Request.Cookies))
                 return RedirectToAction("Index", "Home");
 
             var avatarList = _ctx.AvatarData.Where(x => x.UserId == this.HttpContext.Get<int>(Constants.CURRENT_USER_ID))
@@ -113,7 +113,7 @@ namespace Helios.Web.Controllers
         [Route("/identity/add_avatar_add")]
         public IActionResult AddAvatarAdd(string? avatarName)
         {
-            if (!this.HttpContext.Get<bool>(Constants.LOGGED_IN))
+            if (!SessionUtil.IsLoggedIn(this._ctx, this.HttpContext, this.Request.Cookies))
                 return RedirectToAction("Index", "Home");
 
             HttpContext.Set<string>(Constants.IDENTIIY_NAME, avatarName ?? string.Empty);
@@ -140,7 +140,7 @@ namespace Helios.Web.Controllers
         [Route("/identity/settings")]
         public IActionResult Settings()
         {
-            if (!this.HttpContext.Get<bool>(Constants.LOGGED_IN))
+            if (!SessionUtil.IsLoggedIn(this._ctx, this.HttpContext, this.Request.Cookies))
                 return RedirectToAction("Index", "Home");
 
             return View();
@@ -150,7 +150,7 @@ namespace Helios.Web.Controllers
         [Route("/identity/email")]
         public IActionResult SettingsEmail()
         {
-            if (!this.HttpContext.Get<bool>(Constants.LOGGED_IN))
+            if (!SessionUtil.IsLoggedIn(this._ctx, this.HttpContext, this.Request.Cookies))
                 return RedirectToAction("Index", "Home");
 
             return View();
@@ -160,7 +160,7 @@ namespace Helios.Web.Controllers
         [Route("/identity/email")]
         public IActionResult UpdateSettingsEmail(string password, string email, string captcha, string directMail)
         {
-            if (!this.HttpContext.Get<bool>(Constants.LOGGED_IN))
+            if (!SessionUtil.IsLoggedIn(this._ctx, this.HttpContext, this.Request.Cookies))
                 return RedirectToAction("Index", "Home");
 
             UserData? user = ViewBag.User as UserData;
@@ -216,7 +216,7 @@ namespace Helios.Web.Controllers
         [Route("/identity/password")]
         public IActionResult SettingsPassword()
         {
-            if (!this.HttpContext.Get<bool>(Constants.LOGGED_IN))
+            if (!SessionUtil.IsLoggedIn(this._ctx, this.HttpContext, this.Request.Cookies))
                 return RedirectToAction("Index", "Home");
 
             return View();
@@ -226,7 +226,7 @@ namespace Helios.Web.Controllers
         [Route("/identity/password")]
         public IActionResult UpdateSettingsPassword(string currentpassword, string newpassword, string newpasswordconfirm, string captcha, string directMail)
         {
-            if (!this.HttpContext.Get<bool>(Constants.LOGGED_IN))
+            if (!SessionUtil.IsLoggedIn(this._ctx, this.HttpContext, this.Request.Cookies))
                 return RedirectToAction("Index", "Home");
 
             UserData? user = ViewBag.User as UserData;

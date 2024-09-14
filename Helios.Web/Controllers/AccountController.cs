@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Helios.Storage.Models.User;
 using Helios.Storage.Access;
 using Helios.Storage.Models.Avatar;
+using Microsoft.AspNetCore.Http;
 
 namespace Helios.Web.Controllers
 {
@@ -22,15 +23,16 @@ namespace Helios.Web.Controllers
 
         [HttpPost]
         [Route("/account/submit")]
-        public IActionResult Login([Bind(Prefix = "credentials.username")] string username, [Bind(Prefix = "credentials.password")] string password, string _login_remember_me)
+        public IActionResult Login([Bind(Prefix = "credentials.username")] string username, [Bind(Prefix = "credentials.password")] string password, string? _login_remember_me)
         {
             UserData? user = _ctx.UserData.FirstOrDefault(x => x.Email == username && x.Password == password);
+            bool rememberMe = _login_remember_me?.ToLower() == "true";
+
+            this.HttpContext.Set<string>("credentials.username", username);
+            this.HttpContext.Set<bool>("_login_remember_me", rememberMe);
 
             if (user == null)
             {
-                this.HttpContext.Set<string>("credentials.username", username);
-                this.HttpContext.Set<string>("_login_remember_me", _login_remember_me);
-
                 TempData["Error"] = "Incorrect email or password";
 
                 return View();
@@ -38,6 +40,31 @@ namespace Helios.Web.Controllers
             else
             {
                 SessionUtil.Login(this.HttpContext, user);
+
+                this.HttpContext.Remove(Constants.CURRENT_AVATAR_ID);
+
+                var cookieOptions = new CookieOptions();
+                cookieOptions.Expires = Constants.SESSION_EXPIRY;
+                cookieOptions.Path = "/";
+
+                if (rememberMe)
+                {
+                    var userSessionData = new UserSessionData
+                    {
+                        UserId = user.Id,
+                        ExpiryDate = Constants.SESSION_EXPIRY
+                    };
+
+                    _ctx.UserSessionData.Add(userSessionData);
+                    _ctx.SaveChanges();
+
+                    Response.Cookies.Delete(Constants.HELIOS_SESSION);
+                    Response.Cookies.Append(Constants.HELIOS_SESSION, userSessionData.SessionId, cookieOptions);
+                }
+                else
+                {
+                    Response.Cookies.Delete(Constants.HELIOS_SESSION);
+                }
 
                 return RedirectToAction("SecurityCheck");
             }
@@ -47,12 +74,14 @@ namespace Helios.Web.Controllers
         [Route("/account/logout")]
         public IActionResult Logout()
         {
-            if (!this.HttpContext.Get<bool>(Constants.LOGGED_IN))
+            if (!SessionUtil.IsLoggedIn(this._ctx, this.HttpContext, this.Request.Cookies))
             {
                 return RedirectToAction("Index", "Home");
             }
 
             SessionUtil.Logout(this.HttpContext);
+
+            Response.Cookies.Delete(Constants.HELIOS_SESSION);
 
             return View();
         }
@@ -60,7 +89,7 @@ namespace Helios.Web.Controllers
         [Route("/security_check")]
         public IActionResult SecurityCheck()
         {
-            if (!this.HttpContext.Get<bool>(Constants.LOGGED_IN))
+            if (!SessionUtil.IsLoggedIn(this._ctx, this.HttpContext, this.Request.Cookies))
             {
                 this.ViewBag.RedirectPath = "index";
 
