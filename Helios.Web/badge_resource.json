@@ -1,1118 +1,1118 @@
 [
 	{
 		"Id": 1,
-		"ExtraData1": "base_basic_1.gif",
+		"ExtraData1": "badgepart_base_basic_1.png",
 		"ExtraData2": "",
 		"Type": "base"
 	},
 	{
 		"Id": 2,
-		"ExtraData1": "base_basic_2.gif",
+		"ExtraData1": "badgepart_base_basic_2.png",
 		"ExtraData2": "",
 		"Type": "base"
 	},
 	{
 		"Id": 3,
-		"ExtraData1": "base_basic_3.gif",
+		"ExtraData1": "badgepart_base_basic_3.png",
 		"ExtraData2": "",
 		"Type": "base"
 	},
 	{
 		"Id": 4,
-		"ExtraData1": "base_basic_4.gif",
+		"ExtraData1": "badgepart_base_basic_4.png",
 		"ExtraData2": "",
 		"Type": "base"
 	},
 	{
 		"Id": 5,
-		"ExtraData1": "base_basic_5.gif",
+		"ExtraData1": "badgepart_base_basic_5.png",
 		"ExtraData2": "",
 		"Type": "base"
 	},
 	{
 		"Id": 6,
-		"ExtraData1": "base_advanced_1.gif",
+		"ExtraData1": "badgepart_base_advanced_1.png",
 		"ExtraData2": "",
 		"Type": "base"
 	},
 	{
 		"Id": 7,
-		"ExtraData1": "base_advanced_2.gif",
+		"ExtraData1": "badgepart_base_advanced_2.png",
 		"ExtraData2": "",
 		"Type": "base"
 	},
 	{
 		"Id": 8,
-		"ExtraData1": "base_advanced_3.gif",
+		"ExtraData1": "badgepart_base_advanced_3.png",
 		"ExtraData2": "",
 		"Type": "base"
 	},
 	{
 		"Id": 9,
-		"ExtraData1": "base_advanced_4.gif",
+		"ExtraData1": "badgepart_base_advanced_4.png",
 		"ExtraData2": "",
 		"Type": "base"
 	},
 	{
 		"Id": 10,
-		"ExtraData1": "base_gold_1_part2.gif",
-		"ExtraData2": "base_gold_1_part1.gif",
+		"ExtraData1": "badgepart_base_gold_1_part2.png",
+		"ExtraData2": "badgepart_base_gold_1_part1.png",
 		"Type": "base"
 	},
 	{
 		"Id": 11,
-		"ExtraData1": "base_gold_2_part2.gif",
-		"ExtraData2": "base_gold_2_part1.gif",
+		"ExtraData1": "badgepart_base_gold_2_part2.png",
+		"ExtraData2": "badgepart_base_gold_2_part1.png",
 		"Type": "base"
 	},
 	{
 		"Id": 12,
-		"ExtraData1": "base_pin_part2.gif",
-		"ExtraData2": "base_pin_part1.gif",
+		"ExtraData1": "badgepart_base_pin_part2.png",
+		"ExtraData2": "badgepart_base_pin_part1.png",
 		"Type": "base"
 	},
 	{
 		"Id": 13,
-		"ExtraData1": "base_gradient_1.gif",
+		"ExtraData1": "badgepart_base_gradient_1.png",
 		"ExtraData2": "",
 		"Type": "base"
 	},
 	{
 		"Id": 14,
-		"ExtraData1": "base_gradient_2.gif",
+		"ExtraData1": "badgepart_base_gradient_2.png",
 		"ExtraData2": "",
 		"Type": "base"
 	},
 	{
 		"Id": 15,
-		"ExtraData1": "base_circles_1.gif",
+		"ExtraData1": "badgepart_base_circles_1.png",
 		"ExtraData2": "",
 		"Type": "base"
 	},
 	{
 		"Id": 16,
-		"ExtraData1": "base_circles_2.gif",
+		"ExtraData1": "badgepart_base_circles_2.png",
 		"ExtraData2": "",
 		"Type": "base"
 	},
 	{
 		"Id": 17,
-		"ExtraData1": "base_ornament_1_part2.gif",
-		"ExtraData2": "base_ornament_1_part1.gif",
+		"ExtraData1": "badgepart_base_ornament_1_part2.png",
+		"ExtraData2": "badgepart_base_ornament_1_part1.png",
 		"Type": "base"
 	},
 	{
 		"Id": 18,
-		"ExtraData1": "base_ornament_2_part2.gif",
-		"ExtraData2": "base_ornament_2_part1.gif",
+		"ExtraData1": "badgepart_base_ornament_2_part2.png",
+		"ExtraData2": "badgepart_base_ornament_2_part1.png",
 		"Type": "base"
 	},
 	{
 		"Id": 19,
-		"ExtraData1": "base_misc_1_part2.gif",
-		"ExtraData2": "base_misc_1_part1.gif",
+		"ExtraData1": "badgepart_base_misc_1_part2.png",
+		"ExtraData2": "badgepart_base_misc_1_part1.png",
 		"Type": "base"
 	},
 	{
 		"Id": 20,
-		"ExtraData1": "base_misc_2.gif",
+		"ExtraData1": "badgepart_base_misc_2.png",
 		"ExtraData2": "",
 		"Type": "base"
 	},
 	{
 		"Id": 65,
-		"ExtraData1": "base_beams_part2.gif",
-		"ExtraData2": "base_beams_part1.gif",
+		"ExtraData1": "badgepart_base_beams_part2.png",
+		"ExtraData2": "badgepart_base_beams_part1.png",
 		"Type": "base"
 	},
 	{
 		"Id": 66,
-		"ExtraData1": "base_ring.gif",
+		"ExtraData1": "badgepart_base_ring.png",
 		"ExtraData2": "",
 		"Type": "base"
 	},
 	{
 		"Id": 67,
-		"ExtraData1": "base_simplestar_part2.gif",
-		"ExtraData2": "base_simplestar_part1.gif",
+		"ExtraData1": "badgepart_base_simplestar_part2.png",
+		"ExtraData2": "badgepart_base_simplestar_part1.png",
 		"Type": "base"
 	},
 	{
 		"Id": 68,
-		"ExtraData1": "base_spiral.gif",
+		"ExtraData1": "badgepart_base_spiral.png",
 		"ExtraData2": "",
 		"Type": "base"
 	},
 	{
 		"Id": 118,
-		"ExtraData1": "base_book.gif",
+		"ExtraData1": "badgepart_base_book.png",
 		"ExtraData2": "",
 		"Type": "base"
 	},
 	{
 		"Id": 119,
-		"ExtraData1": "base_egg.gif",
+		"ExtraData1": "badgepart_base_egg.png",
 		"ExtraData2": "",
 		"Type": "base"
 	},
 	{
 		"Id": 120,
-		"ExtraData1": "base_ornament.gif",
+		"ExtraData1": "badgepart_base_ornament.png",
 		"ExtraData2": "",
 		"Type": "base"
 	},
 	{
 		"Id": 121,
-		"ExtraData1": "base_shield_part2.gif",
-		"ExtraData2": "base_shield_part1.gif",
+		"ExtraData1": "badgepart_base_shield_part2.png",
+		"ExtraData2": "badgepart_base_shield_part1.png",
 		"Type": "base"
 	},
 	{
 		"Id": 21,
-		"ExtraData1": "symbol_background_1.gif",
+		"ExtraData1": "badgepart_symbol_background_1.png",
 		"ExtraData2": "",
 		"Type": "symbol"
 	},
 	{
 		"Id": 22,
-		"ExtraData1": "symbol_background_2.gif",
+		"ExtraData1": "badgepart_symbol_background_2.png",
 		"ExtraData2": "",
 		"Type": "symbol"
 	},
 	{
 		"Id": 23,
-		"ExtraData1": "symbol_background_3_part2.gif",
-		"ExtraData2": "symbol_background_3_part1.gif",
+		"ExtraData1": "badgepart_symbol_background_3_part2.png",
+		"ExtraData2": "badgepart_symbol_background_3_part1.png",
 		"Type": "symbol"
 	},
 	{
 		"Id": 24,
-		"ExtraData1": "symbol_ball_1_part2.gif",
-		"ExtraData2": "symbol_ball_1_part1.gif",
+		"ExtraData1": "badgepart_symbol_ball_1_part2.png",
+		"ExtraData2": "badgepart_symbol_ball_1_part1.png",
 		"Type": "symbol"
 	},
 	{
 		"Id": 25,
-		"ExtraData1": "symbol_ball_2_part2.gif",
-		"ExtraData2": "symbol_ball_2_part1.gif",
+		"ExtraData1": "badgepart_symbol_ball_2_part2.png",
+		"ExtraData2": "badgepart_symbol_ball_2_part1.png",
 		"Type": "symbol"
 	},
 	{
 		"Id": 26,
-		"ExtraData1": "symbol_bobba.gif",
+		"ExtraData1": "badgepart_symbol_bobba.png",
 		"ExtraData2": "",
 		"Type": "symbol"
 	},
 	{
 		"Id": 27,
-		"ExtraData1": "symbol_bomb_part2.gif",
-		"ExtraData2": "symbol_bomb_part1.gif",
+		"ExtraData1": "badgepart_symbol_bomb_part2.png",
+		"ExtraData2": "badgepart_symbol_bomb_part1.png",
 		"Type": "symbol"
 	},
 	{
 		"Id": 28,
-		"ExtraData1": "symbol_bow.gif",
+		"ExtraData1": "badgepart_symbol_bow.png",
 		"ExtraData2": "",
 		"Type": "symbol"
 	},
 	{
 		"Id": 29,
-		"ExtraData1": "symbol_box_1.gif",
+		"ExtraData1": "badgepart_symbol_box_1.png",
 		"ExtraData2": "",
 		"Type": "symbol"
 	},
 	{
 		"Id": 30,
-		"ExtraData1": "symbol_box_2.gif",
+		"ExtraData1": "badgepart_symbol_box_2.png",
 		"ExtraData2": "",
 		"Type": "symbol"
 	},
 	{
 		"Id": 31,
-		"ExtraData1": "symbol_bunting_1.gif",
+		"ExtraData1": "badgepart_symbol_bunting_1.png",
 		"ExtraData2": "",
 		"Type": "symbol"
 	},
 	{
 		"Id": 32,
-		"ExtraData1": "symbol_bunting_2.gif",
+		"ExtraData1": "badgepart_symbol_bunting_2.png",
 		"ExtraData2": "",
 		"Type": "symbol"
 	},
 	{
 		"Id": 33,
-		"ExtraData1": "symbol_butterfly_part2.gif",
-		"ExtraData2": "symbol_butterfly_part1.gif",
+		"ExtraData1": "badgepart_symbol_butterfly_part2.png",
+		"ExtraData2": "badgepart_symbol_butterfly_part1.png",
 		"Type": "symbol"
 	},
 	{
 		"Id": 34,
-		"ExtraData1": "symbol_cowskull_part2.gif",
-		"ExtraData2": "symbol_cowskull_part1.gif",
+		"ExtraData1": "badgepart_symbol_cowskull_part2.png",
+		"ExtraData2": "badgepart_symbol_cowskull_part1.png",
 		"Type": "symbol"
 	},
 	{
 		"Id": 35,
-		"ExtraData1": "symbol_cross.gif",
+		"ExtraData1": "badgepart_symbol_cross.png",
 		"ExtraData2": "",
 		"Type": "symbol"
 	},
 	{
 		"Id": 36,
-		"ExtraData1": "symbol_diamond.gif",
+		"ExtraData1": "badgepart_symbol_diamond.png",
 		"ExtraData2": "",
 		"Type": "symbol"
 	},
 	{
 		"Id": 37,
-		"ExtraData1": "symbol_diploma_part2.gif",
-		"ExtraData2": "symbol_diploma_part1.gif",
+		"ExtraData1": "badgepart_symbol_diploma_part2.png",
+		"ExtraData2": "badgepart_symbol_diploma_part1.png",
 		"Type": "symbol"
 	},
 	{
 		"Id": 38,
-		"ExtraData1": "symbol_eyeball_part2.gif",
-		"ExtraData2": "symbol_eyeball_part1.gif",
+		"ExtraData1": "badgepart_symbol_eyeball_part2.png",
+		"ExtraData2": "badgepart_symbol_eyeball_part1.png",
 		"Type": "symbol"
 	},
 	{
 		"Id": 39,
-		"ExtraData1": "symbol_fist.gif",
+		"ExtraData1": "badgepart_symbol_fist.png",
 		"ExtraData2": "",
 		"Type": "symbol"
 	},
 	{
 		"Id": 40,
-		"ExtraData1": "symbol_flame_1.gif",
+		"ExtraData1": "badgepart_symbol_flame_1.png",
 		"ExtraData2": "",
 		"Type": "symbol"
 	},
 	{
 		"Id": 41,
-		"ExtraData1": "symbol_flame_2.gif",
+		"ExtraData1": "badgepart_symbol_flame_2.png",
 		"ExtraData2": "",
 		"Type": "symbol"
 	},
 	{
 		"Id": 42,
-		"ExtraData1": "symbol_flash.gif",
+		"ExtraData1": "badgepart_symbol_flash.png",
 		"ExtraData2": "",
 		"Type": "symbol"
 	},
 	{
 		"Id": 43,
-		"ExtraData1": "symbol_flower_1_part2.gif",
-		"ExtraData2": "symbol_flower_1_part1.gif",
+		"ExtraData1": "badgepart_symbol_flower_1_part2.png",
+		"ExtraData2": "badgepart_symbol_flower_1_part1.png",
 		"Type": "symbol"
 	},
 	{
 		"Id": 44,
-		"ExtraData1": "symbol_flower_2.gif",
+		"ExtraData1": "badgepart_symbol_flower_2.png",
 		"ExtraData2": "",
 		"Type": "symbol"
 	},
 	{
 		"Id": 45,
-		"ExtraData1": "symbol_flower_3.gif",
+		"ExtraData1": "badgepart_symbol_flower_3.png",
 		"ExtraData2": "",
 		"Type": "symbol"
 	},
 	{
 		"Id": 46,
-		"ExtraData1": "symbol_flower_4.gif",
+		"ExtraData1": "badgepart_symbol_flower_4.png",
 		"ExtraData2": "",
 		"Type": "symbol"
 	},
 	{
 		"Id": 47,
-		"ExtraData1": "symbol_football.gif",
+		"ExtraData1": "badgepart_symbol_football.png",
 		"ExtraData2": "",
 		"Type": "symbol"
 	},
 	{
 		"Id": 48,
-		"ExtraData1": "symbol_heart_1_part2.gif",
-		"ExtraData2": "symbol_heart_1_part1.gif",
+		"ExtraData1": "badgepart_symbol_heart_1_part2.png",
+		"ExtraData2": "badgepart_symbol_heart_1_part1.png",
 		"Type": "symbol"
 	},
 	{
 		"Id": 49,
-		"ExtraData1": "symbol_heart_2_part2.gif",
-		"ExtraData2": "symbol_heart_2_part1.gif",
+		"ExtraData1": "badgepart_symbol_heart_2_part2.png",
+		"ExtraData2": "badgepart_symbol_heart_2_part1.png",
 		"Type": "symbol"
 	},
 	{
 		"Id": 50,
-		"ExtraData1": "symbol_jingjang_part2.gif",
-		"ExtraData2": "symbol_jingjang_part1.gif",
+		"ExtraData1": "badgepart_symbol_jingjang_part2.png",
+		"ExtraData2": "badgepart_symbol_jingjang_part1.png",
 		"Type": "symbol"
 	},
 	{
 		"Id": 51,
-		"ExtraData1": "symbol_lips_part2.gif",
-		"ExtraData2": "symbol_lips_part1.gif",
+		"ExtraData1": "badgepart_symbol_lips_part2.png",
+		"ExtraData2": "badgepart_symbol_lips_part1.png",
 		"Type": "symbol"
 	},
 	{
 		"Id": 52,
-		"ExtraData1": "symbol_note.gif",
+		"ExtraData1": "badgepart_symbol_note.png",
 		"ExtraData2": "",
 		"Type": "symbol"
 	},
 	{
 		"Id": 53,
-		"ExtraData1": "symbol_peace.gif",
+		"ExtraData1": "badgepart_symbol_peace.png",
 		"ExtraData2": "",
 		"Type": "symbol"
 	},
 	{
 		"Id": 54,
-		"ExtraData1": "symbol_planet_part2.gif",
-		"ExtraData2": "symbol_planet_part1.gif",
+		"ExtraData1": "badgepart_symbol_planet_part2.png",
+		"ExtraData2": "badgepart_symbol_planet_part1.png",
 		"Type": "symbol"
 	},
 	{
 		"Id": 55,
-		"ExtraData1": "symbol_rainbow_part2.gif",
-		"ExtraData2": "symbol_rainbow_part1.gif",
+		"ExtraData1": "badgepart_symbol_rainbow_part2.png",
+		"ExtraData2": "badgepart_symbol_rainbow_part1.png",
 		"Type": "symbol"
 	},
 	{
 		"Id": 56,
-		"ExtraData1": "symbol_rosete.gif",
+		"ExtraData1": "badgepart_symbol_rosete.png",
 		"ExtraData2": "",
 		"Type": "symbol"
 	},
 	{
 		"Id": 57,
-		"ExtraData1": "symbol_shape.gif",
+		"ExtraData1": "badgepart_symbol_shape.png",
 		"ExtraData2": "",
 		"Type": "symbol"
 	},
 	{
 		"Id": 58,
-		"ExtraData1": "symbol_star_1.gif",
+		"ExtraData1": "badgepart_symbol_star_1.png",
 		"ExtraData2": "",
 		"Type": "symbol"
 	},
 	{
 		"Id": 59,
-		"ExtraData1": "symbol_star_2.gif",
+		"ExtraData1": "badgepart_symbol_star_2.png",
 		"ExtraData2": "",
 		"Type": "symbol"
 	},
 	{
 		"Id": 60,
-		"ExtraData1": "symbol_sword_1_part2.gif",
-		"ExtraData2": "symbol_sword_1_part1.gif",
+		"ExtraData1": "badgepart_symbol_sword_1_part2.png",
+		"ExtraData2": "badgepart_symbol_sword_1_part1.png",
 		"Type": "symbol"
 	},
 	{
 		"Id": 61,
-		"ExtraData1": "symbol_sword_2_part2.gif",
-		"ExtraData2": "symbol_sword_2_part1.gif",
+		"ExtraData1": "badgepart_symbol_sword_2_part2.png",
+		"ExtraData2": "badgepart_symbol_sword_2_part1.png",
 		"Type": "symbol"
 	},
 	{
 		"Id": 62,
-		"ExtraData1": "symbol_sword_3_part2.gif",
-		"ExtraData2": "symbol_sword_3_part1.gif",
+		"ExtraData1": "badgepart_symbol_sword_3_part2.png",
+		"ExtraData2": "badgepart_symbol_sword_3_part1.png",
 		"Type": "symbol"
 	},
 	{
 		"Id": 63,
-		"ExtraData1": "symbol_wings_1.gif",
+		"ExtraData1": "badgepart_symbol_wings_1.png",
 		"ExtraData2": "",
 		"Type": "symbol"
 	},
 	{
 		"Id": 64,
-		"ExtraData1": "symbol_wings_2.gif",
+		"ExtraData1": "badgepart_symbol_wings_2.png",
 		"ExtraData2": "",
 		"Type": "symbol"
 	},
 	{
 		"Id": 69,
-		"ExtraData1": "symbol_arrow_down.gif",
+		"ExtraData1": "badgepart_symbol_arrow_down.png",
 		"ExtraData2": "",
 		"Type": "symbol"
 	},
 	{
 		"Id": 70,
-		"ExtraData1": "symbol_arrow_left.gif",
+		"ExtraData1": "badgepart_symbol_arrow_left.png",
 		"ExtraData2": "",
 		"Type": "symbol"
 	},
 	{
 		"Id": 71,
-		"ExtraData1": "symbol_arrow_right.gif",
+		"ExtraData1": "badgepart_symbol_arrow_right.png",
 		"ExtraData2": "",
 		"Type": "symbol"
 	},
 	{
 		"Id": 72,
-		"ExtraData1": "symbol_arrow_up.gif",
+		"ExtraData1": "badgepart_symbol_arrow_up.png",
 		"ExtraData2": "",
 		"Type": "symbol"
 	},
 	{
 		"Id": 73,
-		"ExtraData1": "symbol_arrowbig_up.gif",
+		"ExtraData1": "badgepart_symbol_arrowbig_up.png",
 		"ExtraData2": "",
 		"Type": "symbol"
 	},
 	{
 		"Id": 74,
-		"ExtraData1": "symbol_axe_part2.gif",
-		"ExtraData2": "symbol_axe_part1.gif",
+		"ExtraData1": "badgepart_symbol_axe_part2.png",
+		"ExtraData2": "badgepart_symbol_axe_part1.png",
 		"Type": "symbol"
 	},
 	{
 		"Id": 75,
-		"ExtraData1": "symbol_bug_part2.gif",
-		"ExtraData2": "symbol_bug_part1.gif",
+		"ExtraData1": "badgepart_symbol_bug_part2.png",
+		"ExtraData2": "badgepart_symbol_bug_part1.png",
 		"Type": "symbol"
 	},
 	{
 		"Id": 76,
-		"ExtraData1": "symbol_capsbig_part2.gif",
-		"ExtraData2": "symbol_capsbig_part1.gif",
+		"ExtraData1": "badgepart_symbol_capsbig_part2.png",
+		"ExtraData2": "badgepart_symbol_capsbig_part1.png",
 		"Type": "symbol"
 	},
 	{
 		"Id": 77,
-		"ExtraData1": "symbol_capssmall_part2.gif",
-		"ExtraData2": "symbol_capssmall_part1.gif",
+		"ExtraData1": "badgepart_symbol_capssmall_part2.png",
+		"ExtraData2": "badgepart_symbol_capssmall_part1.png",
 		"Type": "symbol"
 	},
 	{
 		"Id": 78,
-		"ExtraData1": "symbol_cloud.gif",
+		"ExtraData1": "badgepart_symbol_cloud.png",
 		"ExtraData2": "",
 		"Type": "symbol"
 	},
 	{
 		"Id": 79,
-		"ExtraData1": "symbol_crown_part2.gif",
-		"ExtraData2": "symbol_crown_part1.gif",
+		"ExtraData1": "badgepart_symbol_crown_part2.png",
+		"ExtraData2": "badgepart_symbol_crown_part1.png",
 		"Type": "symbol"
 	},
 	{
 		"Id": 80,
-		"ExtraData1": "symbol_diamsmall2.gif",
+		"ExtraData1": "badgepart_symbol_diamsmall2.png",
 		"ExtraData2": "",
 		"Type": "symbol"
 	},
 	{
 		"Id": 81,
-		"ExtraData1": "symbol_diamsmall.gif",
+		"ExtraData1": "badgepart_symbol_diamsmall.png",
 		"ExtraData2": "",
 		"Type": "symbol"
 	},
 	{
 		"Id": 82,
-		"ExtraData1": "symbol_drop.gif",
+		"ExtraData1": "badgepart_symbol_drop.png",
 		"ExtraData2": "",
 		"Type": "symbol"
 	},
 	{
 		"Id": 83,
-		"ExtraData1": "symbol_fingersheavy.gif",
+		"ExtraData1": "badgepart_symbol_fingersheavy.png",
 		"ExtraData2": "",
 		"Type": "symbol"
 	},
 	{
 		"Id": 84,
-		"ExtraData1": "symbol_fingersv.gif",
+		"ExtraData1": "badgepart_symbol_fingersv.png",
 		"ExtraData2": "",
 		"Type": "symbol"
 	},
 	{
 		"Id": 85,
-		"ExtraData1": "symbol_gtr_part2.gif",
-		"ExtraData2": "symbol_gtr_part1.gif",
+		"ExtraData1": "badgepart_symbol_gtr_part2.png",
+		"ExtraData2": "badgepart_symbol_gtr_part1.png",
 		"Type": "symbol"
 	},
 	{
 		"Id": 86,
-		"ExtraData1": "symbol_hat.gif",
+		"ExtraData1": "badgepart_symbol_hat.png",
 		"ExtraData2": "",
 		"Type": "symbol"
 	},
 	{
 		"Id": 87,
-		"ExtraData1": "symbol_oval_part2.gif",
-		"ExtraData2": "symbol_oval_part1.gif",
+		"ExtraData1": "badgepart_symbol_oval_part2.png",
+		"ExtraData2": "badgepart_symbol_oval_part1.png",
 		"Type": "symbol"
 	},
 	{
 		"Id": 88,
-		"ExtraData1": "symbol_pawprint.gif",
+		"ExtraData1": "badgepart_symbol_pawprint.png",
 		"ExtraData2": "",
 		"Type": "symbol"
 	},
 	{
 		"Id": 89,
-		"ExtraData1": "symbol_screw.gif",
+		"ExtraData1": "badgepart_symbol_screw.png",
 		"ExtraData2": "",
 		"Type": "symbol"
 	},
 	{
 		"Id": 90,
-		"ExtraData1": "symbol_stickL_part2.gif",
-		"ExtraData2": "symbol_stickL_part1.gif",
+		"ExtraData1": "badgepart_symbol_stickL_part2.png",
+		"ExtraData2": "badgepart_symbol_stickL_part1.png",
 		"Type": "symbol"
 	},
 	{
 		"Id": 91,
-		"ExtraData1": "symbol_stickR_part2.gif",
-		"ExtraData2": "symbol_stickR_part1.gif",
+		"ExtraData1": "badgepart_symbol_stickR_part2.png",
+		"ExtraData2": "badgepart_symbol_stickR_part1.png",
 		"Type": "symbol"
 	},
 	{
 		"Id": 122,
-		"ExtraData1": "symbol_alligator.gif",
+		"ExtraData1": "badgepart_symbol_alligator.png",
 		"ExtraData2": "",
 		"Type": "symbol"
 	},
 	{
 		"Id": 123,
-		"ExtraData1": "symbol_americanfootball_part2.gif",
-		"ExtraData2": "symbol_americanfootball_part1.gif",
+		"ExtraData1": "badgepart_symbol_americanfootball_part2.png",
+		"ExtraData2": "badgepart_symbol_americanfootball_part1.png",
 		"Type": "symbol"
 	},
 	{
 		"Id": 124,
-		"ExtraData1": "symbol_award_part2.gif",
-		"ExtraData2": "symbol_award_part1.gif",
+		"ExtraData1": "badgepart_symbol_award_part2.png",
+		"ExtraData2": "badgepart_symbol_award_part1.png",
 		"Type": "symbol"
 	},
 	{
 		"Id": 125,
-		"ExtraData1": "symbol_bananapeel.gif",
+		"ExtraData1": "badgepart_symbol_bananapeel.png",
 		"ExtraData2": "",
 		"Type": "symbol"
 	},
 	{
 		"Id": 126,
-		"ExtraData1": "symbol_battleball.gif",
+		"ExtraData1": "badgepart_symbol_battleball.png",
 		"ExtraData2": "",
 		"Type": "symbol"
 	},
 	{
 		"Id": 127,
-		"ExtraData1": "symbol_biohazard.gif",
+		"ExtraData1": "badgepart_symbol_biohazard.png",
 		"ExtraData2": "",
 		"Type": "symbol"
 	},
 	{
 		"Id": 128,
-		"ExtraData1": "symbol_bird.gif",
+		"ExtraData1": "badgepart_symbol_bird.png",
 		"ExtraData2": "",
 		"Type": "symbol"
 	},
 	{
 		"Id": 129,
-		"ExtraData1": "symbol_bishop.gif",
+		"ExtraData1": "badgepart_symbol_bishop.png",
 		"ExtraData2": "",
 		"Type": "symbol"
 	},
 	{
 		"Id": 130,
-		"ExtraData1": "symbol_coalion.gif",
+		"ExtraData1": "badgepart_symbol_coalion.png",
 		"ExtraData2": "",
 		"Type": "symbol"
 	},
 	{
 		"Id": 131,
-		"ExtraData1": "symbol_cocoamug.gif",
+		"ExtraData1": "badgepart_symbol_cocoamug.png",
 		"ExtraData2": "",
 		"Type": "symbol"
 	},
 	{
 		"Id": 132,
-		"ExtraData1": "symbol_dashflag.gif",
+		"ExtraData1": "badgepart_symbol_dashflag.png",
 		"ExtraData2": "",
 		"Type": "symbol"
 	},
 	{
 		"Id": 133,
-		"ExtraData1": "symbol_diamondring_part2.gif",
-		"ExtraData2": "symbol_diamondring_part1.gif",
+		"ExtraData1": "badgepart_symbol_diamondring_part2.png",
+		"ExtraData2": "badgepart_symbol_diamondring_part1.png",
 		"Type": "symbol"
 	},
 	{
 		"Id": 134,
-		"ExtraData1": "symbol_discoball_part2.gif",
-		"ExtraData2": "symbol_discoball_part1.gif",
+		"ExtraData1": "badgepart_symbol_discoball_part2.png",
+		"ExtraData2": "badgepart_symbol_discoball_part1.png",
 		"Type": "symbol"
 	},
 	{
 		"Id": 135,
-		"ExtraData1": "symbol_dog.gif",
+		"ExtraData1": "badgepart_symbol_dog.png",
 		"ExtraData2": "",
 		"Type": "symbol"
 	},
 	{
 		"Id": 136,
-		"ExtraData1": "symbol_electricguitarh_part2.gif",
-		"ExtraData2": "symbol_electricguitarh_part1.gif",
+		"ExtraData1": "badgepart_symbol_electricguitarh_part2.png",
+		"ExtraData2": "badgepart_symbol_electricguitarh_part1.png",
 		"Type": "symbol"
 	},
 	{
 		"Id": 137,
-		"ExtraData1": "symbol_electricguitarv_part2.gif",
-		"ExtraData2": "symbol_electricguitarv_part1.gif",
+		"ExtraData1": "badgepart_symbol_electricguitarv_part2.png",
+		"ExtraData2": "badgepart_symbol_electricguitarv_part1.png",
 		"Type": "symbol"
 	},
 	{
 		"Id": 138,
-		"ExtraData1": "symbol_film.gif",
+		"ExtraData1": "badgepart_symbol_film.png",
 		"ExtraData2": "",
 		"Type": "symbol"
 	},
 	{
 		"Id": 139,
-		"ExtraData1": "symbol_flame_part2.gif",
-		"ExtraData2": "symbol_flame_part1.gif",
+		"ExtraData1": "badgepart_symbol_flame_part2.png",
+		"ExtraData2": "badgepart_symbol_flame_part1.png",
 		"Type": "symbol"
 	},
 	{
 		"Id": 140,
-		"ExtraData1": "symbol_gamepad.gif",
+		"ExtraData1": "badgepart_symbol_gamepad.png",
 		"ExtraData2": "",
 		"Type": "symbol"
 	},
 	{
 		"Id": 141,
-		"ExtraData1": "symbol_gem1_part2.gif",
-		"ExtraData2": "symbol_gem1_part1.gif",
+		"ExtraData1": "badgepart_symbol_gem1_part2.png",
+		"ExtraData2": "badgepart_symbol_gem1_part1.png",
 		"Type": "symbol"
 	},
 	{
 		"Id": 142,
-		"ExtraData1": "symbol_gem2_part2.gif",
-		"ExtraData2": "symbol_gem2_part1.gif",
+		"ExtraData1": "badgepart_symbol_gem2_part2.png",
+		"ExtraData2": "badgepart_symbol_gem2_part1.png",
 		"Type": "symbol"
 	},
 	{
 		"Id": 143,
-		"ExtraData1": "symbol_gem3_part2.gif",
-		"ExtraData2": "symbol_gem3_part1.gif",
+		"ExtraData1": "badgepart_symbol_gem3_part2.png",
+		"ExtraData2": "badgepart_symbol_gem3_part1.png",
 		"Type": "symbol"
 	},
 	{
 		"Id": 144,
-		"ExtraData1": "symbol_hawk.gif",
+		"ExtraData1": "badgepart_symbol_hawk.png",
 		"ExtraData2": "",
 		"Type": "symbol"
 	},
 	{
 		"Id": 145,
-		"ExtraData1": "symbol_hearts_down.gif",
+		"ExtraData1": "badgepart_symbol_hearts_down.png",
 		"ExtraData2": "",
 		"Type": "symbol"
 	},
 	{
 		"Id": 146,
-		"ExtraData1": "symbol_hearts_up.gif",
+		"ExtraData1": "badgepart_symbol_hearts_up.png",
 		"ExtraData2": "",
 		"Type": "symbol"
 	},
 	{
 		"Id": 147,
-		"ExtraData1": "symbol_horseshoe.gif",
+		"ExtraData1": "badgepart_symbol_horseshoe.png",
 		"ExtraData2": "",
 		"Type": "symbol"
 	},
 	{
 		"Id": 148,
-		"ExtraData1": "symbol_inksplatter.gif",
+		"ExtraData1": "badgepart_symbol_inksplatter.png",
 		"ExtraData2": "",
 		"Type": "symbol"
 	},
 	{
 		"Id": 149,
-		"ExtraData1": "symbol_leaf.gif",
+		"ExtraData1": "badgepart_symbol_leaf.png",
 		"ExtraData2": "",
 		"Type": "symbol"
 	},
 	{
 		"Id": 150,
-		"ExtraData1": "symbol_micstand.gif",
+		"ExtraData1": "badgepart_symbol_micstand.png",
 		"ExtraData2": "",
 		"Type": "symbol"
 	},
 	{
 		"Id": 151,
-		"ExtraData1": "symbol_mirror_part2.gif",
-		"ExtraData2": "symbol_mirror_part1.gif",
+		"ExtraData1": "badgepart_symbol_mirror_part2.png",
+		"ExtraData2": "badgepart_symbol_mirror_part1.png",
 		"Type": "symbol"
 	},
 	{
 		"Id": 152,
-		"ExtraData1": "symbol_monkeywrench.gif",
+		"ExtraData1": "badgepart_symbol_monkeywrench.png",
 		"ExtraData2": "",
 		"Type": "symbol"
 	},
 	{
 		"Id": 153,
-		"ExtraData1": "symbol_note1.gif",
+		"ExtraData1": "badgepart_symbol_note1.png",
 		"ExtraData2": "",
 		"Type": "symbol"
 	},
 	{
 		"Id": 154,
-		"ExtraData1": "symbol_note2.gif",
+		"ExtraData1": "badgepart_symbol_note2.png",
 		"ExtraData2": "",
 		"Type": "symbol"
 	},
 	{
 		"Id": 155,
-		"ExtraData1": "symbol_note3.gif",
+		"ExtraData1": "badgepart_symbol_note3.png",
 		"ExtraData2": "",
 		"Type": "symbol"
 	},
 	{
 		"Id": 156,
-		"ExtraData1": "symbol_nursecross.gif",
+		"ExtraData1": "badgepart_symbol_nursecross.png",
 		"ExtraData2": "",
 		"Type": "symbol"
 	},
 	{
 		"Id": 157,
-		"ExtraData1": "symbol_pencil_part2.gif",
-		"ExtraData2": "symbol_pencil_part1.gif",
+		"ExtraData1": "badgepart_symbol_pencil_part2.png",
+		"ExtraData2": "badgepart_symbol_pencil_part1.png",
 		"Type": "symbol"
 	},
 	{
 		"Id": 158,
-		"ExtraData1": "symbol_queen.gif",
+		"ExtraData1": "badgepart_symbol_queen.png",
 		"ExtraData2": "",
 		"Type": "symbol"
 	},
 	{
 		"Id": 159,
-		"ExtraData1": "symbol_rock.gif",
+		"ExtraData1": "badgepart_symbol_rock.png",
 		"ExtraData2": "",
 		"Type": "symbol"
 	},
 	{
 		"Id": 160,
-		"ExtraData1": "symbol_rook.gif",
+		"ExtraData1": "badgepart_symbol_rook.png",
 		"ExtraData2": "",
 		"Type": "symbol"
 	},
 	{
 		"Id": 161,
-		"ExtraData1": "symbol_skate.gif",
+		"ExtraData1": "badgepart_symbol_skate.png",
 		"ExtraData2": "",
 		"Type": "symbol"
 	},
 	{
 		"Id": 162,
-		"ExtraData1": "symbol_smallring_part2.gif",
-		"ExtraData2": "symbol_smallring_part1.gif",
+		"ExtraData1": "badgepart_symbol_smallring_part2.png",
+		"ExtraData2": "badgepart_symbol_smallring_part1.png",
 		"Type": "symbol"
 	},
 	{
 		"Id": 163,
-		"ExtraData1": "symbol_snowstorm_part2.gif",
-		"ExtraData2": "symbol_snowstorm_part1.gif",
+		"ExtraData1": "badgepart_symbol_snowstorm_part2.png",
+		"ExtraData2": "badgepart_symbol_snowstorm_part1.png",
 		"Type": "symbol"
 	},
 	{
 		"Id": 164,
-		"ExtraData1": "symbol_sphere.gif",
+		"ExtraData1": "badgepart_symbol_sphere.png",
 		"ExtraData2": "",
 		"Type": "symbol"
 	},
 	{
 		"Id": 165,
-		"ExtraData1": "symbol_spraycan_part2.gif",
-		"ExtraData2": "symbol_spraycan_part1.gif",
+		"ExtraData1": "badgepart_symbol_spraycan_part2.png",
+		"ExtraData2": "badgepart_symbol_spraycan_part1.png",
 		"Type": "symbol"
 	},
 	{
 		"Id": 166,
-		"ExtraData1": "symbol_stars1.gif",
+		"ExtraData1": "badgepart_symbol_stars1.png",
 		"ExtraData2": "",
 		"Type": "symbol"
 	},
 	{
 		"Id": 167,
-		"ExtraData1": "symbol_stars2.gif",
+		"ExtraData1": "badgepart_symbol_stars2.png",
 		"ExtraData2": "",
 		"Type": "symbol"
 	},
 	{
 		"Id": 168,
-		"ExtraData1": "symbol_stars3.gif",
+		"ExtraData1": "badgepart_symbol_stars3.png",
 		"ExtraData2": "",
 		"Type": "symbol"
 	},
 	{
 		"Id": 169,
-		"ExtraData1": "symbol_stars4.gif",
+		"ExtraData1": "badgepart_symbol_stars4.png",
 		"ExtraData2": "",
 		"Type": "symbol"
 	},
 	{
 		"Id": 170,
-		"ExtraData1": "symbol_stars5.gif",
+		"ExtraData1": "badgepart_symbol_stars5.png",
 		"ExtraData2": "",
 		"Type": "symbol"
 	},
 	{
 		"Id": 171,
-		"ExtraData1": "symbol_waterdrop_part2.gif",
-		"ExtraData2": "symbol_waterdrop_part1.gif",
+		"ExtraData1": "badgepart_symbol_waterdrop_part2.png",
+		"ExtraData2": "badgepart_symbol_waterdrop_part1.png",
 		"Type": "symbol"
 	},
 	{
 		"Id": 172,
-		"ExtraData1": "symbol_wolverine.gif",
+		"ExtraData1": "badgepart_symbol_wolverine.png",
 		"ExtraData2": "",
 		"Type": "symbol"
 	},
 	{
 		"Id": 173,
-		"ExtraData1": "symbol_0.gif",
+		"ExtraData1": "badgepart_symbol_0.png",
 		"ExtraData2": "",
 		"Type": "symbol"
 	},
 	{
 		"Id": 174,
-		"ExtraData1": "symbol_1.gif",
+		"ExtraData1": "badgepart_symbol_1.png",
 		"ExtraData2": "",
 		"Type": "symbol"
 	},
 	{
 		"Id": 175,
-		"ExtraData1": "symbol_2.gif",
+		"ExtraData1": "badgepart_symbol_2.png",
 		"ExtraData2": "",
 		"Type": "symbol"
 	},
 	{
 		"Id": 176,
-		"ExtraData1": "symbol_3.gif",
+		"ExtraData1": "badgepart_symbol_3.png",
 		"ExtraData2": "",
 		"Type": "symbol"
 	},
 	{
 		"Id": 177,
-		"ExtraData1": "symbol_4.gif",
+		"ExtraData1": "badgepart_symbol_4.png",
 		"ExtraData2": "",
 		"Type": "symbol"
 	},
 	{
 		"Id": 178,
-		"ExtraData1": "symbol_5.gif",
+		"ExtraData1": "badgepart_symbol_5.png",
 		"ExtraData2": "",
 		"Type": "symbol"
 	},
 	{
 		"Id": 179,
-		"ExtraData1": "symbol_6.gif",
+		"ExtraData1": "badgepart_symbol_6.png",
 		"ExtraData2": "",
 		"Type": "symbol"
 	},
 	{
 		"Id": 180,
-		"ExtraData1": "symbol_7.gif",
+		"ExtraData1": "badgepart_symbol_7.png",
 		"ExtraData2": "",
 		"Type": "symbol"
 	},
 	{
 		"Id": 181,
-		"ExtraData1": "symbol_8.gif",
+		"ExtraData1": "badgepart_symbol_8.png",
 		"ExtraData2": "",
 		"Type": "symbol"
 	},
 	{
 		"Id": 182,
-		"ExtraData1": "symbol_9.gif",
+		"ExtraData1": "badgepart_symbol_9.png",
 		"ExtraData2": "",
 		"Type": "symbol"
 	},
 	{
 		"Id": 183,
-		"ExtraData1": "symbol_a.gif",
+		"ExtraData1": "badgepart_symbol_a.png",
 		"ExtraData2": "",
 		"Type": "symbol"
 	},
 	{
 		"Id": 184,
-		"ExtraData1": "symbol_b.gif",
+		"ExtraData1": "badgepart_symbol_b.png",
 		"ExtraData2": "",
 		"Type": "symbol"
 	},
 	{
 		"Id": 185,
-		"ExtraData1": "symbol_c.gif",
+		"ExtraData1": "badgepart_symbol_c.png",
 		"ExtraData2": "",
 		"Type": "symbol"
 	},
 	{
 		"Id": 186,
-		"ExtraData1": "symbol_d.gif",
+		"ExtraData1": "badgepart_symbol_d.png",
 		"ExtraData2": "",
 		"Type": "symbol"
 	},
 	{
 		"Id": 187,
-		"ExtraData1": "symbol_e.gif",
+		"ExtraData1": "badgepart_symbol_e.png",
 		"ExtraData2": "",
 		"Type": "symbol"
 	},
 	{
 		"Id": 188,
-		"ExtraData1": "symbol_f.gif",
+		"ExtraData1": "badgepart_symbol_f.png",
 		"ExtraData2": "",
 		"Type": "symbol"
 	},
 	{
 		"Id": 189,
-		"ExtraData1": "symbol_g.gif",
+		"ExtraData1": "badgepart_symbol_g.png",
 		"ExtraData2": "",
 		"Type": "symbol"
 	},
 	{
 		"Id": 190,
-		"ExtraData1": "symbol_h.gif",
+		"ExtraData1": "badgepart_symbol_h.png",
 		"ExtraData2": "",
 		"Type": "symbol"
 	},
 	{
 		"Id": 191,
-		"ExtraData1": "symbol_i.gif",
+		"ExtraData1": "badgepart_symbol_i.png",
 		"ExtraData2": "",
 		"Type": "symbol"
 	},
 	{
 		"Id": 192,
-		"ExtraData1": "symbol_j.gif",
+		"ExtraData1": "badgepart_symbol_j.png",
 		"ExtraData2": "",
 		"Type": "symbol"
 	},
 	{
 		"Id": 193,
-		"ExtraData1": "symbol_k.gif",
+		"ExtraData1": "badgepart_symbol_k.png",
 		"ExtraData2": "",
 		"Type": "symbol"
 	},
 	{
 		"Id": 194,
-		"ExtraData1": "symbol_l.gif",
+		"ExtraData1": "badgepart_symbol_l.png",
 		"ExtraData2": "",
 		"Type": "symbol"
 	},
 	{
 		"Id": 195,
-		"ExtraData1": "symbol_m.gif",
+		"ExtraData1": "badgepart_symbol_m.png",
 		"ExtraData2": "",
 		"Type": "symbol"
 	},
 	{
 		"Id": 196,
-		"ExtraData1": "symbol_n.gif",
+		"ExtraData1": "badgepart_symbol_n.png",
 		"ExtraData2": "",
 		"Type": "symbol"
 	},
 	{
 		"Id": 197,
-		"ExtraData1": "symbol_o.gif",
+		"ExtraData1": "badgepart_symbol_o.png",
 		"ExtraData2": "",
 		"Type": "symbol"
 	},
 	{
 		"Id": 198,
-		"ExtraData1": "symbol_p.gif",
+		"ExtraData1": "badgepart_symbol_p.png",
 		"ExtraData2": "",
 		"Type": "symbol"
 	},
 	{
 		"Id": 199,
-		"ExtraData1": "symbol_q.gif",
+		"ExtraData1": "badgepart_symbol_q.png",
 		"ExtraData2": "",
 		"Type": "symbol"
 	},
 	{
 		"Id": 200,
-		"ExtraData1": "symbol_r.gif",
+		"ExtraData1": "badgepart_symbol_r.png",
 		"ExtraData2": "",
 		"Type": "symbol"
 	},
 	{
 		"Id": 201,
-		"ExtraData1": "symbol_s.gif",
+		"ExtraData1": "badgepart_symbol_s.png",
 		"ExtraData2": "",
 		"Type": "symbol"
 	},
 	{
 		"Id": 202,
-		"ExtraData1": "symbol_t.gif",
+		"ExtraData1": "badgepart_symbol_t.png",
 		"ExtraData2": "",
 		"Type": "symbol"
 	},
 	{
 		"Id": 203,
-		"ExtraData1": "symbol_u.gif",
+		"ExtraData1": "badgepart_symbol_u.png",
 		"ExtraData2": "",
 		"Type": "symbol"
 	},
 	{
 		"Id": 204,
-		"ExtraData1": "symbol_v.gif",
+		"ExtraData1": "badgepart_symbol_v.png",
 		"ExtraData2": "",
 		"Type": "symbol"
 	},
 	{
 		"Id": 205,
-		"ExtraData1": "symbol_w.gif",
+		"ExtraData1": "badgepart_symbol_w.png",
 		"ExtraData2": "",
 		"Type": "symbol"
 	},
 	{
 		"Id": 206,
-		"ExtraData1": "symbol_x.gif",
+		"ExtraData1": "badgepart_symbol_x.png",
 		"ExtraData2": "",
 		"Type": "symbol"
 	},
 	{
 		"Id": 207,
-		"ExtraData1": "symbol_y.gif",
+		"ExtraData1": "badgepart_symbol_y.png",
 		"ExtraData2": "",
 		"Type": "symbol"
 	},
 	{
 		"Id": 208,
-		"ExtraData1": "symbol_z.gif",
+		"ExtraData1": "badgepart_symbol_z.png",
 		"ExtraData2": "",
 		"Type": "symbol"
 	},
 	{
 		"Id": 209,
-		"ExtraData1": "symbol_pixel_part2.gif",
-		"ExtraData2": "symbol_pixel_part1.gif",
+		"ExtraData1": "badgepart_symbol_pixel_part2.png",
+		"ExtraData2": "badgepart_symbol_pixel_part1.png",
 		"Type": "symbol"
 	},
 	{
 		"Id": 210,
-		"ExtraData1": "symbol_credit_part2.gif",
-		"ExtraData2": "symbol_credit_part1.gif",
+		"ExtraData1": "badgepart_symbol_credit_part2.png",
+		"ExtraData2": "badgepart_symbol_credit_part1.png",
 		"Type": "symbol"
 	},
 	{
 		"Id": 211,
-		"ExtraData1": "symbol_hc_part2.gif",
-		"ExtraData2": "symbol_hc_part1.gif",
+		"ExtraData1": "badgepart_symbol_hc_part2.png",
+		"ExtraData2": "badgepart_symbol_hc_part1.png",
 		"Type": "symbol"
 	},
 	{
 		"Id": 212,
-		"ExtraData1": "symbol_vip_part2.gif",
-		"ExtraData2": "symbol_vip_part1.gif",
+		"ExtraData1": "badgepart_symbol_vip_part2.png",
+		"ExtraData2": "badgepart_symbol_vip_part1.png",
 		"Type": "symbol"
 	},
 	{
