@@ -22,7 +22,7 @@ namespace Helios.Web.Controllers
         [Route("/client")]
         public IActionResult Client()
         {
-            if (!SessionUtil.IsLoggedIn(_ctx, this.HttpContext, this.Request.Cookies))
+            if (!SessionUtil.IsLoggedIn(_ctx, this.HttpContext, this.Request, this.Response))
             {
                 return RedirectToAction("Index", "Home");
             }

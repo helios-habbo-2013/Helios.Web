@@ -24,7 +24,7 @@ namespace Helios.Web.Controllers
         [Route("/me")]
         public IActionResult Me()
         {
-            if (!SessionUtil.IsLoggedIn(this._ctx, this.HttpContext, this.Request.Cookies))
+            if (!SessionUtil.IsLoggedIn(this._ctx, this.HttpContext, this.Request, this.Response))
             {
                 return RedirectToAction("Index", "Home");
             }

@@ -74,7 +74,7 @@ namespace Helios.Web.Controllers
         [Route("/account/logout")]
         public IActionResult Logout()
         {
-            if (!SessionUtil.IsLoggedIn(this._ctx, this.HttpContext, this.Request.Cookies))
+            if (!SessionUtil.IsLoggedIn(this._ctx, this.HttpContext, this.Request, this.Response))
             {
                 return RedirectToAction("Index", "Home");
             }
@@ -89,7 +89,7 @@ namespace Helios.Web.Controllers
         [Route("/security_check")]
         public IActionResult SecurityCheck()
         {
-            if (!SessionUtil.IsLoggedIn(this._ctx, this.HttpContext, this.Request.Cookies))
+            if (!SessionUtil.IsLoggedIn(this._ctx, this.HttpContext, this.Request, this.Response))
             {
                 this.ViewBag.RedirectPath = "index";
 

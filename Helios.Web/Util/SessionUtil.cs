@@ -23,12 +23,12 @@ namespace Helios.Web.Util
             httpContext.Remove(Constants.LOGGED_IN);
         }
 
-        public static bool IsLoggedIn(StorageContext ctx, HttpContext httpContext, IRequestCookieCollection cookies)
+        public static bool IsLoggedIn(StorageContext ctx, HttpContext httpContext, HttpRequest request, HttpResponse response)
         {
             bool isLoggedIn = false;
 
             // Attempt to authenticate using the session cookie
-            if (cookies.TryGetValue(Constants.HELIOS_SESSION, out var sessionId))
+            if (request.Cookies.TryGetValue(Constants.HELIOS_SESSION, out var sessionId))
             {
                 // Retrieve user session data from the context
                 var userSessionData = ctx.UserSessionData
@@ -56,8 +56,13 @@ namespace Helios.Web.Util
                 }
             }
 
+            if (!isLoggedIn)
+            {
+                response.Cookies.Delete(Constants.HELIOS_SESSION);
+                Logout(httpContext);
+            }
+
             return isLoggedIn;
         }
-
     }
 }
