@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Helios.Storage;
 using Helios.Game;
 using Microsoft.Extensions.FileProviders;
+using Microsoft.AspNetCore.HttpOverrides;
 
 namespace Helios.Web
 {
@@ -13,6 +14,10 @@ namespace Helios.Web
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
+
+            string v = builder.Configuration.GetConnectionString("DefaultConnection");
+
+            Console.WriteLine("Connection string: " + v);
 
             builder.Services.AddDbContext<StorageContext>(options =>
                 options.UseMySQL(builder.Configuration.GetConnectionString("DefaultConnection")));
@@ -46,9 +51,15 @@ namespace Helios.Web
                     .AddRazorRuntimeCompilation();
             }
 
-			#endregion
+            #endregion
 
-			builder.Services.AddScoped<ValueManager>();
+            builder.Services.Configure<ForwardedHeadersOptions>(options =>
+            {
+                options.ForwardedHeaders =
+                    ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto;
+            });
+
+            builder.Services.AddScoped<ValueManager>();
 
             // View bag filter used for global variables
             builder.Services.AddMvc(options =>
@@ -57,6 +68,8 @@ namespace Helios.Web
             });
 
             var app = builder.Build();
+
+            app.UseForwardedHeaders();
 
             if (!app.Environment.IsDevelopment())
             {

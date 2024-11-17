@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+﻿@using Helios.Web.Helpers;
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
@@ -74,7 +75,7 @@ body { behavior: url(@(this.ViewBag.StaticContentUrl)web-gallery/js/csshover.htc
 
 <div style="text-align: center">
     
-    <div style="width:100px; margin: 10px auto"><a href="@(this.ViewBag.StaticContentUrl)" id="logout-ok" class="new-button fill"><b>OK</b><i></i></a></div>
+    <div style="width:100px; margin: 10px auto"><a href="@(Url.BasePath())/" id="logout-ok" class="new-button fill"><b>OK</b><i></i></a></div>
 
 <div id="column1" class="column">              
 </div>

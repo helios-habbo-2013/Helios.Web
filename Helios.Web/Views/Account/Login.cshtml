@@ -15,10 +15,10 @@
         }</style>
 </head>
 <body>
-    <script type="text/javascript">window.location.replace('@(this.ViewBag.StaticContentUrl)?page=&username=@(this.Context.Get<string>("credentials.username"))&rememberme=@(this.Context.Get<bool>("_login_remember_me") ? "true" : "false")');</script>
-    <noscript><meta http-equiv="Refresh" content="0;URL=@(this.ViewBag.StaticContentUrl)?page=&username=@(this.Context.Get<string>("credentials.username"))&rememberme=@(this.Context.Get<bool>("_login_remember_me") ? "true" : "false")"></noscript>
+    <script type="text/javascript">window.location.replace('@(Url.BasePath())?page=&username=@(this.Context.Get<string>("credentials.username"))&rememberme=@(this.Context.Get<bool>("_login_remember_me") ? "true" : "false")');</script>
+    <noscript><meta http-equiv="Refresh" content="0;URL=@(Url.BasePath())?page=&username=@(this.Context.Get<string>("credentials.username"))&rememberme=@(this.Context.Get<bool>("_login_remember_me") ? "true" : "false")"></noscript>
 
-    <p class="btn">If you are not automatically redirected, please <a href="@(this.ViewBag.StaticContentUrl)?page=&username=@(this.Context.Get<string>("credentials.username"))&rememberme=@(this.Context.Get<bool>("_login_remember_me") ? "true" : "false")" id="manual_redirect_link">click here</a></p>
+    <p class="btn">If you are not automatically redirected, please <a href="@(Url.BasePath())?page=&username=@(this.Context.Get<string>("credentials.username"))&rememberme=@(this.Context.Get<bool>("_login_remember_me") ? "true" : "false")" id="manual_redirect_link">click here</a></p>
 
 
 </body>
