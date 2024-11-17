@@ -28,7 +28,7 @@ namespace Helios.Web.Util
             {
                 // Retrieve user session data from the context
                 var userSessionData = ctx.UserSessionData
-                    .FirstOrDefault(x => x.SessionId == sessionId);
+                    .FirstOrDefault(x => x.SessionId.ToString() == sessionId);
 
                 // Validate session and retrieve user data if valid
                 if (userSessionData != null && userSessionData.ExpiryDate > DateTime.Now)

@@ -15,10 +15,6 @@ namespace Helios.Web
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            string v = builder.Configuration.GetConnectionString("DefaultConnection");
-
-            Console.WriteLine("Connection string: " + v);
-
             builder.Services.AddDbContext<StorageContext>(options =>
                 options.UseMySQL(builder.Configuration.GetConnectionString("DefaultConnection")));
 

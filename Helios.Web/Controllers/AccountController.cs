@@ -51,6 +51,7 @@ namespace Helios.Web.Controllers
                 {
                     var userSessionData = new UserSessionData
                     {
+                        SessionId = Guid.NewGuid(),
                         UserId = user.Id,
                         ExpiryDate = Constants.SESSION_EXPIRY
                     };
@@ -59,7 +60,7 @@ namespace Helios.Web.Controllers
                     _ctx.SaveChanges();
 
                     Response.Cookies.Delete(Constants.HELIOS_SESSION);
-                    Response.Cookies.Append(Constants.HELIOS_SESSION, userSessionData.SessionId, cookieOptions);
+                    Response.Cookies.Append(Constants.HELIOS_SESSION, userSessionData.SessionId.ToString(), cookieOptions);
                 }
                 else
                 {
