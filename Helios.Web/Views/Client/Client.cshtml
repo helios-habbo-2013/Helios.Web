@@ -53,7 +53,7 @@
             "processlog.enabled": "0",
             "account_id": "1",
             "client.starting" : "Please wait! Habbo is starting up.", 
-            "flash.client.url": "@(this.ViewBag.StaticContentUrl)gordon/RELEASE63-201302211227-193109692/",
+            "flash.client.url": "@(this.ViewBag.StaticContentUrl)gordon/RELEASE49-26182-26181-201004270119_de461464ed1e27f56cc890464241d93b/",
             "user.hash": "ticket",
             "has.identity": "0",
             "flash.client.origin": "popup",
@@ -61,7 +61,7 @@
 
         };
         var params = {
-            "base": "@(this.ViewBag.StaticContentUrl)gordon/RELEASE63-201302211227-193109692/",
+            "base": "@(this.ViewBag.StaticContentUrl)gordon/RELEASE49-26182-26181-201004270119_de461464ed1e27f56cc890464241d93b/",
             "allowScriptAccess": "always",
             "menu": "false"
         };
@@ -70,7 +70,7 @@
 
         FlashExternalInterface.signoutUrl = "/disconnected";
 
-        var clientUrl = "@(this.ViewBag.StaticContentUrl)gordon/RELEASE63-201302211227-193109692/Habbo.swf";
+        var clientUrl = "@(this.ViewBag.StaticContentUrl)gordon/RELEASE49-26182-26181-201004270119_de461464ed1e27f56cc890464241d93b/Habbo.swf";
         swfobject.embedSWF(clientUrl, "flash-container", "100%", "100%", "11.1.0", "/client/expressInstall.swf", flashvars, params, null, FlashExternalInterface.embedSwfCallback);
 
         window.onbeforeunload = unloading;

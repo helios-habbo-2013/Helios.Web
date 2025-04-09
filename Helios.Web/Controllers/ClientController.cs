@@ -1,6 +1,4 @@
-﻿using Avatara;
-using Avatara.Figure;
-using Helios.Web.Helpers;
+﻿using Helios.Web.Helpers;
 using Helios.Storage;
 using Helios.Storage.Models.Avatar;
 using Helios.Web.Util;
@@ -22,12 +20,18 @@ namespace Helios.Web.Controllers
         [Route("/client")]
         public IActionResult Client()
         {
-            if (!SessionUtil.IsLoggedIn(_ctx, this.HttpContext, this.Request, this.Response))
+            if (!SessionUtil.IsLoggedIn(this._ctx, this.HttpContext, this.Request, this.Response))
             {
                 return RedirectToAction("Index", "Home");
             }
 
-            var ssoTicket = Guid.NewGuid().ToString().ToLower();
+            if (this.HttpContext.Contains(Constants.CURRENT_USER_ID) &&
+                !this.HttpContext.Contains(Constants.CURRENT_AVATAR_ID))
+            {
+                return RedirectToAction("Avatars", "Identity");
+            }
+
+            var ssoTicket = "SSO-" + Guid.NewGuid().ToString().ToLower();
 
             if (ViewBag.Avatar is AvatarData avatar)
             {

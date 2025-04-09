@@ -1,12 +1,8 @@
-﻿using Castle.Core;
-using Helios.Web.Helpers;
+﻿using Helios.Web.Helpers;
 using Helios.Storage;
 using Helios.Storage.Models.Avatar;
 using Helios.Web.Util;
 using Microsoft.AspNetCore.Mvc;
-using Org.BouncyCastle.Tls.Crypto;
-using System.Diagnostics;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace Helios.Web.Controllers
 {

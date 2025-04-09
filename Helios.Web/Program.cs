@@ -15,10 +15,14 @@ namespace Helios.Web
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            builder.Services.AddDbContext<StorageContext>(options =>
-                options.UseMySQL(builder.Configuration.GetConnectionString("DefaultConnection")));
+            // Replace with your server version and type.
+            // Use 'MariaDbServerVersion' for MariaDB.
+            // Alternatively, use 'ServerVersion.AutoDetect(connectionString)'.
+            // For common usages, see pull request #1233.
+            var serverVersion = new MySqlServerVersion(new Version(8, 0, 40));
 
-            builder.Services.AddControllersWithViews();
+            builder.Services.AddDbContext<StorageContext>(options =>
+                options.UseMySql(builder.Configuration.GetConnectionString("DefaultConnection"), serverVersion));
 
             #region Http Session
 
@@ -37,14 +41,11 @@ namespace Helios.Web
 
             var mvcBuilder = builder.Services.AddRazorPages();
 
+            builder.Services.AddControllersWithViews();
+
             if (builder.Environment.IsDevelopment())
             {
                 mvcBuilder.AddRazorRuntimeCompilation();
-            }
-            else
-            {
-                builder.Services.AddControllersWithViews()
-                    .AddRazorRuntimeCompilation();
             }
 
             #endregion
