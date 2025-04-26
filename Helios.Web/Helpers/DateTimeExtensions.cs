@@ -1,9 +1,7 @@
-﻿using System.Text.Json;
-
-namespace Helios.Web.Helpers
+﻿namespace Helios.Web.Helpers
 {
-	public static class DateTimeExtensions
-	{
+    public static class DateTimeExtensions
+    {
         public static string TimeAgo(this DateTime fromTime, DateTime? toTime = null, bool includeSeconds = false)
         {
             if (!toTime.HasValue)

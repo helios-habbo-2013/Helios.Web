@@ -1,10 +1,10 @@
-﻿using Helios.Web.Helpers;
-using Helios.Storage;
+﻿using Helios.Storage;
 using Helios.Storage.Models.User;
+using Helios.Web.Helpers;
 
 namespace Helios.Web.Util
 {
-    public class SessionUtil
+    public static class SessionUtil
     {
         public static void Login(HttpContext httpContext, UserData user)
         {
@@ -17,6 +17,15 @@ namespace Helios.Web.Util
             httpContext.Remove(Constants.CURRENT_USER_ID);
             httpContext.Remove(Constants.CURRENT_AVATAR_ID);
             httpContext.Remove(Constants.LOGGED_IN);
+            httpContext.Remove(Constants.HK_LOGGED_IN);
+        }
+
+        public static bool HasHousekeepingAuth(this HttpContext httpContext)
+        {
+            return httpContext.Get<int>(Constants.CURRENT_USER_ID) > 0 &&
+                    httpContext.Get<int>(Constants.CURRENT_AVATAR_ID) > 0 &&
+                    httpContext.Get<bool>(Constants.LOGGED_IN) &&
+                    httpContext.Get<bool>(Constants.HK_LOGGED_IN);
         }
 
         public static bool IsLoggedIn(StorageContext ctx, HttpContext httpContext, HttpRequest request, HttpResponse response)

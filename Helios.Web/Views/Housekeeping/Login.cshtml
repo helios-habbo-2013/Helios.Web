@@ -1,0 +1,219 @@
+﻿
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Welcome Hobbas</title>
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            font-family: Verdana, sans-serif;
+            font-size: 10px;
+            background: #fff;
+        }
+
+        .wrapper {
+            display: flex;
+            flex-direction: column;
+            min-height: 100%;
+        }
+
+        .content {
+            flex: 1;
+        }
+
+        .container {
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            flex-direction: row;
+        }
+
+        .login-box {
+            border: 1px solid #000;
+            width: 150px;
+            margin-right: 20px;
+        }
+
+            .login-box h1 {
+                background: #0164cd;
+                color: white;
+                font-size: 10px;
+                margin: 0;
+                padding: 5px;
+            }
+
+            .login-box form {
+                padding: 10px;
+            }
+
+            .login-box label {
+                font-size: 10px;
+                display: block;
+                margin-bottom: 3px;
+            }
+
+            .login-box input[type="text"],
+            .login-box input[type="password"] {
+                width: 100%;
+                margin-bottom: 10px;
+                box-sizing: border-box;
+            }
+
+            .login-box input[type="submit"] {
+                font-size: 11px;
+            }
+
+        .welcome {
+            max-width: 350px;
+        }
+
+            .welcome h2 {
+                font-size: 16px;
+                margin: 0 0 10px 0;
+            }
+
+        .return-link a {
+            text-decoration: none;
+            color: #0164cd;
+            position: fixed;
+        }
+
+            .return-link a:hover {
+                text-decoration: underline;
+            }
+
+
+        .footer {
+            text-align: center;
+            font-size: 10px;
+            color: #444;
+            background: lightgray;
+            padding: 10px 0;
+            width: 100%;
+        }
+
+        .alerts-box {
+            padding: 10px;
+        }
+
+        .message-box {
+            padding: 10px;
+            margin-bottom: 10px;
+            font-size: 10px;
+            border: 2px solid #000;
+            background: #f0f0f0;
+            font-family: 'Verdana', sans-serif;
+            position: relative;
+            width: calc(150px + 350px);
+            margin-top: auto;
+        }
+
+            .message-box.success {
+                background: #4caf50;
+                border-color: #4caf50;
+                color: #ffffff;
+                border-radius: 4px;
+            }
+
+            .message-box.warning {
+                background: orange;
+                border-color: orange;
+                color: #ffffff;
+                border-radius: 4px;
+            }
+
+            .message-box.error {
+                background: #e60000;
+                border-color: #e60000;
+                color: #ffffff;
+                border-radius: 4px;
+            }
+
+            .message-box.info {
+                background: #57a8ff;
+                border-color: #57a8ff;
+                color: #ffffff;
+                border-radius: 4px;
+            }
+
+            .message-box .close-btn {
+                position: absolute;
+                top: 5px;
+                right: 5px;
+                background: none;
+                border: none;
+                color: #ffffff;
+                font-size: 14px;
+                cursor: pointer;
+            }
+
+        .retro-button {
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            font-size: 10px;
+            border: 2px outset #ccc;
+            color: black;
+            padding: 4px 12px;
+            cursor: pointer;
+        }
+
+            .retro-button:hover {
+                background: linear-gradient(to bottom, #f5f5f5, #c0c0c0);
+            }
+    </style>
+    <script>
+        function closeMessageBox(event) {
+          event.target.closest('.message-box').style.display = 'none';
+        }
+    </script>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="container" style="margin-top: 100px">
+            @{
+                if (ViewBag.AlertType != null)
+                {
+                    <div class="message-box @(ViewBag.AlertType)">
+                        <button class="close-btn" onclick="closeMessageBox(event)">×</button>
+                        @(ViewBag.AlertMessage)
+                    </div>
+                }
+            }
+
+        </div>
+        <div class="container">
+            <div class="login-box">
+                <h1>Log in</h1>
+                <form method="post">
+                    <label for="email">Email:</label>
+                    <input type="text" id="email" name="email">
+
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" name="password">
+
+                    <input type="submit" class="retro-button" value="Log in">
+                </form>
+            </div>
+
+            <div class="welcome">
+                <h2>Welcome Hobbas</h2>
+                <p>This service is meant for registered Hobbas. The service is monitored closely and we will pursue and charge any unauthorised users.</p>
+                <p>Your username and password to the tool are personal. Never give them to anyone under <strong>any</strong> situation.</p>
+
+                <div class="return-link">
+                    <a href="/" style="font-size: 10px; display: block; text-align: center; margin: 10px 0;">← Return to site</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+        <div class="footer">
+            theallseeingeye by Quackster © Copyright 2025<br>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,20 +1,22 @@
-﻿using Microsoft.AspNetCore.Mvc.Filters;
-using Microsoft.AspNetCore.Mvc;
-using Helios.Web.Util;
+﻿using Helios.Storage;
 using Helios.Web.Helpers;
-using Helios.Storage;
+using Helios.Web.Util;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Filters;
 
 namespace Helios.Game
 {
     public class GlobalControllerFilter : IActionFilter
     {
         private readonly ValueManager _valueManager;
+        private readonly PermissionsManager _permissionsManager;
         private readonly StorageContext _ctx;
 
-        public GlobalControllerFilter(ValueManager valueManager, StorageContext ctx)
+        public GlobalControllerFilter(ValueManager valueManager, StorageContext ctx, PermissionsManager permissionsManager)
         {
             this._valueManager = valueManager;
             this._ctx = ctx;
+            this._permissionsManager = permissionsManager;
         }
 
         public void OnActionExecuting(ActionExecutingContext context)
@@ -30,9 +32,9 @@ namespace Helios.Game
             }
 
             if (controller != null)
-            {          
+            {
                 controller.ViewBag.LoggedIn = false;
-                
+
                 // If the static content url is empty, default to our own
                 if (string.IsNullOrWhiteSpace(controller.ViewBag.StaticContentUrl))
                 {
@@ -43,11 +45,13 @@ namespace Helios.Game
                 if (context.HttpContext.Contains(Constants.CURRENT_AVATAR_ID))
                 {
                     controller.ViewBag.Avatar = this._ctx.AvatarData.FirstOrDefault(x => x.Id == context.HttpContext.Get<int>(Constants.CURRENT_AVATAR_ID));
+                    controller.ViewBag.PermissionGroup = this._permissionsManager[controller.ViewBag.Avatar.Rank];
                     controller.ViewBag.LoggedIn = true;
                 }
                 else
                 {
                     controller.ViewBag.Avatar = null;
+                    controller.ViewBag.PermissionGroup = this._permissionsManager[0];
                 }
 
                 if (context.HttpContext.Contains(Constants.CURRENT_USER_ID))
@@ -57,7 +61,9 @@ namespace Helios.Game
                 else
                 {
                     controller.ViewBag.User = null;
-				}
+                }
+
+                controller.ViewBag.Permissions = _permissionsManager;
             }
         }
 

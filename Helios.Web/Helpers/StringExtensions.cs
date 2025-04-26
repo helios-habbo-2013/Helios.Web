@@ -1,7 +1,4 @@
-﻿using System;
-using System.Linq;
-
-namespace Helios.Web.Util.Extensions
+﻿namespace Helios.Web.Util.Extensions
 {
     public static class StringExtensions
     {

@@ -1,12 +1,8 @@
-﻿using Helios.Storage.Models.Catalogue;
+﻿using Helios.Storage;
+using Helios.Storage.Models.User;
 using Helios.Web.Helpers;
-using Helios.Storage;
 using Helios.Web.Util;
 using Microsoft.AspNetCore.Mvc;
-using Helios.Storage.Models.User;
-using Helios.Storage.Access;
-using Helios.Storage.Models.Avatar;
-using Microsoft.AspNetCore.Http;
 
 namespace Helios.Web.Controllers
 {

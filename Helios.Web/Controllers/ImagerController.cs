@@ -2,8 +2,6 @@
 using Avatara.Figure;
 using Badger;
 using Microsoft.AspNetCore.Mvc;
-using System.Diagnostics;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace Helios.Web.Controllers
 {

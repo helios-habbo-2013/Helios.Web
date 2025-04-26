@@ -1,0 +1,25 @@
+groups:
+  default:
+    rank: 1
+  moderator:
+    rank: 5
+    permissions:
+    - housekeeping
+    - housekeeping.dashboard
+    - housekeeping.staffoverview
+    - housekeeping.addstaffpicks
+    inherits:
+    - default
+  super-moderator:
+    rank: 6
+    permissions:
+    inherits:
+    - default
+    - moderator
+  root:
+    rank: 7
+    permissions:
+    inherits:
+    - default
+    - moderator
+    - super-moderator

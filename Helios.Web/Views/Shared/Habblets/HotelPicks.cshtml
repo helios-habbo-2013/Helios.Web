@@ -1,4 +1,4 @@
-﻿@using Helios.Storage
+﻿@* @using Helios.Storage
 @using Helios.Web.Helpers
 @{
     string position = "right";
@@ -8,12 +8,26 @@
 
     StorageContext ctx = ViewBag.Entities;
     var recommendedGroups = ctx.GroupData.ToList();
-}
+} *@
 
 <div class="habblet-container">
-    <div class="cbb clearfix blue">
-        <h2 class="title">Recommended</h2>
-        <div id="promogroups-habblet-list-container" class="habblet-list-container groups-list">
+    <div class="cbb clearfix darkred">
+        <h2 class="title">Hotel Picks</h2>
+
+        <div id="staffpicks-rooms-habblet-list-container" class="habblet-list-container groups-list">
+            <ul class="habblet-list">
+
+                <li class="even room-occupancy-2" roomid="1">
+                    <div>
+                        <span class="room-name"><a href="http://localhost/client?forwardId=2&roomId=1" onclick="HabboClient.roomForward(this, '1', 'private'); return false;" target="client">Room name</a></span>
+                        <span class="room-owner"><a href="http://localhost/home/Alex">Alex</a></span>
+                        <p>test</p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+@*         <div id="promogroups-habblet-list-container" class="habblet-list-container groups-list">
             <ul class="habblet-list two-cols clearfix">
                 @{
                     foreach (var group in recommendedGroups)
@@ -42,7 +56,7 @@
                     }
                 }
             </ul>
-        </div>
+        </div> *@
     </div>
 </div>
 

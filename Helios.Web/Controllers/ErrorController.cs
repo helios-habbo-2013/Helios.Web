@@ -25,7 +25,7 @@ namespace Helios.Web.Controllers
             this.ViewBag.Header = page;
 
             var pagesHabblets = _ctx.PagesHabbletData
-                .Where(x => x.Page == page)
+                .Where(x => x.Page == page && x.Visible)
                 .OrderBy(x => x.OrderId)
                 .Select(x => Tuple.Create(x.Widget, x.Column))
                 .ToList();

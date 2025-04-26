@@ -1,9 +1,6 @@
 ﻿using Helios.Storage;
-using Helios.Web.Helpers;
 using Helios.Web.Util;
 using Microsoft.AspNetCore.Mvc;
-using System.Diagnostics;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace Helios.Web.Controllers
 {
@@ -28,7 +25,7 @@ namespace Helios.Web.Controllers
 
             if (TempData.ContainsKey("Error"))
                 ViewBag.Error = TempData["Error"];
-            
+
             return View("Index");
         }
 

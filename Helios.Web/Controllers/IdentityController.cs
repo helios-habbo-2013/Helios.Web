@@ -1,14 +1,10 @@
-﻿using Helios.Storage.Models.Catalogue;
-using Helios.Web.Helpers;
+﻿using EmailValidation;
 using Helios.Storage;
+using Helios.Storage.Models.Avatar;
+using Helios.Storage.Models.User;
+using Helios.Web.Helpers;
 using Helios.Web.Util;
 using Microsoft.AspNetCore.Mvc;
-using Helios.Storage.Models.User;
-using Helios.Storage.Access;
-using Helios.Storage.Models.Avatar;
-using EmailValidation;
-using Avatara;
-using Microsoft.AspNetCore.Http;
 
 namespace Helios.Web.Controllers
 {
@@ -37,9 +33,9 @@ namespace Helios.Web.Controllers
                 .OrderByDescending(x => x.LastOnline)
                 .FirstOrDefault();
 
-            var otherAvatars = avatar != null ?_ctx.AvatarData.Where(x => x.UserId == this.HttpContext.Get<int>(Constants.CURRENT_USER_ID) && x.Id != avatar.Id)
+            var otherAvatars = avatar != null ? _ctx.AvatarData.Where(x => x.UserId == this.HttpContext.Get<int>(Constants.CURRENT_USER_ID) && x.Id != avatar.Id)
                 .OrderByDescending(x => x.LastOnline)
-                .ToList() : new List<AvatarData>(); 
+                .ToList() : new List<AvatarData>();
 
             this.ViewBag.Avatar = avatar;
             this.ViewBag.OtherAvatars = otherAvatars;
@@ -202,7 +198,7 @@ namespace Helios.Web.Controllers
                 ViewBag.AlertColour = "green";
 
                 user.Email = email;
-                user.DirectEmail = directMail == "on" || directMail == "true"; 
+                user.DirectEmail = directMail == "on" || directMail == "true";
 
                 _ctx.UserData.Update(user);
                 _ctx.SaveChanges();

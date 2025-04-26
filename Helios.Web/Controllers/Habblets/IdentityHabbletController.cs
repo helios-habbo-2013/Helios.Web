@@ -1,5 +1,5 @@
-﻿using Helios.Web.Helpers;
-using Helios.Storage;
+﻿using Helios.Storage;
+using Helios.Web.Helpers;
 using Helios.Web.Util;
 using Microsoft.AspNetCore.Mvc;
 
@@ -56,7 +56,7 @@ namespace Helios.Web.Controllers
             }
             else
             {
-                if (HttpContext.Contains(Constants.IDENTIIY_SELECTED_FIGURE) && 
+                if (HttpContext.Contains(Constants.IDENTIIY_SELECTED_FIGURE) &&
                     HttpContext.Contains(Constants.IDENTIIY_SELECTED_GENDER))
                 {
                     ViewBag.Figure = HttpContext.Get<string>(Constants.IDENTIIY_SELECTED_FIGURE);
@@ -90,7 +90,7 @@ namespace Helios.Web.Controllers
             }
 
             ViewBag.ErrorType = errorType;
-            ViewBag.ErrorMessage = errorMessage;  
+            ViewBag.ErrorMessage = errorMessage;
             ViewBag.NameSuggestions = suggestions;
 
             if (errorType == "error")

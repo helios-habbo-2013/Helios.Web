@@ -1,0 +1,24 @@
+﻿@using Helios.Web.Helpers
+
+@{
+    await Html.RenderPartialAsync("Shared/Topbar");
+}
+
+@{
+    var mainCategory = ViewBag.MainCategory as string;
+
+    var tabs = new List<(string Title, string Category, string Url)> {
+        ("System status", "SystemStatus", @Url.AbsolutePath("~/housekeeping/dashboard")),
+        ("Statistics", "Statistics", "#"),
+        ("Admin tools", "Moderator", "#"),
+        ("Campaign management", "Campaign", "#")
+    };
+}
+
+<div class="tabs">
+    @foreach (var tab in tabs)
+    {
+        var isActive = tab.Category == mainCategory;
+        <a href="@tab.Url" class="tab @(isActive ? "active" : "")">@tab.Title</a>
+    }
+</div>

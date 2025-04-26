@@ -1,15 +1,6 @@
-﻿using SixLabors.ImageSharp;
-using SixLabors.ImageSharp.Formats.Png;
-using SixLabors.ImageSharp.Processing;
-using SixLabors.ImageSharp.Drawing.Processing;
-using SixLabors.ImageSharp.PixelFormats;
-using Microsoft.AspNetCore.Mvc.RazorPages;
-using SixLabors.Fonts;
-using static System.Net.Mime.MediaTypeNames;
-using System.Text;
-using System.Text.RegularExpressions;
-using Avatara.Figure;
+﻿using Avatara.Figure;
 using Helios.Web.Helpers;
+using System.Text;
 
 namespace Helios.Web.Util
 {
@@ -107,8 +98,8 @@ namespace Helios.Web.Util
             }
 
             var figure = figureOutput.ToString();
-            
-            if (figure.Length> 0)
+
+            if (figure.Length > 0)
             {
                 figure = figure.Substring(0, figure.Length - 1);
             }

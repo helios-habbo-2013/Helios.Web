@@ -1,11 +1,10 @@
-using Avatara.Figure;
 using Avatara;
-using Helios.Web.Util;
-using Microsoft.EntityFrameworkCore;
-using Helios.Storage;
+using Avatara.Figure;
 using Helios.Game;
-using Microsoft.Extensions.FileProviders;
+using Helios.Storage;
+using Helios.Web.Util;
 using Microsoft.AspNetCore.HttpOverrides;
+using Microsoft.EntityFrameworkCore;
 
 namespace Helios.Web
 {
@@ -57,6 +56,7 @@ namespace Helios.Web
             });
 
             builder.Services.AddScoped<ValueManager>();
+            builder.Services.AddScoped<PermissionsManager>();
 
             // View bag filter used for global variables
             builder.Services.AddMvc(options =>
@@ -77,7 +77,7 @@ namespace Helios.Web
             // https://stackoverflow.com/questions/59304132/net-core-how-to-handle-route-with-extra-leading-slash
             app.Use((context, next) =>
             {
-                if (context.Request.Path.HasValue && 
+                if (context.Request.Path.HasValue &&
                     context.Request.Path.Value.StartsWith("//"))
                 {
                     context.Request.Path = new PathString(context.Request.Path.Value.Replace("//", "/"));

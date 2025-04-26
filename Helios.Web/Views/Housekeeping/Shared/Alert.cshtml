@@ -1,0 +1,12 @@
+﻿<div class="alerts-box">
+    @{
+        if (ViewBag.AlertType != null)
+        {
+            <div class="message-box @(ViewBag.AlertType)">
+                <button class="close-btn" onclick="closeMessageBox(event)">×</button>
+                @(ViewBag.AlertMessage)
+            </div>
+        }
+    }
+</div>
+

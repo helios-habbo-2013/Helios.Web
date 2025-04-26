@@ -1,6 +1,6 @@
-﻿using Helios.Web.Helpers;
-using Helios.Storage;
+﻿using Helios.Storage;
 using Helios.Storage.Models.Avatar;
+using Helios.Web.Helpers;
 using Helios.Web.Util;
 using Microsoft.AspNetCore.Mvc;
 
@@ -46,7 +46,7 @@ namespace Helios.Web.Controllers
             this.ViewBag.Header = page;
 
             var pagesHabblets = _ctx.PagesHabbletData
-                .Where(x => x.Page == page)
+                .Where(x => x.Page == page && x.Visible)
                 .OrderBy(x => x.OrderId)
                 .Select(x => Tuple.Create(x.Widget, x.Column))
                 .ToList();
@@ -66,7 +66,7 @@ namespace Helios.Web.Controllers
             this.ViewBag.Header = page;
 
             var pagesHabblets = _ctx.PagesHabbletData
-                .Where(x => x.Page == page)
+                .Where(x => x.Page == page && x.Visible)
                 .OrderBy(x => x.OrderId)
                 .Select(x => Tuple.Create(x.Widget, x.Column))
                 .ToList();

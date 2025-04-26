@@ -1,0 +1,96 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Tools</title>
+    @{
+        await Html.RenderPartialAsync("Shared/Heading"); 
+    }
+</head>
+<body>
+    @{
+        await Html.RenderPartialAsync("Shared/Navigation");
+        await Html.RenderPartialAsync("Shared/Alert");
+    }
+    <div class="container">
+        @{
+            await Html.RenderPartialAsync("Shared/Sidebar");
+        }
+        <div class="column1">
+            <h4>Save Note</h4>
+            <p style="font-size: 10px; color: gray; margin-top: -10px;">
+                Use this panel to save internal notes for admin/housekeeping purposes. Every staff member can see this.
+            </p>
+            <form>
+                <label style="font-size: 10px;">Note Title:</label><br>
+                <input type="text" name="title" style="font-size: 10px; width: 100%;"><br><br>
+
+                <label style="font-size: 10px;">Note Content:</label><br>
+                <textarea name="content" rows="5" style="font-size: 10px; width: 100%;"></textarea><br><br>
+
+                <input type="submit" value="Save Note" class="retro-button">
+            </form>
+        </div>
+
+        @{
+            // Temporary Razor list of notes
+            var notes = new List<(string Title, string Content)>
+            {
+                ("Server Restart", "Restart scheduled for 3AM server time, please save your work."),
+                ("Reminder!", "Post a news article announcing latest changes."),
+                ("Maintenance", "Database optimization planned for Friday night, some downtime expected."),
+            };
+        }
+
+        <div class="column2">
+            <h4>Previous Notes</h4>
+            <table style="width: 100%; font-size: 10px;">
+                <thead>
+                    <tr>
+                        <th>Title</th>
+                        <th>Content Preview</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var note in notes)
+                    {
+                        var noteId = Guid.NewGuid(); // Unique ID for each note to avoid conflicts
+                        <tr>
+                            <td>@note.Title</td>
+                            <td>
+                                <span id="preview-@noteId" style="cursor: pointer; color: blue; text-decoration: underline;"
+                                      onclick="toggleNote('@noteId', '@note.Content.Replace("'", "\\'")')">
+                                    @{
+                                        var preview = note.Content.Length > 30 ? note.Content.Substring(0, 30) + "..." : note.Content;
+                                    }
+                                    @preview
+                                </span>
+                            </td>
+                            <td><button class="retro-button" style="font-size: 10px;">Delete</button></td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        function toggleNote(id, fullContent) {
+            var span = document.getElementById('preview-' + id);
+            var isPreview = span.getAttribute('data-expanded') !== 'true';
+
+            if (isPreview) {
+                span.innerText = fullContent;
+                span.setAttribute('data-expanded', 'true');
+            } else {
+                var preview = fullContent.length > 30 ? fullContent.substring(0, 30) + "..." : fullContent;
+                span.innerText = preview;
+                span.setAttribute('data-expanded', 'false');
+            }
+        }
+    </script>
+
+    @{ await Html.RenderPartialAsync("Shared/Footer"); }
+</body>
+</html>

@@ -27,7 +27,7 @@ namespace Helios.Game
         public ValueManager(StorageContext ctx)
         {
             this._ctx = ctx;
-            this._clientValues = new Dictionary<string, string>(); 
+            this._clientValues = new Dictionary<string, string>();
 
             this.Load();
         }
@@ -52,7 +52,7 @@ namespace Helios.Game
         public Dictionary<string, string> GetDefaultValues()
         {
             var defaultValues = new Dictionary<string, string>();
-            
+
             defaultValues["site.name"] = "Habbo";
             defaultValues["site.static.content.url"] = "";
 

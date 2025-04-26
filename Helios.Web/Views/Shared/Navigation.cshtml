@@ -9,9 +9,11 @@
     string currentPage = ViewBag.Page;
 
     string username = (ViewBag.Avatar != null ? ViewBag.Avatar.Name : "");
+    int rank = (ViewBag.Avatar != null ? ViewBag.Avatar.Rank : 0);
 
     StorageContext ctx = ViewBag.Entities;
 }
+
 <div id="overlay"></div>
 <div id="header-container">
     <div id="header" class="clearfix">
@@ -93,6 +95,8 @@
                                 Enter Habbo Hotel
                             </b><i></i>
                         </a>
+
+                        <a href="@Url.AbsolutePath("~/housekeeping/login")" class="new-button red-button" style="margin-right: 5px;"><b>Housekeeping</b><i></i></a>
                     </div>
                 </div>
                 <script type="text/javascript">
@@ -108,12 +112,13 @@
         <ul id="navi">
             @{
 
-                var headersData = ctx.PagesData.Where(x => x.ParentId == -1 && ((isLoggedIn && x.RequiresLogin) || (!isLoggedIn && x.RequiresLogout) || (!x.RequiresLogout && !x.RequiresLogin)))
+                var headersData = ctx.PagesData.Where(x => x.ParentId == -1 && ((isLoggedIn && x.RequiresLogin) || (!isLoggedIn && x.RequiresLogout) || (!x.RequiresLogout && !x.RequiresLogin)) 
+                        && rank >= x.MinimumRank)
                     .OrderBy(x => x.OrderId)
                     .ToList();
 
                 var currentHeaderData = ctx.PagesData
-                    .Where(x => x.ParentId == -1 && x.Page == currentHeader)
+                .Where(x => x.ParentId == -1 && x.Page == currentHeader && rank >= x.MinimumRank)
                     .FirstOrDefault();
 
                 foreach (var headerData in headersData)

@@ -1,0 +1,122 @@
+﻿@using Helios.Web.Helpers
+
+@{
+    var mainCategory = ViewBag.MainCategory as string ?? "SystemStatus";
+    var currentPage = ViewBag.CurrentPage as string ?? "";
+
+    // Define the sidebar layout
+    var sidebars = new Dictionary<string, List<(string, List<(string Name, string Link, string Permission)>)>>();
+
+    sidebars["Moderator"] = new List<(string, List<(string Name, string Link, string Permission)>)> {
+        ("Habbo discussion board", new List<(string Name, string Link, string Permission)> {
+            ("Forums", "#", "")
+        }),
+        ("Habbo tools", new List<(string Name, string Link, string Permission)> {
+            ("Remote alerting", "#", ""),
+            ("Remote banning and kicking", "#", "")
+        }),
+        ("Supervisor Hobba tools", new List<(string Name, string Link, string Permission)> {
+            ("Mass ban", "#", ""),
+            ("Mass alert", "#", "")
+        }),
+        ("Scam detection", new List<(string Name, string Link, string Permission)> {
+            ("User search & info tool", "#", ""),
+            ("Current furniture", "#", "")
+        }),
+        ("Private rooms", new List<(string Name, string Link, string Permission)> {
+            ("Room admin", "#", ""),
+            ("Room action log", "#", ""),
+            ("Top-rated flats", "#", ""),
+            ("Stickie viewer", "#", "")
+        }),
+        ("Staff moderation tools", new List<(string Name, string Link, string Permission)> {
+            ("Mass unban", "#", "")
+        }),
+        ("Furnitures", new List<(string Name, string Link, string Permission)> {
+            ("Give furniture tool", "#", "")
+        }),
+        ("Staff user moderation", new List<(string Name, string Link, string Permission)> {
+            ("Dashboard", "#", ""),
+            ("Rank manager", "#", "")
+        }),
+    };
+
+    // Campaign Management sidebar
+    sidebars["Campaign"] = new List<(string, List<(string Name, string Link, string Permission)>)> {
+        ("Campaign Management", new List<(string Name, string Link, string Permission)> {
+            ("Edit News Articles", "#", ""),
+            ("Manage Hot Campaigns", "#", ""),
+            ("Push Notifications", "#", "")
+        })
+    };
+
+    // Statistics sidebar
+    sidebars["Statistics"] = new List<(string, List<(string Name, string Link, string Permission)>)> {
+        ("User Statistics", new List<(string Name, string Link, string Permission)> {
+            ("Active Users Today", "#", ""),
+            ("Top Posters", "#", ""),
+            ("Most Popular Rooms", "#", "")
+        }),
+        ("Server Statistics", new List<(string Name, string Link, string Permission)> {
+            ("Average Session Time", "#", ""),
+            ("Peak Concurrent Users", "#", "")
+        })
+    };
+
+    // Server Status sidebar
+    sidebars["SystemStatus"] = new List<(string, List<(string Name, string Link, string Permission)>)> {
+        ("Dashboard", new List<(string Name, string Link, string Permission)> {
+            ("Notes", @Url.AbsolutePath("~/housekeeping/dashboard"), "housekeeping.dashboard"),
+            ("Staff Overview", "#", "housekeeping.staffoverview")
+            // ("Server Uptime", @Url.AbsolutePath("~/housekeeping/status/uptime"))
+        }),
+        ("Hotel Management", new List<(string Name, string Link, string Permission)> {
+            ("Hotel Name", "#", ""),
+            ("Static Content", "#", "")
+        }),
+
+        ("Client", new List<(string Name, string Link, string Permission)> {
+            ("Loader", "#", ""),
+            ("External Texts", "#", ""),
+            ("External Variables", "#", ""),
+            ("Badges", "#", "")
+        }),
+        ("Maintenance Tools", new List<(string Name, string Link, string Permission)> {
+            ("Schedule Maintenance", "#", ""),
+        })
+    };
+
+    var sidebarContent = sidebars.ContainsKey(mainCategory) ? sidebars[mainCategory] : new List<(string, List<(string Name, string Link, string Permission)>)>();
+}
+
+<div class="sidebar">
+    @foreach (var box in sidebarContent)
+    {
+        <div class="box">
+            <p>@box.Item1</p>  @* box.Name is the section title *@
+            <ul>
+                @foreach (var link in box.Item2.Where(x => ViewBag.Permissions[ViewBag.Avatar.Rank].HasPermission(x.Permission)).ToList()) @* box.Item2 is the list of links *@
+                {
+                    if (link.Name == currentPage) @* link.Item1 is the link name *@
+                    {
+                        <li><strong>@link.Name</strong></li>
+                    }
+                    else
+                    {
+                        <li><a href="@link.Link">@link.Name</a></li> @* link.Link is the link URL *@
+                    }
+                }
+            </ul>
+        </div>
+    }
+
+    <div style="margin-top:10px; font-size: 10px; border: 1px solid #000000; color: gray; padding: 1px">
+        <strong>Local time:</strong><br />
+        @DateTime.Now.ToString("MMMM dd, yyyy")<br />
+        @DateTime.Now.ToString("h:mm:ss tt")<br /><br />
+        <strong>Server time:</strong><br />
+        localhost<br />
+        @DateTime.UtcNow.ToString("MMMM dd, yyyy")<br />
+        @DateTime.UtcNow.ToString("h:mm:ss tt") UTC
+    </div>
+</div>

@@ -1,6 +1,6 @@
-﻿using Helios.Web.Helpers;
-using Helios.Storage;
+﻿using Helios.Storage;
 using Helios.Storage.Models.Avatar;
+using Helios.Web.Helpers;
 using Helios.Web.Util;
 using Microsoft.AspNetCore.Mvc;
 

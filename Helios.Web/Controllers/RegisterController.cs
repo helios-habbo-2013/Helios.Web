@@ -1,7 +1,6 @@
-﻿using Helios.Web.Helpers;
-using Helios.Storage;
-using Helios.Storage.Models.Avatar;
+﻿using Helios.Storage;
 using Helios.Storage.Models.User;
+using Helios.Web.Helpers;
 using Helios.Web.Util;
 using Microsoft.AspNetCore.Mvc;
 
@@ -28,8 +27,8 @@ namespace Helios.Web.Controllers
         [Route("/quickregister/start")]
         public IActionResult Start()
         {
-			if (TempData.ContainsKey("Error"))
-				ViewBag.Error = TempData["Error"];
+            if (TempData.ContainsKey("Error"))
+                ViewBag.Error = TempData["Error"];
 
             return View("Start");
         }
@@ -88,7 +87,7 @@ namespace Helios.Web.Controllers
                 ViewBag.Error = TempData["Error"];
 
 
-            if (!HttpContext.Contains("registerYear") || 
+            if (!HttpContext.Contains("registerYear") ||
                 !HttpContext.Contains("registerMonth") ||
                 !HttpContext.Contains("registerDay") ||
                 !HttpContext.Contains("registerGender"))
@@ -106,17 +105,6 @@ namespace Helios.Web.Controllers
         {
             // if (Request.Form.TryGetValue("bean.username", out var registerName))
             //    HttpContext.Set<string>("registerName", registerName);
-
-            if (Request.Form.TryGetValue("bean.password", out var registerPassword))
-                HttpContext.Set<string>("registerPassword", registerPassword.ToString());
-
-            if (Request.Form.TryGetValue("bean.email", out var registerEmail)) 
-                HttpContext.Set<string>("registerEmail", registerEmail.ToString());
-
-            if (Request.Form.TryGetValue("bean.marketing", out var directMail))
-                HttpContext.Set<bool>("registerDirectMail", directMail == "true" ? true : false);
-            else
-                HttpContext.Set<bool>("registerDirectMail", false);
 
             // if (Request.Form.TryGetValue("bean.referrer", out var registerReferrer))
             //    HttpContext.Set<string>("registerReferrer", registerReferrer);
@@ -146,6 +134,14 @@ namespace Helios.Web.Controllers
                 return RedirectToAction("Step2");
             }
 
+
+            string registerPassword = Request.Form["registerPassword"].ToString() ?? "";
+            string registerEmail = Request.Form["registerEmail"].ToString() ?? "";
+            string directMail = Request.Form["bean.marketing"].ToString() ?? "";
+
+            HttpContext.Set<string>("registerPassword", registerPassword.ToString());
+            HttpContext.Set<string>("registerEmail", registerEmail.ToString());
+            HttpContext.Set<bool>("registerDirectMail", directMail == "true" ? true : false);
 
             if (_ctx.UserData.Any(x => x.Email == registerEmail))
             {
@@ -201,9 +197,9 @@ namespace Helios.Web.Controllers
         }
 
         [HttpPost]
-		[Route("/quickregister/captcha_submit")]
-		public IActionResult Complete()
-		{
+        [Route("/quickregister/captcha_submit")]
+        public IActionResult Complete()
+        {
             if (string.IsNullOrEmpty(HttpContext.Get<string>("Captcha")) ||
                 (Request.Form.TryGetValue("bean.captcha", out var captcha) && captcha != HttpContext.Get<string>("Captcha")))
             {
@@ -251,7 +247,7 @@ namespace Helios.Web.Controllers
             HttpContext.Set<bool>(Constants.LOGGED_IN, true);
 
             return RedirectToAction("Client", "Client");
-		}
+        }
 
         public string GenerateUsername(string email)
         {

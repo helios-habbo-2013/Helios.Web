@@ -24,6 +24,15 @@
     <Content Remove="Views\Account\Logout.cshtml" />
     <Content Remove="Views\Account\SecurityCheck.cshtml" />
     <Content Remove="Views\Client\Client.cshtml" />
+    <Content Remove="Views\Housekeeping\Dashboard.cshtml" />
+    <Content Remove="Views\Housekeeping\Login.cshtml" />
+    <Content Remove="Views\Housekeeping\Shared\Alert.cshtml" />
+    <Content Remove="Views\Housekeeping\Shared\Footer.cshtml" />
+    <Content Remove="Views\Housekeeping\Shared\Heading.cshtml" />
+    <Content Remove="Views\Housekeeping\Shared\Navigation.cshtml" />
+    <Content Remove="Views\Housekeeping\Shared\Sidebar.cshtml" />
+    <Content Remove="Views\Housekeeping\Shared\Topbar.cshtml" />
+    <Content Remove="Views\Housekeeping\Uptime.cshtml" />
     <Content Remove="Views\Identity\AddAvatar.cshtml" />
     <Content Remove="Views\Identity\AvatarList.cshtml" />
     <Content Remove="Views\Identity\Avatars.cshtml" />
@@ -49,6 +58,15 @@
     <None Include="Views\Account\Logout.cshtml" />
     <None Include="Views\Account\SecurityCheck.cshtml" />
     <None Include="Views\Client\Client.cshtml" />
+    <None Include="Views\Housekeeping\Uptime.cshtml" />
+    <None Include="Views\Housekeeping\Dashboard.cshtml" />
+    <None Include="Views\Housekeeping\Login.cshtml" />
+    <None Include="Views\Housekeeping\Shared\Footer.cshtml" />
+    <None Include="Views\Housekeeping\Shared\Heading.cshtml" />
+    <None Include="Views\Housekeeping\Shared\Alert.cshtml" />
+    <None Include="Views\Housekeeping\Shared\Topbar.cshtml" />
+    <None Include="Views\Housekeeping\Shared\Sidebar.cshtml" />
+    <None Include="Views\Housekeeping\Shared\Navigation.cshtml" />
     <None Include="Views\Identity\Settings.cshtml" />
     <None Include="Views\Identity\SettingsEmail.cshtml" />
     <None Include="Views\Identity\SettingsPassword.cshtml" />
@@ -83,9 +101,13 @@
     <PackageReference Include="SixLabors.ImageSharp" Version="3.1.7" />
     <PackageReference Include="SixLabors.ImageSharp.Drawing" Version="2.1.5" />
     <PackageReference Include="Suggestor" Version="1.0.0" />
+    <PackageReference Include="YamlDotNet" Version="16.3.0" />
   </ItemGroup>
 
   <ItemGroup>
+    <None Update="permissions.yml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Update="tools\words.txt">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
