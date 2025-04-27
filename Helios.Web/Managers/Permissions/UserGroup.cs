@@ -5,6 +5,7 @@
         #region Properties
 
         public string Name { get; set; }
+        public string InternalName { get; internal set; }
         public int Rank { get; set; }
         public List<string> DefaultPermissions { get; set; }
         public List<string> InheritsGroups { get; set; }
@@ -31,15 +32,12 @@
         /// </summary>
         public void BuildPermissions(UserGroup[] groups)
         {
-            Permissions = new HashSet<string>();
-
-            foreach (var permission in DefaultPermissions)
-                Permissions.Add(permission);
+            Permissions = [.. DefaultPermissions];
 
             foreach (var userGroup in groups)
                 foreach (var inheritGroup in InheritsGroups)
                 {
-                    if (inheritGroup == userGroup.Name)
+                    if (inheritGroup == userGroup.InternalName)
                     {
                         foreach (var permission in userGroup.DefaultPermissions)
                             Permissions.Add(permission);
@@ -55,6 +53,9 @@
         /// </summary>
         public bool HasPermission(string permission)
         {
+            if (Permissions == null) 
+                return false;
+
             if (Permissions.Contains("root"))
                 return true;
 

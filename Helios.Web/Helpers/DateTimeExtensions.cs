@@ -36,5 +36,10 @@
             return time.ToString("MMM dd, yyyy hh:mm:ss tt").Replace("am", "AM").Replace("pm", "PM").Replace(".", "");
         }
 
+        public static string ToShortDate(this DateTime time)
+        {
+            return time.ToString("MMM dd, yyyy").Replace("am", "AM").Replace("pm", "PM").Replace(".", "");
+        }
+
     }
 }

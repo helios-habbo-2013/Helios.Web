@@ -46,7 +46,8 @@ namespace Helios.Game
                     var rank = int.Parse(groupData["rank"]);
                     var userGroup = new UserGroup
                     {
-                        Name = groupName,
+                        Name = groupData["name"],
+                        InternalName = kvp.Key,
                         Rank = rank,
                     };
 

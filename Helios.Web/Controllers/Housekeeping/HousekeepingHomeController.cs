@@ -1,10 +1,12 @@
 ﻿using Helios.Game;
 using Helios.Storage;
 using Helios.Storage.Models.Avatar;
+using Helios.Storage.Models.Site;
 using Helios.Storage.Models.User;
 using Helios.Web.Helpers;
 using Helios.Web.Util;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace Helios.Web.Controllers.Housekeeping
 {
@@ -27,12 +29,7 @@ namespace Helios.Web.Controllers.Housekeeping
         {
             if (SessionUtil.HasHousekeepingAuth(this.HttpContext))
             {
-                return RedirectToAction("Housekeeping", "Dashboard");
-            }
-
-            if (!ViewBag.PermissionGroup.HasPermission("housekeeping"))
-            {
-                return RedirectToAction("Home", "Index");
+                return RedirectToAction("Dashboard");
             }
 
             if (TempData.ContainsKey("AlertType"))
@@ -50,7 +47,7 @@ namespace Helios.Web.Controllers.Housekeeping
         {
             if (SessionUtil.HasHousekeepingAuth(this.HttpContext))
             {
-                return RedirectToAction("Housekeeping", "Dashboard");
+                return RedirectToAction("Dashboard");
             }
 
             if (!ViewBag.PermissionGroup.HasPermission("housekeeping"))
@@ -70,15 +67,17 @@ namespace Helios.Web.Controllers.Housekeeping
             }
 
             this.HttpContext.Set<bool>(Constants.HK_LOGGED_IN, true);
-            return RedirectToAction("Dashboard", "Housekeeping");
+
+            return RedirectToAction("Dashboard");
         }
 
+        [HttpGet]
         [Route("/housekeeping/dashboard")]
         public IActionResult Dashboard()
         {
             if (!SessionUtil.HasHousekeepingAuth(this.HttpContext))
             {
-                return RedirectToAction("Housekeeping", "Dashboard");
+                return RedirectToAction("Dashboard");
             }
 
             if (!ViewBag.PermissionGroup.HasPermission("housekeeping.dashboard"))
@@ -98,13 +97,61 @@ namespace Helios.Web.Controllers.Housekeeping
             return View("Dashboard");
         }
 
-
-        [Route("/housekeeping/status/uptime")]
-        public IActionResult Uptime()
+        [HttpPost]
+        [Route("/housekeeping/dashboard")]
+        public IActionResult AddNote(string title, string content)
         {
-            if (SessionUtil.HasHousekeepingAuth(this.HttpContext))
+            if (!SessionUtil.HasHousekeepingAuth(this.HttpContext))
             {
-                return RedirectToAction("Housekeeping", "Dashboard");
+                return RedirectToAction("Dashboard");
+            }
+
+            if (!ViewBag.PermissionGroup.HasPermission("housekeeping.dashboard"))
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
+
+            ViewBag.MainCategory = "SystemStatus";
+            ViewBag.CurrentPage = "Notes";
+
+            _ctx.HousekeepingNotes.Add(new HousekeepingNotes { AvatarId = ViewBag.Avatar.Id, Content = content, Title = title });
+            _ctx.SaveChanges();
+
+            return View("Dashboard");
+        }
+
+        [Route("/housekeeping/dashboard/delete-note/{noteId}")]
+        public IActionResult DeleteNote(string noteId)
+        {
+            if (!SessionUtil.HasHousekeepingAuth(this.HttpContext))
+            {
+                return RedirectToAction("Dashboard");
+            }
+
+            if (!ViewBag.PermissionGroup.HasPermission("housekeeping.dashboard"))
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
+            _ctx.HousekeepingNotes.Where(x => x.Id.ToString() == noteId).ExecuteDelete();
+            _ctx.SaveChanges();
+
+            return RedirectToAction("Dashboard");
+        }
+
+
+        [Route("/housekeeping/status/staffoverview")]
+        public IActionResult StaffOverview()
+        {
+            if (!SessionUtil.HasHousekeepingAuth(this.HttpContext))
+            {
+                return RedirectToAction("Dashboard");
+            }
+
+            if (!ViewBag.PermissionGroup.HasPermission("housekeeping.staffoverview"))
+            {
+                return RedirectToAction("Index", "Home");
             }
 
             if (TempData.ContainsKey("AlertType"))
@@ -114,9 +161,9 @@ namespace Helios.Web.Controllers.Housekeeping
                 ViewBag.AlertMessage = TempData["AlertMessage"];
 
             ViewBag.MainCategory = "SystemStatus";
-            ViewBag.CurrentPage = "Server Uptime";
+            ViewBag.CurrentPage = "Staff Overview";
 
-            return View("Dashboard");
+            return View("StaffOverview");
         }
     }
 }

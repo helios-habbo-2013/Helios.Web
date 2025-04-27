@@ -1,4 +1,11 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.EntityFrameworkCore;
+@using Helios.Web.Helpers
+@using Helios.Storage
+@using System.Linq;
+@{
+    StorageContext ctx = ViewBag.StorageContext;
+}
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -21,7 +28,7 @@
             <p style="font-size: 10px; color: gray; margin-top: -10px;">
                 Use this panel to save internal notes for admin/housekeeping purposes. Every staff member can see this.
             </p>
-            <form>
+            <form method="post">
                 <label style="font-size: 10px;">Note Title:</label><br>
                 <input type="text" name="title" style="font-size: 10px; width: 100%;"><br><br>
 
@@ -34,12 +41,7 @@
 
         @{
             // Temporary Razor list of notes
-            var notes = new List<(string Title, string Content)>
-            {
-                ("Server Restart", "Restart scheduled for 3AM server time, please save your work."),
-                ("Reminder!", "Post a news article announcing latest changes."),
-                ("Maintenance", "Database optimization planned for Friday night, some downtime expected."),
-            };
+            var notes = ctx.HousekeepingNotes.Include(x => x.AvatarData).OrderByDescending(x => x.CreatedDate).ToList();
         }
 
         <div class="column2">
@@ -47,6 +49,9 @@
             <table style="width: 100%; font-size: 10px;">
                 <thead>
                     <tr>
+                        <th>Author</th>
+                        <th></th>
+                        <th>Date Posted</th>
                         <th>Title</th>
                         <th>Content Preview</th>
                         <th>Action</th>
@@ -55,8 +60,11 @@
                 <tbody>
                     @foreach (var note in notes)
                     {
-                        var noteId = Guid.NewGuid(); // Unique ID for each note to avoid conflicts
+                        var noteId = note.Id; // Unique ID for each note to avoid conflicts
                         <tr>
+                            <td>@note.AvatarData.Name</td>
+                            <td><img src="@Url.AbsolutePath("~/habbo-imaging/avatarimage?figure=" + (note.AvatarData.Figure as string) + "&size=s&direction=3&head_direction=3&crr=0&frame=1")" alt="Avatar"></td>
+                            <td>@(((DateTime)note.CreatedDate).ToHabboDate())</td>
                             <td>@note.Title</td>
                             <td>
                                 <span id="preview-@noteId" style="cursor: pointer; color: blue; text-decoration: underline;"
@@ -67,7 +75,7 @@
                                     @preview
                                 </span>
                             </td>
-                            <td><button class="retro-button" style="font-size: 10px;">Delete</button></td>
+                            <td><a href="@Url.AbsolutePath("~/housekeeping/dashboard/delete-note/" + note.Id)"><button class="retro-button" style="font-size: 10px;">Delete</button></a></td>
                         </tr>
                     }
                 </tbody>

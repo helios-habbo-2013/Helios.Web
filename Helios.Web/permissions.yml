@@ -1,25 +1,41 @@
 groups:
   default:
     rank: 1
+    name: Default
   moderator:
-    rank: 5
+    rank: 4
+    name: Moderator
     permissions:
-    - housekeeping
-    - housekeeping.dashboard
-    - housekeeping.staffoverview
-    - housekeeping.addstaffpicks
+      - housekeeping
+      - housekeeping.dashboard
+      - housekeeping.staffoverview
+      - housekeeping.addstaffpicks
     inherits:
-    - default
+      - default
   super-moderator:
-    rank: 6
-    permissions:
+    rank: 5
+    name: Super Moderator
+    permissions: null
     inherits:
-    - default
-    - moderator
+      - default
+      - moderator
+  hotel-manager:
+    rank: 6
+    name: Hotel Manager
+    permissions:
+    - housekeeping.hotelcontent
+    - housekeeping.hotelclient
+    - housekeeping.hotelbadges
+    inherits:
+      - default
+      - moderator
+      - super-moderator
   root:
     rank: 7
-    permissions:
+    name: System Administrator
+    permissions: null
     inherits:
-    - default
-    - moderator
-    - super-moderator
+      - default
+      - moderator
+      - super-moderator
+      - hotel-manager

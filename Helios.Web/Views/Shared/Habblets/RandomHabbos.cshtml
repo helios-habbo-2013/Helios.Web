@@ -1,7 +1,7 @@
 ﻿@using Helios.Web.Helpers
 @using Helios.Storage
 @{
-    StorageContext ctx = ViewBag.Entities;
+    StorageContext ctx = ViewBag.StorageContext;
     var randomHabbos = ctx.AvatarData.OrderBy(x => Guid.NewGuid()).Take(18);
 }
 <div class="habblet-container ">

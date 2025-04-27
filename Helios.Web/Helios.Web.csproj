@@ -32,7 +32,7 @@
     <Content Remove="Views\Housekeeping\Shared\Navigation.cshtml" />
     <Content Remove="Views\Housekeeping\Shared\Sidebar.cshtml" />
     <Content Remove="Views\Housekeeping\Shared\Topbar.cshtml" />
-    <Content Remove="Views\Housekeeping\Uptime.cshtml" />
+    <Content Remove="Views\Housekeeping\StaffOverview.cshtml" />
     <Content Remove="Views\Identity\AddAvatar.cshtml" />
     <Content Remove="Views\Identity\AvatarList.cshtml" />
     <Content Remove="Views\Identity\Avatars.cshtml" />
@@ -58,7 +58,7 @@
     <None Include="Views\Account\Logout.cshtml" />
     <None Include="Views\Account\SecurityCheck.cshtml" />
     <None Include="Views\Client\Client.cshtml" />
-    <None Include="Views\Housekeeping\Uptime.cshtml" />
+    <None Include="Views\Housekeeping\StaffOverview.cshtml" />
     <None Include="Views\Housekeeping\Dashboard.cshtml" />
     <None Include="Views\Housekeeping\Login.cshtml" />
     <None Include="Views\Housekeeping\Shared\Footer.cshtml" />

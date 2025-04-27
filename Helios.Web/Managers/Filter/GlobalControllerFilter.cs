@@ -3,6 +3,7 @@ using Helios.Web.Helpers;
 using Helios.Web.Util;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
+using Microsoft.EntityFrameworkCore;
 
 namespace Helios.Game
 {
@@ -29,7 +30,10 @@ namespace Helios.Game
                 controller.ViewBag.SiteName = this._valueManager.GetString("site.name");
                 controller.ViewBag.StaticContentUrl = this._valueManager.GetString("site.static.content.url");
                 controller.ViewBag.Copyright = "Powered by HavanaWeb by Quackster";
+                controller.ViewBag.StorageContext = _ctx;
             }
+
+            // var t = _ctx.HousekeepingNotes.Include(x => x.AvatarData).ToList();
 
             if (controller != null)
             {
@@ -45,7 +49,7 @@ namespace Helios.Game
                 if (context.HttpContext.Contains(Constants.CURRENT_AVATAR_ID))
                 {
                     controller.ViewBag.Avatar = this._ctx.AvatarData.FirstOrDefault(x => x.Id == context.HttpContext.Get<int>(Constants.CURRENT_AVATAR_ID));
-                    controller.ViewBag.PermissionGroup = this._permissionsManager[controller.ViewBag.Avatar.Rank];
+                    controller.ViewBag.PermissionGroup = this._permissionsManager[controller.ViewBag.Avatar?.Rank ?? 0];
                     controller.ViewBag.LoggedIn = true;
                 }
                 else

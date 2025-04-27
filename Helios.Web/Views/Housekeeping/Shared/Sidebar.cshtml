@@ -67,19 +67,19 @@
     sidebars["SystemStatus"] = new List<(string, List<(string Name, string Link, string Permission)>)> {
         ("Dashboard", new List<(string Name, string Link, string Permission)> {
             ("Notes", @Url.AbsolutePath("~/housekeeping/dashboard"), "housekeeping.dashboard"),
-            ("Staff Overview", "#", "housekeeping.staffoverview")
+            ("Staff Overview", @Url.AbsolutePath("~/housekeeping/status/staffoverview"), "housekeeping.staffoverview")
             // ("Server Uptime", @Url.AbsolutePath("~/housekeeping/status/uptime"))
         }),
         ("Hotel Management", new List<(string Name, string Link, string Permission)> {
-            ("Hotel Name", "#", ""),
-            ("Static Content", "#", "")
+            ("Hotel Content", "#", "housekeeping.hotelcontent"),
+            ("Static Content", "#", "housekeeping.hotelcontent")
         }),
 
         ("Client", new List<(string Name, string Link, string Permission)> {
-            ("Loader", "#", ""),
-            ("External Texts", "#", ""),
-            ("External Variables", "#", ""),
-            ("Badges", "#", "")
+            ("Loader", "#", "housekeeping.hotelclient"),
+            ("External Texts", "#", "housekeeping.hotelclient"),
+            ("External Variables", "#", "housekeeping.hotelclient"),
+            ("Badges", "#", "housekeeping.hotelbadges")
         }),
         ("Maintenance Tools", new List<(string Name, string Link, string Permission)> {
             ("Schedule Maintenance", "#", ""),

@@ -1,0 +1,87 @@
+﻿@using Microsoft.EntityFrameworkCore;
+@using Helios.Web.Helpers
+@using Helios.Storage
+@{
+    StorageContext ctx = ViewBag.StorageContext;    
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Tools</title>
+    @{
+        await Html.RenderPartialAsync("Shared/Heading"); 
+    }
+</head>
+<body>
+    @{
+        await Html.RenderPartialAsync("Shared/Navigation");
+        await Html.RenderPartialAsync("Shared/Alert");
+    }
+    <div class="container">
+        @{
+            await Html.RenderPartialAsync("Shared/Sidebar");
+        }
+        <div class="column1" style="margin-right: 20%">
+
+            <h4>Staff Overview</h4>
+            <p>Here is a list of all staff members.</p>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Avatar</th>
+                        <th>Name</th>
+                        <th>Motto</th>
+                        <th>Rank</th>
+                        <th>Contact</th>
+                        <th>Creation Date</th>
+                        <th>Last Online</th>
+                        <th>Active Badges</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{
+                        var avatars = ctx.AvatarData.Include(x => x.User).Include(x => x.Badges).Where(x => x.Rank > 1).OrderByDescending(x => x.Rank).ToList();
+
+                        foreach (var avatarData in avatars)
+                        {
+
+                            <tr>
+                                <td><img src="@Url.AbsolutePath("~/habbo-imaging/avatarimage?figure=" + (avatarData.Figure as string) + "&size=b&direction=2&head_direction=2&crr=0&frame=1")" alt="Avatar"></td>
+                                <td>@avatarData.Name</td>
+                                <td>@avatarData.Motto</td>
+                                <td>@ViewBag.Permissions[avatarData.Rank].Name</td>
+                                <td>@avatarData.User.Email</td>
+                                <td>@(((DateTime)avatarData.CreatedDate).ToShortDate())</td>
+                                <td>@(((DateTime)avatarData.LastOnline).ToHabboDate())</td>
+                                <td>
+                                    @{
+                                        foreach (var badgeData in avatarData.Badges.Where(x => x.Visible).OrderBy(x => x.SlotId).ToList())
+                                        {
+                                            <img src="@(this.ViewBag.StaticContentUrl)c_images/Badges/@(badgeData.BadgeCode).gif" alt="@(badgeData.BadgeCode)">
+                                        }
+                                        /*
+                                        if (avatarData.Id == 1) {
+                                            <img src="@(this.ViewBag.StaticContentUrl)c_images/Badges/ADM.gif" alt="ADM">
+                                            <img src="@(this.ViewBag.StaticContentUrl)c_images/Badges/VIP.gif" alt="VIP">
+                                        }
+                                        
+                                        if (avatarData.Id == 3) {
+                                            <img src="@(this.ViewBag.StaticContentUrl)c_images/Badges/ADM.gif" alt="ADM">
+                                            <img src="@(this.ViewBag.StaticContentUrl)c_images/Badges/Z63.gif" alt="Z63">
+                                        }*/
+                                    }
+                                </td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    @{ await Html.RenderPartialAsync("Shared/Footer"); }
+</body>
+</html>

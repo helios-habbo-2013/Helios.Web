@@ -1,6 +1,10 @@
 ﻿@using Helios.Web.Helpers
+@{
+    var ipAddress = Context.Connection.RemoteIpAddress?.ToString();
+}
+
 
 <div class="topbar">
-    Logged in as: <strong>@ViewBag.Avatar.Name</strong> (Previous login at @(((DateTime)ViewBag.Avatar.LastOnline).ToHabboDate()) from 84.51.55.15)
+    Logged in as: <strong>@ViewBag.Avatar.Name</strong> (Previous login at @(((DateTime)ViewBag.Avatar.LastOnline).ToHabboDate()) from @ipAddress)
     <a href="../../">Secure Login to Habbo</a>
 </div>

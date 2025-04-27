@@ -1,6 +1,6 @@
 ﻿@using Helios.Web.Helpers
 @using Helios.Storage;
-@using Helios.Storage.Models.User
+@using Helios.Storage.Models.Site
 @{
     bool isLoggedIn = ViewBag.LoggedIn;
     bool isErrorPage = ViewBag.ErrorStatus != null ? true : false;
@@ -11,7 +11,7 @@
     string username = (ViewBag.Avatar != null ? ViewBag.Avatar.Name : "");
     int rank = (ViewBag.Avatar != null ? ViewBag.Avatar.Rank : 0);
 
-    StorageContext ctx = ViewBag.Entities;
+    StorageContext ctx = ViewBag.StorageContext;
 }
 
 <div id="overlay"></div>

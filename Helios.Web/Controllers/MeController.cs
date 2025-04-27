@@ -52,7 +52,6 @@ namespace Helios.Web.Controllers
                 .ToList();
 
             this.ViewBag.Habblets = pagesHabblets;
-            this.ViewBag.Entities = _ctx;
 
             return View("Me_old");
         }
@@ -72,7 +71,6 @@ namespace Helios.Web.Controllers
                 .ToList();
 
             this.ViewBag.Habblets = pagesHabblets;
-            this.ViewBag.Entities = _ctx;
 
             return View();
         }
