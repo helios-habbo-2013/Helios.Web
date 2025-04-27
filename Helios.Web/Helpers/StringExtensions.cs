@@ -21,6 +21,11 @@
             return str;
         }
 
+        public static bool IsChecked(this string str)
+        {
+            return (str != null) && (str == "true" || str == "1" || str == "on");
+        }
+
         /// <summary>
         /// Get if string is numeric
         /// </summary>
