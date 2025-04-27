@@ -1,0 +1,55 @@
+﻿@using Microsoft.EntityFrameworkCore;
+@using Helios.Web.Helpers
+@using Helios.Storage
+@using System.Linq;
+@{
+    StorageContext ctx = ViewBag.StorageContext;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Tools</title>
+    @{
+        await Html.RenderPartialAsync("Shared/Heading"); 
+    }
+</head>
+<body>
+    @{
+        await Html.RenderPartialAsync("Shared/Navigation");
+        await Html.RenderPartialAsync("Shared/Alert");
+    }
+    <div class="container">
+        @{
+            await Html.RenderPartialAsync("Shared/Sidebar");
+        }
+        <div class="column3">
+            <h4>Static Content</h4>
+            
+            <form method="post">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Setting</th>
+                        <th>Input</th>
+                        <th width="30%">Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Static Image Path</td>
+                        <td><input type="text" name="hotel_name" placeholder="Enter the hotel name" style="width: 50%" value="@(ViewBag.Settings["site.static.content.url"])"></td>
+                        <td>The URL path (including / at the end) that points to where the c_images and web-gallery (and more!) are etc, eg <i>https://images.h4bbo.net</i></td>
+                    </tr>
+                </tbody>
+                </table>
+                
+                <p><a href="@Url.AbsolutePath("housekeeping/status/static-content")"><button class="retro-button" style="font-size: 10px;">Save Changes</button></a></p>
+            </form>
+
+        </div>
+    </div>
+
+    @{ await Html.RenderPartialAsync("Shared/Footer"); }
+</body>
+</html>

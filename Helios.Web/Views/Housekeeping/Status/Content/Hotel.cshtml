@@ -1,0 +1,70 @@
+﻿@using Microsoft.EntityFrameworkCore;
+@using Helios.Web.Helpers
+@using Helios.Storage
+@using System.Linq;
+@{
+    StorageContext ctx = ViewBag.StorageContext;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Tools</title>
+    @{
+        await Html.RenderPartialAsync("Shared/Heading"); 
+    }
+</head>
+<body>
+    @{
+        await Html.RenderPartialAsync("Shared/Navigation");
+        await Html.RenderPartialAsync("Shared/Alert");
+    }
+    <div class="container">
+        @{
+            await Html.RenderPartialAsync("Shared/Sidebar");
+        }
+        <div class="column3">
+            <h4>Hotel Content</h4>
+            
+            <form method="post">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Setting</th>
+                        <th>Input</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Hotel Name</td>
+                            <td><input type="text" name="hotel_name" placeholder="Enter the hotel name" style="width: 50%" value="@(ViewBag.Settings["site.name"])"></td>
+                        <td>The name of the hotel displayed throughout the site and game.</td>
+                    </tr>
+                    <tr>
+                        <td>Is Welcome Room enabled</td>
+                            <td><input type="checkbox" name="welcome_room_enabled"@(ViewBag.Settings["site.welcome.room"] == "true" ? "checked=\"true\"" : "")></td>
+                        <td>Enable or disable the Welcome Room feature for new users.</td>
+                    </tr>
+                    <tr>
+                        <td>Terms of Service (TOS)</td>
+                        <td><textarea name="tos" rows="4" cols="60" placeholder="Enter Terms of Service...">@(ViewBag.Settings["site.tos"])</textarea></td>
+                        <td>The terms users must agree to when using the hotel.</td>
+                    </tr>
+                    <tr>
+                        <td>Privacy Policy</td>
+                        <td><textarea name="privacy_policy" rows="4" cols="60" placeholder="Enter Privacy Policy...">@(ViewBag.Settings["site.privacy.policy"])</textarea></td>
+                        <td>Information about how user data is collected and used.</td>
+                        </tr>
+                </tbody>
+                </table>
+                
+                <p><a href="@Url.AbsolutePath("housekeeping/status/hotel-content")"><button class="retro-button" style="font-size: 10px;">Save Changes</button></a></p>
+            </form>
+
+        </div>
+    </div>
+
+    @{ await Html.RenderPartialAsync("Shared/Footer"); }
+</body>
+</html>

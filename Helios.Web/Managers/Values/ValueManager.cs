@@ -4,7 +4,7 @@ using Helios.Web.Util.Extensions;
 
 namespace Helios.Game
 {
-    public class ValueManager : ILoadable
+    public class ValueManager
     {
         #region Fields
 
@@ -15,7 +15,7 @@ namespace Helios.Game
 
         #region Properties
 
-        private Dictionary<string, string> ClientValues
+        public Dictionary<string, string> ClientValues
         {
             get { return _clientValues; }
         }
@@ -29,11 +29,6 @@ namespace Helios.Game
             this._ctx = ctx;
             this._clientValues = new Dictionary<string, string>();
 
-            this.Load();
-        }
-
-        public void Load()
-        {
             _ctx.GetSettings(out _clientValues);
 
             foreach (var kvp in GetDefaultValues())
@@ -55,6 +50,9 @@ namespace Helios.Game
 
             defaultValues["site.name"] = "Habbo";
             defaultValues["site.static.content.url"] = "";
+            defaultValues["site.welcome.room"] = "true";
+            defaultValues["site.tos"] = "Terms Of Service goes here...";
+            defaultValues["site.privacy.policy"] = "Privacy Policy goes here...";
 
             return defaultValues;
         }

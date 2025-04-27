@@ -71,8 +71,8 @@
             // ("Server Uptime", @Url.AbsolutePath("~/housekeeping/status/uptime"))
         }),
         ("Hotel Management", new List<(string Name, string Link, string Permission)> {
-            ("Hotel Content", "#", "housekeeping.hotelcontent"),
-            ("Static Content", "#", "housekeeping.hotelcontent")
+            ("Hotel Content", @Url.AbsolutePath("~/housekeeping/status/hotel-content"), "housekeeping.hotelcontent"),
+            ("Static Content", @Url.AbsolutePath("~/housekeeping/status/static-content"), "housekeeping.staticcontent")
         }),
 
         ("Client", new List<(string Name, string Link, string Permission)> {

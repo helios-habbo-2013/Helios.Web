@@ -33,7 +33,8 @@ groups:
   root:
     rank: 7
     name: System Administrator
-    permissions: null
+    permissions:
+      - housekeeping.staticcontent
     inherits:
       - default
       - moderator

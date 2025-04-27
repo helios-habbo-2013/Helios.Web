@@ -15,12 +15,14 @@ namespace Helios.Web.Controllers.Housekeeping
         private readonly ILogger<HousekeepingController> _logger;
         private readonly StorageContext _ctx;
         private readonly PermissionsManager _permissions;
+        private readonly ValueManager _valueManager;
 
-        public HousekeepingController(ILogger<HousekeepingController> logger, StorageContext ctx, PermissionsManager permissions)
+        public HousekeepingController(ILogger<HousekeepingController> logger, StorageContext ctx, PermissionsManager permissions, ValueManager valueManager)
         {
             _logger = logger;
             _ctx = ctx;
             _permissions = permissions;
+            _valueManager = valueManager;
         }
 
         [HttpGet]
@@ -71,75 +73,6 @@ namespace Helios.Web.Controllers.Housekeeping
             return RedirectToAction("Dashboard");
         }
 
-        [HttpGet]
-        [Route("/housekeeping/dashboard")]
-        public IActionResult Dashboard()
-        {
-            if (!SessionUtil.HasHousekeepingAuth(this.HttpContext))
-            {
-                return RedirectToAction("Dashboard");
-            }
-
-            if (!ViewBag.PermissionGroup.HasPermission("housekeeping.dashboard"))
-            {
-                return RedirectToAction("Index", "Home");
-            }
-
-            if (TempData.ContainsKey("AlertType"))
-                ViewBag.AlertType = TempData["AlertType"];
-
-            if (TempData.ContainsKey("AlertMessage"))
-                ViewBag.AlertMessage = TempData["AlertMessage"];
-
-            ViewBag.MainCategory = "SystemStatus";
-            ViewBag.CurrentPage = "Notes";
-
-            return View("Dashboard");
-        }
-
-        [HttpPost]
-        [Route("/housekeeping/dashboard")]
-        public IActionResult AddNote(string title, string content)
-        {
-            if (!SessionUtil.HasHousekeepingAuth(this.HttpContext))
-            {
-                return RedirectToAction("Dashboard");
-            }
-
-            if (!ViewBag.PermissionGroup.HasPermission("housekeeping.dashboard"))
-            {
-                return RedirectToAction("Index", "Home");
-            }
-
-
-            ViewBag.MainCategory = "SystemStatus";
-            ViewBag.CurrentPage = "Notes";
-
-            _ctx.HousekeepingNotes.Add(new HousekeepingNotes { AvatarId = ViewBag.Avatar.Id, Content = content, Title = title });
-            _ctx.SaveChanges();
-
-            return View("Dashboard");
-        }
-
-        [Route("/housekeeping/dashboard/delete-note/{noteId}")]
-        public IActionResult DeleteNote(string noteId)
-        {
-            if (!SessionUtil.HasHousekeepingAuth(this.HttpContext))
-            {
-                return RedirectToAction("Dashboard");
-            }
-
-            if (!ViewBag.PermissionGroup.HasPermission("housekeeping.dashboard"))
-            {
-                return RedirectToAction("Index", "Home");
-            }
-
-            _ctx.HousekeepingNotes.Where(x => x.Id.ToString() == noteId).ExecuteDelete();
-            _ctx.SaveChanges();
-
-            return RedirectToAction("Dashboard");
-        }
-
 
         [Route("/housekeeping/status/staffoverview")]
         public IActionResult StaffOverview()
@@ -163,7 +96,7 @@ namespace Helios.Web.Controllers.Housekeeping
             ViewBag.MainCategory = "SystemStatus";
             ViewBag.CurrentPage = "Staff Overview";
 
-            return View("StaffOverview");
+            return View("Status/StaffOverview");
         }
     }
 }
