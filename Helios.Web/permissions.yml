@@ -26,6 +26,8 @@ groups:
     - housekeeping.hotelcontent
     - housekeeping.hotelclient
     - housekeeping.hotelbadges
+    - housekeeping.edit.external.flash.texts
+    - housekeeping.edit.external.variables
     inherits:
       - default
       - moderator
@@ -35,6 +37,7 @@ groups:
     name: System Administrator
     permissions:
       - housekeeping.staticcontent
+      - housekeeping.loadercontent
     inherits:
       - default
       - moderator

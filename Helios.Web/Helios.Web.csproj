@@ -34,6 +34,7 @@
     <Content Remove="Views\Housekeeping\Shared\Topbar.cshtml" />
     <Content Remove="Views\Housekeeping\StaffOverview.cshtml" />
     <Content Remove="Views\Housekeeping\Status\Content\Hotel.cshtml" />
+    <Content Remove="Views\Housekeeping\Status\Content\Loader.cshtml" />
     <Content Remove="Views\Housekeeping\Status\Content\Static.cshtml" />
     <Content Remove="Views\Identity\AddAvatar.cshtml" />
     <Content Remove="Views\Identity\AvatarList.cshtml" />
@@ -60,6 +61,7 @@
     <None Include="Views\Account\Logout.cshtml" />
     <None Include="Views\Account\SecurityCheck.cshtml" />
     <None Include="Views\Client\Client.cshtml" />
+    <None Include="Views\Housekeeping\Status\Content\Loader.cshtml" />
     <None Include="Views\Housekeeping\Status\Content\Static.cshtml" />
     <None Include="Views\Housekeeping\Status\Content\Hotel.cshtml" />
     <None Include="Views\Housekeeping\Status\StaffOverview.cshtml" />

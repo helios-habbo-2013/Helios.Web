@@ -71,6 +71,35 @@ namespace Helios.Web.Controllers.Housekeeping
             return View("Status/Content/Static");
         }
 
+        [HttpGet]
+        [Route("/housekeeping/status/loader-content")]
+        public IActionResult LoaderContent()
+        {
+            if (!SessionUtil.HasHousekeepingAuth(this.HttpContext))
+            {
+                return RedirectToAction("Dashboard");
+            }
+
+            if (!ViewBag.PermissionGroup.HasPermission("housekeeping.loadercontent"))
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
+            if (TempData.ContainsKey("AlertType"))
+                ViewBag.AlertType = TempData["AlertType"];
+
+            if (TempData.ContainsKey("AlertMessage"))
+                ViewBag.AlertMessage = TempData["AlertMessage"];
+
+            ViewBag.MainCategory = "SystemStatus";
+            ViewBag.CurrentPage = "Loader";
+
+            ViewBag.Settings = _valueManager.ClientValues;
+
+            return View("Status/Content/Loader");
+        }
+
+
         [HttpPost]
         [Route("/housekeeping/status/hotel-content")]
         public IActionResult SaveHotelContent(string hotel_name, string welcome_room_enabled, string tos, string privacy_policy)
@@ -141,6 +170,41 @@ namespace Helios.Web.Controllers.Housekeeping
 
 
             return RedirectToAction("StaticContent");
+        }
+
+        [HttpPost]
+        [Route("/housekeeping/status/loader-content")]
+        public IActionResult SaveLoaderSettings(
+            string info_host,
+            int info_port,
+            string vars_url,
+            string texts_url,
+            string movie_url)
+        {
+
+            // Example: Save these settings to your storage, database, or configuration
+            var settings = new Dictionary<string, string>
+            {
+                { "connection.info.host", info_host },
+                { "connection.info.port", info_port.ToString() },
+                { "external.variables", vars_url },
+                { "external.flash.texts", texts_url },
+                { "habbo.swf", movie_url }
+            };
+
+            // Save each setting
+            foreach (var setting in settings)
+            {
+                _ctx.SettingsData.Where(x => x.Key == setting.Key)
+                    .ExecuteUpdate(x =>
+                        x.SetProperty(u => u.Value, setting.Value)
+                    );
+            }
+
+            TempData["AlertType"] = "success";
+            TempData["AlertMessage"] = "Client loader settings have successfully saved!";
+
+            return RedirectToAction("LoaderContent");
         }
     }
 }

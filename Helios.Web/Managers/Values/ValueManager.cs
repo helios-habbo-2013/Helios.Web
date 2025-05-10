@@ -54,6 +54,38 @@ namespace Helios.Game
             defaultValues["site.tos"] = "Terms Of Service goes here...";
             defaultValues["site.privacy.policy"] = "Privacy Policy goes here...";
 
+            defaultValues["connection.info.host"] = "localhost";
+            defaultValues["connection.info.port"] = "38101";
+
+            defaultValues["external.variables"] = "https://images.h4bbo.net/gamedata/external_variables.txt";
+            defaultValues["external.flash.texts"] = "https://images.h4bbo.net/gamedata/external_flash_texts.txt";
+
+            defaultValues["habbo.swf"] = "https://images.h4bbo.net/gordon/RELEASE49-26182-26181-201004270119_de461464ed1e27f56cc890464241d93b/Habbo.swf";
+
+            /*
+                                        <td>Connection Info Host</td>
+                            <td><input type="text" name="info_host" placeholder="Enter the connection info host" style="width: 50%" value="@(ViewBag.Settings["info.host"])"></td>
+                            <td>The server address used for connection information (default: localhost).</td>
+                        </tr>
+                        <tr>
+                            <td>Connection Info Port</td>
+                            <td><input type="number" name="info_port" placeholder="Enter the connection info port" style="width: 50%" value="@(ViewBag.Settings["info.port"])"></td>
+                            <td>The port number used for connection information (default: 38101).</td>
+                        </tr>
+                        <tr>
+                            <td>External Variables URL</td>
+                            <td><input type="text" name="vars_url" placeholder="Enter the external variables URL" style="width: 50%" value="@(ViewBag.Settings["vars.url"])"></td>
+                            <td>URL pointing to the external variables file.</td>
+                        </tr>
+                        <tr>
+                            <td>External Texts URL</td>
+                            <td><input type="text" name="texts_url" placeholder="Enter the external texts URL" style="width: 50%" value="@(ViewBag.Settings["texts.url"])"></td>
+                            <td>URL pointing to the external texts file .</td>
+                        </tr>
+                        <tr>
+                            <td>Movie DCR Path</td>
+                            <td><input type="text" name="movie_url" placeholder="Enter the Habbo.swf path" style="width: 50%" value="@(ViewBag.Settings["movie.url"])"></td>*/
+
             return defaultValues;
         }
 

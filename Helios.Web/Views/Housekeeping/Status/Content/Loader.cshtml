@@ -1,0 +1,114 @@
+﻿@using Microsoft.EntityFrameworkCore;
+@using Helios.Web.Helpers
+@using Helios.Storage
+@using System.Linq;
+@{
+    StorageContext ctx = ViewBag.StorageContext;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Tools</title>
+    @{
+        await Html.RenderPartialAsync("Shared/Heading"); 
+    }
+</head>
+<body>
+    @{
+        await Html.RenderPartialAsync("Shared/Navigation");
+        await Html.RenderPartialAsync("Shared/Alert");
+    }
+    <div class="container">
+        @{
+            await Html.RenderPartialAsync("Shared/Sidebar");
+        }
+        <div class="column3">
+            <h4>Hotel Content</h4>
+            
+            <form method="post">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Setting</th>
+                        <th>Input</th>
+                         <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                        <tr>
+                            <td>Connection Info Host</td>
+                            <td><input type="text" name="info_host" placeholder="localhost" value="@(ViewBag.Settings["connection.info.host"])"></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td><p>The server address used for connection information (default: localhost).</p></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Connection Info Port</td>
+                            <td><input type="number" name="info_port" placeholder="38101" value="@(ViewBag.Settings["connection.info.port"])"></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td><p>The port number used for connection information (default: 38101).</p></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>External Variables URL</td>
+                            <td><input type="text" name="vars_url" placeholder="Enter the external variables URL" value="@(ViewBag.Settings["external.variables"])"></td>
+                            <td>@{
+                                    if (ViewBag.PermissionGroup.HasPermission("housekeeping.edit.external.variables")) 
+                                    {
+                                        <p><button class="retro-button" style="font-size: 10px;" formaction="@Url.AbsolutePath("~/housekeeping/reimport/external-variables")">Import External Variables</button></p>
+                                    }
+                                }
+                            </td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td><p>URL pointing to the external variables file.</p></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>External Flash Texts URL</td>
+                            <td><input type="text" name="texts_url" placeholder="Enter the external texts URL" value="@(ViewBag.Settings["external.flash.texts"])"></td>
+                            <td>
+                                @{
+                                    if (ViewBag.PermissionGroup.HasPermission("housekeeping.edit.external.flash.texts"))
+                                    {
+                                        <p><button class="retro-button" style="font-size: 10px;" formaction="@Url.AbsolutePath("~/housekeeping/reimport/external-flash-texts")">Import External Flash Texts</button></p>
+                                    }
+                                }
+                            </td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td><p>URL pointing to the external flash texts file.</p></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Habbo.swf Path</td>
+                            <td><p><input type="text" name="movie_url" placeholder="Enter the Habbo.swf path" value="@(ViewBag.Settings["habbo.swf"])"></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td><p>URL pointing to the Habbo.swf used to load the client.</p></td>
+                            <td></td>
+                        </tr>
+
+                </tbody>
+                </table>
+                
+                <p><a href="@Url.AbsolutePath("housekeeping/status/hotel-content")"><button class="retro-button" style="font-size: 10px;">Save Changes</button></a></p>
+            </form>
+
+        </div>
+    </div>
+
+    @{ await Html.RenderPartialAsync("Shared/Footer"); }
+</body>
+</html>
