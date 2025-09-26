@@ -1,0 +1,55 @@
+﻿@using Microsoft.EntityFrameworkCore;
+@using Helios.Web.Helpers
+@using Helios.Storage
+@using System.Linq;
+@{
+    StorageContext ctx = ViewBag.StorageContext;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Tools</title>
+    @{
+        await Html.RenderPartialAsync("Shared/Heading"); 
+    }
+</head>
+<body>
+    @{
+        await Html.RenderPartialAsync("Shared/Navigation");
+        await Html.RenderPartialAsync("Shared/Alert");
+    }
+    <div class="container">
+        @{
+            await Html.RenderPartialAsync("Shared/Sidebar");
+        }
+        <div class="column3">
+            <h4>Edit External Flash Texts</h4>
+            
+            <form method="post" enctype="multipart/form-data">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Contents</th>
+                    </tr>
+                </thead>
+                    <tbody>
+                        <tr>
+                            <td>The external flash texts is a configuration file used to load localized text strings into the game client and server, enabling dynamic and language-specific content without modifying core code. It follows a simple key-value format (e.g., catalog_button_buy=Buy) and supplies text for user interface elements, catalog items, room names, moderation messages, and tooltips. This file supports easy customization and is commonly edited in private servers to personalize game elements. It works alongside other configuration files like external_variables, and is essential for delivering a consistent and translated in-game experience.</td>
+                        </tr>
+                        <tr>
+                            <td><textarea type="text" name="external_texts" style="width: 100%;" rows="25">@ViewBag.ExternalFlashTexts</textarea></td>
+                        </tr>
+
+                </tbody>
+                </table>
+                
+                <p><button class="retro-button" style="font-size: 10px;">Save Changes</button></p>
+            </form>
+
+        </div>
+    </div>
+
+    @{ await Html.RenderPartialAsync("Shared/Footer"); }
+</body>
+</html>

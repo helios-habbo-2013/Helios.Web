@@ -9,11 +9,65 @@ using Helios.Web.Util;
 using Helios.Web.Util.Extensions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Text;
 
 namespace Helios.Web.Controllers.Housekeeping
 {
     public partial class HousekeepingController : Controller
     {
+        [HttpGet]
+        [Route("/housekeeping/status/external-flash-texts")]
+        public IActionResult ExternalFlashTexts()
+        {
+            if (!SessionUtil.HasHousekeepingAuth(this.HttpContext))
+            {
+                return RedirectToAction("Dashboard");
+            }
+
+            if (!ViewBag.PermissionGroup.HasPermission("housekeeping.edit.external.flash.texts"))
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
+            if (TempData.ContainsKey("AlertType"))
+                ViewBag.AlertType = TempData["AlertType"];
+
+            if (TempData.ContainsKey("AlertMessage"))
+                ViewBag.AlertMessage = TempData["AlertMessage"];
+
+            ViewBag.MainCategory = "SystemStatus";
+            ViewBag.CurrentPage = "External Texts";
+
+            var sb = new StringBuilder();
+
+            foreach (var kvp in _ctx.ExternalVariablesData.ToList())
+            {
+                sb.AppendLine(kvp.Key + "=" + kvp.Value);
+            }
+
+            ViewBag.Settings = _valueManager.ClientValues;
+            ViewBag.ExternalFlashTexts = sb.ToString();
+
+            return View("Status/Content/ExternalFlashTexts");
+        }
+
+        [HttpPost]
+        [Route("/housekeeping/status/external-flash-texts")]
+        public IActionResult SaveExternalFlashTexts([FromBody] string external_texts)
+        {
+            if (!SessionUtil.HasHousekeepingAuth(this.HttpContext))
+            {
+                return RedirectToAction("Dashboard");
+            }
+
+            if (!ViewBag.PermissionGroup.HasPermission("housekeeping.edit.external.flash.texts"))
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
+            return RedirectToAction("ExternalFlashTexts");
+        }
+
         [Route("/housekeeping/reimport/external-flash-texts")]
         public async Task<IActionResult> ReimportExternalFlashTexts()
         {
